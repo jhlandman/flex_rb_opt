@@ -1,0 +1,49 @@
+This is BibTeX, Version 0.99d (TeX Live 2018)
+Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
+The top-level auxiliary file: dissertation_att_6.aux
+A level-1 auxiliary file: FrontMatter.aux
+The style file: dcu_etal.bst
+Database file #1: Refs.bib
+Warning--can't use both volume and number fields in FHT01
+You've used 35 entries,
+            2921 wiz_defined-function locations,
+            881 strings with 9312 characters,
+and the built_in function-call counts, 127876 in all, are:
+= -- 20743
+> -- 1666
+< -- 1
++ -- 9662
+- -- 497
+* -- 10880
+:= -- 26028
+add.period$ -- 71
+call.type$ -- 35
+change.case$ -- 487
+chr.to.int$ -- 35
+cite$ -- 36
+duplicate$ -- 502
+empty$ -- 1105
+format.name$ -- 637
+if$ -- 22928
+int.to.chr$ -- 5
+int.to.str$ -- 0
+missing$ -- 37
+newline$ -- 144
+num.names$ -- 360
+pop$ -- 103
+preamble$ -- 1
+purify$ -- 525
+quote$ -- 0
+skip$ -- 462
+stack$ -- 0
+substring$ -- 28961
+swap$ -- 71
+text.length$ -- 491
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 134
+warning$ -- 1
+while$ -- 787
+width$ -- 0
+write$ -- 481
+(There was 1 warning)

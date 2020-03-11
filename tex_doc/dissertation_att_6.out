@@ -1,0 +1,29 @@
+\BOOKMARK [0][-]{chapter.1}{Introduction}{}% 1
+\BOOKMARK [0][-]{chapter.2}{A framework for constructing risk-based portfolios}{}% 2
+\BOOKMARK [1][-]{section.2.1}{An overview of modern portfolio theory}{chapter.2}% 3
+\BOOKMARK [1][-]{section.2.2}{Introducing risk-based investing}{chapter.2}% 4
+\BOOKMARK [1][-]{section.2.3}{Improving risk-based portfolios}{chapter.2}% 5
+\BOOKMARK [0][-]{chapter.3}{Overview of risk-based portfolios}{}% 6
+\BOOKMARK [1][-]{section.3.1}{Risk-based portfolio types}{chapter.3}% 7
+\BOOKMARK [1][-]{section.3.2}{Risk-based portfolio properties}{chapter.3}% 8
+\BOOKMARK [0][-]{chapter.4}{Estimation risk reduction techniques}{}% 9
+\BOOKMARK [1][-]{section.4.1}{Improving optimisation inputs}{chapter.4}% 10
+\BOOKMARK [1][-]{section.4.2}{Penalising the optimization}{chapter.4}% 11
+\BOOKMARK [1][-]{section.4.3}{Alternate implementation methods}{chapter.4}% 12
+\BOOKMARK [0][-]{chapter.5}{Using estimation risk reduction techniques}{}% 13
+\BOOKMARK [1][-]{section.5.1}{Quantile factor modelling and regime switching}{chapter.5}% 14
+\BOOKMARK [1][-]{section.5.2}{Ridge regression}{chapter.5}% 15
+\BOOKMARK [0][-]{chapter.6}{An empirical test using South African equities}{}% 16
+\BOOKMARK [1][-]{section.6.1}{Data and methodology}{chapter.6}% 17
+\BOOKMARK [1][-]{section.6.2}{Results}{chapter.6}% 18
+\BOOKMARK [0][-]{chapter.7}{Conclusion}{}% 19
+\BOOKMARK [0][-]{chapter.7}{Bibliography}{}% 20
+\BOOKMARK [0][-]{appendix.A}{Abbreviations}{}% 21
+\BOOKMARK [0][-]{appendix.B}{Portfolio mathematics}{}% 22
+\BOOKMARK [1][-]{section.B.1}{Marginal risk contribution}{appendix.B}% 23
+\BOOKMARK [1][-]{section.B.2}{Minimum weight constrained IHI}{appendix.B}% 24
+\BOOKMARK [1][-]{section.B.3}{Proof of the volatility order inequality}{appendix.B}% 25
+\BOOKMARK [1][-]{section.B.4}{Maximum Sharpe ratio risk-based portfolios}{appendix.B}% 26
+\BOOKMARK [0][-]{appendix.C}{Reducing estimation error}{}% 27
+\BOOKMARK [1][-]{section.C.1}{Quantile factor modelling example}{appendix.C}% 28
+\BOOKMARK [1][-]{section.C.2}{Estimating the ERC portfolio Lagrangian multiplier}{appendix.C}% 29

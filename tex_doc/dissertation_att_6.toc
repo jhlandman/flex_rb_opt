@@ -1,0 +1,29 @@
+\contentsline {chapter}{\numberline {1.}Introduction}{1}{chapter.1}
+\contentsline {chapter}{\numberline {2.}A framework for constructing risk-based portfolios}{3}{chapter.2}
+\contentsline {section}{\numberline {2.1}An overview of modern portfolio theory}{3}{section.2.1}
+\contentsline {section}{\numberline {2.2}Introducing risk-based investing}{5}{section.2.2}
+\contentsline {section}{\numberline {2.3}Improving risk-based portfolios}{6}{section.2.3}
+\contentsline {chapter}{\numberline {3.}Overview of risk-based portfolios}{9}{chapter.3}
+\contentsline {section}{\numberline {3.1}Risk-based portfolio types}{9}{section.3.1}
+\contentsline {section}{\numberline {3.2}Risk-based portfolio properties}{11}{section.3.2}
+\contentsline {chapter}{\numberline {4.}Estimation risk reduction techniques}{14}{chapter.4}
+\contentsline {section}{\numberline {4.1}Improving optimisation inputs}{14}{section.4.1}
+\contentsline {section}{\numberline {4.2}Penalising the optimization}{17}{section.4.2}
+\contentsline {section}{\numberline {4.3}Alternate implementation methods}{18}{section.4.3}
+\contentsline {chapter}{\numberline {5.}Using estimation risk reduction techniques}{20}{chapter.5}
+\contentsline {section}{\numberline {5.1}Quantile factor modelling and regime switching}{21}{section.5.1}
+\contentsline {section}{\numberline {5.2}Ridge regression}{23}{section.5.2}
+\contentsline {chapter}{\numberline {6.}An empirical test using South African equities}{25}{chapter.6}
+\contentsline {section}{\numberline {6.1}Data and methodology}{25}{section.6.1}
+\contentsline {section}{\numberline {6.2}Results}{26}{section.6.2}
+\contentsline {chapter}{\numberline {7.}Conclusion}{34}{chapter.7}
+\contentsline {chapter}{Bibliography}{35}{chapter.7}
+\contentsline {chapter}{\numberline {A.}Abbreviations}{39}{appendix.A}
+\contentsline {chapter}{\numberline {B.}Portfolio mathematics}{41}{appendix.B}
+\contentsline {section}{\numberline {B.1}Marginal risk contribution}{41}{section.B.1}
+\contentsline {section}{\numberline {B.2}Minimum weight constrained IHI}{42}{section.B.2}
+\contentsline {section}{\numberline {B.3}Proof of the volatility order inequality}{42}{section.B.3}
+\contentsline {section}{\numberline {B.4}Maximum Sharpe ratio risk-based portfolios}{42}{section.B.4}
+\contentsline {chapter}{\numberline {C.}Reducing estimation error}{44}{appendix.C}
+\contentsline {section}{\numberline {C.1}Quantile factor modelling example}{44}{section.C.1}
+\contentsline {section}{\numberline {C.2}Estimating the ERC portfolio Lagrangian multiplier}{44}{section.C.2}

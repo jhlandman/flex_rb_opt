@@ -1,0 +1,204 @@
+\begin{thebibliography}{xx}
+
+\harvarditem{Ang}{2014}{A14}
+Ang, A.  \harvardyearleft 2014\harvardyearright .
+\newblock {\em Asset management: A systematic approach to factor investing},
+  Oxford University Press.
+
+\harvarditem{Ang \harvardand\ Chen}{2002}{AC02}
+Ang, A. \harvardand\ Chen, J.  \harvardyearleft 2002\harvardyearright .
+\newblock Asymmetric correlations of equity portfolios, {\em Journal of
+  financial Economics} {\bf 63}(3):~443--494.
+
+\harvarditem{Best \harvardand\ Grauer}{1991}{B91}
+Best, M.~J. \harvardand\ Grauer, R.~R.  \harvardyearleft 1991\harvardyearright
+  .
+\newblock Sensitivity analysis for mean-variance portfolio problems, {\em
+  Management Science} {\bf 37}(8):~980--989.
+
+\harvarditem[Bodnar \it{et~al.}]{Bodnar, Okhrin, Vitlinskyy \harvardand\
+  Zabolotskyy}{2018}{B18}
+Bodnar, T., Okhrin, Y., Vitlinskyy, V. \harvardand\ Zabolotskyy, T.
+  \harvardyearleft 2018\harvardyearright .
+\newblock Determination and estimation of risk aversion coefficients, {\em
+  Computational Management Science} {\bf 15}(2):~297--317.
+
+\harvarditem[Chen \it{et~al.}]{Chen, Dolado \harvardand\ Gonzalo}{2019}{CDG19}
+Chen, L., Dolado, J.~J. \harvardand\ Gonzalo, J.  \harvardyearleft
+  2019\harvardyearright .
+\newblock Quantile factor models.
+\newblock Working paper.
+
+\harvarditem[Clarke \it{et~al.}]{Clarke, De~Silva \harvardand\
+  Thorley}{2011}{C11}
+Clarke, R., De~Silva, H. \harvardand\ Thorley, S.  \harvardyearleft
+  2011\harvardyearright .
+\newblock Minimum-variance portfolio composition, {\em The Journal of Portfolio
+  Management} {\bf 37}(2):~31--45.
+
+\harvarditem[Clarke \it{et~al.}]{Clarke, De~Silva \harvardand\
+  Thorley}{2006}{C06}
+Clarke, R.~G., De~Silva, H. \harvardand\ Thorley, S.  \harvardyearleft
+  2006\harvardyearright .
+\newblock Minimum-variance portfolios in the us equity market, {\em The Journal
+  of Portfolio Management} {\bf 33}(1):~10--24.
+
+\harvarditem[DeMiguel \it{et~al.}]{DeMiguel, Garlappi \harvardand\
+  Uppal}{2007}{DGL07}
+DeMiguel, V., Garlappi, L. \harvardand\ Uppal, R.  \harvardyearleft
+  2007\harvardyearright .
+\newblock Optimal versus naive diversification: How inefficient is the 1/n
+  portfolio strategy?, {\em The review of Financial studies} {\bf
+  22}(5):~1915--1953.
+
+\harvarditem{du~Plessis \harvardand\ van Rensburg}{2017}{DV17}
+du~Plessis, H. \harvardand\ van Rensburg, P.  \harvardyearleft
+  2017\harvardyearright .
+\newblock Diversification and the realised volatility of equity portfolios,
+  {\em Investment Analysts Journal} {\bf 46}(3):~213--234.
+
+\harvarditem{Flint \harvardand\ Du~Plooy}{2018}{FD18}
+Flint, E.~J. \harvardand\ Du~Plooy, S.  \harvardyearleft 2018\harvardyearright
+  .
+\newblock Extending risk budgeting for market regimes and quantile factor
+  models, {\em Available at SSRN 3141739} .
+
+\harvarditem[Friedman \it{et~al.}]{Friedman, Hastie \harvardand\
+  Tibshirani}{2001}{FHT01}
+Friedman, J., Hastie, T. \harvardand\ Tibshirani, R.  \harvardyearleft
+  2001\harvardyearright .
+\newblock {\em The elements of statistical learning}, Vol.~1, Springer series
+  in statistics New York.
+
+\harvarditem{Golden \harvardand\ Flint}{2014}{GF14}
+Golden, D. \harvardand\ Flint, E.~J.  \harvardyearleft 2014\harvardyearright .
+\newblock Improving portfolio allocation through covariance matrix filtering,
+  {\em Available at SSRN 2898074} .
+
+\harvarditem{Hadamard}{1923}{H23}
+Hadamard, J.  \harvardyearleft 1923\harvardyearright .
+\newblock {\em Lectures on Chacy's Problem in Linear Partial Differential
+  Equations}, Yale University Press.
+
+\harvarditem{Haugen \harvardand\ Baker}{1991}{H91}
+Haugen, R.~A. \harvardand\ Baker, N.~L.  \harvardyearleft 1991\harvardyearright
+  .
+\newblock The efficient market inefficiency of capitalization--weighted stock
+  portfolios, {\em The Journal of Portfolio Management} {\bf 17}(3):~35--40.
+
+\harvarditem{Jagannathan \harvardand\ Ma}{2003}{JM03}
+Jagannathan, R. \harvardand\ Ma, T.  \harvardyearleft 2003\harvardyearright .
+\newblock Risk reduction in large portfolios: Why imposing the wrong
+  constraints helps, {\em The Journal of Finance} {\bf 58}(4):~1651--1683.
+
+\harvarditem{Jobson \harvardand\ Korkie}{1981}{JK81}
+Jobson, J.~D. \harvardand\ Korkie, R.~M.  \harvardyearleft
+  1981\harvardyearright .
+\newblock Putting markowitz theory to work, {\em The Journal of Portfolio
+  Management} {\bf 7}(4):~70--74.
+
+\harvarditem[Jurczenko \it{et~al.}]{Jurczenko, Michel \harvardand\
+  Teiletche}{2013}{J13}
+Jurczenko, E., Michel, T. \harvardand\ Teiletche, J.  \harvardyearleft
+  2013\harvardyearright .
+\newblock Generalized risk-based investing, {\em Available at SSRN 2205979} .
+
+\harvarditem{Kinn}{2018}{K18}
+Kinn, D.  \harvardyearleft 2018\harvardyearright .
+\newblock Reducing estimation risk in mean-variance portfolios with machine
+  learning, {\em arXiv preprint arXiv:1804.01764} .
+
+\harvarditem{Koenker \harvardand\ Bassett~Jr}{1978}{KB78}
+Koenker, R. \harvardand\ Bassett~Jr, G.  \harvardyearleft 1978\harvardyearright
+  .
+\newblock Regression quantiles, {\em Econometrica: journal of the Econometric
+  Society} pp.~33--50.
+
+\harvarditem[Kritzman \it{et~al.}]{Kritzman, Page \harvardand\
+  Turkington}{2010}{K10}
+Kritzman, M., Page, S. \harvardand\ Turkington, D.  \harvardyearleft
+  2010\harvardyearright .
+\newblock In defense of optimization: the fallacy of 1/n, {\em Financial
+  Analysts Journal} {\bf 66}(2):~31--39.
+
+\harvarditem[Kritzman \it{et~al.}]{Kritzman, Page \harvardand\
+  Turkington}{2012}{K12}
+Kritzman, M., Page, S. \harvardand\ Turkington, D.  \harvardyearleft
+  2012\harvardyearright .
+\newblock Regime shifts: Implications for dynamic strategies (corrected), {\em
+  Financial Analysts Journal} {\bf 68}(3):~22--39.
+
+\harvarditem{Ledoit \harvardand\ Wolf}{2004}{LW04}
+Ledoit, O. \harvardand\ Wolf, M.  \harvardyearleft 2004\harvardyearright .
+\newblock Honey, i shrunk the sample covariance matrix, {\em The Journal of
+  Portfolio Management} {\bf 30}(4):~110--119.
+
+\harvarditem{Ma \harvardand\ Pohlman}{2008}{MP08}
+Ma, L. \harvardand\ Pohlman, L.  \harvardyearleft 2008\harvardyearright .
+\newblock Return forecasts and optimal portfolio construction: a quantile
+  regression approach, {\em The European Journal of Finance} {\bf
+  14}(5):~409--425.
+
+\harvarditem{Magdon-Ismail \harvardand\ Atiya}{2004}{M04}
+Magdon-Ismail, M. \harvardand\ Atiya, A.~F.  \harvardyearleft
+  2004\harvardyearright .
+\newblock Maximum drawdown, {\em Risk Magazine} {\bf 17}(10):~99--102.
+
+\harvarditem[Maillard \it{et~al.}]{Maillard, Roncalli \harvardand\
+  Te{\"\i}letche}{2010}{MRT10}
+Maillard, S., Roncalli, T. \harvardand\ Te{\"\i}letche, J.  \harvardyearleft
+  2010\harvardyearright .
+\newblock The properties of equally weighted risk contribution portfolios, {\em
+  The Journal of Portfolio Management} {\bf 36}(4):~60--70.
+
+\harvarditem{Markowitz}{1952}{M52}
+Markowitz, H.  \harvardyearleft 1952\harvardyearright .
+\newblock Portfolio selection, {\em The journal of finance} {\bf 7}(1):~77--91.
+
+\harvarditem{Meucci}{2010}{M10}
+Meucci, A.  \harvardyearleft 2010\harvardyearright .
+\newblock Factors on demand: building a platform for portfolio managers, risk
+  managers and traders, {\em Risk} {\bf 23}(7):~84--89.
+
+\harvarditem{Michaud}{1989}{M89}
+Michaud, R.~O.  \harvardyearleft 1989\harvardyearright .
+\newblock The markowitz optimization enigma: Is ‘optimized’optimal?, {\em
+  Financial Analysts Journal} {\bf 45}(1):~31--42.
+
+\harvarditem{Perold}{2007}{P07}
+Perold, A.~F.  \harvardyearleft 2007\harvardyearright .
+\newblock Fundamentally flawed indexing, {\em Financial Analysts Journal} {\bf
+  63}(6):~31--37.
+
+\harvarditem{Rabiner}{1989}{R89}
+Rabiner, L.~R.  \harvardyearleft 1989\harvardyearright .
+\newblock A tutorial on hidden markov models and selected applications in
+  speech recognition, {\em Proc. IEEE}.
+
+\harvarditem{Richard \harvardand\ Roncalli}{2015}{RR15}
+Richard, J.-C. \harvardand\ Roncalli, T.  \harvardyearleft
+  2015\harvardyearright .
+\newblock Smart beta: Managing diversification of minimum variance portfolios,
+  {\em Risk-Based and Factor Investing}, Elsevier, pp.~31--63.
+
+\harvarditem{Scherer}{2007}{S07}
+Scherer, B.  \harvardyearleft 2007\harvardyearright .
+\newblock Can robust portfolio optimisation help to build better portfolios?,
+  {\em Journal of Asset Management} {\bf 7}(6):~374--387.
+
+\harvarditem{Sharpe}{1964}{S64}
+Sharpe, W.~F.  \harvardyearleft 1964\harvardyearright .
+\newblock Capital asset prices: A theory of market equilibrium under conditions
+  of risk, {\em The journal of finance} {\bf 19}(3):~425--442.
+
+\harvarditem{Shen \harvardand\ Wang}{2017}{SW17}
+Shen, W. \harvardand\ Wang, J.  \harvardyearleft 2017\harvardyearright .
+\newblock Portfolio selection via subset resampling, {\em Thirty-First AAAI
+  Conference on Artificial Intelligence}.
+
+\harvarditem{Treynor \harvardand\ Mazuy}{1966}{TM66}
+Treynor, J. \harvardand\ Mazuy, K.  \harvardyearleft 1966\harvardyearright .
+\newblock Can mutual funds outguess the market, {\em Harvard business review}
+  {\bf 44}(4):~131--136.
+
+\end{thebibliography}
