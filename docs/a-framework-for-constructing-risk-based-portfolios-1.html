@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>4 A framework for constructing risk-based portfolios | Flexible risk-based portfolio optimisation Github link</title>
+  <meta name="description" content="Flexible risk-based portfolio optimisation
+<a href="https://github.com/jhlandman/flex_rb_opt"><em>Github link</em></a>" />
+  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="4 A framework for constructing risk-based portfolios | Flexible risk-based portfolio optimisation Github link" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="4 A framework for constructing risk-based portfolios | Flexible risk-based portfolio optimisation Github link" />
+  
+  
+  
+
+
+
+<meta name="date" content="2020-07-04" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="a-framework-for-constructing-risk-based-portfolios.html"/>
+<link rel="next" href="references.html"/>
+<style type="text/css">
+p.abstract{
+  text-align: center;
+  font-weight: bold;
+}
+div.abstract{
+  margin: auto;
+  width: 90%;
+}
+</style>
+<script src="book_assets/jquery-2.2.3/jquery.min.js"></script>
+<link href="book_assets/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="book_assets/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="book_assets/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="book_assets/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="book_assets/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="book_assets/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="book_assets/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> About</a></li>
+<li class="chapter" data-level="2" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>2</b> Introduction</a></li>
+<li class="chapter" data-level="3" data-path="a-framework-for-constructing-risk-based-portfolios.html"><a href="a-framework-for-constructing-risk-based-portfolios.html"><i class="fa fa-check"></i><b>3</b> A framework for constructing risk-based portfolios</a><ul>
+<li class="chapter" data-level="3.1" data-path="a-framework-for-constructing-risk-based-portfolios.html"><a href="a-framework-for-constructing-risk-based-portfolios.html#an-overview-of-modern-portfolio-theory"><i class="fa fa-check"></i><b>3.1</b> An overview of modern portfolio theory</a></li>
+<li class="chapter" data-level="3.2" data-path="a-framework-for-constructing-risk-based-portfolios.html"><a href="a-framework-for-constructing-risk-based-portfolios.html#introducing-risk-based-investing"><i class="fa fa-check"></i><b>3.2</b> Introducing risk-based investing</a></li>
+<li class="chapter" data-level="3.3" data-path="a-framework-for-constructing-risk-based-portfolios.html"><a href="a-framework-for-constructing-risk-based-portfolios.html#improving-risk-based-portfolios"><i class="fa fa-check"></i><b>3.3</b> Improving risk-based portfolios</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="a-framework-for-constructing-risk-based-portfolios-1.html"><a href="a-framework-for-constructing-risk-based-portfolios-1.html"><i class="fa fa-check"></i><b>4</b> A framework for constructing risk-based portfolios</a><ul>
+<li class="chapter" data-level="4.1" data-path="a-framework-for-constructing-risk-based-portfolios-1.html"><a href="a-framework-for-constructing-risk-based-portfolios-1.html#an-overview-of-modern-portfolio-theory-1"><i class="fa fa-check"></i><b>4.1</b> An overview of modern portfolio theory</a></li>
+<li class="chapter" data-level="4.2" data-path="a-framework-for-constructing-risk-based-portfolios-1.html"><a href="a-framework-for-constructing-risk-based-portfolios-1.html#introducing-risk-based-investing-1"><i class="fa fa-check"></i><b>4.2</b> Introducing risk-based investing</a></li>
+<li class="chapter" data-level="4.3" data-path="a-framework-for-constructing-risk-based-portfolios-1.html"><a href="a-framework-for-constructing-risk-based-portfolios-1.html#improving-risk-based-portfolios-1"><i class="fa fa-check"></i><b>4.3</b> Improving risk-based portfolios</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Flexible risk-based portfolio optimisation
+<a href="https://github.com/jhlandman/flex_rb_opt"><em>Github link</em></a></a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="a-framework-for-constructing-risk-based-portfolios-1" class="section level1">
+<h1><span class="header-section-number">4</span> A framework for constructing risk-based portfolios</h1>
+<div id="an-overview-of-modern-portfolio-theory-1" class="section level2">
+<h2><span class="header-section-number">4.1</span> An overview of modern portfolio theory</h2>
+<p>Every investor has a universe of <span class="math inline">\(N\)</span> assets to which they can allocate capital. The proportion of
+their allocation to the <em>i</em><span class="math inline">\(^{\text{th}}\)</span> asset, <span class="math inline">\(w_i\)</span>, depends on the investor’s risk and return
+preferences. They could prefer riskier asset combinations because they require high capital growth,
+or they could prefer more stable asset combinations that prioritise capital preservation. The column
+vector <span class="math inline">\(w = [w_1,w_2,…,w_N]^\intercal\)</span> is an <span class="math inline">\(N \times 1\)</span> vector of allocations that define an
+investor’s portfolio. This portfolio is constrained by the investor’s capital budget, which may be
+articulated through the notion of weights. Therefore, all considered portfolios should adhere to the
+budget constraint: <span class="math inline">\(\sum_i w_i = 1\)</span>.</p>
+<p>In his seminal paper, <span class="citation">Markowitz (<a href="#ref-M52" role="doc-biblioref">1952</a>)</span> attempts to quantify the asset allocation process. Herein he posits that
+the investor has to make a risk-reward trade-off when considering their portfolio returns,
+<span class="math inline">\(R_\mathrm{p}\)</span>, over a pre-determined time horizon <span class="math inline">\([0, T]\)</span>. In his framework, he measures risk with
+the variance of portfolio returns <span class="math inline">\(\mathbb{V}\mathrm{ar}[R_\mathrm{p}] = w^\intercal \Sigma w\)</span>,
+where <span class="math inline">\(\Sigma\)</span> is the <span class="math inline">\(N \times N\)</span> asset return covariance matrix. Markowitz measures reward by the
+expectation of portfolio returns <span class="math inline">\(\mathbb{E}[R_\mathrm{p}] = w^\intercal \mu\)</span>, where <span class="math inline">\(\mu\)</span> is the
+<span class="math inline">\(N \times 1\)</span> vector of expected asset returns. If the investor fixes expected returns to a constant,
+<span class="math inline">\(\mathbb{E}[R_\mathrm{p}] = c\)</span>, they encounter the problem of minimising portfolio risk,
+<span class="math inline">\(\mathbb{V}\mathrm{ar}[R_\mathrm{p}]\)</span>. The mean-variance optimal (MVO) portfolio <span class="math inline">\(w_\mathrm{mvo}\)</span>
+achieves this goal while adhering to the budget constraint and the fixed expected return constraint.
+Written mathematically, <span class="math inline">\(w_\mathrm{mvo}\)</span> is the solution to the following Markowitz optimisation:
+<span class="math display" id="eq:mvoone">\[\begin{align} 
+w_\mathrm{mvo} &amp;= \underset{w}{\text{argmin}} \Big \{ w^\intercal \Sigma w \Big \},
+\tag{4.1}
+\end{align}\]</span>
+subject to the constraints:
+<span class="math display">\[\begin{align*}
+\mathcal{C}(w) &amp;= 
+\begin{cases}
+ w^\intercal \mu &amp;= c \;\;\;  \\
+w^\intercal \underline{1} &amp;= 1 \;\; .
+\end{cases}
+\end{align*}\]</span></p>
+<p>There is a complication when using this framework in practice because <span class="math inline">\(\Sigma\)</span> and <span class="math inline">\(\mu\)</span> are
+unknown. The investor can only observe a small set of sample returns from the underlying stock
+processes that use these quantities as inputs. The sample returns, represented by a <span class="math inline">\(N \times T\)</span>
+matrix <span class="math inline">\(\textbf{X}\)</span>, can be used to estimate <span class="math inline">\(\Sigma\)</span> and <span class="math inline">\(\mu\)</span>. The sample estimates are:</p>
+<p><span class="math display" id="eq:samplemean" id="eq:samplevar">\[\begin{align}
+\textbf{S}&amp;=  \frac{1}{T - 1}(\textbf{X} - \mathbf{\bar{x}} \underline{1}^\intercal_T)(\textbf{X} - \mathbf{\bar{x}} \underline{1}^\intercal_T)^\intercal, \tag{4.2} \\
+\mathbf{\hat{\mu}} &amp;= \mathbf{\bar{x}} , \tag{4.3}
+\end{align}\]</span>
+where <span class="math inline">\(\mathbf{\bar{x}}\)</span> is a <span class="math inline">\(N \times 1\)</span> vector of mean returns. A total of <span class="math inline">\(\frac{N(N+1)}{2}\)</span>
+distinct parameters are being estimated for the sample covariance matrix (SCM) while <span class="math inline">\(N\)</span> distinct
+sample expected returns are estimated. <span class="math inline">\(\textbf{S}\)</span> and <span class="math inline">\(\hat{\mu}\)</span> can be substituted into
+equation <a href="a-framework-for-constructing-risk-based-portfolios-1.html#eq:mvoone">(4.1)</a> to infer an MVO portfolio, <span class="math inline">\(\hat{w}_\mathrm{mvo}\)</span>. For each level of
+portfolio return <span class="math inline">\(c = \hat{w}^\intercal \hat{\mu}\)</span>, an estimated portfolio volatility level
+<span class="math inline">\(\mathbb{SD}[\hat{R}_\mathrm{p}] = \sqrt{\hat{w}^\intercal\textbf{S}\hat{w}}\)</span> is realised. These
+estimated expected return-volatility pairs induce a frontier in the expected return-volatility
+plane, which may or may not be close to the frontier implied by the actual inputs <span class="math inline">\(\Sigma\)</span> and
+<span class="math inline">\(\mu\)</span>. The actual frontier is optimal for the Markowitz framework, and he terms it the `efficient
+frontier’.</p>
+<p>The above framework and estimation procedure yields a solution to the asset allocation dilemma, but
+there is still a sensitivity predicament. <span class="citation">Michaud (<a href="#ref-M89" role="doc-biblioref">1989</a>)</span> shows that the MVO procedure, as described above,
+overweights assets with substantial estimated returns <span class="math inline">\(\mathbf{\bar{x}}\)</span>. However, these are the
+same assets that are likely to have been misestimated. Thus, any potential estimation errors are
+`maximised’ - an undesirable property that makes <span class="math inline">\(\hat{w}_\mathrm{mvo}\)</span> a potential liability for
+the investor to hold.</p>
+<p>The MVO procedure is commonly adjusted to reduce sensitivity to the input <span class="math inline">\(\mathbf{\bar{x}}\)</span> in one
+of two ways. The first is to estimate expected returns in a manner that targets return drivers or
+factors, which has motivated the rise of factor-based investing <span class="citation">(Ang <a href="#ref-A14" role="doc-biblioref">2014</a>)</span>. The second adjustment is to
+remove the dependency on expected return estimates altogether and only construct portfolios based
+on their risk properties. The latter has inspired the field of risk-based investing and is the
+focus of this dissertation.</p>
+</div>
+<div id="introducing-risk-based-investing-1" class="section level2">
+<h2><span class="header-section-number">4.2</span> Introducing risk-based investing</h2>
+<p>A general risk-based portfolio optimisation programme is given below in equation <a href="a-framework-for-constructing-risk-based-portfolios-1.html#eq:rbintro">(4.4)</a>.
+Removing the expected return constraint and altering the previous MVO optimisation problem for the
+consideration of a generalised objective risk function <span class="math inline">\(f(\cdot| \textbf{X})\)</span> yields:
+<span class="math display" id="eq:rbintro">\[\begin{align}
+w^* = \underset{w}{\text{argmin}} \Big \{ f(w, \Sigma| \textbf{X}) \Big \}, \tag{4.4}
+\end{align}\]</span>
+subject to the constraint:
+<span class="math display">\[\begin{align*}
+w^\intercal \underline{1} &amp;= 1 \;\; ,
+\end{align*}\]</span></p>
+<p>where <span class="math inline">\(f(\cdot | \textbf{X})\)</span> is a risk metric to be minimised. The choice of <span class="math inline">\(f(\cdot | \textbf{X})\)</span> determines which risk-based portfolio is the optimal solution. Chapter <strong>make
+chapeter</strong> expounds on the risk-based portfolio types relevant to this research.</p>
+<p>The range of feasible portfolios given by equation <a href="a-framework-for-constructing-risk-based-portfolios-1.html#eq:rbintro">(4.4)</a> is practically too general
+because unlikely single asset weights are still possible. To this end, an investor should apply a
+weight constraint to limit feasible allocations, ensuring comparability with practical investing.
+<span class="citation">Jagannathan and Ma (<a href="#ref-JM03" role="doc-biblioref">2003</a>)</span> show that risk-based long-short portfolios can have extreme weights in practice, which are
+unlikely to be accepted by an investor.</p>
+<p>Additionally, <span class="citation">Jagannathan and Ma (<a href="#ref-JM03" role="doc-biblioref">2003</a>)</span> also conclude that imposing the long-only investment constraint on US equities
+leads to improved efficiency for optimal portfolios constructed with the first two sample moments
+<span class="math inline">\(\hat{\mu}\)</span> and <span class="math inline">\(\textbf{S}\)</span>. Hence, applying the long-only constraint is both statistically
+appropriate and practically relevant for most investors.</p>
+<p>Equally important is that an investor will be reluctant to concentrate their portfolio in a small
+number of assets. Limiting the maximum single asset allocation to a selected weight <span class="math inline">\(\alpha\)</span> avoids
+such concentration. These constraints are concurrently expressed as
+<span class="math inline">\(\{w :0 \leq w_i \leq \alpha, \; \forall i \}\)</span> and can be added to optimisation <a href="a-framework-for-constructing-risk-based-portfolios-1.html#eq:rbintro">(4.4)</a>.
+In its current form, the developed framework is still somewhat abstract, so it is not obvious how
+to improve it. Even so, one can always define specific properties that the framework ought to have
+for there to be a good chance of it operating as intended.</p>
+</div>
+<div id="improving-risk-based-portfolios-1" class="section level2">
+<h2><span class="header-section-number">4.3</span> Improving risk-based portfolios</h2>
+<p><span class="citation">Hadamard (<a href="#ref-H23" role="doc-biblioref">1923</a>)</span> defines a mathematical problem as ‘well-posed’ if:</p>
+<ol style="list-style-type: decimal">
+<li>the solution exists,</li>
+<li>the solution is unique,</li>
+<li>the solution is not overly sensitive to small perturbations in inputs.</li>
+</ol>
+<p>Well-posed problems are easier to work with and are more stable than ill-posed problems - ones that
+fall short of the definition. The expected return constraint was previously disregarded for MVO
+portfolios because the MVO framework often does not meet requirement 3. when the sample mean returns
+estimate <span class="math inline">\(\mu\)</span>. Risk-based portfolios are therefore more `well-posed’ than MVO portfolios.</p>
+<p>However, there are two common ways in which risk-based portfolios are also ill-posed. The first is if
+there are very few sample observations; namely, if <span class="math inline">\(T &lt; N\)</span>. In this scenario, the covariance matrix
+is not of full rank and is therefore not invertible, causing non-unique solutions to <span class="math inline">\(w^*\)</span>. The
+framework is then ill-posed by 2. The second is if small changes in <span class="math inline">\(\textbf{X}\)</span> result in large
+deviations of <span class="math inline">\(w^*\)</span>. The framework is then ill-posed by 3. Many researchers such as <span class="citation">Jobson and Korkie (<a href="#ref-JK81" role="doc-biblioref">1981</a>)</span>
+and <span class="citation">Best and Grauer (<a href="#ref-B91" role="doc-biblioref">1991</a>)</span> have shown that the latter phenomenon is observed in practice, and often persists even
+if <span class="math inline">\(T\)</span> is much larger than <span class="math inline">\(N\)</span>. To address point (iii) and make the problem well-posed, one needs a
+measure of sensitivity. We outline a pseudo-derivation of a sensitivity measure below.</p>
+<p><span class="citation">Kinn (<a href="#ref-K18" role="doc-biblioref">2018</a>)</span> views the portfolio optimisation problem from a modelling perspective. The returns on the
+portfolio are modelled directly by an unknown function <span class="math inline">\(g(\cdot)\)</span>:
+<span class="math display" id="eq:retmodel">\[\begin{align}
+R_p &amp; = g(\textbf{X}) + \epsilon, \tag{4.5}
+\end{align}\]</span>
+where <span class="math inline">\(\epsilon\)</span> has the normal distribution with zero mean and variance <span class="math inline">\(\phi^2\)</span>. Estimating
+<span class="math inline">\(g(\cdot)\)</span> is the aim of using the framework, and it is a real-valued function that is not
+necessarily differentiable or continuous. Each algorithm <span class="math inline">\(q\)</span> refers to a combination of estimation
+procedure for the inputs, and a computation of a risk-based portfolio using equation
+<a href="a-framework-for-constructing-risk-based-portfolios-1.html#eq:retmodel">(4.5)</a>. Each <span class="math inline">\(q\)</span> specifies an estimate of the function <span class="math inline">\(g\)</span>, denoted <span class="math inline">\(\hat{g}_q\)</span>. In the
+same way that <span class="math inline">\(\hat{w}^*\)</span> (<span class="math inline">\(w^*\)</span> calculated with sample inputs <span class="math inline">\(\textbf{S}\)</span> and <span class="math inline">\(\hat{\mu}\)</span>) can be
+used to estimate the out-of-sample risk-based portfolio, <span class="math inline">\(\hat{g}_q\)</span> can predict out-of-sample
+portfolio returns, which are forecasted most accurately by the unobservable function <span class="math inline">\(g\)</span>.</p>
+<p>It is necessary to distinguish between the two types of data that are available. The first is
+historical data comprising of the matrix <span class="math inline">\(\textbf{X}_0\)</span> and in-sample returns <span class="math inline">\(R_{\mathrm{p}, 0}\)</span>,
+which combine to form the set <span class="math inline">\(\mathcal{H}_0\)</span>. The second is out-of-sample data <span class="math inline">\(\textbf{X}_1\)</span> and
+<span class="math inline">\(R_\mathrm{p, 1}\)</span>, which combine to form the set <span class="math inline">\(\mathcal{H}_1\)</span>. Algorithm <span class="math inline">\(q\)</span> does not utilise the
+data contained in <span class="math inline">\(\mathcal{H}_1\)</span>, which are chronologically realised after the most recent points in
+<span class="math inline">\(\mathcal{H}_0\)</span>. A mean squared error penalty is appropriate to measure the accuracy with which
+<span class="math inline">\(\hat{g}_q (\textbf{X}_1)\)</span> (estimated using <span class="math inline">\(\mathcal{H}_0\)</span>) predicts the out of sample returns
+<span class="math inline">\(R_\mathrm{p, 1}\)</span>. <span class="citation">Kinn (<a href="#ref-K18" role="doc-biblioref">2018</a>)</span> terms the expectation of the out-of-sample mean squared error
+“generalisation error” (GE), shown mathematically as:
+<span class="math display">\[\begin{align}
+GE(\hat{g}_q) &amp; = \mathbb{E}[(R_\mathrm{p, 1} - \hat{g}_q (\textbf{X}_1))^2|{\mathcal{H}_1}],
+\end{align}\]</span>
+where GE is specific to a sample. The actual quantity of interest is the expected performance of <span class="math inline">\(q\)</span> for many potential sample sets, as we are evaluating <span class="math inline">\(q\)</span>’s efficacy holistically. This quantity is called the expected generalisation error across all samples, denoted <span class="math inline">\(G_q\)</span>. Furthermore, <span class="math inline">\(G_q\)</span> may be decomposed<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a> to reflect a common modelling trade-off between bias and variance:
+<span class="math display" id="eq:bvdecomp">\[\begin{align}
+G_q &amp;:= \mathbb{E} \Big [ \mathbb{E}[(R_\mathrm{p, 1} - \hat{g}_q (\textbf{X}_1))^2|{\mathcal{H}_1}] \Big | \mathcal{H}_0\Big ] , \\
+&amp; = \underbrace{ \Big (g(\textbf{X}_1) - \mathbb{E}[\hat{g}_q (\textbf{X}_1)|\mathcal{H}_0] \Big )^2}_{\text{squared bias}} + \underbrace{\mathbb{V}\mathrm{ar} [\hat{g}_q(\textbf{X}_1)|\mathcal{H}_0]}_{\text{variance}} + \underbrace{\phi^2}_{\text{irreducible error}}.\tag{4.6}
+\end{align}\]</span>
+The squared bias is the extent to which the expectation of predicted returns differs from the best possible predictor of returns, the correct function <span class="math inline">\(g(\cdot)\)</span>. The variance measures the magnitude by which the predicted returns will vary under repeated sampling. By setting <span class="math inline">\(\hat{g}_q(\cdot) = g(\cdot)\)</span> in equation <a href="a-framework-for-constructing-risk-based-portfolios-1.html#eq:bvdecomp">(4.6)</a> only statistical noise remains; hence, the noise is irreducible. The risk of misestimating <span class="math inline">\(g(\cdot)\)</span> should not include the risk that is retained by even the best estimator. Therefore, estimation risk is considered as the sum of the first two terms only, the squared bias and the variance. An over-fitted algorithm will have high variation for repeated samples. An under-fitted algorithm will have high bias and be consistently poor for repeated samples. The over- and under-fitting trade-off is an example of how the bias-variance trade-off works in practice.</p>
+<p>Until now, we have assumed that the estimated portfolio <span class="math inline">\(\hat{w}^*\)</span> from equation <a href="a-framework-for-constructing-risk-based-portfolios-1.html#eq:rbintro">(4.4)</a>
+is an unbiased estimate of the actual risk metric-minimising portfolio <span class="math inline">\(w^*\)</span> because the choice of
+<span class="math inline">\(f(\cdot | \textbf{X})\)</span> determines precisely the type of risk-based portfolio. However,
+<span class="math inline">\(f(\cdot|\textbf{X})\)</span> does not precisely determine the estimation risk. Employing a penalty on the
+objective function introduces bias to reduce estimation risk, <em>i.e.</em> hopefully, the squared
+bias increase does not outweigh the variance decrease. The introduction of the penalty yields an
+estimated portfolio <span class="math inline">\(\hat{w}^*\)</span> that is consistently closer to <span class="math inline">\(w^*\)</span> than an unbiased portfolio would
+be. The penalty constraint can be stated as <span class="math inline">\(P(w) \leq s\)</span> and reduces the set of all possible
+portfolios. If done correctly allocations that are misestimated by the heftiest margins are excluded
+by this constraint, and allocations that are consistently closer to the actual portfolio remain. The
+general risk-based framework can now be restated as below to accommodate the penalty using a
+Lagrangian multiplier approach:
+<span class="math display" id="eq:genopt">\[\begin{align}
+w^* = \underset{w}{\text{argmin}} \Big \{ f(w, \Sigma| \textbf{X}) + \lambda P(w) \Big \}, \tag{4.7}
+\end{align}\]</span>
+subject to the constraints:
+<span class="math display">\[\begin{align*}
+\mathcal{C}(w) &amp;= 
+\begin{cases}
+w^\intercal \underline{1} = 1 \;\; \\
+0 \leq w_i \leq \alpha, \; \forall i \;\;\; ,
+\end{cases}
+\end{align*}\]</span></p>
+<p>where <span class="math inline">\(P(\cdot)\)</span> is the penalty function, and <span class="math inline">\(\lambda\)</span> is the Lagrangian multiplier. Kinn proposes
+estimating <span class="math inline">\(\lambda\)</span> in a way that is consistent with the rest of the optimisation. Therefore, we
+apply the <span class="math inline">\(\lambda\)</span> estimation that minimises the portfolio specific risk metric using in-sample
+data. Additionally, by setting <span class="math inline">\(\lambda = 0\)</span>, the unpenalised portfolio can still be recovered.
+Optimisation <a href="a-framework-for-constructing-risk-based-portfolios-1.html#eq:genopt">(4.7)</a> will be the general risk-based portfolio optimisation going forward.</p>
+<p>Improving on the vanilla risk-based optimisation is done in three ways in this research, and these
+improvements are also common in the literature. Approach one deals with the assumption in equation
+<a href="a-framework-for-constructing-risk-based-portfolios-1.html#eq:retmodel">(4.5)</a> that <span class="math inline">\(\epsilon\)</span> has a normal distribution, and that the errors through time are
+independent and identically distributed. If <span class="math inline">\(\hat{g}_q\)</span> fails to approximate <span class="math inline">\(g\)</span> correctly, then the
+assumption is violated. There could be natural heterogeneity in the data accounted for by <span class="math inline">\(g\)</span>. <span class="citation">Flint and Du Plooy (<a href="#ref-FD18" role="doc-biblioref">2018</a>)</span>
+attempt to deal with heterogeneity by changing the estimation procedure of <span class="math inline">\({g}\)</span> so that it includes
+and accounts for potential differences in each observation of sample data. They do this through the
+application of regimes and quantiles, grouping the input data to increase the accuracy of the
+estimated model. The second approach adapted from <span class="citation">Kinn (<a href="#ref-K18" role="doc-biblioref">2018</a>)</span> has already been shown above and
+involves penalising the optimisation and setting <span class="math inline">\(\lambda &gt; 0\)</span> in equation <a href="a-framework-for-constructing-risk-based-portfolios-1.html#eq:genopt">(4.7)</a>. The
+third and final approach requires resampling from the observations in <span class="math inline">\(\textbf{X}\)</span> for different
+subsets of assets and hinges on implementation adjustments. <span class="citation">Shen and Wang (<a href="#ref-SW17" role="doc-biblioref">2017</a>)</span> suggest finding <span class="math inline">\(w^*\)</span>
+multiple times for different resampled subsets and blending the result afterwards to find an
+aggregate weight, that hopefully reduces estimation risk. Chapter <strong>insert chapter ref</strong> contains a
+more detailed exploration of these techniques. Before that, further investigation of desirable risk
+properties and the portfolios that have them is required to specify <span class="math inline">\(f(\cdot|\textbf{X})\)</span>.</p>
+
+</div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references">
+<div id="ref-A14">
+<p>Ang, Andrew. 2014. <em>Asset Management: A Systematic Approach to Factor Investing</em>. Oxford University Press.</p>
+</div>
+<div id="ref-B91">
+<p>Best, Michael J, and Robert R Grauer. 1991. “Sensitivity Analysis for Mean-Variance Portfolio Problems.” <em>Management Science</em> 37 (8): 980–89.</p>
+</div>
+<div id="ref-FD18">
+<p>Flint, Emlyn James, and Simon Du Plooy. 2018. “Extending Risk Budgeting for Market Regimes and Quantile Factor Models.” <em>Available at SSRN 3141739</em>.</p>
+</div>
+<div id="ref-H23">
+<p>Hadamard, J. 1923. <em>Lectures on Chacy’s Problem in Linear Partial Differential Equations</em>. Yale University Press.</p>
+</div>
+<div id="ref-JM03">
+<p>Jagannathan, Ravi, and Tongshu Ma. 2003. “Risk Reduction in Large Portfolios: Why Imposing the Wrong Constraints Helps.” <em>The Journal of Finance</em> 58 (4): 1651–83.</p>
+</div>
+<div id="ref-JK81">
+<p>Jobson, J David, and Robert M Korkie. 1981. “Putting Markowitz Theory to Work.” <em>The Journal of Portfolio Management</em> 7 (4): 70–74.</p>
+</div>
+<div id="ref-K18">
+<p>Kinn, Daniel. 2018. “Reducing Estimation Risk in Mean-Variance Portfolios with Machine Learning.” <em>arXiv Preprint arXiv:1804.01764</em>.</p>
+</div>
+<div id="ref-M52">
+<p>Markowitz, Harry. 1952. “Portfolio Selection.” <em>The Journal of Finance</em> 7 (1): 77–91.</p>
+</div>
+<div id="ref-M89">
+<p>Michaud, Richard O. 1989. “The Markowitz Optimization Enigma: Is ‘Optimized’optimal?” <em>Financial Analysts Journal</em> 45 (1): 31–42.</p>
+</div>
+<div id="ref-SW17">
+<p>Shen, Weiwei, and Jun Wang. 2017. “Portfolio Selection via Subset Resampling.” In <em>Thirty-First Aaai Conference on Artificial Intelligence</em>.</p>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="3">
+<li id="fn3"><p>The decomposition is shown by <span class="citation">Friedman, Hastie, and Tibshirani (<a href="#ref-FHT01" role="doc-biblioref">2001</a>)</span>.<a href="a-framework-for-constructing-risk-based-portfolios-1.html#fnref3" class="footnote-back">↩</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="a-framework-for-constructing-risk-based-portfolios.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="book_assets/gitbook-2.6.7/js/app.min.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/lunr.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
