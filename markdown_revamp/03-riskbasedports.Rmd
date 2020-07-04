@@ -1,4 +1,4 @@
-# Overview of risk-based portfolios
+# Overview of risk-based portfolios {#rbportch}
 
 There are many types of risk-based portfolios, for a broader analysis refer to @DV17. In this chapter,
 we review three risk-based portfolios: the global minimum variance, equal weight and equal risk
@@ -108,26 +108,40 @@ as the portfolio for which marginal excess returns and the MRC's are equal for a
 constituents. @J13 use this fact to find MSR optimality conditions for each of the risk-based
 portfolios, some examples of which are shown in appendix **insert appendix num**.
 
-Table \ref{tab_rb_port} summarises the salient risk properties of the EW, ERC, and GMV portfolios. Included is the strategy to find the portfolio, the requirements for when the portfolio coincides with the MSR portfolio, and their empirical risk characteristics. The risk characteristics entail whether the risk is inherent to the investment, the construction of the portfolio, or liquidity restrictions when creating the portfolio.
+Table \@ref(tab:rbportprops) summarises the salient risk properties of the EW, ERC, and GMV
+portfolios. Included is the strategy to find the portfolio, the requirements for when the portfolio
+coincides with the MSR portfolio, and their empirical risk characteristics. The risk characteristics
+entail whether the risk is inherent to the investment, the construction of the portfolio, or liquidity
+restrictions when creating the portfolio.
 
 
-\begin{table} [h] 
-\caption{Risk-based investing portfolio properties \citep{J13}.}
-\label{tab_rb_port}
-\centering
- \begin{tabular}{p{1.5cm} p{1.9cm} p{3.9cm}  p{4.4cm}  } 
-\hline
-\textbf{Portfolio} &  \textbf{Strategy} & \textbf{MSR conditions} & \textbf{Risk characteristics}\\ 
- \hline
-EW & Equalise $w_i$ & Identical \newline excess returns. \newline Identical volatilities.  \newline Identical correlations. & Medium to high risk. \newline Insensitive to $\Sigma$. \newline Low turnover. \\
-&&&\\
-ERC & Equalise $\text{TRC}_i$ & Identical \newline Sharpe ratios. \newline Identical correlations. & Medium risk. \newline Moderately sensitive to $\Sigma$. \newline Medium  turnover. \\
-&&&\\
-GMV & Equalise $\text{MRC}_i$ & Identical \newline excess returns. & Lowest risk. \newline Highly sensitive to $\Sigma$. \newline High turnover.  \\
- \hline
-\end{tabular}
-\end{table}
+| Portfolio 	| Strategy         	| MSR conditions                                                            	| Risk characteristics                                            	|
+|-----------	|------------------	|---------------------------------------------------------------------------	|-----------------------------------------------------------------	|
+| EW        	| Equalise $w_i$   	| Identical excess returns. Identical volatilities. Identical correlations. 	| Medium to high risk. Insensitive to $\Sigma$. Low turnover.      	|
+| ERC       	| Equalise $TRC_i$ 	| Identical Sharpe ratios. Identical correlations.                          	| Medium risk. Moderately sensitive to $\Sigma$. Medium turnover. 	|
+| GMV       	| Equalise $MRC_i$ 	| Identical excess returns.                                                 	| Lowest risk. Highly sensitive to $\Sigma$. High turnover.       	|
 
-While the MSR conditions are theoretically compelling, out-of-sample optimality is harder to determine in practice. \cite{H91} show that portfolios that are superior to the MW portfolio exist when: short-selling is restricted, investments are taxed, and foreign investors are active market participants. These portfolios should have the same expected return as the MW portfolio with lower volatility. Their statement is true even in an `efficient market'. Studies of the historical performance show that some portfolios outperform others. In these studies, the authors restrict the asset universe to US equities; hence, their results will not necessarily translate to South Africa. The hope of introducing risk-based portfolios is to find Haugen and Baker's superior portfolios. Evidence supporting this ambition exists. \cite{DGL07} demonstrate the robust out-of-sample performance of EW portfolios when compared to MVO and MW portfolios for a broad range of asset universes. \cite{C06} also demonstrate that GMV portfolios show outperformance against the MW and MVO benchmarks. They initially attribute this to the diachronic persistence of covariances when compared to expected returns. In a later paper, \cite{C11} suggest that the outperformance is due to a bias inherent in the portfolio construction towards stocks that do not move with the rest of the market, but that still have comparatively high expected returns.
 
-Within risk-based portfolios, \cite{K10} have shown that GMV portfolios outperform EW portfolios when the implementer uses a long enough estimation window. Therefore, they establish a defence for using optimisation on a sample covariance matrix. This research remains consistent with these findings, using the EW portfolio as a benchmark in pursuit of better out-of-sample performance within the GMV and ERC frameworks. In the next chapter, we outline the techniques used to achieve this aim.
+Table: (\#tab:rbportprops) Risk-based investing portfolio properties @J13
+
+While the MSR conditions are theoretically compelling, out-of-sample optimality is harder to determine
+in practice. @H91 show that portfolios that are superior to the MW portfolio exist when:
+short-selling is restricted, investments are taxed, and foreign investors are active market
+participants. These portfolios should have the same expected return as the MW portfolio with lower
+volatility. Their statement is true even in an `efficient market'. Studies of the historical
+performance show that some portfolios outperform others. In these studies, the authors restrict the
+asset universe to US equities; hence, their results will not necessarily translate to South Africa.
+The hope of introducing risk-based portfolios is to find Haugen and Baker's superior portfolios.
+Evidence supporting this ambition exists. @DGL07 demonstrate the robust out-of-sample
+performance of EW portfolios when compared to MVO and MW portfolios for a broad range of asset
+universes. @C06 also demonstrate that GMV portfolios show outperformance against the MW and MVO
+benchmarks. They initially attribute this to the diachronic persistence of covariances when compared
+to expected returns. In a later paper, @C11 suggest that the outperformance is due to a bias
+inherent in the portfolio construction towards stocks that do not move with the rest of the market,
+but that still have comparatively high expected returns.
+
+Within risk-based portfolios, @K10 have shown that GMV portfolios outperform EW portfolios when the
+implementer uses a long enough estimation window. Therefore, they establish a defence for using
+optimisation on a sample covariance matrix. This research remains consistent with these findings,
+using the EW portfolio as a benchmark in pursuit of better out-of-sample performance within the GMV
+and ERC frameworks. In the next chapter, we outline the techniques used to achieve this aim.

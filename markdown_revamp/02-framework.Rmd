@@ -1,4 +1,4 @@
-# A framework for constructing risk-based portfolios
+# A framework for constructing risk-based portfolios {#genframework}
 
 ## An overview of modern portfolio theory {#mpt}
 

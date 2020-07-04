@@ -77,10 +77,10 @@ div.abstract{
 <ul class="summary">
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> About</a></li>
 <li class="chapter" data-level="2" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>2</b> Introduction</a></li>
-<li class="chapter" data-level="3" data-path="a-framework-for-constructing-risk-based-portfolios.html"><a href="a-framework-for-constructing-risk-based-portfolios.html"><i class="fa fa-check"></i><b>3</b> A framework for constructing risk-based portfolios</a><ul>
-<li class="chapter" data-level="3.1" data-path="a-framework-for-constructing-risk-based-portfolios.html"><a href="a-framework-for-constructing-risk-based-portfolios.html#mpt"><i class="fa fa-check"></i><b>3.1</b> An overview of modern portfolio theory</a></li>
-<li class="chapter" data-level="3.2" data-path="a-framework-for-constructing-risk-based-portfolios.html"><a href="a-framework-for-constructing-risk-based-portfolios.html#introducing-risk-based-investing"><i class="fa fa-check"></i><b>3.2</b> Introducing risk-based investing</a></li>
-<li class="chapter" data-level="3.3" data-path="a-framework-for-constructing-risk-based-portfolios.html"><a href="a-framework-for-constructing-risk-based-portfolios.html#improving-risk-based-portfolios"><i class="fa fa-check"></i><b>3.3</b> Improving risk-based portfolios</a></li>
+<li class="chapter" data-level="3" data-path="genframework.html"><a href="genframework.html"><i class="fa fa-check"></i><b>3</b> A framework for constructing risk-based portfolios</a><ul>
+<li class="chapter" data-level="3.1" data-path="genframework.html"><a href="genframework.html#mpt"><i class="fa fa-check"></i><b>3.1</b> An overview of modern portfolio theory</a></li>
+<li class="chapter" data-level="3.2" data-path="genframework.html"><a href="genframework.html#introducing-risk-based-investing"><i class="fa fa-check"></i><b>3.2</b> Introducing risk-based investing</a></li>
+<li class="chapter" data-level="3.3" data-path="genframework.html"><a href="genframework.html#improving-risk-based-portfolios"><i class="fa fa-check"></i><b>3.3</b> Improving risk-based portfolios</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="overview-of-risk-based-portfolios.html"><a href="overview-of-risk-based-portfolios.html"><i class="fa fa-check"></i><b>4</b> Overview of risk-based portfolios</a><ul>
 <li class="chapter" data-level="4.1" data-path="overview-of-risk-based-portfolios.html"><a href="overview-of-risk-based-portfolios.html#risk-based-portfolio-types"><i class="fa fa-check"></i><b>4.1</b> Risk-based portfolio types</a></li>
@@ -108,7 +108,7 @@ div.abstract{
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="a-framework-for-constructing-risk-based-portfolios" class="section level1">
+<div id="genframework" class="section level1">
 <h1><span class="header-section-number">3</span> A framework for constructing risk-based portfolios</h1>
 <div id="mpt" class="section level2">
 <h2><span class="header-section-number">3.1</span> An overview of modern portfolio theory</h2>
@@ -154,7 +154,7 @@ matrix <span class="math inline">\(\textbf{X}\)</span>, can be used to estimate 
 where <span class="math inline">\(\mathbf{\bar{x}}\)</span> is a <span class="math inline">\(N \times 1\)</span> vector of mean returns. A total of <span class="math inline">\(\frac{N(N+1)}{2}\)</span>
 distinct parameters are being estimated for the sample covariance matrix (SCM) while <span class="math inline">\(N\)</span> distinct
 sample expected returns are estimated. <span class="math inline">\(\textbf{S}\)</span> and <span class="math inline">\(\hat{\mu}\)</span> can be substituted into
-equation <a href="a-framework-for-constructing-risk-based-portfolios.html#eq:mvoone">(3.1)</a> to infer an MVO portfolio, <span class="math inline">\(\hat{w}_\mathrm{mvo}\)</span>. For each level of
+equation <a href="genframework.html#eq:mvoone">(3.1)</a> to infer an MVO portfolio, <span class="math inline">\(\hat{w}_\mathrm{mvo}\)</span>. For each level of
 portfolio return <span class="math inline">\(c = \hat{w}^\intercal \hat{\mu}\)</span>, an estimated portfolio volatility level
 <span class="math inline">\(\mathbb{SD}[\hat{R}_\mathrm{p}] = \sqrt{\hat{w}^\intercal\textbf{S}\hat{w}}\)</span> is realised. These
 estimated expected return-volatility pairs induce a frontier in the expected return-volatility
@@ -176,7 +176,7 @@ focus of this dissertation.</p>
 </div>
 <div id="introducing-risk-based-investing" class="section level2">
 <h2><span class="header-section-number">3.2</span> Introducing risk-based investing</h2>
-<p>A general risk-based portfolio optimisation programme is given below in equation <a href="a-framework-for-constructing-risk-based-portfolios.html#eq:rbintro">(3.4)</a>.
+<p>A general risk-based portfolio optimisation programme is given below in equation <a href="genframework.html#eq:rbintro">(3.4)</a>.
 Removing the expected return constraint and altering the previous MVO optimisation problem for the
 consideration of a generalised objective risk function <span class="math inline">\(f(\cdot| \textbf{X})\)</span> yields:
 <span class="math display" id="eq:rbintro">\[\begin{align}
@@ -188,7 +188,7 @@ w^\intercal \underline{1} &amp;= 1 \;\; ,
 \end{align*}\]</span></p>
 <p>where <span class="math inline">\(f(\cdot | \textbf{X})\)</span> is a risk metric to be minimised. The choice of <span class="math inline">\(f(\cdot | \textbf{X})\)</span> determines which risk-based portfolio is the optimal solution. Chapter <strong>make
 chapeter</strong> expounds on the risk-based portfolio types relevant to this research.</p>
-<p>The range of feasible portfolios given by equation <a href="a-framework-for-constructing-risk-based-portfolios.html#eq:rbintro">(3.4)</a> is practically too general
+<p>The range of feasible portfolios given by equation <a href="genframework.html#eq:rbintro">(3.4)</a> is practically too general
 because unlikely single asset weights are still possible. To this end, an investor should apply a
 weight constraint to limit feasible allocations, ensuring comparability with practical investing.
 <span class="citation">Jagannathan and Ma (<a href="#ref-JM03" role="doc-biblioref">2003</a>)</span> show that risk-based long-short portfolios can have extreme weights in practice, which are
@@ -200,7 +200,7 @@ appropriate and practically relevant for most investors.</p>
 <p>Equally important is that an investor will be reluctant to concentrate their portfolio in a small
 number of assets. Limiting the maximum single asset allocation to a selected weight <span class="math inline">\(\alpha\)</span> avoids
 such concentration. These constraints are concurrently expressed as
-<span class="math inline">\(\{w :0 \leq w_i \leq \alpha, \; \forall i \}\)</span> and can be added to optimisation <a href="a-framework-for-constructing-risk-based-portfolios.html#eq:rbintro">(3.4)</a>.
+<span class="math inline">\(\{w :0 \leq w_i \leq \alpha, \; \forall i \}\)</span> and can be added to optimisation <a href="genframework.html#eq:rbintro">(3.4)</a>.
 In its current form, the developed framework is still somewhat abstract, so it is not obvious how
 to improve it. Even so, one can always define specific properties that the framework ought to have
 for there to be a good chance of it operating as intended.</p>
@@ -234,7 +234,7 @@ where <span class="math inline">\(\epsilon\)</span> has the normal distribution 
 <span class="math inline">\(g(\cdot)\)</span> is the aim of using the framework, and it is a real-valued function that is not
 necessarily differentiable or continuous. Each algorithm <span class="math inline">\(q\)</span> refers to a combination of estimation
 procedure for the inputs, and a computation of a risk-based portfolio using equation
-<a href="a-framework-for-constructing-risk-based-portfolios.html#eq:retmodel">(3.5)</a>. Each <span class="math inline">\(q\)</span> specifies an estimate of the function <span class="math inline">\(g\)</span>, denoted <span class="math inline">\(\hat{g}_q\)</span>. In the
+<a href="genframework.html#eq:retmodel">(3.5)</a>. Each <span class="math inline">\(q\)</span> specifies an estimate of the function <span class="math inline">\(g\)</span>, denoted <span class="math inline">\(\hat{g}_q\)</span>. In the
 same way that <span class="math inline">\(\hat{w}^*\)</span> (<span class="math inline">\(w^*\)</span> calculated with sample inputs <span class="math inline">\(\textbf{S}\)</span> and <span class="math inline">\(\hat{\mu}\)</span>) can be
 used to estimate the out-of-sample risk-based portfolio, <span class="math inline">\(\hat{g}_q\)</span> can predict out-of-sample
 portfolio returns, which are forecasted most accurately by the unobservable function <span class="math inline">\(g\)</span>.</p>
@@ -262,14 +262,14 @@ G_q &amp;:= \mathbb{E} \Big [ \mathbb{E}[(R_\mathrm{p, 1} - \hat{g}_q (\textbf{X
 The squared bias is the extent to which the expectation of predicted returns differs from the best
 possible predictor of returns, the correct function <span class="math inline">\(g(\cdot)\)</span>. The variance measures the magnitude
 by which the predicted returns will vary under repeated sampling. By setting
-<span class="math inline">\(\hat{g}_q(\cdot) = g(\cdot)\)</span> in equation <a href="a-framework-for-constructing-risk-based-portfolios.html#eq:bvdecomp">(3.6)</a> only statistical noise remains; hence,
+<span class="math inline">\(\hat{g}_q(\cdot) = g(\cdot)\)</span> in equation <a href="genframework.html#eq:bvdecomp">(3.6)</a> only statistical noise remains; hence,
 the noise is irreducible. The risk of misestimating <span class="math inline">\(g(\cdot)\)</span> should not include the risk that is
 retained by even the best estimator. Therefore, estimation risk is considered as the sum of the first
 two terms only, the squared bias and the variance. An over-fitted algorithm will have high variation
 for repeated samples. An under-fitted algorithm will have high bias and be consistently poor for
 repeated samples. The over- and under-fitting trade-off is an example of how the bias-variance
 trade-off works in practice.</p>
-<p>Until now, we have assumed that the estimated portfolio <span class="math inline">\(\hat{w}^*\)</span> from equation <a href="a-framework-for-constructing-risk-based-portfolios.html#eq:rbintro">(3.4)</a>
+<p>Until now, we have assumed that the estimated portfolio <span class="math inline">\(\hat{w}^*\)</span> from equation <a href="genframework.html#eq:rbintro">(3.4)</a>
 is an unbiased estimate of the actual risk metric-minimising portfolio <span class="math inline">\(w^*\)</span> because the choice of
 <span class="math inline">\(f(\cdot | \textbf{X})\)</span> determines precisely the type of risk-based portfolio. However,
 <span class="math inline">\(f(\cdot|\textbf{X})\)</span> does not precisely determine the estimation risk. Employing a penalty on the
@@ -296,17 +296,17 @@ w^\intercal \underline{1} = 1 \;\; \\
 estimating <span class="math inline">\(\lambda\)</span> in a way that is consistent with the rest of the optimisation. Therefore, we
 apply the <span class="math inline">\(\lambda\)</span> estimation that minimises the portfolio specific risk metric using in-sample
 data. Additionally, by setting <span class="math inline">\(\lambda = 0\)</span>, the unpenalised portfolio can still be recovered.
-Optimisation <a href="a-framework-for-constructing-risk-based-portfolios.html#eq:genopt">(3.7)</a> will be the general risk-based portfolio optimisation going forward.</p>
+Optimisation <a href="genframework.html#eq:genopt">(3.7)</a> will be the general risk-based portfolio optimisation going forward.</p>
 <p>Improving on the vanilla risk-based optimisation is done in three ways in this research, and these
 improvements are also common in the literature. Approach one deals with the assumption in equation
-<a href="a-framework-for-constructing-risk-based-portfolios.html#eq:retmodel">(3.5)</a> that <span class="math inline">\(\epsilon\)</span> has a normal distribution, and that the errors through time are
+<a href="genframework.html#eq:retmodel">(3.5)</a> that <span class="math inline">\(\epsilon\)</span> has a normal distribution, and that the errors through time are
 independent and identically distributed. If <span class="math inline">\(\hat{g}_q\)</span> fails to approximate <span class="math inline">\(g\)</span> correctly, then the
 assumption is violated. There could be natural heterogeneity in the data accounted for by <span class="math inline">\(g\)</span>. <span class="citation">Flint and Du Plooy (<a href="#ref-FD18" role="doc-biblioref">2018</a>)</span>
 attempt to deal with heterogeneity by changing the estimation procedure of <span class="math inline">\({g}\)</span> so that it includes
 and accounts for potential differences in each observation of sample data. They do this through the
 application of regimes and quantiles, grouping the input data to increase the accuracy of the
 estimated model. The second approach adapted from <span class="citation">Kinn (<a href="#ref-K18" role="doc-biblioref">2018</a>)</span> has already been shown above and
-involves penalising the optimisation and setting <span class="math inline">\(\lambda &gt; 0\)</span> in equation <a href="a-framework-for-constructing-risk-based-portfolios.html#eq:genopt">(3.7)</a>. The
+involves penalising the optimisation and setting <span class="math inline">\(\lambda &gt; 0\)</span> in equation <a href="genframework.html#eq:genopt">(3.7)</a>. The
 third and final approach requires resampling from the observations in <span class="math inline">\(\textbf{X}\)</span> for different
 subsets of assets and hinges on implementation adjustments. <span class="citation">Shen and Wang (<a href="#ref-SW17" role="doc-biblioref">2017</a>)</span> suggest finding <span class="math inline">\(w^*\)</span>
 multiple times for different resampled subsets and blending the result afterwards to find an
@@ -352,7 +352,7 @@ properties and the portfolios that have them is required to specify <span class=
 <div class="footnotes">
 <hr />
 <ol start="3">
-<li id="fn3"><p>The decomposition is shown by <span class="citation">Friedman, Hastie, and Tibshirani (<a href="#ref-FHT01" role="doc-biblioref">2001</a>)</span>.<a href="a-framework-for-constructing-risk-based-portfolios.html#fnref3" class="footnote-back">↩</a></p></li>
+<li id="fn3"><p>The decomposition is shown by <span class="citation">Friedman, Hastie, and Tibshirani (<a href="#ref-FHT01" role="doc-biblioref">2001</a>)</span>.<a href="genframework.html#fnref3" class="footnote-back">↩</a></p></li>
 </ol>
 </div>
             </section>

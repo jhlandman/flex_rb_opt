@@ -82,12 +82,13 @@ div.abstract{
 <li class="chapter" data-level="3.2" data-path="genframework.html"><a href="genframework.html#introducing-risk-based-investing"><i class="fa fa-check"></i><b>3.2</b> Introducing risk-based investing</a></li>
 <li class="chapter" data-level="3.3" data-path="genframework.html"><a href="genframework.html#improving-risk-based-portfolios"><i class="fa fa-check"></i><b>3.3</b> Improving risk-based portfolios</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="overview-of-risk-based-portfolios.html"><a href="overview-of-risk-based-portfolios.html"><i class="fa fa-check"></i><b>4</b> Overview of risk-based portfolios</a><ul>
-<li class="chapter" data-level="4.1" data-path="overview-of-risk-based-portfolios.html"><a href="overview-of-risk-based-portfolios.html#risk-based-portfolio-types"><i class="fa fa-check"></i><b>4.1</b> Risk-based portfolio types</a></li>
-<li class="chapter" data-level="4.2" data-path="overview-of-risk-based-portfolios.html"><a href="overview-of-risk-based-portfolios.html#risk-based-portfolio-properties"><i class="fa fa-check"></i><b>4.2</b> Risk-based portfolio properties</a></li>
+<li class="chapter" data-level="4" data-path="rbportch.html"><a href="rbportch.html"><i class="fa fa-check"></i><b>4</b> Overview of risk-based portfolios</a><ul>
+<li class="chapter" data-level="4.1" data-path="rbportch.html"><a href="rbportch.html#risk-based-portfolio-types"><i class="fa fa-check"></i><b>4.1</b> Risk-based portfolio types</a></li>
+<li class="chapter" data-level="4.2" data-path="rbportch.html"><a href="rbportch.html#risk-based-portfolio-properties"><i class="fa fa-check"></i><b>4.2</b> Risk-based portfolio properties</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="estimation-risk-reduction-techniques.html"><a href="estimation-risk-reduction-techniques.html"><i class="fa fa-check"></i><b>5</b> Estimation risk reduction techniques</a><ul>
 <li class="chapter" data-level="5.1" data-path="estimation-risk-reduction-techniques.html"><a href="estimation-risk-reduction-techniques.html#improving-optimisation-inputs"><i class="fa fa-check"></i><b>5.1</b> Improving optimisation inputs</a></li>
+<li class="chapter" data-level="5.2" data-path="estimation-risk-reduction-techniques.html"><a href="estimation-risk-reduction-techniques.html#penalising-the-optimization"><i class="fa fa-check"></i><b>5.2</b> Penalising the optimization</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 </ul>
@@ -108,7 +109,7 @@ div.abstract{
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="overview-of-risk-based-portfolios" class="section level1">
+<div id="rbportch" class="section level1">
 <h1><span class="header-section-number">4</span> Overview of risk-based portfolios</h1>
 <p>There are many types of risk-based portfolios, for a broader analysis refer to <span class="citation">Plessis and Rensburg (<a href="#ref-DV17" role="doc-biblioref">2017</a>)</span>. In this chapter,
 we review three risk-based portfolios: the global minimum variance, equal weight and equal risk
@@ -120,7 +121,7 @@ out and the conditions under which they perform optimally are all covered.</p>
 function. The nature of the objective function depends on the investor’s risk preferences. In line
 with <span class="citation">Markowitz (<a href="#ref-M52" role="doc-biblioref">1952</a>)</span>, a genetic risk metric to minimise is the portfolio variance, as an investor may not be
 willing to tolerate large swings in capital value. Setting
-<span class="math inline">\(f(\cdot|\textbf{X}) = w^\intercal \Sigma w\)</span> in portfolio optimisation <a href="genframework.html#eq:genopt">(3.7)</a> yields the
+<span class="math inline">\(f(\cdot|\textbf{X}) = w^\intercal \Sigma w\)</span> in portfolio optimisation <a href="#eq:genopt">(<strong>??</strong>)</a> yields the
 global minimum variance (GMV) portfolio, denoted <span class="math inline">\(w_\textrm{gmv}\)</span>. The objective function is the same
 as for the MVO portfolio for an imputed value of <span class="math inline">\(c\)</span>, meaning that the GMV portfolio sits on the
 efficient frontier. The GMV portfolio is also the only risk-based portfolio that is always on the
@@ -155,7 +156,7 @@ portfolio is the single asset portfolio - where a single non-zero asset weight i
 portfolio is <span class="math inline">\(1\)</span>, which is as low as it can be. On the other hand, the EW portfolio has an IHI value
 of <span class="math inline">\(N\)</span>. All portfolios, therefore, have an IHI on the interval <span class="math inline">\([1, N]\)</span>. In the presence of a maximum
 weight constraint, the lower bound of the interval changes. The new lower bound is derived in appendix
-<strong>insert appendix ref</strong>. To find the EW portfolio using framework <a href="genframework.html#eq:genopt">(3.7)</a>, set the objective
+<strong>insert appendix ref</strong>. To find the EW portfolio using framework <a href="#eq:genopt">(<strong>??</strong>)</a>, set the objective
 function to the Herfindahl index, <span class="math inline">\(f(\cdot|\textbf{X}) = \sum_{i = 1}^N w_i^2\)</span>. No parameters in the
 objective function require estimation, so this is a sample return independent optimisation, which
 reflects the investor’s lack of confidence in historical data.</p>
@@ -208,7 +209,7 @@ MSR portfolio. <span class="citation">Scherer (<a href="#ref-S07" role="doc-bibl
 as the portfolio for which marginal excess returns and the MRC’s are equal for all portfolio
 constituents. <span class="citation">Jurczenko, Michel, and Teiletche (<a href="#ref-J13" role="doc-biblioref">2013</a>)</span> use this fact to find MSR optimality conditions for each of the risk-based
 portfolios, some examples of which are shown in appendix <strong>insert appendix num</strong>.</p>
-<p>Table <a href="overview-of-risk-based-portfolios.html#tab:rbportprops">4.1</a> summarises the salient risk properties of the EW, ERC, and GMV
+<p>Table <a href="rbportch.html#tab:rbportprops">4.1</a> summarises the salient risk properties of the EW, ERC, and GMV
 portfolios. Included is the strategy to find the portfolio, the requirements for when the portfolio
 coincides with the MSR portfolio, and their empirical risk characteristics. The risk characteristics
 entail whether the risk is inherent to the investment, the construction of the portfolio, or liquidity
