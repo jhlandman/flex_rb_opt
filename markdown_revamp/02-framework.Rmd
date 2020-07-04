@@ -1,0 +1,222 @@
+# A framework for constructing risk-based portfolios
+
+## An overview of modern portfolio theory {#mpt}
+
+Every investor has a universe of $N$ assets to which they can allocate capital. The proportion of
+their allocation to the *i*$^{\text{th}}$ asset, $w_i$, depends on the investor's risk and return
+preferences. They could prefer riskier asset combinations because they require high capital growth,
+or they could prefer more stable asset combinations that prioritise capital preservation. The column
+vector $w = [w_1,w_2,…,w_N]^\intercal$ is an $N \times 1$ vector of allocations that define an
+investor's portfolio. This portfolio is constrained by the investor's capital budget, which may be
+articulated through the notion of weights. Therefore, all considered portfolios should adhere to the
+budget constraint: $\sum_i w_i =  1$.
+
+In his seminal paper, @M52 attempts to quantify the asset allocation process. Herein he posits that
+the investor has to make a risk-reward trade-off when considering their portfolio returns,
+$R_\mathrm{p}$, over a pre-determined time horizon $[0, T]$. In his framework, he measures risk with
+the variance of portfolio returns $\mathbb{V}\mathrm{ar}[R_\mathrm{p}] = w^\intercal \Sigma w$,
+where $\Sigma$ is the $N \times N$ asset return covariance matrix. Markowitz measures reward by the
+expectation of portfolio returns $\mathbb{E}[R_\mathrm{p}] = w^\intercal \mu$, where $\mu$ is the 
+$N \times 1$ vector of expected asset returns. If the investor fixes expected returns to a constant,
+$\mathbb{E}[R_\mathrm{p}] = c$, they encounter the problem of minimising portfolio risk,
+$\mathbb{V}\mathrm{ar}[R_\mathrm{p}]$. The mean-variance optimal (MVO) portfolio $w_\mathrm{mvo}$
+achieves this goal while adhering to the budget constraint and the fixed expected return constraint.
+Written mathematically, $w_\mathrm{mvo}$ is the solution to the following Markowitz optimisation:
+\begin{align} 
+w_\mathrm{mvo} &= \underset{w}{\text{argmin}} \Big \{ w^\intercal \Sigma w \Big \},
+(\#eq:mvoone)
+\end{align}
+subject to the constraints:
+\begin{align*}
+\mathcal{C}(w) &= 
+\begin{cases}
+ w^\intercal \mu &= c \;\;\;  \\
+w^\intercal \underline{1} &= 1 \;\; .
+\end{cases}
+\end{align*}
+
+There is a complication when using this framework in practice because $\Sigma$ and $\mu$ are
+unknown. The investor can only observe a small set of sample returns from the underlying stock
+processes that use these quantities as inputs. The sample returns, represented by a $N \times T$
+matrix $\textbf{X}$, can be used to estimate $\Sigma$ and $\mu$. The sample estimates are:
+
+\begin{align}
+\textbf{S}&=  \frac{1}{T - 1}(\textbf{X} - \mathbf{\bar{x}} \underline{1}^\intercal_T)(\textbf{X} - \mathbf{\bar{x}} \underline{1}^\intercal_T)^\intercal, (\#eq:samplevar) \\
+\mathbf{\hat{\mu}} &= \mathbf{\bar{x}} , (\#eq:samplemean)
+\end{align}
+where $\mathbf{\bar{x}}$ is a $N \times 1$ vector of mean returns. A total of $\frac{N(N+1)}{2}$
+distinct parameters are being estimated for the sample covariance matrix (SCM) while $N$ distinct
+sample expected returns are estimated. $\textbf{S}$ and $\hat{\mu}$ can be substituted into
+equation \@ref(eq:mvoone) to infer an MVO portfolio, $\hat{w}_\mathrm{mvo}$. For each level of
+portfolio return $c = \hat{w}^\intercal \hat{\mu}$, an estimated portfolio volatility level
+$\mathbb{SD}[\hat{R}_\mathrm{p}] = \sqrt{\hat{w}^\intercal\textbf{S}\hat{w}}$ is realised. These
+estimated expected return-volatility pairs induce a frontier in the expected return-volatility
+plane, which may or may not be close to the frontier implied by the actual inputs $\Sigma$ and
+$\mu$. The actual frontier is optimal for the Markowitz framework, and he terms it the `efficient
+frontier'.
+
+The above framework and estimation procedure yields a solution to the asset allocation dilemma, but
+there is still a sensitivity predicament. @M89 shows that the MVO procedure, as described above,
+overweights assets with substantial estimated returns $\mathbf{\bar{x}}$. However, these are the
+same assets that are likely to have been misestimated. Thus, any potential estimation errors are
+`maximised' - an undesirable property that makes $\hat{w}_\mathrm{mvo}$ a potential liability for
+the investor to hold.
+
+The MVO procedure is commonly adjusted to reduce sensitivity to the input $\mathbf{\bar{x}}$ in one
+of two ways. The first is to estimate expected returns in a manner that targets return drivers or
+factors, which has motivated the rise of factor-based investing [@A14]. The second adjustment is to
+remove the dependency on expected return estimates altogether and only construct portfolios based
+on their risk properties. The latter has inspired the field of risk-based investing and is the
+focus of this dissertation. 
+
+## Introducing risk-based investing
+
+A general risk-based portfolio optimisation programme is given below in equation \@ref(eq:rbintro).
+Removing the expected return constraint and altering the previous MVO optimisation problem for the
+consideration of a generalised objective risk function $f(\cdot| \textbf{X})$ yields:
+\begin{align}
+w^* = \underset{w}{\text{argmin}} \Big \{ f(w, \Sigma| \textbf{X}) \Big \}, (\#eq:rbintro)
+\end{align}
+subject to the constraint:
+\begin{align*}
+w^\intercal \underline{1} &= 1 \;\; ,
+\end{align*}
+
+where $f(\cdot | \textbf{X})$ is a risk metric to be minimised. The choice of $f(\cdot |
+\textbf{X})$ determines which risk-based portfolio is the optimal solution. Chapter **make
+chapeter** expounds on the risk-based portfolio types relevant to this research.
+
+The range of feasible portfolios given by equation \@ref(eq:rbintro) is practically too general
+because unlikely single asset weights are still possible. To this end, an investor should apply a
+weight constraint to limit feasible allocations, ensuring comparability with practical investing.
+@JM03 show that risk-based long-short portfolios can have extreme weights in practice, which are
+unlikely to be accepted by an investor. 
+
+Additionally, @JM03 also conclude that imposing the long-only investment constraint on US equities
+leads to improved efficiency for optimal portfolios constructed with the first two sample moments
+$\hat{\mu}$ and $\textbf{S}$. Hence, applying the long-only constraint is both statistically
+appropriate and practically relevant for most investors.
+
+Equally important is that an investor will be reluctant to concentrate their portfolio in a small
+number of assets. Limiting the maximum single asset allocation to a selected weight $\alpha$ avoids
+such concentration. These constraints are concurrently expressed as 
+$\{w :0 \leq w_i \leq \alpha, \; \forall i \}$ and can be added to optimisation \@ref(eq:rbintro).
+In its current form, the developed framework is still somewhat abstract, so it is not obvious how
+to improve it. Even so, one can always define specific properties that the framework ought to have
+for there to be a good chance of it operating as intended.
+
+
+## Improving risk-based portfolios
+
+@H23 defines a mathematical problem as 'well-posed' if:
+
+1. the solution exists,
+2. the solution is unique,
+3. the solution is not overly sensitive to small perturbations in inputs.
+
+Well-posed problems are easier to work with and are more stable than ill-posed problems - ones that
+fall short of the definition. The expected return constraint was previously disregarded for MVO
+portfolios because the MVO framework often does not meet requirement 3. when the sample mean returns
+estimate $\mu$. Risk-based portfolios are therefore more `well-posed' than MVO portfolios.
+
+However, there are two common ways in which risk-based portfolios are also ill-posed. The first is if
+there are very few sample observations; namely, if $T < N$. In this scenario, the covariance matrix
+is not of full rank and is therefore not invertible, causing non-unique solutions to $w^*$. The
+framework is then ill-posed by 2. The second is if small changes in $\textbf{X}$ result in large
+deviations of $w^*$. The framework is then ill-posed by 3. Many researchers such as @JK81
+and @B91 have shown that the latter phenomenon is observed in practice, and often persists even
+if $T$ is much larger than $N$.  To address point (iii) and make the problem well-posed, one needs a
+measure of sensitivity. We outline a pseudo-derivation of a sensitivity measure below.
+
+@K18 views the portfolio optimisation problem from a modelling perspective. The returns on the
+portfolio are modelled directly by an unknown function $g(\cdot)$:
+\begin{align}
+R_p & = g(\textbf{X}) + \epsilon, (\#eq:retmodel)
+\end{align}
+where $\epsilon$ has the normal distribution with zero mean and variance $\phi^2$. Estimating
+$g(\cdot)$ is the aim of using the framework, and it is a real-valued function that is not
+necessarily differentiable or continuous. Each algorithm $q$ refers to a combination of estimation
+procedure for the inputs, and a computation of a risk-based portfolio using equation
+\@ref(eq:retmodel). Each $q$ specifies an estimate of the function $g$, denoted $\hat{g}_q$. In the
+same way that $\hat{w}^*$ ($w^*$ calculated with sample inputs $\textbf{S}$ and $\hat{\mu}$) can be
+used to estimate the out-of-sample risk-based portfolio, $\hat{g}_q$ can predict out-of-sample
+portfolio returns, which are forecasted most accurately by the unobservable function $g$.
+
+It is necessary to distinguish between the two types of data that are available. The first is
+historical data comprising of the matrix $\textbf{X}_0$ and in-sample returns $R_{\mathrm{p}, 0}$,
+which combine to form the set $\mathcal{H}_0$. The second is out-of-sample data $\textbf{X}_1$ and
+$R_\mathrm{p, 1}$, which combine to form the set $\mathcal{H}_1$. Algorithm $q$ does not utilise the
+data contained in $\mathcal{H}_1$, which are chronologically realised after the most recent points in
+$\mathcal{H}_0$. A mean squared error penalty is appropriate to measure the accuracy with which
+$\hat{g}_q (\textbf{X}_1)$ (estimated using $\mathcal{H}_0$) predicts the out of sample returns
+$R_\mathrm{p, 1}$. @K18 terms the expectation of the out-of-sample mean squared error
+"generalisation error" (GE), shown mathematically as:
+\begin{align}
+GE(\hat{g}_q) & = \mathbb{E}[(R_\mathrm{p, 1} - \hat{g}_q (\textbf{X}_1))^2|{\mathcal{H}_1}],
+\end{align}
+where GE is specific to a sample. The actual quantity of interest is the expected performance of $q$
+for many potential sample sets, as we are evaluating $q$'s efficacy holistically. This quantity is
+called the expected generalisation error across all samples, denoted $G_q$. Furthermore, $G_q$ may be
+decomposed ^[The decomposition is shown by @FHT01.] to reflect a common modelling trade-off between
+bias and variance:
+\begin{align}
+G_q &:= \mathbb{E} \Big [ \mathbb{E}[(R_\mathrm{p, 1} - \hat{g}_q (\textbf{X}_1))^2|{\mathcal{H}_1}] \Big | \mathcal{H}_0\Big ] , \\
+& = \underbrace{ \Big (g(\textbf{X}_1) - \mathbb{E}[\hat{g}_q (\textbf{X}_1)|\mathcal{H}_0] \Big )^2}_{\text{squared bias}} + \underbrace{\mathbb{V}\mathrm{ar} [\hat{g}_q(\textbf{X}_1)|\mathcal{H}_0]}_{\text{variance}} + \underbrace{\phi^2}_{\text{irreducible error}}.(\#eq:bvdecomp)
+\end{align}
+The squared bias is the extent to which the expectation of predicted returns differs from the best
+possible predictor of returns, the correct function $g(\cdot)$. The variance measures the magnitude
+by which the predicted returns will vary under repeated sampling. By setting 
+$\hat{g}_q(\cdot) = g(\cdot)$ in equation \@ref(eq:bvdecomp) only statistical noise remains; hence,
+the noise is irreducible. The risk of misestimating $g(\cdot)$ should not include the risk that is
+retained by even the best estimator. Therefore, estimation risk is considered as the sum of the first
+two terms only, the squared bias and the variance. An over-fitted algorithm will have high variation
+for repeated samples. An under-fitted algorithm will have high bias and be consistently poor for
+repeated samples. The over- and under-fitting trade-off is an example of how the bias-variance
+trade-off works in practice.
+
+Until now, we have assumed that the estimated portfolio $\hat{w}^*$ from equation \@ref(eq:rbintro)
+is an unbiased estimate of the actual risk metric-minimising portfolio $w^*$ because the choice of
+$f(\cdot | \textbf{X})$ determines precisely the type of risk-based portfolio. However,
+$f(\cdot|\textbf{X})$ does not precisely determine the estimation risk. Employing a penalty on the
+objective function introduces bias to reduce estimation risk, *i.e.* hopefully, the squared
+bias increase does not outweigh the variance decrease. The introduction of the penalty yields an
+estimated portfolio $\hat{w}^*$ that is consistently closer to $w^*$ than an unbiased portfolio would
+be. The penalty constraint can be stated as $P(w) \leq s$ and reduces the set of all possible
+portfolios. If done correctly allocations that are misestimated by the heftiest margins are excluded
+by this constraint, and allocations that are consistently closer to the actual portfolio remain. The
+general risk-based framework can now be restated as below to accommodate the penalty using a
+Lagrangian multiplier approach:
+\begin{align}
+w^* = \underset{w}{\text{argmin}} \Big \{ f(w, \Sigma| \textbf{X}) + \lambda P(w) \Big \}, (\#eq:genopt)
+\end{align}
+subject to the constraints:
+\begin{align*}
+\mathcal{C}(w) &= 
+\begin{cases}
+w^\intercal \underline{1} = 1 \;\; \\
+0 \leq w_i \leq \alpha, \; \forall i \;\;\; ,
+\end{cases}
+\end{align*}
+
+where $P(\cdot)$ is the penalty function, and $\lambda$ is the Lagrangian multiplier. Kinn proposes
+estimating $\lambda$ in a way that is consistent with the rest of the optimisation. Therefore, we
+apply the $\lambda$ estimation that minimises the portfolio specific risk metric using in-sample
+data. Additionally, by setting $\lambda =  0$, the unpenalised portfolio can still be recovered.
+Optimisation \@ref(eq:genopt) will be the general risk-based portfolio optimisation going forward. 
+
+Improving on the vanilla risk-based optimisation is done in three ways in this research, and these
+improvements are also common in the literature. Approach one deals with the assumption in equation
+\@ref(eq:retmodel) that $\epsilon$ has a normal distribution, and that the errors through time are
+independent and identically distributed. If $\hat{g}_q$ fails to approximate $g$ correctly, then the
+assumption is violated. There could be natural heterogeneity in the data accounted for by $g$. @FD18
+attempt to deal with heterogeneity by changing the estimation procedure of ${g}$ so that it includes
+and accounts for potential differences in each observation of sample data. They do this through the
+application of regimes and quantiles, grouping the input data to increase the accuracy of the
+estimated model. The second approach adapted from @K18 has already been shown above and
+involves penalising the optimisation and setting $\lambda > 0$ in equation \@ref(eq:genopt). The
+third and final approach requires resampling from the observations in $\textbf{X}$ for different
+subsets of assets and hinges on implementation adjustments. @SW17 suggest finding $w^*$
+multiple times for different resampled subsets and blending the result afterwards to find an
+aggregate weight, that hopefully reduces estimation risk. Chapter **insert chapter ref** contains a
+more detailed exploration of these techniques. Before that, further investigation of desirable risk
+properties and the portfolios that have them is required to specify $f(\cdot|\textbf{X})$.

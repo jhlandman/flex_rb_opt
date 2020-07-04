@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>2 Introduction | Flexible risk-based portfolio optimisation (Github link)</title>
+  <meta name="description" content="Flexible risk-based portfolio optimisation
+<a href="https://github.com/jhlandman/flex_rb_opt"><em>(Github link)</em></a>" />
+  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="2 Introduction | Flexible risk-based portfolio optimisation (Github link)" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  <meta name="github-repo" content="jhlandman/flex_rb_opt" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="2 Introduction | Flexible risk-based portfolio optimisation (Github link)" />
+  
+  
+  
+
+
+
+<meta name="date" content="2020-07-04" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="index.html"/>
+<link rel="next" href="a-framework-for-constructing-risk-based-portfolios.html"/>
+<style type="text/css">
+p.abstract{
+  text-align: center;
+  font-weight: bold;
+}
+div.abstract{
+  margin: auto;
+  width: 90%;
+}
+</style>
+<script src="book_assets/jquery-2.2.3/jquery.min.js"></script>
+<link href="book_assets/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="book_assets/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="book_assets/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="book_assets/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="book_assets/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="book_assets/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="book_assets/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> About</a></li>
+<li class="chapter" data-level="2" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>2</b> Introduction</a></li>
+<li class="chapter" data-level="3" data-path="a-framework-for-constructing-risk-based-portfolios.html"><a href="a-framework-for-constructing-risk-based-portfolios.html"><i class="fa fa-check"></i><b>3</b> A framework for constructing risk-based portfolios</a><ul>
+<li class="chapter" data-level="3.1" data-path="a-framework-for-constructing-risk-based-portfolios.html"><a href="a-framework-for-constructing-risk-based-portfolios.html#mpt"><i class="fa fa-check"></i><b>3.1</b> An overview of modern portfolio theory</a></li>
+<li class="chapter" data-level="3.2" data-path="a-framework-for-constructing-risk-based-portfolios.html"><a href="a-framework-for-constructing-risk-based-portfolios.html#introducing-risk-based-investing"><i class="fa fa-check"></i><b>3.2</b> Introducing risk-based investing</a></li>
+<li class="chapter" data-level="3.3" data-path="a-framework-for-constructing-risk-based-portfolios.html"><a href="a-framework-for-constructing-risk-based-portfolios.html#improving-risk-based-portfolios"><i class="fa fa-check"></i><b>3.3</b> Improving risk-based portfolios</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="overview-of-risk-based-portfolios.html"><a href="overview-of-risk-based-portfolios.html"><i class="fa fa-check"></i><b>4</b> Overview of risk-based portfolios</a><ul>
+<li class="chapter" data-level="4.1" data-path="overview-of-risk-based-portfolios.html"><a href="overview-of-risk-based-portfolios.html#risk-based-portfolio-types"><i class="fa fa-check"></i><b>4.1</b> Risk-based portfolio types</a></li>
+<li class="chapter" data-level="4.2" data-path="overview-of-risk-based-portfolios.html"><a href="overview-of-risk-based-portfolios.html#risk-based-portfolio-properties"><i class="fa fa-check"></i><b>4.2</b> Risk-based portfolio properties</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Flexible risk-based portfolio optimisation
+<a href="https://github.com/jhlandman/flex_rb_opt"><em>(Github link)</em></a></a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="introduction" class="section level1">
+<h1><span class="header-section-number">2</span> Introduction</h1>
+<p>If a risk-averse investor wants to construct portfolios with desirable properties, they would
+ideally want to find allocations that offer an attractive risk-reward trade-off. <span class="citation">Markowitz (<a href="#ref-M52" role="doc-biblioref">1952</a>)</span> developed
+modern portfolio theory and introduced the mean-variance optimal portfolio as a quantitative
+solution to this asset allocation problem. However, the reward derived from this portfolio has to be
+estimated from sample data and is often difficult to accurately predict - which, in turn, leads to
+Markowitz’s mean-variance portfolio being highly sensitive to the estimated portfolio inputs.</p>
+<p>As an alternative, risk-based investing provides an avenue for finding portfolios for which expected
+returns do not need to be estimated, and therefore resolves the portfolio expected return
+sensitivity problem. Examples of risk-based portfolios commonly seen in practice are the global
+minimum variance portfolio, the equal risk contribution portfolio, and the equal weight portfolio.
+These three portfolios are optimal for investors that prioritise weight diversification, risk
+diversification, or a specific combination of both.</p>
+<p>Nevertheless, risk-based portfolios remain sensitive to covariance matrix estimation and hence
+estimation risk. Improving risk-based estimation is done in three ways in this research. The first
+improvement alters the covariance estimation procedure by accounting for differences in the sample
+data. These changes include grouping to account for both non-normality and state-based
+inhomogeneity. The second involves penalising the optimisation to limit the range of admissable
+portfolios, which increases the investor’s odds of choosing a well-estimated portfolio. The final
+enhancement changes the implementation methodology entirely by performing the portfolio optimisation
+on subsets of assets and then resampling to find an aggregate portfolio.</p>
+<p>This research aims to bring together useful elements of risk-based portfolio estimation and
+construction methodology into a single flexible framework. The general structure allows a choice of
+risk-based portfolio as well as estimation risk reduction technique to improve the out-of-sample
+portfolio performance. Once we have established a framework, the specific portfolio and estimation
+technique, examples are developed theoretically. All of these reforms will be hollow without being
+applied to actual financial data. Therefore, the various estimation techniques and risk-based
+portfolio pairs are back-tested using South African equity data in an experiment, with the results
+being measured by standard performance methodologies.</p>
+<p>This research is built on the work of several different authors. Firstly - as with nearly all
+portfolio construction research - this dissertation hinges on the modern portfolio theory of <span class="citation">Markowitz (<a href="#ref-M52" role="doc-biblioref">1952</a>)</span>.
+It then considers the particular case of risk-based investing and makes use of the generalised
+frameworks introduced by <span class="citation">Jurczenko, Michel, and Teiletche (<a href="#ref-J13" role="doc-biblioref">2013</a>)</span> and <span class="citation">Richard and Roncalli (<a href="#ref-RR15" role="doc-biblioref">2015</a>)</span>. Finally, in terms of improving the estimation and
+optimisation processes, we make use of the ideas investigated by <span class="citation">Flint and Du Plooy (<a href="#ref-FD18" role="doc-biblioref">2018</a>)</span>, <span class="citation">Kinn (<a href="#ref-K18" role="doc-biblioref">2018</a>)</span>, and <span class="citation">Shen and Wang (<a href="#ref-SW17" role="doc-biblioref">2017</a>)</span>.</p>
+<p>The rest of this dissertation is set out as follows. Chapter 2 outlines a general framework for
+constructing risk-based portfolios and estimating them in a robust manner. Chapter 3 gives an
+overview of the specific risk-based portfolios considered in this work. Chapter 4 presents several
+techniques for reducing estimation risk, exploring their theoretical underpinnings and providing
+general intuition. Chapter 5 then considers the empirical application of these techniques,
+highlighting several technicalities. Chapter 6 then applies the flexible risk-based framework to SA
+equity data, providing an empirical comparison of different implementations. Chapter 7 concludes the
+research and provides avenues for further research.</p>
+
+</div>
+<h3>References</h3>
+<div id="refs" class="references">
+<div id="ref-FD18">
+<p>Flint, Emlyn James, and Simon Du Plooy. 2018. “Extending Risk Budgeting for Market Regimes and Quantile Factor Models.” <em>Available at SSRN 3141739</em>.</p>
+</div>
+<div id="ref-J13">
+<p>Jurczenko, Emmanuel, Thierry Michel, and Jerome Teiletche. 2013. “Generalized Risk-Based Investing.” <em>Available at SSRN 2205979</em>.</p>
+</div>
+<div id="ref-K18">
+<p>Kinn, Daniel. 2018. “Reducing Estimation Risk in Mean-Variance Portfolios with Machine Learning.” <em>arXiv Preprint arXiv:1804.01764</em>.</p>
+</div>
+<div id="ref-M52">
+<p>Markowitz, Harry. 1952. “Portfolio Selection.” <em>The Journal of Finance</em> 7 (1): 77–91.</p>
+</div>
+<div id="ref-RR15">
+<p>Richard, Jean-Charles, and Thierry Roncalli. 2015. “Smart Beta: Managing Diversification of Minimum Variance Portfolios.” In <em>Risk-Based and Factor Investing</em>, 31–63. Elsevier.</p>
+</div>
+<div id="ref-SW17">
+<p>Shen, Weiwei, and Jun Wang. 2017. “Portfolio Selection via Subset Resampling.” In <em>Thirty-First Aaai Conference on Artificial Intelligence</em>.</p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="a-framework-for-constructing-risk-based-portfolios.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="book_assets/gitbook-2.6.7/js/app.min.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/lunr.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": false,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "night",
+"family": "sans",
+"size": 14
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

@@ -1,0 +1,48 @@
+# Introduction
+
+If a risk-averse investor wants to construct portfolios with desirable properties, they would
+ideally want to find allocations that offer an attractive risk-reward trade-off. @M52 developed
+modern portfolio theory and introduced the mean-variance optimal portfolio as a quantitative
+solution to this asset allocation problem. However, the reward derived from this portfolio has to be
+estimated from sample data and is often difficult to accurately predict - which, in turn, leads to
+Markowitz's mean-variance portfolio being highly sensitive to the estimated portfolio inputs.
+
+As an alternative, risk-based investing provides an avenue for finding portfolios for which expected
+returns do not need to be estimated, and therefore resolves the portfolio expected return
+sensitivity problem. Examples of risk-based portfolios commonly seen in practice are the global
+minimum variance portfolio, the equal risk contribution portfolio, and the equal weight portfolio.
+These three portfolios are optimal for investors that prioritise weight diversification, risk
+diversification, or a specific combination of both. 
+
+Nevertheless, risk-based portfolios remain sensitive to covariance matrix estimation and hence
+estimation risk. Improving risk-based estimation is done in three ways in this research. The first
+improvement alters the covariance estimation procedure by accounting for differences in the sample
+data. These changes include grouping to account for both non-normality and state-based
+inhomogeneity. The second involves penalising the optimisation to limit the range of admissable
+portfolios, which increases the investor's odds of choosing a well-estimated portfolio. The final
+enhancement changes the implementation methodology entirely by performing the portfolio optimisation
+on subsets of assets and then resampling to find an aggregate portfolio.
+
+This research aims to bring together useful elements of risk-based portfolio estimation and
+construction methodology into a single flexible framework. The general structure allows a choice of
+risk-based portfolio as well as estimation risk reduction technique to improve the out-of-sample
+portfolio performance. Once we have established a framework, the specific portfolio and estimation
+technique, examples are developed theoretically. All of these reforms will be hollow without being
+applied to actual financial data. Therefore, the various estimation techniques and risk-based
+portfolio pairs are back-tested using South African equity data in an experiment, with the results
+being measured by standard performance methodologies.
+
+This research is built on the work of several different authors. Firstly - as with nearly all
+portfolio construction research - this dissertation hinges on the modern portfolio theory of @M52.
+It then considers the particular case of risk-based investing and makes use of the generalised
+frameworks introduced by @J13 and @RR15. Finally, in terms of improving the estimation and
+optimisation processes, we make use of the ideas investigated by @FD18, @K18, and @SW17.
+
+The rest of this dissertation is set out as follows. Chapter 2 outlines a general framework for
+constructing risk-based portfolios and estimating them in a robust manner. Chapter 3 gives an
+overview of the specific risk-based portfolios considered in this work. Chapter 4 presents several
+techniques for reducing estimation risk, exploring their theoretical underpinnings and providing
+general intuition. Chapter 5 then considers the empirical application of these techniques,
+highlighting several technicalities. Chapter 6 then applies the flexible risk-based framework to SA
+equity data, providing an empirical comparison of different implementations. Chapter 7 concludes the
+research and provides avenues for further research.

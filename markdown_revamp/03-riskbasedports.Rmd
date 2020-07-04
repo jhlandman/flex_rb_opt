@@ -1,0 +1,133 @@
+# Overview of risk-based portfolios
+
+There are many types of risk-based portfolios, for a broader analysis refer to @DV17. In this chapter,
+we review three risk-based portfolios: the global minimum variance, equal weight and equal risk
+contribution portfolios. The risk properties that these portfolios have, the strategies that bear them
+out and the conditions under which they perform optimally are all covered.
+
+## Risk-based portfolio types
+
+Each risk-based portfolio is optimal in some sense because they all minimise a specific objective risk
+function. The nature of the objective function depends on the investor's risk preferences. In line
+with @M52, a genetic risk metric to minimise is the portfolio variance, as an investor may not be
+willing to tolerate large swings in capital value. Setting 
+$f(\cdot|\textbf{X}) = w^\intercal \Sigma w$ in portfolio optimisation \@ref(eq:genopt) yields the
+global minimum variance (GMV) portfolio, denoted $w_\textrm{gmv}$. The objective function is the same
+as for the MVO portfolio for an imputed value of $c$, meaning that the GMV portfolio sits on the
+efficient frontier. The GMV portfolio is also the only risk-based portfolio that is always on the
+efficient frontier.
+
+@MRT10 utilise the concept of an asset's marginal risk contribution (MRC) in a portfolio to perform
+risk-based portfolio calculations. It is the sensitivity of the portfolio volatility to the weight of
+an asset in a portfolio. Alternative representations of the MRC and an outline of why the weighted sum
+of the MRC's is minimised for the GMV portfolio are shown in appendix **insert appendix ref**. Below
+is the mathematical definition of the MRC for the $i^{\mathrm{th}}$ asset:
+\begin{align}
+\frac{\partial}{\partial w_i} \Big [ \sigma(w) \Big ]= \frac{(\Sigma w)_i}{\sqrt{w^\intercal \Sigma w}}.
+\end{align}
+
+When taking the realised portfolio returns as the single risk factor, there is no idiosyncratic risk
+present for assets in the portfolio against this factor. Accordingly, the GMV portfolio is the lowest
+possible beta portfolio. The GMV portfolio is, therefore, optimal for the investor that always takes
+on the least risk at the margin. However, risk has to be estimated, so the investor only knows what
+the least risky options available to them are in a historical sense. The downside is that always
+choosing the lowest marginal risk contributing asset is implicitly displaying a high level of
+confidence in estimations of risk.
+
+Contrastingly, the investor may be at a loss when estimating risk. The only measure of diversification
+for such an investor is weight diversification. To minimise their risk taken at the margin, this
+investor would hold the smallest possible weight in each of the assets while still satisfying the
+constraints. This strategy ensures that the investor avoids the maximum marginal risk contributing
+asset to the greatest extent possible given that they are unsure which of the $N$ assets it is. The
+least weight concentrated portfolio that this strategy alludes to is the equal weight (EW) portfolio:
+
+\begin{align}
+w_{ew} & = \Big [\frac{1}{N} \; \cdot \cdot \cdot \frac{1}{N} \Big ]^\intercal \; ,
+\end{align}
+
+where the weight diversification measure that this portfolio maximises is the inverse Herfindahl index
+(IHI), calculated as $H^{-1} (w) = (\sum_{i = 1}^N w_i^2)^{-1}$. The most weight concentrated
+portfolio is the single asset portfolio - where a single non-zero asset weight is $1$. The IHI of this
+portfolio is $1$, which is as low as it can be. On the other hand, the EW portfolio has an IHI value
+of $N$. All portfolios, therefore, have an IHI on the interval $[1, N]$. In the presence of a maximum
+weight constraint, the lower bound of the interval changes. The new lower bound is derived in appendix
+**insert appendix ref**. To find the EW portfolio using framework \@ref(eq:genopt), set the objective
+function to the Herfindahl index, $f(\cdot|\textbf{X}) = \sum_{i = 1}^N w_i^2$. No parameters in the
+objective function require estimation, so this is a sample return independent optimisation, which
+reflects the investor's lack of confidence in historical data.
+
+The GMV and EW portfolios represent two extremes of investors, specifically those that value
+volatility reduction only and those that value weight diversification only. The inequality
+$\sigma(w_{gmv}) \leq \sigma(w^\diamond) \leq \sigma(w_{ew})$ verifies this intuition. The portfolio
+$w^\diamond$ has intermediate weight concentration. Proof of the inequality is given in appendix
+**insert appendix ref**. It is unlikely that a capital allocator will completely disregard one
+risk-based approach for another. One method to construct a sound intermediate portfolio that
+incorporates the MRC philosophy from the GMV portfolio construction and the high risk-asset avoidance
+philosophy from the EW portfolio construction is to equalise the total risk contribution (TRC) from
+each asset. An asset's TRC is the product of its MRC and its weight in the portfolio:
+\begin{align*}
+\text{TRC}_i &= w_i \cdot \frac{\partial}{\partial w_i} \Big [ \sigma(w)\Big ], \\
+& = \frac{w_i \cdot (\Sigma w)_i}{\sqrt{w^\intercal \Sigma w}},
+\end{align*}
+where TRC's sum to the portfolio volatility. An equal risk contribution (ERC) portfolio equalises all
+of the TRC's so that no single asset is a comparatively significant contributor to risk. The choice of
+$f(\cdot|\textbf{X})$ that minimises the squared distances between the TRC's to the greatest extent
+possible is given below:
+\begin{align}
+f(w, \Sigma|\textbf{X}) &= \sum_{i = 1}^N  \sum_{j \geq i}^N(w_i(\Sigma w)_i - w_j(\Sigma w)_j)^2 \;\;  .
+\end{align}
+
+@MRT10 show that a log-constraint on the weights in GMV optimisation could equivalently express this
+choice of $f(\cdot| \textbf{X})$ - an idea explored further in appendix **insert appendix ref**.
+Therein it is shown that the ERC portfolio is an intermediate portfolio $w^\diamond$. While there are
+several other risk-based portfolios that have been suggested in the literature, we will focus our
+attention only on these three portfolios, which are arguably some of the most common risk-based
+portfolios seen in practice @J13. 
+
+## Risk-based portfolio properties
+
+Section \@ref(mpt) introduces the Markowitz efficient frontier.@S64 extends this work to deduce that
+there is an optimal portfolio called the tangency portfolio. He does make certain assumptions about
+investors' preferences and the presence of a risk-free asset. The market-weighted (MW) portfolio is the
+portfolio for which the efficient frontier is tangential to the line bisecting the y-axis at the
+risk-free rate ($r_\mathrm{f}$) in the expected return-volatility plane. The MW portfolio is the
+portfolio held by all investors in the market on average and is relevant because it offers the investor
+diversification with negligible transaction costs @P07. The MW portfolio is not risk-based in the
+traditional sense, but it does not require an estimate of expected returns to calculate; hence, the MW
+portfolio offers a cheap benchmark against which to compare risk-based portfolio performance. However,
+the holder of the MW does implicitly adopt all investors' weighted expectations of expected returns
+@H91. The tangency portfolio is optimal for the  Sharpe ratio (SR) measure under Sharpe's
+assumptions. The measure is defined as:
+\begin{align}
+\text{SR}_\mathrm{p} = \frac{\mathbb{E}[R_\mathrm{p}] - r_\mathrm{f}}{\mathbb{SD}[R_\mathrm{p}]} \;.
+\end{align}
+
+Within the MVO construction, the MW portfolio has the maximum Sharpe ratio (MSR) and is, therefore, the
+MSR portfolio. @S07 shows that the MSR portfolio, $w_\mathrm{msr}$, can alternatively be expressed
+as the portfolio for which marginal excess returns and the MRC's are equal for all portfolio
+constituents. @J13 use this fact to find MSR optimality conditions for each of the risk-based
+portfolios, some examples of which are shown in appendix **insert appendix num**.
+
+Table \ref{tab_rb_port} summarises the salient risk properties of the EW, ERC, and GMV portfolios. Included is the strategy to find the portfolio, the requirements for when the portfolio coincides with the MSR portfolio, and their empirical risk characteristics. The risk characteristics entail whether the risk is inherent to the investment, the construction of the portfolio, or liquidity restrictions when creating the portfolio.
+
+
+\begin{table} [h] 
+\caption{Risk-based investing portfolio properties \citep{J13}.}
+\label{tab_rb_port}
+\centering
+ \begin{tabular}{p{1.5cm} p{1.9cm} p{3.9cm}  p{4.4cm}  } 
+\hline
+\textbf{Portfolio} &  \textbf{Strategy} & \textbf{MSR conditions} & \textbf{Risk characteristics}\\ 
+ \hline
+EW & Equalise $w_i$ & Identical \newline excess returns. \newline Identical volatilities.  \newline Identical correlations. & Medium to high risk. \newline Insensitive to $\Sigma$. \newline Low turnover. \\
+&&&\\
+ERC & Equalise $\text{TRC}_i$ & Identical \newline Sharpe ratios. \newline Identical correlations. & Medium risk. \newline Moderately sensitive to $\Sigma$. \newline Medium  turnover. \\
+&&&\\
+GMV & Equalise $\text{MRC}_i$ & Identical \newline excess returns. & Lowest risk. \newline Highly sensitive to $\Sigma$. \newline High turnover.  \\
+ \hline
+\end{tabular}
+\end{table}
+
+While the MSR conditions are theoretically compelling, out-of-sample optimality is harder to determine in practice. \cite{H91} show that portfolios that are superior to the MW portfolio exist when: short-selling is restricted, investments are taxed, and foreign investors are active market participants. These portfolios should have the same expected return as the MW portfolio with lower volatility. Their statement is true even in an `efficient market'. Studies of the historical performance show that some portfolios outperform others. In these studies, the authors restrict the asset universe to US equities; hence, their results will not necessarily translate to South Africa. The hope of introducing risk-based portfolios is to find Haugen and Baker's superior portfolios. Evidence supporting this ambition exists. \cite{DGL07} demonstrate the robust out-of-sample performance of EW portfolios when compared to MVO and MW portfolios for a broad range of asset universes. \cite{C06} also demonstrate that GMV portfolios show outperformance against the MW and MVO benchmarks. They initially attribute this to the diachronic persistence of covariances when compared to expected returns. In a later paper, \cite{C11} suggest that the outperformance is due to a bias inherent in the portfolio construction towards stocks that do not move with the rest of the market, but that still have comparatively high expected returns.
+
+Within risk-based portfolios, \cite{K10} have shown that GMV portfolios outperform EW portfolios when the implementer uses a long enough estimation window. Therefore, they establish a defence for using optimisation on a sample covariance matrix. This research remains consistent with these findings, using the EW portfolio as a benchmark in pursuit of better out-of-sample performance within the GMV and ERC frameworks. In the next chapter, we outline the techniques used to achieve this aim.

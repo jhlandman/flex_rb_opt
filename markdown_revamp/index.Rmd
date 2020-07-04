@@ -1,0 +1,33 @@
+---
+title: "Flexible risk-based portfolio optimisation \n [*(Github link)*](https://github.com/jhlandman/flex_rb_opt)"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+output: 
+  bookdown::pdf_document2:
+    toc: true
+    keep_tex: true
+    citation_package: natbib
+  bookdown::gitbook:
+    lib_dir: "book_assets"
+    fig_caption: true
+    config:
+      fontsettings:
+        theme: night
+        size: 14
+      sharing:
+        facebook: no
+github-repo: "jhlandman/flex_rb_opt"
+author: |
+  | Emlyn Flint^[Legae Peresec], Jayson Landman^[Ninety One Asset Management]
+abstract: |
+  The purpose of this study is to present and test a general framework for risk-based investing. It permits various risk-based portfolios such as the global minimum variance, equal risk contribution and equal weight portfolios. The framework also allows for different estimation techniques to be used in finding the portfolios. The design of the study is to collate the existing research on risk-based investing, to analyse some modern methods to reduce estimation risk, to incorporate them in a single coherent framework, and to test the result with South African equity data. The techniques to reduce estimation risk draw from the usual mean-variance and risk-based optimisation literature. The techniques include regime switching, quantile regression, regularisation and subset resampling. In the South African experiment, risk-based portfolios materially outperformed the market weight portfolio out-of-sample using a Sharpe ratio measure. Additionally, the global minimum variance portfolio performed better than other risk-based portfolios. Given the long estimation window, no estimation techniques consistently outperformed the application of sample estimators only.
+  
+  **Keywords**: risk-based investing, portfolio optimisaiton, estimation risk.
+bibliography: biblio.bib
+link-citations: true
+---
+
+# About
+
+This is a research paper created with the `bookdown` package in R. It is intended to promote 
+reproducibility in academic research.
