@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>6 Using estimation risk reduction techniques | Flexible risk-based portfolio optimisation (Github link)</title>
+  <meta name="description" content="Flexible risk-based portfolio optimisation
+<a href="https://github.com/jhlandman/flex_rb_opt"><em>(Github link)</em></a>" />
+  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="6 Using estimation risk reduction techniques | Flexible risk-based portfolio optimisation (Github link)" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  <meta name="github-repo" content="jhlandman/flex_rb_opt" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="6 Using estimation risk reduction techniques | Flexible risk-based portfolio optimisation (Github link)" />
+  
+  
+  
+
+
+
+<meta name="date" content="2020-07-05" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="estriskreduce.html"/>
+<link rel="next" href="experiment.html"/>
+<style type="text/css">
+p.abstract{
+  text-align: center;
+  font-weight: bold;
+}
+div.abstract{
+  margin: auto;
+  width: 90%;
+}
+</style>
+<script src="book_assets/jquery-2.2.3/jquery.min.js"></script>
+<link href="book_assets/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="book_assets/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="book_assets/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="book_assets/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="book_assets/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="book_assets/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="book_assets/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> About</a></li>
+<li class="chapter" data-level="2" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>2</b> Introduction</a></li>
+<li class="chapter" data-level="3" data-path="genframework.html"><a href="genframework.html"><i class="fa fa-check"></i><b>3</b> A framework for constructing risk-based portfolios</a><ul>
+<li class="chapter" data-level="3.1" data-path="genframework.html"><a href="genframework.html#mpt"><i class="fa fa-check"></i><b>3.1</b> An overview of modern portfolio theory</a></li>
+<li class="chapter" data-level="3.2" data-path="genframework.html"><a href="genframework.html#introducing-risk-based-investing"><i class="fa fa-check"></i><b>3.2</b> Introducing risk-based investing</a></li>
+<li class="chapter" data-level="3.3" data-path="genframework.html"><a href="genframework.html#improving-risk-based-portfolios"><i class="fa fa-check"></i><b>3.3</b> Improving risk-based portfolios</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="rbportch.html"><a href="rbportch.html"><i class="fa fa-check"></i><b>4</b> Overview of risk-based portfolios</a><ul>
+<li class="chapter" data-level="4.1" data-path="rbportch.html"><a href="rbportch.html#risk-based-portfolio-types"><i class="fa fa-check"></i><b>4.1</b> Risk-based portfolio types</a></li>
+<li class="chapter" data-level="4.2" data-path="rbportch.html"><a href="rbportch.html#risk-based-portfolio-properties"><i class="fa fa-check"></i><b>4.2</b> Risk-based portfolio properties</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="estriskreduce.html"><a href="estriskreduce.html"><i class="fa fa-check"></i><b>5</b> Estimation risk reduction techniques</a><ul>
+<li class="chapter" data-level="5.1" data-path="estriskreduce.html"><a href="estriskreduce.html#improving-optimisation-inputs"><i class="fa fa-check"></i><b>5.1</b> Improving optimisation inputs</a></li>
+<li class="chapter" data-level="5.2" data-path="estriskreduce.html"><a href="estriskreduce.html#penalising-the-optimization"><i class="fa fa-check"></i><b>5.2</b> Penalising the optimization</a></li>
+<li class="chapter" data-level="5.3" data-path="estriskreduce.html"><a href="estriskreduce.html#alternate-implementation-methods"><i class="fa fa-check"></i><b>5.3</b> Alternate implementation methods</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="some-maths.html"><a href="some-maths.html"><i class="fa fa-check"></i><b>6</b> Using estimation risk reduction techniques</a><ul>
+<li class="chapter" data-level="6.1" data-path="some-maths.html"><a href="some-maths.html#quantile-factor-modelling-and-regime-switching"><i class="fa fa-check"></i><b>6.1</b> Quantile factor modelling and regime switching</a></li>
+<li class="chapter" data-level="6.2" data-path="some-maths.html"><a href="some-maths.html#ridge-regression"><i class="fa fa-check"></i><b>6.2</b> Ridge regression</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="experiment.html"><a href="experiment.html"><i class="fa fa-check"></i><b>7</b> An empirical test using Sourth African equities</a><ul>
+<li class="chapter" data-level="7.1" data-path="experiment.html"><a href="experiment.html#data-and-methodology"><i class="fa fa-check"></i><b>7.1</b> Data and methodology</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Flexible risk-based portfolio optimisation
+<a href="https://github.com/jhlandman/flex_rb_opt"><em>(Github link)</em></a></a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="some_maths" class="section level1">
+<h1><span class="header-section-number">6</span> Using estimation risk reduction techniques</h1>
+<p>Under the EW and MW portfolios, the portfolio weights do not require estimation whereas the GMV and ERC
+portfolios do. For each of these portfolios, there are six given ways of performing the estimation in
+this research. The first is by using the standard sample covariance matrix, the next four are to use
+techniques outlined in chapter <a href="estriskreduce.html#estriskreduce">5</a>, and the final one is to use a combination of
+quantile factor modelling and regime switching. A summary of all of the portfolio technique pairs is
+given in table <a href="some-maths.html#tab:portestpairs">6.1</a> below.</p>
+<table>
+<caption><span id="tab:portestpairs">Table 6.1: </span> Portfolio estimation-technique pairs</caption>
+<colgroup>
+<col width="29%" />
+<col width="55%" />
+<col width="15%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Portfolio</th>
+<th>Estimation technique</th>
+<th>Abbreviation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Equal weight</td>
+<td>-</td>
+<td>EW</td>
+</tr>
+<tr class="even">
+<td>Market weight</td>
+<td>-</td>
+<td>MW</td>
+</tr>
+<tr class="odd">
+<td>Global minimum variance</td>
+<td>Sample covariance matrix</td>
+<td>GMV-SCM</td>
+</tr>
+<tr class="even">
+<td>Global minimum variance</td>
+<td>Quantile factor modelling</td>
+<td>GMV-QFM</td>
+</tr>
+<tr class="odd">
+<td>Global minimum variance</td>
+<td>Regime switching</td>
+<td>GMV-RS</td>
+</tr>
+<tr class="even">
+<td>Global minimum variance</td>
+<td>Quantile factor modelling with regime switching</td>
+<td>GMV-QRS</td>
+</tr>
+<tr class="odd">
+<td>Global minimum variance</td>
+<td>Ridge regression</td>
+<td>GMV-RR</td>
+</tr>
+<tr class="even">
+<td>Global minimum variance</td>
+<td>Subset re-sampling</td>
+<td>GMV-SRS</td>
+</tr>
+<tr class="odd">
+<td>Equal risk contribution</td>
+<td>Sample covariance matrix</td>
+<td>ERC-SCM</td>
+</tr>
+<tr class="even">
+<td>Equal risk contribution</td>
+<td>Quantile factor modelling</td>
+<td>ERC-QFM</td>
+</tr>
+<tr class="odd">
+<td>Equal risk contribution</td>
+<td>Regime switching</td>
+<td>ERC-RS</td>
+</tr>
+<tr class="even">
+<td>Equal risk contribution</td>
+<td>Quantile factor modelling with regime switching</td>
+<td>ERC-QRS</td>
+</tr>
+<tr class="odd">
+<td>Equal risk contribution</td>
+<td>Ridge regression</td>
+<td>ERC-RR</td>
+</tr>
+<tr class="even">
+<td>Equal risk contribution</td>
+<td>Subset re-sampling</td>
+<td>ERC-SRS</td>
+</tr>
+</tbody>
+</table>
+<div id="quantile-factor-modelling-and-regime-switching" class="section level2">
+<h2><span class="header-section-number">6.1</span> Quantile factor modelling and regime switching</h2>
+<p>QFM and RS improve the estimation of the inputs into the optimisation and therefore have the same
+implementation for the GMV and ERC portfolios. To use the RS model for covariance prediction, the
+probability of being in either a quiet or a turbulent state needs to be estimated. If <span class="math inline">\(s_t\)</span> is the
+random variable that takes on the value of the state at time <span class="math inline">\(t\)</span> then <span class="math inline">\(s_t \in \{Q, T\}\)</span>. The true
+parameters are defined as:
+<span class="math display">\[\begin{align*}
+\pi_{Q, t} &amp;:= \mathbb{P}\{s_t = Q\}, \\
+\pi_{T, t} &amp;:= \mathbb{P}\{s_t = T\} = 1 - \pi_{Q, t}.
+\end{align*}\]</span>
+These can be estimated using the emission quantities from the HMM, <span class="math inline">\(\hat{d}_t\)</span>, and a maximum
+likelihood approach - the Baum-Welch algorithm<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a>. <span class="citation">Kritzman, Page, and Turkington (<a href="#ref-K12" role="doc-biblioref">2012</a>)</span> determine a turbulent-quiet data split through the parameter <span class="math inline">\(\zeta\)</span>,
+which is the proportion of the data allocated to the quiet regime for covariance estimation. They
+suggest a value of <span class="math inline">\(0.7\)</span> or <span class="math inline">\(0.8\)</span>, but due to constraints on input data length we use <span class="math inline">\(0.7\)</span> in this
+research. The investor has nearly estimated enough parameters to blend the variance-covariance matrix
+using the method of <span class="citation">Flint and Du Plooy (<a href="#ref-FD18" role="doc-biblioref">2018</a>)</span> outlined below in equation <a href="some-maths.html#eq:fdblend">(6.1)</a>.
+<span class="math display" id="eq:fdblend">\[\begin{align}
+\hat{\Sigma}_{\text{blend}} &amp; = \hat{\pi}_{Q, t + 1} \hat{\eta}_Q \hat{\Sigma}_Q + \hat{\pi}_{T, t + 1} \hat{\eta}_T \hat{\Sigma}_T. \tag{6.1}
+\end{align}\]</span>
+The estimated probabilities, <span class="math inline">\(\hat{\pi}_{Q, t + 1}\)</span> and <span class="math inline">\(\hat{\pi}_{T, t + 1}\)</span>, are forward-looking.
+Predictions can be made empirically using the current state because the transition probabilities are
+generally near <span class="math inline">\(1\)</span> or <span class="math inline">\(0\)</span> in the data. The investor still has to estimate their normalised aversion to
+each regime <span class="math inline">\(\hat{\eta}_{s_{t+1}}\)</span>, which they can do using the estimation procedure from <span class="citation">Bodnar et al. (<a href="#ref-B18" role="doc-biblioref">2018</a>)</span>. For
+the experiment, the investor was indifferent between regimes.</p>
+<p>The intention of this blending procedure is for money managers to estimate the state probabilities
+themselves, thus incorporating their future beliefs. In reality, when implementing a quantitative
+model, it is common to use a rolling estimation window of data. Asset return data is often not long
+enough to accommodate sophisticated portfolio construction methods. Therefore, assigning
+<span class="math inline">\(\hat{\pi}_{T, t + 1}\)</span> values near <span class="math inline">\(1\)</span> results in the estimation and application of large covariance
+matrices with potentially only <span class="math inline">\(30 \%\)</span> of the data, without the requisite weighting of the other
+covariance matrix. The inaccurate covariance matrix leads to the very same input sensitivity problems
+that the RS model attempts to avoid. It is worth clarifying that the sensitivity is due to an
+incorrectly estimated <span class="math inline">\(\hat{\pi}_{T, t + 1}\)</span>, not the absence of underlying regimes. To correct this
+sensitivity concern, a discretised simplification is used. If the state is estimated to be quiet,
+nothing is done to the weights implied by the volume of data:
+<span class="math display">\[\begin{align*}
+(\hat{\pi}_{Q, t + 1}, \hat{\pi}_{T, t + 1}) = (\zeta, 1 - \zeta).
+\end{align*}\]</span>
+If the state is estimated to be turbulent, then the weights implied by the volume of data are adjusted
+to overweight the turbulent regime by a proportion of <span class="math inline">\(\gamma\)</span>:</p>
+<p><span class="math display">\[\begin{align*}
+(\hat{\pi}_{Q, t + 1}, \hat{\pi}_{T, t + 1}) = (\zeta -  \frac{\gamma}{2}, 1 - \zeta + \frac{\gamma}{2}).
+\end{align*}\]</span>
+In the experiment, we set <span class="math inline">\(\gamma\)</span> to 0.1. The effect is that in the quiet regime, the covariance
+matrix is the same as without the RS model. While during the turbulent regime, the turbulent covariance
+matrix is given a weighting of <span class="math inline">\(\gamma\)</span> more than what is implied by the data split.</p>
+<p>The QFM technique is examined next. <span class="citation">Chen, Dolado, and Gonzalo (<a href="#ref-CDG19" role="doc-biblioref">2019</a>)</span> use the QFM technique from equation <a href="#eq:qfm">(<strong>??</strong>)</a> for
+prediction. They select risk factors and estimate factor loadings using a simultaneous procedure.
+Factor-based modelling is not the focus of this research, although it can be used in conjunction with
+the general framework <a href="#eq:genopt">(<strong>??</strong>)</a>. In this experiment, mainly for pedagogical purposes, simple
+factors are used for the QFM portfolios; namely, a market factor and a squared market factor. This
+choice is consistent with the findings of <span class="citation">Treynor and Mazuy (<a href="#ref-TM66" role="doc-biblioref">1966</a>)</span>, with more detail given in appendix
+<strong>insert appendix reference here</strong>. Additionally, the QFM user has to choose how to partition the
+interval <span class="math inline">\([0, 1]\)</span>, i.e. decide which quantiles to use. The partition is an important input which could
+be estimated. We use the same split as <span class="citation">Ma and Pohlman (<a href="#ref-MP08" role="doc-biblioref">2008</a>)</span>}, where: <span class="math display">\[[\tau_0 = 0, \tau_1 = 0.1]\cup(\tau_1 = 0.1,
+\tau_2 = 0.9] \cup (\tau_2 = 0.9, \tau_3 = 1].\]</span> In the notation, the intervals are referred to by
+their right endpoint. <span class="citation">Flint and Du Plooy (<a href="#ref-FD18" role="doc-biblioref">2018</a>)</span> note that the QFM, as stated, does not provide variation between
+quantiles, as the idiosyncratic error term will always adjust so that the total estimated covariance
+matrix is always equal to the sample covariance matrix. Therefore, to estimate the quantile specific
+covariance matrices, they propose fixing the error term to the median error such that
+<span class="math inline">\(\hat{\epsilon}(\tau) = \hat{\epsilon}(0.5)\)</span>. Then each set of quantile returns can be used to
+construct a sample covariance matrix denoted <span class="math inline">\(\hat{\Sigma}^{(\tau)}\)</span>. <span class="citation">Ma and Pohlman (<a href="#ref-MP08" role="doc-biblioref">2008</a>)</span> propose a strategy for
+portfolio forecasting called quantile regression portfolio distribution (QRPD). It involves
+interval-weighting the portfolio allocations <span class="math inline">\(\hat{w}^{(\tau)}\)</span> for each quantile covariance matrix.
+The QRPD portfolio is:
+<span class="math display">\[\begin{align}
+\hat{w}_{\text{QRPD}} &amp; = \sum_{i = 1}^{l} p_i\hat{w}^{(\tau_i)},\;\;
+\end{align}\]</span>
+where <span class="math inline">\(p_i = \tau_i - \tau_{i - 1}\)</span>, and <span class="math inline">\(l\)</span> is the number of intervals. Like the SRS method, the QRPD
+method is comparable to ensemble methods because different models are being aggregated in the hope of
+reducing total estimation risk.</p>
+<p>The QRS technique from table <a href="some-maths.html#tab:portestpairs">6.1</a> is laid out by <span class="citation">Flint and Du Plooy (<a href="#ref-FD18" role="doc-biblioref">2018</a>)</span>. They first separate the
+data history into regimes. Within each regime, they apply the QFM approach. Once they find
+<span class="math inline">\(\hat{\Sigma}_{s_t}^{(\tau_i)}\)</span> for every quantile and state, they blend the covariance matrices
+between regimes. For every possible pair of quantiles
+<span class="math inline">\(\tau_i, \tau_j \in \{\tau_1, ..., \tau_{|\tau|}\}\)</span>, a blended SCM can be constructed:
+<span class="math display">\[\begin{align}
+\hat{\Sigma}^{(\tau_i, \tau_j)}_{\text{blend}} &amp; = (\hat{\pi}_{Q, t  + 1}\hat{\eta}_Q\hat{\Sigma}^{(\tau_i)}_Q) + (\hat{\pi}_{T, t  + 1}\hat{\eta}_T\hat{\Sigma}^{(\tau_j)}_T).
+\end{align}\]</span>
+Each of the SCMs can be used to find a portfolio <span class="math inline">\(\hat{w}^{(\tau_i, \tau_j)}\)</span>. Once the <span class="math inline">\(l \times l\)</span>
+portfolios have been found they can also be blended with the QRPD method:
+<span class="math display">\[\begin{align}
+\hat{w}_{\text{QRPD}} &amp; =  \sum_{i = 1}^{|\tau|}  \sum_{j = 1}^{|\tau|} p_i p_j \hat{w}^{(\tau_i, \tau_j)}.
+\end{align}\]</span></p>
+</div>
+<div id="ridge-regression" class="section level2">
+<h2><span class="header-section-number">6.2</span> Ridge regression</h2>
+<p>As stated previously, the QFM and RS techniques do not require separate workarounds for the ERC and
+GMV portfolios. This is not the case for the RR method. First, we consider the GMV portfolio
+estimation and then the ERC portfolio estimation. The Lagrangian multiplier, <span class="math inline">\(\lambda\)</span>, for the
+penalty in framework <a href="#eq:genopt">(<strong>??</strong>)</a>, should be chosen to minimise the estimation risk. However, the
+estimation risk is unobservable. <span class="citation">Kinn (<a href="#ref-K18" role="doc-biblioref">2018</a>)</span> suggests the k-folds cross-validation estimation procedure to
+select this parameter<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a>. The broad idea of this procedure is to
+approximate the estimation risk and choose a value of lambda, <span class="math inline">\(\lambda^*\)</span>, that minimises the
+approximated estimation risk. To perform k-folds cross-validation, we initially arrange the
+observations into <span class="math inline">\(K\)</span> subsets without replacement. The subsets are taken over time and not assets as
+with SRS technique. The set of observations for the <span class="math inline">\(k^{\text{th}}\)</span> subset is denoted <span class="math inline">\(\mathcal{I}_k\)</span>.
+All of the observations in the <span class="math inline">\(K - 1\)</span> remaining subsets (i.e. excluding those in the <span class="math inline">\(k^{\text{th}}\)</span>
+subset) are stored in a set denoted <span class="math inline">\(\mathcal{I}_{-k}\)</span>. This yields the optimisation:
+<span class="math display" id="eq:scorefunc">\[\begin{align}  
+\lambda^* &amp; = \underset{\lambda}{\text{argmin}} \Big \{ \frac{1}{K} \sum_{k =1}^K \hat{h}_k(\lambda, \mathcal{I}_k, \mathcal{I}_{-k})\Big \}, \tag{6.2}
+\end{align}\]</span>
+where <span class="math inline">\(\hat{h}_k(\lambda)\)</span> is a function that approximates estimation risk given a value of <span class="math inline">\(\lambda\)</span>.
+One choice for <span class="math inline">\(h\)</span> is the mean squared error penalty for a portfolio found using the data from
+<span class="math inline">\(\mathcal{I}_{-k}\)</span> and then tested on <span class="math inline">\(\mathcal{I}_k\)</span>. This procedure is described below:</p>
+<ol style="list-style-type: decimal">
+<li><p>For each subset <span class="math inline">\(k = \{1, 2, ..., K\}\)</span>, find the optimal portfolio weights using the training data <span class="math inline">\(\mathcal{I}_{-k}\)</span> and apply the penalty scaled by <span class="math inline">\(\lambda\)</span>.</p></li>
+<li><p>Evaluate the performance of this portfolio on the unused data <span class="math inline">\(\mathcal{I}_k\)</span> with the mean squared error loss function and retain the score <span class="math inline">\(\hat{h}_k\)</span>:
+<span class="math display" id="eq:hfunc">\[\begin{align}
+\hat{h}_k (\lambda, \mathcal{I}_k, \mathcal{I}_{-k}) = \frac{1}{|\mathcal{I}_k|} \sum_{i \in \mathcal{I}_k} (\bar{r}_{gmv} - \textbf{X}_i^\intercal \hat{w}_{\mathcal{I}_{-k}}(\lambda))^2, \tag{6.3}
+\end{align}\]</span>
+where <span class="math inline">\(\bar{r}_{gmv}\)</span> is determined as in chapter <a href="estriskreduce.html#estriskreduce">5</a>, and the function <span class="math inline">\(|\cdot|\)</span>
+counts the number of observations in a set.</p></li>
+<li><p>The range of possible <span class="math inline">\(\lambda\)</span> values can be discretised to find a solution that minimises the
+objective function in <a href="some-maths.html#eq:scorefunc">(6.2)</a><a href="#fn5" class="footnote-ref" id="fnref5"><sup>5</sup></a>.</p></li>
+</ol>
+<p>For the ERC portfolio implementation of the RR method, there is an additional hyperparameter,
+<span class="math inline">\(\eta_{erc}\)</span>, that needs to be estimated. This hyperparameter should be found before the penalty
+hyperparameter <span class="math inline">\(\lambda^*\)</span>. We also use the k-folds cross-validation technique to find this parameter.
+However, the mean squared error loss to the desired global minimum variance portfolio from equation
+<a href="some-maths.html#eq:hfunc">(6.3)</a> is not appropriate for optimising an ERC portfolio. Ideally, <span class="math inline">\(\eta_{erc}^*\)</span> should
+minimise the distance between all of the total risk contributions so that they are as equal as
+possible. Therefore, we make use of the following hyperparameter selection function (see appendix
+<strong>insert reference to appendix here</strong> for motivation):
+<span class="math display">\[\begin{align}
+\hat{h}_k^{erc} (\eta, \mathcal{I}_k, \mathcal{I}_{-k}) &amp; = \sum_{i = 1}^N  \sum_{j \geq i}^N(\hat{w}_{i, \mathcal{I}_{-k}}(\textbf{S}_{\mathcal{I}_k} \hat{w}_{\mathcal{I}_{-k}})_i - \hat{w}_{j, \mathcal{I}_{-k}}(\textbf{S}_{\mathcal{I}_k} \hat{w}_{\mathcal{I}_{-k}})_j )^2.
+\end{align}\]</span></p>
+
+</div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references">
+<div id="ref-B18">
+<p>Bodnar, Taras, Yarema Okhrin, Valdemar Vitlinskyy, and Taras Zabolotskyy. 2018. “Determination and Estimation of Risk Aversion Coefficients.” <em>Computational Management Science</em> 15 (2): 297–317.</p>
+</div>
+<div id="ref-CDG19">
+<p>Chen, Liang, J. Juan Dolado, and Jesus Gonzalo. 2019. “Quantile Factor Models.”</p>
+</div>
+<div id="ref-FD18">
+<p>Flint, Emlyn James, and Simon Du Plooy. 2018. “Extending Risk Budgeting for Market Regimes and Quantile Factor Models.” <em>Available at SSRN 3141739</em>.</p>
+</div>
+<div id="ref-K18">
+<p>Kinn, Daniel. 2018. “Reducing Estimation Risk in Mean-Variance Portfolios with Machine Learning.” <em>arXiv Preprint arXiv:1804.01764</em>.</p>
+</div>
+<div id="ref-K12">
+<p>Kritzman, Mark, Sebastien Page, and David Turkington. 2012. “Regime Shifts: Implications for Dynamic Strategies (Corrected).” <em>Financial Analysts Journal</em> 68 (3): 22–39.</p>
+</div>
+<div id="ref-MP08">
+<p>Ma, Lingjie, and Larry Pohlman. 2008. “Return Forecasts and Optimal Portfolio Construction: A Quantile Regression Approach.” <em>The European Journal of Finance</em> 14 (5): 409–25.</p>
+</div>
+<div id="ref-TM66">
+<p>Treynor, Jack, and Kay Mazuy. 1966. “Can Mutual Funds Outguess the Market.” <em>Harvard Business Review</em> 44 (4): 131–36.</p>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="4">
+<li id="fn4"><p>The procedure is outlined by <span class="citation">Friedman, Hastie, and Tibshirani (<a href="#ref-FHT01" role="doc-biblioref">2001</a>)</span>.<a href="some-maths.html#fnref4" class="footnote-back">↩</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="estriskreduce.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="experiment.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="book_assets/gitbook-2.6.7/js/app.min.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/lunr.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": false,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "night",
+"family": "sans",
+"size": 14
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

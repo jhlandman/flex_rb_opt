@@ -153,7 +153,7 @@ Every investor has a universe of \(N\) assets to which they can allocate capital
 their allocation to the \emph{i}\(^{\text{th}}\) asset, \(w_i\), depends on the investor's risk and return
 preferences. They could prefer riskier asset combinations because they require high capital growth,
 or they could prefer more stable asset combinations that prioritise capital preservation. The column
-vector \(w = [w_1,w_2,…,w_N]^\intercal\) is an \(N \times 1\) vector of allocations that define an
+vector \(w = [w_1,w_2,\text{…},w_N]^\intercal\) is an \(N \times 1\) vector of allocations that define an
 investor's portfolio. This portfolio is constrained by the investor's capital budget, which may be
 articulated through the notion of weights. Therefore, all considered portfolios should adhere to the
 budget constraint: \(\sum_i w_i = 1\).
@@ -466,7 +466,7 @@ portfolios seen in practice \citet{J13}.
 \hypertarget{risk-based-portfolio-properties}{%
 \subsection{Risk-based portfolio properties}\label{risk-based-portfolio-properties}}
 
-Section \ref{mpt} introduces the Markowitz efficient frontier.@S64 extends this work to deduce that
+Section \ref{mpt} introduces the Markowitz efficient frontier. \citet{S64} extends this work to deduce that
 there is an optimal portfolio called the tangency portfolio. He does make certain assumptions about
 investors' preferences and the presence of a risk-free asset. The market-weighted (MW) portfolio is the
 portfolio for which the efficient frontier is tangential to the line bisecting the y-axis at the
@@ -572,8 +572,8 @@ optimisation on a sample covariance matrix. This research remains consistent wit
 using the EW portfolio as a benchmark in pursuit of better out-of-sample performance within the GMV
 and ERC frameworks. In the next chapter, we outline the techniques used to achieve this aim.
 
-\hypertarget{estimation-risk-reduction-techniques}{%
-\section{Estimation risk reduction techniques}\label{estimation-risk-reduction-techniques}}
+\hypertarget{estriskreduce}{%
+\section{Estimation risk reduction techniques}\label{estriskreduce}}
 
 As stated in chapter \ref{genframework}, estimation risk is comprised of squared bias and variance.
 There are many methods to approach reducing estimation risk, but in this research, we introduce three
@@ -747,15 +747,686 @@ chapter.
 \hypertarget{alternate-implementation-methods}{%
 \subsection{Alternate implementation methods}\label{alternate-implementation-methods}}
 
-\citet{SW17} present a means to find a resampled MVO portfolio that reduces estimation risk by optimising random subsets of assets in the investment universe. The process is called subset resampling (SRS). They then aggregate resultant optimised subset portfolios to create a final `optimal' solution. The procedure requires the inputs of a sample return matrix \(\textbf{X}\) and an asset subset size \(b\). The subset size is related to the extent of the trade-off between bias and variance. We have to choose the degree of repeated sampling, \(s\), which is restricted by the available computational power.
+\citet{SW17} present a means to find a resampled MVO portfolio that reduces estimation risk by optimising
+random subsets of assets in the investment universe. The process is called subset resampling (SRS).
+They then aggregate resultant optimised subset portfolios to create a final `optimal' solution. The
+procedure requires the inputs of a sample return matrix \(\textbf{X}\) and an asset subset size \(b\).
+The subset size is related to the extent of the trade-off between bias and variance. We have to
+choose the degree of repeated sampling, \(s\), which is restricted by the available computational
+power.
 
-This method can be described as follows. For each of the \(s\) repeated samples, we randomly select the \(j^{\text{th}}\) subset of \(b\) assets from the \(N\) assets in the investment universe, denoted \(\mathcal{I}_j\). Using only the sample return data from the selected asset subset \(\textbf{X}_j\), we then compute the associated optimal portfolios \(\hat{w}_j\) using framework \eqref{eq:genopt} and a given choice of objective function. Finally, we average the \(s\) optimal subset weight vectors to obtain the final optimal asset portfolio \(\hat{w}_\mathrm{srs} = (\sum_{j = 1}^s \hat{w}_j)s^{-1}\).
+This method can be described as follows. For each of the \(s\) repeated samples, we randomly select
+the \(j^{\text{th}}\) subset of \(b\) assets from the \(N\) assets in the investment universe, denoted
+\(\mathcal{I}_j\). Using only the sample return data from the selected asset subset \(\textbf{X}_j\), we
+then compute the associated optimal portfolios \(\hat{w}_j\) using framework \eqref{eq:genopt} and a
+given choice of objective function. Finally, we average the \(s\) optimal subset weight vectors to
+obtain the final optimal asset portfolio \(\hat{w}_\mathrm{srs} = (\sum_{j = 1}^s \hat{w}_j)s^{-1}\).
 
-The SRS process is very general, and could even be applied in conjunction with a penalised optimisation or an improved sample covariance matrix. Additionally, the user can choose the input \(b\). If \(b = N\), then the usual sample risk-based portfolio is recovered, albeit in a computationally expensive manner. If \(b = 1\), then the SRS procedure will yield the EW portfolio for a large enough value of \(s\). Therefore, \(b\) is the input parameter controlling the extent of the trade-off between weight diversification and estimation risk. The estimation of \(b\) should be done in a manner consistent with the aim of the optimisation. To ensure \(b\) scales with the size of the asset universe, \citet{SW17} recommend writing it in the form \(b = N^{\alpha}\), where \(\alpha \in [0, 1]\).
+The SRS process is very general, and could even be applied in conjunction with a penalised
+optimisation or an improved sample covariance matrix. Additionally, the user can choose the input
+\(b\). If \(b = N\), then the usual sample risk-based portfolio is recovered, albeit in a
+computationally expensive manner. If \(b = 1\), then the SRS procedure will yield the EW portfolio for
+a large enough value of \(s\). Therefore, \(b\) is the input parameter controlling the extent of the
+trade-off between weight diversification and estimation risk. The estimation of \(b\) should be done
+in a manner consistent with the aim of the optimisation. To ensure \(b\) scales with the size of the
+asset universe, \citet{SW17} recommend writing it in the form \(b = N^{\alpha}\), where \(\alpha \in [0, 1]\).
 
-The SRS method is comparable to ensemble methods in machine learning. The logical basis is that many different models can be used and aggregated into a final model, rather than assuming a single model is the most accurate to use. Despite the general nature of the SRS procedure, it is still consistent with the approach of increasing the squared bias out of the hope that the variance reduction will offset it enough to lessen overall estimation risk.
+The SRS method is comparable to ensemble methods in machine learning. The logical basis is that many
+different models can be used and aggregated into a final model, rather than assuming a single model
+is the most accurate to use. Despite the general nature of the SRS procedure, it is still consistent
+with the approach of increasing the squared bias out of the hope that the variance reduction will
+offset it enough to lessen overall estimation risk.
 
-Each of the three estimation risk reduction classes has at least one specific technique within them. Some modelling decisions need to be made for a prospective user to apply these techniques in an experiment. These modelling decisions are covered in the next chapter.
+Each of the three estimation risk reduction classes has at least one specific technique within them.
+Some modelling decisions need to be made for a prospective user to apply these techniques in an
+experiment. These modelling decisions are covered in the next chapter.
+
+\hypertarget{somemaths}{%
+\section{Using estimation risk reduction techniques}\label{somemaths}}
+
+Under the EW and MW portfolios, the portfolio weights do not require estimation whereas the GMV and ERC
+portfolios do. For each of these portfolios, there are six given ways of performing the estimation in
+this research. The first is by using the standard sample covariance matrix, the next four are to use
+techniques outlined in chapter \ref{estriskreduce}, and the final one is to use a combination of
+quantile factor modelling and regime switching. A summary of all of the portfolio technique pairs is
+given in table \ref{tab:portestpairs} below.
+
+\begin{longtable}[]{@{}lll@{}}
+\caption{\label{tab:portestpairs} Portfolio estimation-technique pairs}\tabularnewline
+\toprule
+\begin{minipage}[b]{0.27\columnwidth}\raggedright
+Portfolio\strut
+\end{minipage} & \begin{minipage}[b]{0.50\columnwidth}\raggedright
+Estimation technique\strut
+\end{minipage} & \begin{minipage}[b]{0.14\columnwidth}\raggedright
+Abbreviation\strut
+\end{minipage}\tabularnewline
+\midrule
+\endfirsthead
+\toprule
+\begin{minipage}[b]{0.27\columnwidth}\raggedright
+Portfolio\strut
+\end{minipage} & \begin{minipage}[b]{0.50\columnwidth}\raggedright
+Estimation technique\strut
+\end{minipage} & \begin{minipage}[b]{0.14\columnwidth}\raggedright
+Abbreviation\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+\begin{minipage}[t]{0.27\columnwidth}\raggedright
+Equal weight\strut
+\end{minipage} & \begin{minipage}[t]{0.50\columnwidth}\raggedright
+-\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\raggedright
+EW\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.27\columnwidth}\raggedright
+Market weight\strut
+\end{minipage} & \begin{minipage}[t]{0.50\columnwidth}\raggedright
+-\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\raggedright
+MW\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.27\columnwidth}\raggedright
+Global minimum variance\strut
+\end{minipage} & \begin{minipage}[t]{0.50\columnwidth}\raggedright
+Sample covariance matrix\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\raggedright
+GMV-SCM\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.27\columnwidth}\raggedright
+Global minimum variance\strut
+\end{minipage} & \begin{minipage}[t]{0.50\columnwidth}\raggedright
+Quantile factor modelling\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\raggedright
+GMV-QFM\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.27\columnwidth}\raggedright
+Global minimum variance\strut
+\end{minipage} & \begin{minipage}[t]{0.50\columnwidth}\raggedright
+Regime switching\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\raggedright
+GMV-RS\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.27\columnwidth}\raggedright
+Global minimum variance\strut
+\end{minipage} & \begin{minipage}[t]{0.50\columnwidth}\raggedright
+Quantile factor modelling with regime switching\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\raggedright
+GMV-QRS\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.27\columnwidth}\raggedright
+Global minimum variance\strut
+\end{minipage} & \begin{minipage}[t]{0.50\columnwidth}\raggedright
+Ridge regression\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\raggedright
+GMV-RR\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.27\columnwidth}\raggedright
+Global minimum variance\strut
+\end{minipage} & \begin{minipage}[t]{0.50\columnwidth}\raggedright
+Subset re-sampling\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\raggedright
+GMV-SRS\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.27\columnwidth}\raggedright
+Equal risk contribution\strut
+\end{minipage} & \begin{minipage}[t]{0.50\columnwidth}\raggedright
+Sample covariance matrix\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\raggedright
+ERC-SCM\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.27\columnwidth}\raggedright
+Equal risk contribution\strut
+\end{minipage} & \begin{minipage}[t]{0.50\columnwidth}\raggedright
+Quantile factor modelling\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\raggedright
+ERC-QFM\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.27\columnwidth}\raggedright
+Equal risk contribution\strut
+\end{minipage} & \begin{minipage}[t]{0.50\columnwidth}\raggedright
+Regime switching\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\raggedright
+ERC-RS\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.27\columnwidth}\raggedright
+Equal risk contribution\strut
+\end{minipage} & \begin{minipage}[t]{0.50\columnwidth}\raggedright
+Quantile factor modelling with regime switching\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\raggedright
+ERC-QRS\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.27\columnwidth}\raggedright
+Equal risk contribution\strut
+\end{minipage} & \begin{minipage}[t]{0.50\columnwidth}\raggedright
+Ridge regression\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\raggedright
+ERC-RR\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.27\columnwidth}\raggedright
+Equal risk contribution\strut
+\end{minipage} & \begin{minipage}[t]{0.50\columnwidth}\raggedright
+Subset re-sampling\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\raggedright
+ERC-SRS\strut
+\end{minipage}\tabularnewline
+\bottomrule
+\end{longtable}
+
+\hypertarget{quantile-factor-modelling-and-regime-switching}{%
+\subsection{Quantile factor modelling and regime switching}\label{quantile-factor-modelling-and-regime-switching}}
+
+QFM and RS improve the estimation of the inputs into the optimisation and therefore have the same
+implementation for the GMV and ERC portfolios. To use the RS model for covariance prediction, the
+probability of being in either a quiet or a turbulent state needs to be estimated. If \(s_t\) is the
+random variable that takes on the value of the state at time \(t\) then \(s_t \in \{Q, T\}\). The true
+parameters are defined as:
+\begin{align*}
+\pi_{Q, t} &:= \mathbb{P}\{s_t = Q\}, \\
+\pi_{T, t} &:= \mathbb{P}\{s_t = T\} = 1 - \pi_{Q, t}.
+\end{align*}
+These can be estimated using the emission quantities from the HMM, \(\hat{d}_t\), and a maximum
+likelihood approach - the Baum-Welch algorithm\footnote{An influential tutorial on this algorithm and
+  HMMs was given by \citet{R89}.}. \citet{K12} determine a turbulent-quiet data split through the parameter \(\zeta\),
+which is the proportion of the data allocated to the quiet regime for covariance estimation. They
+suggest a value of \(0.7\) or \(0.8\), but due to constraints on input data length we use \(0.7\) in this
+research. The investor has nearly estimated enough parameters to blend the variance-covariance matrix
+using the method of \citet{FD18} outlined below in equation \eqref{eq:fdblend}.
+\begin{align}
+\hat{\Sigma}_{\text{blend}} & = \hat{\pi}_{Q, t + 1} \hat{\eta}_Q \hat{\Sigma}_Q + \hat{\pi}_{T, t + 1} \hat{\eta}_T \hat{\Sigma}_T. \label{eq:fdblend}
+\end{align}
+The estimated probabilities, \(\hat{\pi}_{Q, t + 1}\) and \(\hat{\pi}_{T, t + 1}\), are forward-looking.
+Predictions can be made empirically using the current state because the transition probabilities are
+generally near \(1\) or \(0\) in the data. The investor still has to estimate their normalised aversion to
+each regime \(\hat{\eta}_{s_{t+1}}\), which they can do using the estimation procedure from \citet{B18}. For
+the experiment, the investor was indifferent between regimes.
+
+The intention of this blending procedure is for money managers to estimate the state probabilities
+themselves, thus incorporating their future beliefs. In reality, when implementing a quantitative
+model, it is common to use a rolling estimation window of data. Asset return data is often not long
+enough to accommodate sophisticated portfolio construction methods. Therefore, assigning
+\(\hat{\pi}_{T, t + 1}\) values near \(1\) results in the estimation and application of large covariance
+matrices with potentially only \(30 \%\) of the data, without the requisite weighting of the other
+covariance matrix. The inaccurate covariance matrix leads to the very same input sensitivity problems
+that the RS model attempts to avoid. It is worth clarifying that the sensitivity is due to an
+incorrectly estimated \(\hat{\pi}_{T, t + 1}\), not the absence of underlying regimes. To correct this
+sensitivity concern, a discretised simplification is used. If the state is estimated to be quiet,
+nothing is done to the weights implied by the volume of data:
+\begin{align*}
+(\hat{\pi}_{Q, t + 1}, \hat{\pi}_{T, t + 1}) = (\zeta, 1 - \zeta).
+\end{align*}
+If the state is estimated to be turbulent, then the weights implied by the volume of data are adjusted
+to overweight the turbulent regime by a proportion of \(\gamma\):
+
+\begin{align*}
+(\hat{\pi}_{Q, t + 1}, \hat{\pi}_{T, t + 1}) = (\zeta -  \frac{\gamma}{2}, 1 - \zeta + \frac{\gamma}{2}).
+\end{align*}
+In the experiment, we set \(\gamma\) to 0.1. The effect is that in the quiet regime, the covariance
+matrix is the same as without the RS model. While during the turbulent regime, the turbulent covariance
+matrix is given a weighting of \(\gamma\) more than what is implied by the data split.
+
+The QFM technique is examined next. \citet{CDG19} use the QFM technique from equation \eqref{eq:qfm} for
+prediction. They select risk factors and estimate factor loadings using a simultaneous procedure.
+Factor-based modelling is not the focus of this research, although it can be used in conjunction with
+the general framework \eqref{eq:genopt}. In this experiment, mainly for pedagogical purposes, simple
+factors are used for the QFM portfolios; namely, a market factor and a squared market factor. This
+choice is consistent with the findings of \citet{TM66}, with more detail given in appendix
+\textbf{insert appendix reference here}. Additionally, the QFM user has to choose how to partition the
+interval \([0, 1]\), i.e.~decide which quantiles to use. The partition is an important input which could
+be estimated. We use the same split as \citet{MP08}\}, where: \[[\tau_0 = 0, \tau_1 = 0.1]\cup(\tau_1 = 0.1,
+\tau_2 = 0.9] \cup (\tau_2 = 0.9, \tau_3 = 1].\] In the notation, the intervals are referred to by
+their right endpoint. \citet{FD18} note that the QFM, as stated, does not provide variation between
+quantiles, as the idiosyncratic error term will always adjust so that the total estimated covariance
+matrix is always equal to the sample covariance matrix. Therefore, to estimate the quantile specific
+covariance matrices, they propose fixing the error term to the median error such that
+\(\hat{\epsilon}(\tau) = \hat{\epsilon}(0.5)\). Then each set of quantile returns can be used to
+construct a sample covariance matrix denoted \(\hat{\Sigma}^{(\tau)}\). \citet{MP08} propose a strategy for
+portfolio forecasting called quantile regression portfolio distribution (QRPD). It involves
+interval-weighting the portfolio allocations \(\hat{w}^{(\tau)}\) for each quantile covariance matrix.
+The QRPD portfolio is:
+\begin{align}
+\hat{w}_{\text{QRPD}} & = \sum_{i = 1}^{l} p_i\hat{w}^{(\tau_i)},\;\;
+\end{align}
+where \(p_i = \tau_i - \tau_{i - 1}\), and \(l\) is the number of intervals. Like the SRS method, the QRPD
+method is comparable to ensemble methods because different models are being aggregated in the hope of
+reducing total estimation risk.
+
+The QRS technique from table \ref{tab:portestpairs} is laid out by \citet{FD18}. They first separate the
+data history into regimes. Within each regime, they apply the QFM approach. Once they find
+\(\hat{\Sigma}_{s_t}^{(\tau_i)}\) for every quantile and state, they blend the covariance matrices
+between regimes. For every possible pair of quantiles
+\(\tau_i, \tau_j \in \{\tau_1, ..., \tau_{|\tau|}\}\), a blended SCM can be constructed:
+\begin{align}
+\hat{\Sigma}^{(\tau_i, \tau_j)}_{\text{blend}} & = (\hat{\pi}_{Q, t  + 1}\hat{\eta}_Q\hat{\Sigma}^{(\tau_i)}_Q) + (\hat{\pi}_{T, t  + 1}\hat{\eta}_T\hat{\Sigma}^{(\tau_j)}_T).
+\end{align}
+Each of the SCMs can be used to find a portfolio \(\hat{w}^{(\tau_i, \tau_j)}\). Once the \(l \times l\)
+portfolios have been found they can also be blended with the QRPD method:
+\begin{align}
+\hat{w}_{\text{QRPD}} & =  \sum_{i = 1}^{|\tau|}  \sum_{j = 1}^{|\tau|} p_i p_j \hat{w}^{(\tau_i, \tau_j)}.
+\end{align}
+
+\hypertarget{ridge-regression}{%
+\subsection{Ridge regression}\label{ridge-regression}}
+
+As stated previously, the QFM and RS techniques do not require separate workarounds for the ERC and
+GMV portfolios. This is not the case for the RR method. First, we consider the GMV portfolio
+estimation and then the ERC portfolio estimation. The Lagrangian multiplier, \(\lambda\), for the
+penalty in framework \eqref{eq:genopt}, should be chosen to minimise the estimation risk. However, the
+estimation risk is unobservable. \citet{K18} suggests the k-folds cross-validation estimation procedure to
+select this parameter\footnote{The procedure is outlined by \citet{FHT01}.}. The broad idea of this procedure is to
+approximate the estimation risk and choose a value of lambda, \(\lambda^*\), that minimises the
+approximated estimation risk. To perform k-folds cross-validation, we initially arrange the
+observations into \(K\) subsets without replacement. The subsets are taken over time and not assets as
+with SRS technique. The set of observations for the \(k^{\text{th}}\) subset is denoted \(\mathcal{I}_k\).
+All of the observations in the \(K - 1\) remaining subsets (i.e.~excluding those in the \(k^{\text{th}}\)
+subset) are stored in a set denoted \(\mathcal{I}_{-k}\). This yields the optimisation:
+\begin{align}  
+\lambda^* & = \underset{\lambda}{\text{argmin}} \Big \{ \frac{1}{K} \sum_{k =1}^K \hat{h}_k(\lambda, \mathcal{I}_k, \mathcal{I}_{-k})\Big \}, \label{eq:scorefunc}
+\end{align}
+where \(\hat{h}_k(\lambda)\) is a function that approximates estimation risk given a value of \(\lambda\).
+One choice for \(h\) is the mean squared error penalty for a portfolio found using the data from
+\(\mathcal{I}_{-k}\) and then tested on \(\mathcal{I}_k\). This procedure is described below:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  For each subset \(k = \{1, 2, ..., K\}\), find the optimal portfolio weights using the training data \(\mathcal{I}_{-k}\) and apply the penalty scaled by \(\lambda\).
+\item
+  Evaluate the performance of this portfolio on the unused data \(\mathcal{I}_k\) with the mean squared error loss function and retain the score \(\hat{h}_k\):
+  \begin{align}
+  \hat{h}_k (\lambda, \mathcal{I}_k, \mathcal{I}_{-k}) = \frac{1}{|\mathcal{I}_k|} \sum_{i \in \mathcal{I}_k} (\bar{r}_{gmv} - \textbf{X}_i^\intercal \hat{w}_{\mathcal{I}_{-k}}(\lambda))^2, \label{eq:hfunc}
+  \end{align}
+  where \(\bar{r}_{gmv}\) is determined as in chapter \ref{estriskreduce}, and the function \(|\cdot|\)
+  counts the number of observations in a set.
+\item
+  The range of possible \(\lambda\) values can be discretised to find a solution that minimises the
+  objective function in \eqref{eq:scorefunc}\footnote{The objective function in \eqref{eq:scorefunc} can
+    be computationally expensive to evaluate; hence, an efficient approximation procedure is necessary.}.
+\end{enumerate}
+
+For the ERC portfolio implementation of the RR method, there is an additional hyperparameter,
+\(\eta_{erc}\), that needs to be estimated. This hyperparameter should be found before the penalty
+hyperparameter \(\lambda^*\). We also use the k-folds cross-validation technique to find this parameter.
+However, the mean squared error loss to the desired global minimum variance portfolio from equation
+\eqref{eq:hfunc} is not appropriate for optimising an ERC portfolio. Ideally, \(\eta_{erc}^*\) should
+minimise the distance between all of the total risk contributions so that they are as equal as
+possible. Therefore, we make use of the following hyperparameter selection function (see appendix
+\textbf{insert reference to appendix here} for motivation):
+\begin{align}
+\hat{h}_k^{erc} (\eta, \mathcal{I}_k, \mathcal{I}_{-k}) & = \sum_{i = 1}^N  \sum_{j \geq i}^N(\hat{w}_{i, \mathcal{I}_{-k}}(\textbf{S}_{\mathcal{I}_k} \hat{w}_{\mathcal{I}_{-k}})_i - \hat{w}_{j, \mathcal{I}_{-k}}(\textbf{S}_{\mathcal{I}_k} \hat{w}_{\mathcal{I}_{-k}})_j )^2.
+\end{align}
+
+\hypertarget{experiment}{%
+\section{An empirical test using Sourth African equities}\label{experiment}}
+
+In this chapter, we test the various approaches outlined above for constructing risk-based portfolios
+using South African equity data. There are two sources of variation in this experiment: variation in
+risk-based portfolio type and variation in estimation risk reduction technique, all combinations of
+which are outlined in table \ref{tab:portestpairs}. Each combination of portfolio-technique approach
+will be referred to as a pair.
+
+\hypertarget{data-and-methodology}{%
+\subsection{Data and methodology}\label{data-and-methodology}}
+
+The available data for this experiment are weekly total-returns for all equity stocks included in the
+Johannesburg Stock Exchange (JSE) All Share Index (ALSI) over the period ranging from the \(5^{th}\)
+January 1996 to the \(1^{st}\) November 2019. Weightings of the shares in the ALSI are also available,
+although this is a monthly series. This historical vector of the weights of the MW portfolio through
+time is denoted \(\hat{w}^{\text{mw}}_t\).
+
+The investigation uses a rolling estimation window of \(T = 400\)\footnote{\(400\) weeks or \(7.69\) years
+  may seem like an odd choice. It is a window that balances the need for enough estimation data, but also
+  a lengthy out-of-sample test. For a longer data history, a larger estimation window could be used.}
+weekly observations to construct portfolios. Weekly data inputs are used with monthly rebalancing
+because of the high data volume requirement from chapter \ref{somemaths}. The constructed portfolio
+\(\hat{w}_{t_i}\) will be held out-of-sample over the interval \([t_i, t_{i + 1}]\), where \(t_i\) denotes a
+month's end. The entire holding period is from the \(30^{th}\) of September 2003 to the \(27^{th}\) of
+September 2019 a total of 16 years. Portfolios are constructed for two different asset universes;
+namely, the \(40\) largest stocks and the \(100\) largest stocks. The separation is to test the effect on
+portfolio performance of an investor broadening their universe. This methodology is outlined for each
+rebalancing date:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Of the stocks in the ALSI with a data history of at least length \(T\), choose the \(N\) stocks with the
+  largest market weights.
+\item
+  Use the \(N \times T\) matrix of sample returns to find asset weights for the relevant
+  portfolio-technique pair.
+\item
+  Hold the found portfolio \(\hat{w}\) for one month, record the returns \(\hat{r}\), and calculate the
+  portfolio turnover.
+\end{enumerate}
+
+This experiment is specific to this data and method. Therefore, it is important to outline some
+limitations of the results. Although framework \eqref{eq:genopt} is broad, this experiment only analyses
+portfolios constructed with South African equity returns, and cannot be used to state facts about the
+portfolio construction process generally. The budget, long-only and maximum weight constraints were all
+applied for this experiment. Specifically the maximum weight constraint used is \(\alpha = 0.1\). The
+choice intends to provide a consistent basis for comparison across portfolio-technique pairs and
+ensures similarity to practical applications. Shares that have missing data were excluded at each
+rebalancing date with a filter, therefore the MW portfolio, where \(N = 40\) may not be representative of
+the JSE Top 40 index. Transaction costs are ignored due to the liquid nature of the largest stocks,
+although this is a potential area for future improvement on the backtesting methodology.
+
+\hypertarget{results}{%
+\subsection{Results}\label{results}}
+
+Before the results are reported, specific metrics that illustrate the effect of each technique and
+portfolio need to be introduced. The first is turnover (TO). It measures the magnitude of trading
+required on each rebalancing date. If there are \(m\) rebalancing dates, then the TO is calculated as:
+\begin{align}
+\text{TO} & = \frac{6}{(m - 1)} \sum_{i = 1}^{m - 1} \sum_{j =1}^{N} |\hat{w}_{t_i, j}^\triangle - \hat{w}_{t_i, j}|,
+\end{align}
+where \(\hat{w}_{t_i, j}^\triangle\) is the buy-and-hold weight of the \(j^{th}\) asset just before the
+rebalance at time \(t_i\). The turnover is annual and one-way only; hence, the scaling factor of
+\(\frac{6}{m-1}\). For a higher TO, the investor has increased risk when rebalancing that they will not
+enter into the new portfolio at the current market price. The maximum possible value of the TO is
+\(1200\%\), and the investor achieves it if they switch from one single stock portfolio to another at
+every rebalancing date.
+
+The next reporting metric is maximum drawdown (MDD), the definition of which requires the notion of
+cumulative wealth. The investor's cumulative wealth at time \(t_j\) is their return from time \(t_0\)
+until time \(t_j\) on a portfolio of one initial unit investment, and it is defined as:
+\begin{align*}
+W_{t_j} &= \prod_{i = 1}^{j} (1 + \hat{r}_{t_i}), 
+\end{align*}
+where \(\hat{r}_{t_i}\) is the return realised over the interval \([t_{i - 1}, t_i)\). The MDD is the
+biggest loss in cumulative wealth for the entire investment period, and is formulated as:
+\begin{align}
+\text{MDD} & = \underset{t_j \in \{t_1, ..., t_m\}}{\text{argmax}} \Big \{ \underset{t_i \in \{t_1, \text{...}, t_j\}}{\text{argmax} \{W_{t_i} \}} - W_{t_j}  \Big \} \; .
+\end{align}
+MDD is an essential measure for money managers because excessive drawdowns lead to redemptions in
+their funds. \citep{M04}
+
+The last two measures are measures of concentration. As stated earlier, the risk-based investor is
+making a trade-off between weight concentration and risk concentration. A standard for weight
+concentration at a rebalancing date, the inverse Herfindahl index, has already been defined. But the
+IHI is general and could apply to multiple types of weights. For allocation weights the IHI at time
+\(t_i\) is given as:
+\begin{align}
+N^{\text{eff}}_{t_i} &= \frac{1}{\sum_{j = 1}^N w_{t_i, j}^2} \; ,
+\end{align}
+where \$N\^{}\{\text{eff}\}\emph{\{t\_i\} \$ can be interpreted as the number of equal-weighted stocks the investor's
+portfolio is equivalent to. The notation reflects the idea that the IHI represents the number of
+effective stocks in the portfolio. The upper bound of \$N\^{}\{\text{eff}\}}\{t\_i\} \$ is \(N\) and the lower
+bound in the presence of a maximum allocation constraint is:
+\(({\lfloor \frac{1}{\alpha} \rfloor \cdot \alpha^2 + (1- \lfloor \frac{1}{\alpha}\rfloor \cdot \alpha)^2})^{-1}\)
+, which is derived in appendix \ref{ihimax}. For the case when \(\alpha = 0.1\) the lower bound is
+\(10\). Risk-weights can be taken instead of capital weights to measure the effectiveness of an asset on
+portfolio volatility. Since the TRCs sum to the portfolio volatility, the risk contributions can be
+scaled into risk-weights so that they sum to \(1\). The risk-weight for the \(j^{th}\) asset at time \(t_i\)
+is given as:
+\begin{align}
+\text{RW}_{t_i, j} &= \frac{\text{TRC}_{t_i, j}}{\sqrt{w_{t_i}^\intercal \Sigma w_{t_i}}}\; ,
+ \end{align}
+where the inverse Herfindahl index approach can be applied again. The risk-weight IHI is written as:
+\begin{align}
+N^\mathrm{rw}_{t_i}(RW_{t_i}) &= \frac{1}{\sum_{j = 1}^N \text{RW}_{t_i, j}^2} \;.
+\end{align}
+If \(\Sigma\) is positive semi-definite, then the lower bound is \(1\) even in the presence of the maximum
+allocation constraint, because one asset could have a positive weight and considerable volatility. The
+upper bound is once again \(N\). The concentration measures are reported as averages across all of the
+\(m\) rebalancing dates.
+
+Let us first discuss the results for the GMV portfolios. The main objective of constructing GMV
+portfolios is to reduce the out-of-sample volatility of returns. The main aim of each GMV-technique
+pair is the same, but performance is measured against the GMV-SCM pair. Therefore, it makes sense to
+define a measure of each GMV-technique pair performance in the same way as \citet{RR15}, as a
+volatility reduction over the GMV-SCM pair:
+\begin{align}
+\mathcal{VR}(w|w_{\text{gmv-scm}}) & = \frac{\sigma(w_{\text{gmv-scm}}) - \sigma(w)}{\sigma(w_{\text{gmv-scm}})},
+\end{align}
+where the \(\sigma(\cdot)\) function measures a portfolio's volatility.
+
+\hypertarget{going-to-rify}{%
+\subsubsection{going to R'ify}\label{going-to-rify}}
+
+\hypertarget{conclusion}{%
+\section{Conclusion}\label{conclusion}}
+
+This dissertation introduces a flexible framework for risk-based investing that is a general tool and
+allows the user to incorporate different estimation techniques into their risk-based portfolio
+construction. The framework and risk-based investing are empirically sound when tested with South African
+data, as all risk-based portfolios outperformed the market weight portfolio using the Sharpe ratio
+measure. The superiority of risk-based portfolios is consistent with similar results for US equities
+found by \citet{DGL07} and \citet{K10}.
+
+Within risk-based portfolios, we found that GMV portfolios performed the best using the same Sharpe ratio
+measure. Furthermore, broadening the asset universe to include more assets materially improved portfolio
+performance.
+
+No techniques outperformed the standard sample covariance matrix technique for finding risk-based
+portfolios across all risk-based portfolios, which is consistent with the findings of \citet{K10}. However,
+they propose longer estimation windows (20-years or 10-years) than were used in this study. Due to the
+similar performance of shrinkage techniques and standard sample estimation techniques, the period of this
+study (7.69-years) is close to an empirical break-even performance point between sample estimation and
+lack-of-data adjusted estimation strategies.
+
+Quantile factor modelling with regime switching worked well for the smaller and more concentrated GMV
+portfolios, where estimating a small number of substantial allocations correctly is essential. Subset
+resampling performed well for the less concentrated ERC portfolios, where determining the greatest number
+of allocations is necessary. Ridge regression shrinkage techniques have historically performed well in
+other studies. Still, the long-only constraint and a restrictive maximum allocation constraint of 10\%
+have the effect of regularising the optimisation in a manner already shown by JM03. Therefore, the
+impact of ridge regression on performance is diminished.
+
+\hypertarget{avenues-for-further-research}{%
+\subsection{Avenues for further research}\label{avenues-for-further-research}}
+
+Avenues for further research include using the flexible investing framework with other risk-based
+portfolios and penalising the objective function with alternate functions. The structure may also be
+modified to include different constraints. Further experiments may also be performed with varying
+universes of assets. Additionally, the general portfolio estimation procedure could be performed in
+risk factor space instead of the asset space.
+
+\hypertarget{appendix-appendix}{%
+\appendix}
+
+
+\hypertarget{abbreviations}{%
+\section{Abbreviations}\label{abbreviations}}
+
+\begin{longtable}[]{@{}ll@{}}
+\caption{\label{tab:portabb} Portfolio type abbreviations.}\tabularnewline
+\toprule
+Full name & Abbrevation\tabularnewline
+\midrule
+\endfirsthead
+\toprule
+Full name & Abbrevation\tabularnewline
+\midrule
+\endhead
+Mean-variance optimal & MVO\tabularnewline
+Global minimum variance & GMV\tabularnewline
+Equal weight & EW\tabularnewline
+Equal risk contribution & ERC\tabularnewline
+Market weight & MW\tabularnewline
+Maximum Sharpe ratio & MSR\tabularnewline
+\bottomrule
+\end{longtable}
+
+\begin{longtable}[]{@{}ll@{}}
+\caption{\label{tab:metricabb} Metric abbreviations.}\tabularnewline
+\toprule
+Full name & Abbrevation\tabularnewline
+\midrule
+\endfirsthead
+\toprule
+Full name & Abbrevation\tabularnewline
+\midrule
+\endhead
+Marginal risk contribution & MRC\tabularnewline
+Total risk contribution & TRC\tabularnewline
+Inverse Herfindahl index & IHI\tabularnewline
+Risk-weights & RS\tabularnewline
+Marginal risk-weights & MRW\tabularnewline
+Total risk-weights & TRW\tabularnewline
+Sharpe ratio & SR\tabularnewline
+Squared Mahalanobis distance & SMD\tabularnewline
+Mean square error & MSE\tabularnewline
+Turnover rate & TO\tabularnewline
+Maximum drawdown & MDD\tabularnewline
+\bottomrule
+\end{longtable}
+
+\begin{longtable}[]{@{}ll@{}}
+\caption{\label{tab:esttech} Estimation techniques.}\tabularnewline
+\toprule
+Full name & Abbrevation\tabularnewline
+\midrule
+\endfirsthead
+\toprule
+Full name & Abbrevation\tabularnewline
+\midrule
+\endhead
+Sample covariance matrix & SCM\tabularnewline
+Regime switching & RS\tabularnewline
+Quantile factor modelling & QFM\tabularnewline
+Quantile factor modelling with regime switching & QRS\tabularnewline
+Ridge regression & RR\tabularnewline
+Subset re-sampling & SRS\tabularnewline
+\bottomrule
+\end{longtable}
+
+\hypertarget{portfolio-mathematics}{%
+\section{Portfolio mathematics}\label{portfolio-mathematics}}
+
+\hypertarget{mrcapp}{%
+\subsection{Marginal risk contribution}\label{mrcapp}}
+
+The portfolio beta interpretation of MRC:
+
+\begin{align*}
+\frac{\partial}{\partial w_i} \Big [ \sigma(w) \Big ] & = \frac{\partial}{\partial w_i}  \Big [ (w^\intercal \Sigma w)^{\frac{1}{2}} \Big ], & \\
+& = \frac{1}{2} \cdot (w^\intercal \Sigma w)^{-\frac{1}{2}} \cdot \frac{\partial}{\partial w_i} \Big [ w^\intercal \Sigma w \Big ], &  \text{(chain rule)} \\
+& = \frac{\frac{1}{2}\cdot 2 \cdot (\Sigma w)_i}{\sqrt{w^\intercal \Sigma w}}, &  \text{(as given in the main text)} \\
+& = \frac{\mathbb{COV}[R_i, R_p]}{\sqrt{w^\intercal \Sigma w}}, &   \text{($R_i$- returns on asset i)} \\
+& = \mathbb{SD}[(R_p)] \cdot  \frac{\mathbb{COV}[R_i, R_p]}{\mathbb{VAR}[(R_p)]}, & \\
+& = \mathbb{SD}[(R_p)] \cdot \beta_{i, p}\;. &
+\end{align*}
+
+Minimising the weighted sum of the of the MRC's is equivalently the lowest beta portfolio with the
+single risk factor of the portfolio itself, which is the GMV portfolio.
+\begin{align*}
+\sum_{i = 1}^N w_i \cdot \frac{\partial}{\partial w_i} \Big [ \sigma(w) \Big ] & = \frac{\sum_{i = 1}^N w_i \cdot (\Sigma w)_i}{\sqrt{w^\intercal \Sigma w}}, & \\
+\underset{w}{\text{argmin}} \Big \{\sum_{i = 1}^N w_i \cdot \frac{\partial}{\partial w_i} \Big [ \sigma(w) \Big ]  \Big \} & = \underset{w}{\text{argmin}} \Big \{ \sqrt{w^\intercal \Sigma w} \Big\},&   \text{(Taking the minimum on   both sides)}\\
+& = \underset{w}{\text{argmin}} \Big \{w^\intercal \Sigma w \} . &  \text{($\sqrt{\cdot}$ monotonic)}\\
+\end{align*}
+
+\hypertarget{ihimax}{%
+\subsection{Minimum weight constrained IHI}\label{ihimax}}
+
+The maximum possible weight allocation for a single asset is \(\alpha\). This allocation should be given
+to \(\lfloor \frac{1}{\alpha} \rfloor\) assets where \(\lfloor \cdot \rfloor\) is the truncation function.
+An additional weight \(j\) should be set to satisfy the budget constraint, hence it should be
+\(w_j = 1 - \lfloor \frac{1}{\alpha} \rfloor \cdot \alpha\). All of the other weights should be set to
+0. Then the lower bound is:
+\begin{align*}
+H_{\text{lb}}^{-1} & = \frac{1}{\lfloor \frac{1}{\alpha} \rfloor \cdot \alpha^2 + (1- \lfloor \frac{1}{\alpha}\rfloor \cdot \alpha)^2} \;\; .
+\end{align*}
+
+\hypertarget{volineq}{%
+\subsection{Proof of the volatility order inequality}\label{volineq}}
+
+Consider a GMV framework where the IHI is bounded from below by a constant \(c\):
+\begin{align*} 
+w^\diamond = \underset{w}{\text{argmin}} \Big \{ w^\intercal \Sigma w \Big \},
+\end{align*}
+subject to the constraints:
+\begin{align*}
+\mathcal{C}(w) &= 
+\begin{cases}
+H^{-1}(w) \geq c \\
+w^\intercal \underline{1} = 1 \;\; \\
+0 \leq w_i \leq \alpha, \; \forall i \;\;\; .
+\end{cases}
+\end{align*}
+
+If \(c \leq H^{-1}_{lb}\) then the constraint has no effect and the GMV portfolio is recovered. If
+\(c = N\) then the only feasible solution is the EW portfolio. If \(c > N\) there are no feasible
+solutions to the problem. The portfolio volatility is an increasing function of \(c\) therefore we can
+deduce that: \[\sigma(w_{gmv}) \leq \sigma(w^\diamond(c)) \leq \sigma (w_{ew}).\]
+
+It remains to show that the ERC portfolio is a \(w^\diamond\) portfolio. Consider replacing the IHI
+constraint above with a log-constraint, \(\sum_i \ln(w_i) \geq c\). If \(c = - \infty\) then the GMV
+portfolio is recovered. If \(c = -n \ln(n)\) then the EW portfolio is recovered, and if \(c > -n\ln(n)\)
+then there are no feasible solutions. The portfolio volatility is also an increasing monotonic
+function of c therefore the inequality is replicated for a scaled choice of \(c\) and by extension the
+ERC portfolio.
+
+\hypertarget{msrrbport}{%
+\subsection{Maximum Sharpe ratio risk-based portfolios}\label{msrrbport}}
+
+As mentioned in the text \citet{S07} has shown that the marginal sharpe ratios are equalised for the MSR
+portfolio as below:
+\begin{align}
+\frac{\mu_i}{\text{MRC}_i} & = \frac{\mu_j}{\text{MRC}_j} \;\;\; \forall i, j \in \{1, ..., N \}, \label{eq:optimeq}
+\end{align}
+where \(\mu_k\) represents the marginal excess return of asset k. Separately \citet{J13} showed that the
+EW, GMV and ERC portfolios could be found by the equalisation strategy:
+\begin{align}
+w_i^\gamma \sigma^{-\delta}_i \text{MRC}_i & = w_j^\gamma \sigma^{-\delta}_j \text{MRC}_j \;\;\; \forall i, j \in \{1, ..., N \}, \label{eq:portequal}
+\end{align}
+where the choice of \(\gamma\) and \(\delta\) defines the portfolio. Combining the portfolio condition
+from equality \eqref{eq:portequal} with the optimality equality \eqref{eq:optimeq} yields the optimality
+condition for a given portfolio:
+\begin{align}
+w_i^\gamma \sigma_i^{(1- \delta)} \text{SR}_i & = w_j^\gamma \sigma_j^{(1- \delta)} \text{SR}_j \;\;\; \forall i, j \in \{1, ..., N \},
+\end{align}
+where \(\text{SR}_k = \frac{\mu_k}{\sigma_k}\). Hence, a risk-based portfolio is optimal when
+constituents have equal weighted risk-adjusted SRs.
+
+The EW portfolio can be analysed by setting \((\gamma, \delta) = (\infty, 0)\). For equlities
+\eqref{eq:optimeq} and \eqref{eq:portequal} to be jointly true when \(w_i = \frac{1}{N}\) then:
+\[\text{MRC}_i = \text{MRC}_j \;\;\; \forall i, j \in \{1, ..., N \},\]
+and there needs to be identical excess returns between assets. This means there should also be
+identical volatilities and identical correlations between all assets (i.e.~
+\(\Sigma = \rho\sigma^2 \underline{1} \,\underline{1}^\intercal - \rho I\)). The GMV portfolio can be
+analysed by setting \((\gamma, \delta) = (0,0)\), which yields the optimality condition:
+\[\mu_i = \mu_j \;\;\; \forall i, j \in \{1, ..., N \}.\]
+Hence, identical excess returns are required only. The ERC portfolio can be analysed by setting
+\((\gamma, \delta) = (1, 0)\), which means the optimality condition becomes:
+\[w_i \sigma_i \text{SR}_i = w_j \sigma_j \text{SR}_j \;\;\; \forall i, j \in \{1, ..., N \}.\]
+Assuming constant correlation, \(\rho_{i, j} = \rho\), the ERC portfolio allocations are given by the
+weighted inverse volatilities in the portfolio \(w_i = \frac{\sigma^{-1}_i}{\sum_{k = 1}^N \sigma^{-1}_k}\) \citet{MRT10}. The equality of SRs is then the requirement for the above shown condition to
+hold. Therefore, identical correlations and SRs ensure that the ERC portfolio coincides with the MSR
+portfolio.
+
+\hypertarget{reducing-estimation-error}{%
+\section{Reducing estimation error}\label{reducing-estimation-error}}
+
+\hypertarget{qfmexample}{%
+\subsection{Quantile factor modelling example}\label{qfmexample}}
+
+Consider the QFM (from equation \eqref{eq:qfm}) with two factors, the market risk factor \(R_m\) and the
+squares of that factor as an additional factor \(R_m^2\). The factor loadings can be estimated by a
+procedure outlined by \citet{KB78}. Once the quantile errors have been deduced, the quantile factor
+sensitivities have been estimated, and the error quantiles set to the median quantile as in the main
+text the following quantile prediction model can be used:
+\begin{align}
+\hat{\mathcal{Q}}(\tau) = \hat{\alpha} (\tau) + \hat{\beta}_1^\intercal(\tau)R_m + \hat{\beta}_2^\intercal(\tau)R_m^2 + \epsilon_t(0.5),
+\end{align}
+which yields \(|\tau|\) sample covariance matrices \(\hat{\Sigma}^{(\tau)}\).
+
+\hypertarget{etaest}{%
+\subsection{Estimating the ERC portfolio Lagrangian multiplier}\label{etaest}}
+
+We want to choose a value of \(\eta\) that minimises all of the distances between the total risk
+contributions so that they are minimised, but this should be done across all \(K\) folds using
+cross-validation. The general optimisation is the same as before:
+\begin{align}
+\eta^* = \underset{\eta}{\text{argmin}} \Big \{ \frac{1}{K} \sum_{k = 1}^K \hat{h}_k^{erc}(\eta, \mathcal{I}_k, \mathcal{I}_{-k})\Big \}.
+\end{align}
+The procedure of estimating \(h\) still needs to be specified. The function \(f(\cdot|\textbf{X})\) used
+to find the ERC portfolio can be used as a distance to minimise. Hence:
+\begin{align}
+h_k^{erc}(\eta, \mathcal{I}_k, \mathcal{I}_{-k}) = \sum_{i = 1}^N  \sum_{j \geq i}^N(w_{i, \mathcal{I}_{-k}}(\Sigma_{\mathcal{I}_k} w_{\mathcal{I}_{-k}})_i - w_{j, \mathcal{I}_{-k}}(\Sigma_{\mathcal{I}_k} w_{\mathcal{I}_{-k}})_j )^2,
+\end{align}
+where \(w\) and \(\Sigma\) can be replaced by their sample estimations to find \(\hat{h}\) given in the
+main text.
 
   \bibliography{biblio.bib}
 

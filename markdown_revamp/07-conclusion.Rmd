@@ -1,0 +1,35 @@
+# Conclusion
+
+This dissertation introduces a flexible framework for risk-based investing that is a general tool and
+allows the user to incorporate different estimation techniques into their risk-based portfolio
+construction. The framework and risk-based investing are empirically sound when tested with South African
+data, as all risk-based portfolios outperformed the market weight portfolio using the Sharpe ratio
+measure. The superiority of risk-based portfolios is consistent with similar results for US equities
+found by @DGL07 and @K10.
+
+Within risk-based portfolios, we found that GMV portfolios performed the best using the same Sharpe ratio
+measure. Furthermore, broadening the asset universe to include more assets materially improved portfolio
+performance.
+
+No techniques outperformed the standard sample covariance matrix technique for finding risk-based
+portfolios across all risk-based portfolios, which is consistent with the findings of @K10. However, 
+they propose longer estimation windows (20-years or 10-years) than were used in this study. Due to the
+similar performance of shrinkage techniques and standard sample estimation techniques, the period of this
+study (7.69-years) is close to an empirical break-even performance point between sample estimation and
+lack-of-data adjusted estimation strategies. 
+
+Quantile factor modelling with regime switching worked well for the smaller and more concentrated GMV
+portfolios, where estimating a small number of substantial allocations correctly is essential. Subset
+resampling performed well for the less concentrated ERC portfolios, where determining the greatest number
+of allocations is necessary. Ridge regression shrinkage techniques have historically performed well in
+other studies. Still, the long-only constraint and a restrictive maximum allocation constraint of 10\%
+have the effect of regularising the optimisation in a manner already shown by JM03. Therefore, the
+impact of ridge regression on performance is diminished.
+
+## Avenues for further research
+
+Avenues for further research include using the flexible investing framework with other risk-based
+portfolios and penalising the objective function with alternate functions. The structure may also be
+modified to include different constraints. Further experiments may also be performed with varying
+universes of assets. Additionally, the general portfolio estimation procedure could be performed in 
+risk factor space instead of the asset space.

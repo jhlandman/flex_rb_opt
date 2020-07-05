@@ -1,0 +1,174 @@
+# (APPENDIX) Appendix {-} 
+
+# Abbreviations
+
+| Full name               	| Abbrevation 	|
+|-------------------------	|-------------	|
+| Mean-variance optimal   	| MVO         	|
+| Global minimum variance 	| GMV         	|
+| Equal weight            	| EW          	|
+| Equal risk contribution 	| ERC         	|
+| Market weight           	| MW          	|
+| Maximum Sharpe ratio    	| MSR         	|
+
+Table: (\#tab:portabb) Portfolio type abbreviations.
+
+| Full name                    	| Abbrevation 	|
+|------------------------------	|-------------	|
+| Marginal risk contribution   	| MRC         	|
+| Total risk contribution      	| TRC         	|
+| Inverse Herfindahl index     	| IHI         	|
+| Risk-weights                 	| RS          	|
+| Marginal risk-weights        	| MRW         	|
+| Total risk-weights           	| TRW         	|
+| Sharpe ratio                 	| SR          	|
+| Squared Mahalanobis distance 	| SMD         	|
+| Mean square error            	| MSE         	|
+| Turnover rate                	| TO          	|
+| Maximum drawdown             	| MDD         	|
+
+Table: (\#tab:metricabb) Metric abbreviations.
+
+
+
+| Full name                                       	| Abbrevation 	|
+|-------------------------------------------------	|-------------	|
+| Sample covariance matrix                        	| SCM         	|
+| Regime switching                                	| RS          	|
+| Quantile factor modelling                       	| QFM         	|
+| Quantile factor modelling with regime switching 	| QRS         	|
+| Ridge regression                                	| RR          	|
+| Subset re-sampling                              	| SRS         	|
+
+Table: (\#tab:esttech) Estimation techniques.
+
+# Portfolio mathematics
+
+## Marginal risk contribution {#mrcapp}
+
+The portfolio beta interpretation of MRC:
+
+\begin{align*}
+\frac{\partial}{\partial w_i} \Big [ \sigma(w) \Big ] & = \frac{\partial}{\partial w_i}  \Big [ (w^\intercal \Sigma w)^{\frac{1}{2}} \Big ], & \\
+& = \frac{1}{2} \cdot (w^\intercal \Sigma w)^{-\frac{1}{2}} \cdot \frac{\partial}{\partial w_i} \Big [ w^\intercal \Sigma w \Big ], &  \text{(chain rule)} \\
+& = \frac{\frac{1}{2}\cdot 2 \cdot (\Sigma w)_i}{\sqrt{w^\intercal \Sigma w}}, &  \text{(as given in the main text)} \\
+& = \frac{\mathbb{COV}[R_i, R_p]}{\sqrt{w^\intercal \Sigma w}}, &   \text{($R_i$- returns on asset i)} \\
+& = \mathbb{SD}[(R_p)] \cdot  \frac{\mathbb{COV}[R_i, R_p]}{\mathbb{VAR}[(R_p)]}, & \\
+& = \mathbb{SD}[(R_p)] \cdot \beta_{i, p}\;. &
+\end{align*}
+
+Minimising the weighted sum of the of the MRC's is equivalently the lowest beta portfolio with the
+single risk factor of the portfolio itself, which is the GMV portfolio.
+\begin{align*}
+\sum_{i = 1}^N w_i \cdot \frac{\partial}{\partial w_i} \Big [ \sigma(w) \Big ] & = \frac{\sum_{i = 1}^N w_i \cdot (\Sigma w)_i}{\sqrt{w^\intercal \Sigma w}}, & \\
+\underset{w}{\text{argmin}} \Big \{\sum_{i = 1}^N w_i \cdot \frac{\partial}{\partial w_i} \Big [ \sigma(w) \Big ]  \Big \} & = \underset{w}{\text{argmin}} \Big \{ \sqrt{w^\intercal \Sigma w} \Big\},&   \text{(Taking the minimum on   both sides)}\\
+& = \underset{w}{\text{argmin}} \Big \{w^\intercal \Sigma w \} . &  \text{($\sqrt{\cdot}$ monotonic)}\\
+\end{align*}
+
+## Minimum weight constrained IHI {#ihimax}
+
+The maximum possible weight allocation for a single asset is $\alpha$. This allocation should be given
+to $\lfloor \frac{1}{\alpha} \rfloor$ assets where $\lfloor \cdot \rfloor$ is the truncation function.
+An additional weight $j$ should be set to satisfy the budget constraint, hence it should be 
+$w_j = 1 - \lfloor \frac{1}{\alpha} \rfloor \cdot \alpha$. All of the other weights should be set to
+0. Then the lower bound is:
+\begin{align*}
+H_{\text{lb}}^{-1} & = \frac{1}{\lfloor \frac{1}{\alpha} \rfloor \cdot \alpha^2 + (1- \lfloor \frac{1}{\alpha}\rfloor \cdot \alpha)^2} \;\; .
+\end{align*}
+
+## Proof of the volatility order inequality {#volineq}
+
+Consider a GMV framework where the IHI is bounded from below by a constant $c$:
+\begin{align*} 
+w^\diamond = \underset{w}{\text{argmin}} \Big \{ w^\intercal \Sigma w \Big \},
+\end{align*}
+subject to the constraints:
+\begin{align*}
+\mathcal{C}(w) &= 
+\begin{cases}
+H^{-1}(w) \geq c \\
+w^\intercal \underline{1} = 1 \;\; \\
+0 \leq w_i \leq \alpha, \; \forall i \;\;\; .
+\end{cases}
+\end{align*}
+
+If $c \leq H^{-1}_{lb}$ then the constraint has no effect and the GMV portfolio is recovered. If 
+$c = N$ then the only feasible solution is the EW portfolio. If $c > N$ there are no feasible
+solutions to the problem. The portfolio volatility is an increasing function of $c$ therefore we can
+deduce that: $$\sigma(w_{gmv}) \leq \sigma(w^\diamond(c)) \leq \sigma (w_{ew}).$$
+
+It remains to show that the ERC portfolio is a $w^\diamond$ portfolio. Consider replacing the IHI
+constraint above with a log-constraint, $\sum_i \ln(w_i) \geq c$. If $c = - \infty$ then the GMV
+portfolio is recovered. If $c = -n \ln(n)$ then the EW portfolio is recovered, and if $c > -n\ln(n)$
+then there are no feasible solutions. The portfolio volatility is also an increasing monotonic
+function of c therefore the inequality is replicated for a scaled choice of $c$ and by extension the
+ERC portfolio.
+
+## Maximum Sharpe ratio risk-based portfolios {#msrrbport}
+
+As mentioned in the text @S07 has shown that the marginal sharpe ratios are equalised for the MSR
+portfolio as below:
+\begin{align}
+\frac{\mu_i}{\text{MRC}_i} & = \frac{\mu_j}{\text{MRC}_j} \;\;\; \forall i, j \in \{1, ..., N \}, (\#eq:optimeq)
+\end{align}
+where $\mu_k$ represents the marginal excess return of asset k. Separately @J13 showed that the
+EW, GMV and ERC portfolios could be found by the equalisation strategy:
+\begin{align}
+w_i^\gamma \sigma^{-\delta}_i \text{MRC}_i & = w_j^\gamma \sigma^{-\delta}_j \text{MRC}_j \;\;\; \forall i, j \in \{1, ..., N \}, (\#eq:portequal)
+\end{align}
+where the choice of $\gamma$ and $\delta$ defines the portfolio. Combining the portfolio condition
+from equality \@ref(eq:portequal) with the optimality equality \@ref(eq:optimeq) yields the optimality
+condition for a given portfolio:
+\begin{align}
+w_i^\gamma \sigma_i^{(1- \delta)} \text{SR}_i & = w_j^\gamma \sigma_j^{(1- \delta)} \text{SR}_j \;\;\; \forall i, j \in \{1, ..., N \},
+\end{align}
+where $\text{SR}_k = \frac{\mu_k}{\sigma_k}$. Hence, a risk-based portfolio is optimal when
+constituents have equal weighted risk-adjusted SRs.
+
+The EW portfolio can be analysed by setting $(\gamma, \delta) = (\infty, 0)$. For equlities
+\@ref(eq:optimeq) and \@ref(eq:portequal) to be jointly true when $w_i = \frac{1}{N}$ then:
+$$\text{MRC}_i = \text{MRC}_j \;\;\; \forall i, j \in \{1, ..., N \},$$
+and there needs to be identical excess returns between assets. This means there should also be
+identical volatilities and identical correlations between all assets (i.e. 
+$\Sigma = \rho\sigma^2 \underline{1} \,\underline{1}^\intercal - \rho I$). The GMV portfolio can be
+analysed by setting $(\gamma, \delta) = (0,0)$, which yields the optimality condition: 
+$$\mu_i = \mu_j \;\;\; \forall i, j \in \{1, ..., N \}.$$
+Hence, identical excess returns are required only. The ERC portfolio can be analysed by setting
+$(\gamma, \delta) = (1, 0)$, which  means the optimality condition becomes:
+$$w_i \sigma_i \text{SR}_i = w_j \sigma_j \text{SR}_j \;\;\; \forall i, j \in \{1, ..., N \}.$$
+Assuming constant correlation, $\rho_{i, j} = \rho$, the ERC portfolio allocations are given by the
+weighted inverse volatilities in the portfolio $w_i = \frac{\sigma^{-1}_i}{\sum_{k = 1}^N
+\sigma^{-1}_k}$ @MRT10. The equality of SRs is then the requirement for the above shown condition to
+hold. Therefore, identical correlations and SRs  ensure that the ERC portfolio coincides with the MSR
+portfolio.
+
+# Reducing estimation error
+
+
+## Quantile factor modelling example {#qfmexample}
+
+Consider the QFM (from equation \@ref(eq:qfm)) with two factors, the market risk factor $R_m$ and the
+squares of that factor as an additional factor $R_m^2$. The factor loadings can be estimated by a
+procedure outlined by @KB78. Once the quantile errors have been deduced, the quantile factor
+sensitivities have been estimated, and the error quantiles set to the median quantile as in the main
+text the following quantile prediction model can be used:
+\begin{align}
+\hat{\mathcal{Q}}(\tau) = \hat{\alpha} (\tau) + \hat{\beta}_1^\intercal(\tau)R_m + \hat{\beta}_2^\intercal(\tau)R_m^2 + \epsilon_t(0.5),
+\end{align}
+which yields $|\tau|$ sample covariance matrices $\hat{\Sigma}^{(\tau)}$.
+
+## Estimating the ERC portfolio Lagrangian multiplier {#etaest}
+
+We want to choose a value of $\eta$ that minimises all of the distances between the total risk
+contributions so that they are minimised, but this should be done across all $K$ folds using
+cross-validation. The general optimisation is the same as before:
+\begin{align}
+\eta^* = \underset{\eta}{\text{argmin}} \Big \{ \frac{1}{K} \sum_{k = 1}^K \hat{h}_k^{erc}(\eta, \mathcal{I}_k, \mathcal{I}_{-k})\Big \}.
+\end{align}
+The procedure of estimating $h$ still needs to be specified. The function $f(\cdot|\textbf{X})$ used
+to find the ERC portfolio can be used as a distance to minimise. Hence:
+\begin{align}
+h_k^{erc}(\eta, \mathcal{I}_k, \mathcal{I}_{-k}) = \sum_{i = 1}^N  \sum_{j \geq i}^N(w_{i, \mathcal{I}_{-k}}(\Sigma_{\mathcal{I}_k} w_{\mathcal{I}_{-k}})_i - w_{j, \mathcal{I}_{-k}}(\Sigma_{\mathcal{I}_k} w_{\mathcal{I}_{-k}})_j )^2,
+\end{align}
+where $w$ and $\Sigma$ can be replaced by their sample estimations to find $\hat{h}$ given in the 
+main text.

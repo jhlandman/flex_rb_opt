@@ -115,7 +115,7 @@ div.abstract{
 <p>As stated in chapter <a href="genframework.html#genframework">3</a>, estimation risk is comprised of squared bias and variance.
 There are many methods to approach reducing estimation risk, but in this research, we introduce three
 ways that are consistent with the general risk-based investing framework presented in equation
-<a href="#eq:genopt">(<strong>??</strong>)</a>. The first method deals with improving the estimation of the inputs to the risk-based
+<a href="genframework.html#eq:genopt">(3.7)</a>. The first method deals with improving the estimation of the inputs to the risk-based
 portfolio function <span class="math inline">\(f(w, \Sigma|\textbf{X})\)</span>, accounting for heterogeneity in the input data. The
 second method involves penalising the optimisation objective function to obtain a portfolio estimate
 with consistently lower deviation from the actual out-of-sample risk-based portfolio solution. The
@@ -124,7 +124,7 @@ Every risk reduction technique falls into one of these three categories.</p>
 <div id="improving-optimisation-inputs" class="section level2">
 <h2><span class="header-section-number">5.1</span> Improving optimisation inputs</h2>
 <p>The first approach to improving on the sample ERC and GMV portfolios involves finding better estimates
-for the input <span class="math inline">\(\Sigma\)</span>, given the set of sample returns. As stated in equation <a href="#eq:retmodel">(<strong>??</strong>)</a>,
+for the input <span class="math inline">\(\Sigma\)</span>, given the set of sample returns. As stated in equation <a href="genframework.html#eq:retmodel">(3.5)</a>,
 the function <span class="math inline">\(g\)</span> deals with the sample returns in a manner that ensures the irreducible error,
 <span class="math inline">\(\phi^2\)</span>, is independent and identically normally distributed. However, because <span class="math inline">\(g\)</span> is unobservable,
 our estimation <span class="math inline">\(\hat{g}\)</span> might not ensure this property. Heterogeneity of sample errors for investment
@@ -192,7 +192,7 @@ factor model (QFM):
 <span class="math display" id="eq:qfm">\[\begin{align} 
 \mathcal{Q}(\tau) =  \alpha(\tau) + \beta(\tau)\mathcal{F} + \epsilon(\tau), \tag{5.2}
 \end{align}\]</span>
-where $ $. In a different symmetric, normally distributed world, <span class="math inline">\(\tau\)</span> can be set to
+where <span class="math inline">\(\tau \in [0, 1]\)</span>. In a different symmetric, normally distributed world, <span class="math inline">\(\tau\)</span> can be set to
 <span class="math inline">\(0.5\)</span> and model <a href="estimation-risk-reduction-techniques.html#eq:retfact">(5.1)</a> will be recovered. However, in the real world where symmetry and
 normality are often not adhered to, the quantile conditional errors can be defined more generally so
 that they only have to satisfy:
@@ -227,20 +227,20 @@ level. Kinn’s approach is consistent with an MVO optimisation intuitively beca
 level is analogous an expected return constraint and minimising the return’s squared distance to this
 constraint is analogous to variance minimisation. The objective function can now be approximated using
 the sample average as a result of the law of large numbers. We still have to show how to find the GMV
-portfolio from an MVO procedure. As stated in table <a href="#tab:rbportprops"><strong>??</strong></a>, the GMV portfolio is the
+portfolio from an MVO procedure. As stated in table <a href="rbportch.html#tab:rbportprops">4.1</a>, the GMV portfolio is the
 MSR portfolio if the assumption of identical excess returns is met. Therefore, if the target return is
 set to a value that is easily obtainable <span class="math inline">\(\bar{r} = \bar{r}_\mathrm{gmv}\)</span>, then the scheme will yield
 a GMV portfolio. This easily obtainable value has to be found numerically and cannot be determined a
 priori. The non-rigorous argument turns out to be empirically true for the portfolios analysed in this
 research. When the return vector is replaced by the set of sample returns <span class="math inline">\(\textbf{X}\)</span>, and the
 expectation is approximated by the sample average, the <span class="citation">Kinn (<a href="#ref-K18" role="doc-biblioref">2018</a>)</span> form of objective function is recovered:
-<span class="math display" id="eq:kinnop1">\[\begin{align} \label{kinn_op_1}
+<span class="math display" id="eq:kinnop1">\[\begin{align}
 f_{\text{Kinn}}(w|\textbf{X}) &amp;= \frac{1}{T} \sum_{t = 1}^T  (\bar{r}_\mathrm{gmv} - \textbf{X}^\intercal_t w)^2, \tag{5.3}
 \end{align}\]</span>
 where <span class="math inline">\(t\)</span> indexes columns of the sample returns matrix <span class="math inline">\(\textbf{X}\)</span>. The GMV portfolio can be found equivalently in this way.</p>
-<p>The log-constraint<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a>,
+<p>The log-constraint<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a>,
 <span class="math inline">\(\sum_i \ln(w_i) \geq c\)</span>, can be placed on optimisation <a href="estimation-risk-reduction-techniques.html#eq:kinnop1">(5.3)</a> to recover the ERC
-portfolio. To include the constraint in framework <a href="#eq:genopt">(<strong>??</strong>)</a>, a Lagrangian multiplier approach
+portfolio. To include the constraint in framework <a href="genframework.html#eq:genopt">(3.7)</a>, a Lagrangian multiplier approach
 can be used to move the log-constraint to the objective function. Kinn’s adapted ERC objective
 function is then:
 <span class="math display">\[\begin{align}
@@ -248,7 +248,7 @@ f_{\text{Kinn}}(w|\textbf{X}) &amp;= \frac{1}{T} \sum_{t = 1}^T  (\bar{r}_{gmv} 
 \end{align}\]</span>
 where <span class="math inline">\(\eta_{erc}\)</span> is the Lagrangian multiplier scalar. Now that we have shown the standard objective
 functions from earlier are equivalent to the Kinn framework, we have also vindicated the general
-framework <a href="#eq:genopt">(<strong>??</strong>)</a> as accommodative of a valid application of supervised machine learning
+framework <a href="genframework.html#eq:genopt">(3.7)</a> as accommodative of a valid application of supervised machine learning
 (SML) to portfolio optimisation.</p>
 <p>Because logical choices for <span class="math inline">\(f_{\text{Kinn}}(\cdot|\textbf{X})\)</span> have been established, different
 penalty functions can be applied to the optimisation. Two common penalised regression techniques are
@@ -272,11 +272,35 @@ chapter.</p>
 </div>
 <div id="alternate-implementation-methods" class="section level2">
 <h2><span class="header-section-number">5.3</span> Alternate implementation methods</h2>
-<p><span class="citation">Shen and Wang (<a href="#ref-SW17" role="doc-biblioref">2017</a>)</span> present a means to find a resampled MVO portfolio that reduces estimation risk by optimising random subsets of assets in the investment universe. The process is called subset resampling (SRS). They then aggregate resultant optimised subset portfolios to create a final `optimal’ solution. The procedure requires the inputs of a sample return matrix <span class="math inline">\(\textbf{X}\)</span> and an asset subset size <span class="math inline">\(b\)</span>. The subset size is related to the extent of the trade-off between bias and variance. We have to choose the degree of repeated sampling, <span class="math inline">\(s\)</span>, which is restricted by the available computational power.</p>
-<p>This method can be described as follows. For each of the <span class="math inline">\(s\)</span> repeated samples, we randomly select the <span class="math inline">\(j^{\text{th}}\)</span> subset of <span class="math inline">\(b\)</span> assets from the <span class="math inline">\(N\)</span> assets in the investment universe, denoted <span class="math inline">\(\mathcal{I}_j\)</span>. Using only the sample return data from the selected asset subset <span class="math inline">\(\textbf{X}_j\)</span>, we then compute the associated optimal portfolios <span class="math inline">\(\hat{w}_j\)</span> using framework <a href="#eq:genopt">(<strong>??</strong>)</a> and a given choice of objective function. Finally, we average the <span class="math inline">\(s\)</span> optimal subset weight vectors to obtain the final optimal asset portfolio <span class="math inline">\(\hat{w}_\mathrm{srs} = (\sum_{j = 1}^s \hat{w}_j)s^{-1}\)</span>.</p>
-<p>The SRS process is very general, and could even be applied in conjunction with a penalised optimisation or an improved sample covariance matrix. Additionally, the user can choose the input <span class="math inline">\(b\)</span>. If <span class="math inline">\(b = N\)</span>, then the usual sample risk-based portfolio is recovered, albeit in a computationally expensive manner. If <span class="math inline">\(b = 1\)</span>, then the SRS procedure will yield the EW portfolio for a large enough value of <span class="math inline">\(s\)</span>. Therefore, <span class="math inline">\(b\)</span> is the input parameter controlling the extent of the trade-off between weight diversification and estimation risk. The estimation of <span class="math inline">\(b\)</span> should be done in a manner consistent with the aim of the optimisation. To ensure <span class="math inline">\(b\)</span> scales with the size of the asset universe, <span class="citation">Shen and Wang (<a href="#ref-SW17" role="doc-biblioref">2017</a>)</span> recommend writing it in the form <span class="math inline">\(b = N^{\alpha}\)</span>, where <span class="math inline">\(\alpha \in [0, 1]\)</span>.</p>
-<p>The SRS method is comparable to ensemble methods in machine learning. The logical basis is that many different models can be used and aggregated into a final model, rather than assuming a single model is the most accurate to use. Despite the general nature of the SRS procedure, it is still consistent with the approach of increasing the squared bias out of the hope that the variance reduction will offset it enough to lessen overall estimation risk.</p>
-<p>Each of the three estimation risk reduction classes has at least one specific technique within them. Some modelling decisions need to be made for a prospective user to apply these techniques in an experiment. These modelling decisions are covered in the next chapter.</p>
+<p><span class="citation">Shen and Wang (<a href="#ref-SW17" role="doc-biblioref">2017</a>)</span> present a means to find a resampled MVO portfolio that reduces estimation risk by optimising
+random subsets of assets in the investment universe. The process is called subset resampling (SRS).
+They then aggregate resultant optimised subset portfolios to create a final `optimal’ solution. The
+procedure requires the inputs of a sample return matrix <span class="math inline">\(\textbf{X}\)</span> and an asset subset size <span class="math inline">\(b\)</span>.
+The subset size is related to the extent of the trade-off between bias and variance. We have to
+choose the degree of repeated sampling, <span class="math inline">\(s\)</span>, which is restricted by the available computational
+power.</p>
+<p>This method can be described as follows. For each of the <span class="math inline">\(s\)</span> repeated samples, we randomly select
+the <span class="math inline">\(j^{\text{th}}\)</span> subset of <span class="math inline">\(b\)</span> assets from the <span class="math inline">\(N\)</span> assets in the investment universe, denoted
+<span class="math inline">\(\mathcal{I}_j\)</span>. Using only the sample return data from the selected asset subset <span class="math inline">\(\textbf{X}_j\)</span>, we
+then compute the associated optimal portfolios <span class="math inline">\(\hat{w}_j\)</span> using framework <a href="genframework.html#eq:genopt">(3.7)</a> and a
+given choice of objective function. Finally, we average the <span class="math inline">\(s\)</span> optimal subset weight vectors to
+obtain the final optimal asset portfolio <span class="math inline">\(\hat{w}_\mathrm{srs} = (\sum_{j = 1}^s \hat{w}_j)s^{-1}\)</span>.</p>
+<p>The SRS process is very general, and could even be applied in conjunction with a penalised
+optimisation or an improved sample covariance matrix. Additionally, the user can choose the input
+<span class="math inline">\(b\)</span>. If <span class="math inline">\(b = N\)</span>, then the usual sample risk-based portfolio is recovered, albeit in a
+computationally expensive manner. If <span class="math inline">\(b = 1\)</span>, then the SRS procedure will yield the EW portfolio for
+a large enough value of <span class="math inline">\(s\)</span>. Therefore, <span class="math inline">\(b\)</span> is the input parameter controlling the extent of the
+trade-off between weight diversification and estimation risk. The estimation of <span class="math inline">\(b\)</span> should be done
+in a manner consistent with the aim of the optimisation. To ensure <span class="math inline">\(b\)</span> scales with the size of the
+asset universe, <span class="citation">Shen and Wang (<a href="#ref-SW17" role="doc-biblioref">2017</a>)</span> recommend writing it in the form <span class="math inline">\(b = N^{\alpha}\)</span>, where <span class="math inline">\(\alpha \in [0, 1]\)</span>.</p>
+<p>The SRS method is comparable to ensemble methods in machine learning. The logical basis is that many
+different models can be used and aggregated into a final model, rather than assuming a single model
+is the most accurate to use. Despite the general nature of the SRS procedure, it is still consistent
+with the approach of increasing the squared bias out of the hope that the variance reduction will
+offset it enough to lessen overall estimation risk.</p>
+<p>Each of the three estimation risk reduction classes has at least one specific technique within them.
+Some modelling decisions need to be made for a prospective user to apply these techniques in an
+experiment. These modelling decisions are covered in the next chapter.</p>
 
 </div>
 </div>
@@ -312,8 +336,8 @@ chapter.</p>
 </div>
 <div class="footnotes">
 <hr />
-<ol start="3">
-<li id="fn3"><p>The log-constraint is also introduced in appendix <strong>insert appendix ref</strong>.<a href="estimation-risk-reduction-techniques.html#fnref3" class="footnote-back">↩</a></p></li>
+<ol start="4">
+<li id="fn4"><p>The log-constraint is also introduced in appendix <strong>insert appendix ref</strong>.<a href="estimation-risk-reduction-techniques.html#fnref4" class="footnote-back">↩</a></p></li>
 </ol>
 </div>
             </section>

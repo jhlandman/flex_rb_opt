@@ -1,0 +1,164 @@
+# Using estimation risk reduction techniques {#somemaths}
+
+Under the EW and MW portfolios, the portfolio weights do not require estimation whereas the GMV and ERC
+portfolios do. For each of these portfolios, there are six given ways of performing the estimation in
+this research. The first is by using the standard sample covariance matrix, the next four are to use
+techniques outlined in chapter \@ref(estriskreduce), and the final one is to use a combination of
+quantile factor modelling and regime switching. A summary of all of the portfolio technique pairs is
+given in table \@ref(tab:portestpairs) below.
+
+| Portfolio                	| Estimation technique                            	| Abbreviation 	|
+|--------------------------	|-------------------------------------------------	|--------------	|
+| Equal weight             	| -                                               	| EW           	|
+| Market weight            	| -                                               	| MW           	|
+| Global minimum variance  	| Sample covariance matrix                        	| GMV-SCM      	|
+| Global minimum variance  	| Quantile factor modelling                       	| GMV-QFM      	|
+| Global minimum variance  	| Regime switching                                	| GMV-RS       	|
+| Global minimum variance  	| Quantile factor modelling with regime switching 	| GMV-QRS      	|
+| Global minimum variance  	| Ridge regression                                	| GMV-RR       	|
+| Global minimum variance  	| Subset re-sampling                              	| GMV-SRS      	|
+| Equal risk contribution  	| Sample covariance matrix                        	| ERC-SCM      	|
+| Equal risk contribution  	| Quantile factor modelling                       	| ERC-QFM      	|
+| Equal risk contribution  	| Regime switching                                	| ERC-RS       	|
+| Equal risk contribution  	| Quantile factor modelling with regime switching 	| ERC-QRS      	|
+| Equal risk contribution  	| Ridge regression                                	| ERC-RR       	|
+| Equal risk contribution  	| Subset re-sampling                              	| ERC-SRS      	|
+
+Table: (\#tab:portestpairs) Portfolio estimation-technique pairs
+
+## Quantile factor modelling and regime switching
+
+QFM and RS improve the estimation of the inputs into the optimisation and therefore have the same
+implementation for the GMV and ERC portfolios. To use the RS model for covariance prediction, the
+probability of being in either a quiet or a turbulent state needs to be estimated. If $s_t$ is the
+random variable that takes on the value of the state at time $t$ then $s_t \in \{Q, T\}$. The true
+parameters are defined as:
+\begin{align*}
+\pi_{Q, t} &:= \mathbb{P}\{s_t = Q\}, \\
+\pi_{T, t} &:= \mathbb{P}\{s_t = T\} = 1 - \pi_{Q, t}.
+\end{align*} 
+These can be estimated using the emission quantities from the HMM, $\hat{d}_t$, and a maximum
+likelihood approach - the Baum-Welch algorithm^[An influential tutorial on this algorithm and
+HMMs was given by @R89.].  @K12 determine a turbulent-quiet data split through the parameter $\zeta$,
+which is the proportion of the data allocated to the quiet regime for covariance estimation. They
+suggest a value of $0.7$ or $0.8$, but due to constraints on input data length we use $0.7$ in this
+research. The investor has nearly estimated enough parameters to blend the variance-covariance matrix
+using the method of @FD18 outlined below in equation \@ref(eq:fdblend).
+\begin{align}
+\hat{\Sigma}_{\text{blend}} & = \hat{\pi}_{Q, t + 1} \hat{\eta}_Q \hat{\Sigma}_Q + \hat{\pi}_{T, t + 1} \hat{\eta}_T \hat{\Sigma}_T. (\#eq:fdblend)
+\end{align}
+The estimated probabilities,  $\hat{\pi}_{Q, t + 1}$ and $\hat{\pi}_{T, t + 1}$, are forward-looking.
+Predictions can be made empirically using the current state because the transition probabilities are
+generally near $1$ or $0$ in the data. The investor still has to estimate their normalised aversion to
+each regime $\hat{\eta}_{s_{t+1}}$, which they can do using the estimation procedure from @B18. For
+the experiment, the investor was indifferent between regimes.
+
+The intention of this blending procedure is for money managers to estimate the state probabilities
+themselves, thus incorporating their future beliefs. In reality, when implementing a quantitative
+model, it is common to use a rolling estimation window of data. Asset return data is often not long
+enough to accommodate sophisticated portfolio construction methods. Therefore, assigning 
+$\hat{\pi}_{T, t + 1}$ values near $1$ results in the estimation and application of large covariance
+matrices with potentially only $30 \%$ of the data, without the requisite weighting of the other
+covariance matrix. The inaccurate covariance matrix leads to the very same input sensitivity problems
+that the RS model attempts to avoid. It is worth clarifying that the sensitivity is due to an
+incorrectly estimated $\hat{\pi}_{T, t + 1}$, not the absence of underlying regimes. To correct this
+sensitivity concern, a discretised simplification is used. If the state is estimated to be quiet,
+nothing is done to the weights implied by the volume of data:
+\begin{align*}
+(\hat{\pi}_{Q, t + 1}, \hat{\pi}_{T, t + 1}) = (\zeta, 1 - \zeta).
+\end{align*}
+If the state is estimated to be turbulent, then the weights implied by the volume of data are adjusted
+to overweight the turbulent regime by a proportion of $\gamma$:
+
+\begin{align*}
+(\hat{\pi}_{Q, t + 1}, \hat{\pi}_{T, t + 1}) = (\zeta -  \frac{\gamma}{2}, 1 - \zeta + \frac{\gamma}{2}).
+\end{align*}
+In the experiment, we set $\gamma$ to 0.1. The effect is that in the quiet regime, the covariance
+matrix is the same as without the RS model. While during the turbulent regime, the turbulent covariance
+matrix is given a weighting of $\gamma$ more than what is implied by the data split.
+
+The QFM technique is examined next. @CDG19 use the QFM technique from equation \@ref(eq:qfm) for
+prediction. They select risk factors and estimate factor loadings using a simultaneous procedure.
+Factor-based modelling is not the focus of this research, although it can be used in conjunction with
+the general framework \@ref(eq:genopt). In this experiment, mainly for pedagogical purposes, simple
+factors are used for the QFM portfolios; namely, a market factor and a squared market factor. This
+choice is consistent with the findings of @TM66, with more detail given in appendix 
+**insert appendix reference here**. Additionally, the QFM user has to choose how to partition the
+interval $[0, 1]$, i.e. decide which quantiles to use. The partition is an important input which could
+be estimated. We use the same split as @MP08}, where: $$[\tau_0 = 0, \tau_1 = 0.1]\cup(\tau_1 = 0.1,
+\tau_2 = 0.9] \cup (\tau_2 = 0.9, \tau_3 = 1].$$  In the notation, the intervals are referred to by
+their right endpoint. @FD18 note that the QFM, as stated, does not provide variation between
+quantiles, as the idiosyncratic error term will always adjust so that the total estimated covariance
+matrix is always equal to the sample covariance matrix. Therefore, to estimate the quantile specific
+covariance matrices, they propose fixing the error term to the median error such that
+$\hat{\epsilon}(\tau) = \hat{\epsilon}(0.5)$. Then each set of quantile returns can be used to
+construct a sample covariance matrix denoted $\hat{\Sigma}^{(\tau)}$. @MP08 propose a strategy for
+portfolio forecasting called quantile regression portfolio distribution (QRPD). It involves
+interval-weighting the portfolio allocations $\hat{w}^{(\tau)}$ for each quantile covariance matrix.
+The QRPD portfolio is:
+\begin{align}
+\hat{w}_{\text{QRPD}} & = \sum_{i = 1}^{l} p_i\hat{w}^{(\tau_i)},\;\;
+\end{align}
+where $p_i = \tau_i - \tau_{i - 1}$, and $l$ is the number of intervals. Like the SRS method, the QRPD
+method is comparable to ensemble methods because different models are being aggregated in the hope of
+reducing total estimation risk.
+
+The QRS technique from table \@ref(tab:portestpairs) is laid out by @FD18. They first separate the
+data history into regimes. Within each regime, they apply the QFM approach. Once they find
+$\hat{\Sigma}_{s_t}^{(\tau_i)}$ for every quantile and state, they blend the covariance matrices
+between regimes. For every possible pair of quantiles 
+$\tau_i, \tau_j \in \{\tau_1, ..., \tau_{|\tau|}\}$, a blended SCM can be constructed:
+\begin{align}
+\hat{\Sigma}^{(\tau_i, \tau_j)}_{\text{blend}} & = (\hat{\pi}_{Q, t  + 1}\hat{\eta}_Q\hat{\Sigma}^{(\tau_i)}_Q) + (\hat{\pi}_{T, t  + 1}\hat{\eta}_T\hat{\Sigma}^{(\tau_j)}_T).
+\end{align}
+Each of the SCMs can be used to find a portfolio $\hat{w}^{(\tau_i, \tau_j)}$. Once the $l \times l$
+portfolios have been found they can also be blended with the QRPD method:
+\begin{align}
+\hat{w}_{\text{QRPD}} & =  \sum_{i = 1}^{|\tau|}  \sum_{j = 1}^{|\tau|} p_i p_j \hat{w}^{(\tau_i, \tau_j)}.
+\end{align}
+
+## Ridge regression
+
+As stated previously, the QFM and RS techniques do not require separate workarounds for the ERC and
+GMV portfolios. This is not the case for the RR method. First, we consider the GMV portfolio
+estimation and then the ERC portfolio estimation. The Lagrangian multiplier, $\lambda$, for the
+penalty in framework \@ref(eq:genopt), should be chosen to minimise the estimation risk. However, the
+estimation risk is unobservable. @K18 suggests the k-folds cross-validation estimation procedure to
+select this parameter^[The procedure is outlined by @FHT01.]. The broad idea of this procedure is to
+approximate the estimation risk and choose a value of lambda, $\lambda^*$, that minimises the
+approximated estimation risk. To perform k-folds cross-validation, we initially arrange the
+observations into $K$ subsets without replacement. The subsets are taken over time and not assets as
+with SRS technique. The set of observations for the $k^{\text{th}}$ subset is denoted $\mathcal{I}_k$.
+All of the observations in the $K - 1$ remaining subsets (i.e. excluding those in the $k^{\text{th}}$
+subset) are stored in a set denoted $\mathcal{I}_{-k}$. This yields the optimisation:
+\begin{align}  
+\lambda^* & = \underset{\lambda}{\text{argmin}} \Big \{ \frac{1}{K} \sum_{k =1}^K \hat{h}_k(\lambda, \mathcal{I}_k, \mathcal{I}_{-k})\Big \}, (\#eq:scorefunc)
+\end{align}
+where $\hat{h}_k(\lambda)$ is a function that approximates estimation risk given a value of $\lambda$.
+One choice for $h$ is the mean squared error penalty for a portfolio found using the data from
+$\mathcal{I}_{-k}$ and then tested on $\mathcal{I}_k$. This procedure is described below:
+
+1. For each subset $k = \{1, 2, ..., K\}$, find the optimal portfolio weights using the training data $\mathcal{I}_{-k}$ and apply the penalty scaled by $\lambda$.
+2. Evaluate the performance of this portfolio on the unused data $\mathcal{I}_k$ with the mean squared error loss function and retain the score $\hat{h}_k$:
+\begin{align}
+\hat{h}_k (\lambda, \mathcal{I}_k, \mathcal{I}_{-k}) = \frac{1}{|\mathcal{I}_k|} \sum_{i \in \mathcal{I}_k} (\bar{r}_{gmv} - \textbf{X}_i^\intercal \hat{w}_{\mathcal{I}_{-k}}(\lambda))^2, (\#eq:hfunc)
+\end{align}
+where $\bar{r}_{gmv}$ is determined as in chapter \@ref(estriskreduce), and the function $|\cdot|$
+counts the number of observations in a set.
+
+3. The range of possible $\lambda$ values can be discretised to find a solution that minimises the
+objective function in \@ref(eq:scorefunc)^[The objective function in \@ref(eq:scorefunc) can
+be computationally expensive to evaluate; hence, an efficient approximation procedure is necessary.].
+
+
+For the ERC portfolio implementation of the RR method, there is an additional hyperparameter,
+$\eta_{erc}$, that needs to be estimated. This hyperparameter should be found before the penalty
+hyperparameter $\lambda^*$. We also use the k-folds cross-validation technique to find this parameter.
+However, the mean squared error loss to the desired global minimum variance portfolio from equation
+\@ref(eq:hfunc) is not appropriate for optimising an ERC portfolio. Ideally, $\eta_{erc}^*$ should
+minimise the distance between all of the total risk contributions so that they are as equal as
+possible. Therefore, we make use of the following hyperparameter selection function (see appendix
+**insert reference to appendix here** for motivation):
+\begin{align}
+\hat{h}_k^{erc} (\eta, \mathcal{I}_k, \mathcal{I}_{-k}) & = \sum_{i = 1}^N  \sum_{j \geq i}^N(\hat{w}_{i, \mathcal{I}_{-k}}(\textbf{S}_{\mathcal{I}_k} \hat{w}_{\mathcal{I}_{-k}})_i - \hat{w}_{j, \mathcal{I}_{-k}}(\textbf{S}_{\mathcal{I}_k} \hat{w}_{\mathcal{I}_{-k}})_j )^2.
+\end{align}

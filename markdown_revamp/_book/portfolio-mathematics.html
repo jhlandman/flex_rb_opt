@@ -4,12 +4,12 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Flexible risk-based portfolio optimisation (Github link)</title>
+  <title>B Portfolio mathematics | Flexible risk-based portfolio optimisation (Github link)</title>
   <meta name="description" content="Flexible risk-based portfolio optimisation
 <a href="https://github.com/jhlandman/flex_rb_opt"><em>(Github link)</em></a>" />
   <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Flexible risk-based portfolio optimisation (Github link)" />
+  <meta property="og:title" content="B Portfolio mathematics | Flexible risk-based portfolio optimisation (Github link)" />
   <meta property="og:type" content="book" />
   
   
@@ -17,7 +17,7 @@
   <meta name="github-repo" content="jhlandman/flex_rb_opt" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Flexible risk-based portfolio optimisation (Github link)" />
+  <meta name="twitter:title" content="B Portfolio mathematics | Flexible risk-based portfolio optimisation (Github link)" />
   
   
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
-<link rel="next" href="introduction.html"/>
+<link rel="prev" href="abbreviations.html"/>
+<link rel="next" href="reducing-estimation-error.html"/>
 <style type="text/css">
 p.abstract{
   text-align: center;
@@ -135,37 +135,120 @@ div.abstract{
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Flexible risk-based portfolio optimisation
-<a href="https://github.com/jhlandman/flex_rb_opt"><em>(Github link)</em></a></h1>
-<p class="author"><em><div class="line-block">Emlyn Flint<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>, Jayson Landman<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a></div></em></p>
-<p class="date"><em>2020-07-05</em></p>
-<div class="abstract">
-<p class="abstract">Abstract</p>
-<p>The purpose of this study is to present and test a general framework for risk-based investing. It permits various risk-based portfolios such as the global minimum variance, equal risk contribution and equal weight portfolios. The framework also allows for different estimation techniques to be used in finding the portfolios. The design of the study is to collate the existing research on risk-based investing, to analyse some modern methods to reduce estimation risk, to incorporate them in a single coherent framework, and to test the result with South African equity data. The techniques to reduce estimation risk draw from the usual mean-variance and risk-based optimisation literature. The techniques include regime switching, quantile regression, regularisation and subset resampling. In the South African experiment, risk-based portfolios materially outperformed the market weight portfolio out-of-sample using a Sharpe ratio measure. Additionally, the global minimum variance portfolio performed better than other risk-based portfolios. Given the long estimation window, no estimation techniques consistently outperformed the application of sample estimators only.</p>
-<p><strong>Keywords</strong>: risk-based investing, portfolio optimisaiton, estimation risk.</p>
+<div id="portfolio-mathematics" class="section level1">
+<h1><span class="header-section-number">B</span> Portfolio mathematics</h1>
+<div id="mrcapp" class="section level2">
+<h2><span class="header-section-number">B.1</span> Marginal risk contribution</h2>
+<p>The portfolio beta interpretation of MRC:</p>
+<p><span class="math display">\[\begin{align*}
+\frac{\partial}{\partial w_i} \Big [ \sigma(w) \Big ] &amp; = \frac{\partial}{\partial w_i}  \Big [ (w^\intercal \Sigma w)^{\frac{1}{2}} \Big ], &amp; \\
+&amp; = \frac{1}{2} \cdot (w^\intercal \Sigma w)^{-\frac{1}{2}} \cdot \frac{\partial}{\partial w_i} \Big [ w^\intercal \Sigma w \Big ], &amp;  \text{(chain rule)} \\
+&amp; = \frac{\frac{1}{2}\cdot 2 \cdot (\Sigma w)_i}{\sqrt{w^\intercal \Sigma w}}, &amp;  \text{(as given in the main text)} \\
+&amp; = \frac{\mathbb{COV}[R_i, R_p]}{\sqrt{w^\intercal \Sigma w}}, &amp;   \text{($R_i$- returns on asset i)} \\
+&amp; = \mathbb{SD}[(R_p)] \cdot  \frac{\mathbb{COV}[R_i, R_p]}{\mathbb{VAR}[(R_p)]}, &amp; \\
+&amp; = \mathbb{SD}[(R_p)] \cdot \beta_{i, p}\;. &amp;
+\end{align*}\]</span></p>
+<p>Minimising the weighted sum of the of the MRC’s is equivalently the lowest beta portfolio with the
+single risk factor of the portfolio itself, which is the GMV portfolio.
+<span class="math display">\[\begin{align*}
+\sum_{i = 1}^N w_i \cdot \frac{\partial}{\partial w_i} \Big [ \sigma(w) \Big ] &amp; = \frac{\sum_{i = 1}^N w_i \cdot (\Sigma w)_i}{\sqrt{w^\intercal \Sigma w}}, &amp; \\
+\underset{w}{\text{argmin}} \Big \{\sum_{i = 1}^N w_i \cdot \frac{\partial}{\partial w_i} \Big [ \sigma(w) \Big ]  \Big \} &amp; = \underset{w}{\text{argmin}} \Big \{ \sqrt{w^\intercal \Sigma w} \Big\},&amp;   \text{(Taking the minimum on   both sides)}\\
+&amp; = \underset{w}{\text{argmin}} \Big \{w^\intercal \Sigma w \} . &amp;  \text{($\sqrt{\cdot}$ monotonic)}\\
+\end{align*}\]</span></p>
+</div>
+<div id="ihimax" class="section level2">
+<h2><span class="header-section-number">B.2</span> Minimum weight constrained IHI</h2>
+<p>The maximum possible weight allocation for a single asset is <span class="math inline">\(\alpha\)</span>. This allocation should be given
+to <span class="math inline">\(\lfloor \frac{1}{\alpha} \rfloor\)</span> assets where <span class="math inline">\(\lfloor \cdot \rfloor\)</span> is the truncation function.
+An additional weight <span class="math inline">\(j\)</span> should be set to satisfy the budget constraint, hence it should be
+<span class="math inline">\(w_j = 1 - \lfloor \frac{1}{\alpha} \rfloor \cdot \alpha\)</span>. All of the other weights should be set to
+0. Then the lower bound is:
+<span class="math display">\[\begin{align*}
+H_{\text{lb}}^{-1} &amp; = \frac{1}{\lfloor \frac{1}{\alpha} \rfloor \cdot \alpha^2 + (1- \lfloor \frac{1}{\alpha}\rfloor \cdot \alpha)^2} \;\; .
+\end{align*}\]</span></p>
+</div>
+<div id="volineq" class="section level2">
+<h2><span class="header-section-number">B.3</span> Proof of the volatility order inequality</h2>
+<p>Consider a GMV framework where the IHI is bounded from below by a constant <span class="math inline">\(c\)</span>:
+<span class="math display">\[\begin{align*} 
+w^\diamond = \underset{w}{\text{argmin}} \Big \{ w^\intercal \Sigma w \Big \},
+\end{align*}\]</span>
+subject to the constraints:
+<span class="math display">\[\begin{align*}
+\mathcal{C}(w) &amp;= 
+\begin{cases}
+H^{-1}(w) \geq c \\
+w^\intercal \underline{1} = 1 \;\; \\
+0 \leq w_i \leq \alpha, \; \forall i \;\;\; .
+\end{cases}
+\end{align*}\]</span></p>
+<p>If <span class="math inline">\(c \leq H^{-1}_{lb}\)</span> then the constraint has no effect and the GMV portfolio is recovered. If
+<span class="math inline">\(c = N\)</span> then the only feasible solution is the EW portfolio. If <span class="math inline">\(c &gt; N\)</span> there are no feasible
+solutions to the problem. The portfolio volatility is an increasing function of <span class="math inline">\(c\)</span> therefore we can
+deduce that: <span class="math display">\[\sigma(w_{gmv}) \leq \sigma(w^\diamond(c)) \leq \sigma (w_{ew}).\]</span></p>
+<p>It remains to show that the ERC portfolio is a <span class="math inline">\(w^\diamond\)</span> portfolio. Consider replacing the IHI
+constraint above with a log-constraint, <span class="math inline">\(\sum_i \ln(w_i) \geq c\)</span>. If <span class="math inline">\(c = - \infty\)</span> then the GMV
+portfolio is recovered. If <span class="math inline">\(c = -n \ln(n)\)</span> then the EW portfolio is recovered, and if <span class="math inline">\(c &gt; -n\ln(n)\)</span>
+then there are no feasible solutions. The portfolio volatility is also an increasing monotonic
+function of c therefore the inequality is replicated for a scaled choice of <span class="math inline">\(c\)</span> and by extension the
+ERC portfolio.</p>
+</div>
+<div id="msrrbport" class="section level2">
+<h2><span class="header-section-number">B.4</span> Maximum Sharpe ratio risk-based portfolios</h2>
+<p>As mentioned in the text <span class="citation">Scherer (<a href="#ref-S07" role="doc-biblioref">2007</a>)</span> has shown that the marginal sharpe ratios are equalised for the MSR
+portfolio as below:
+<span class="math display" id="eq:optimeq">\[\begin{align}
+\frac{\mu_i}{\text{MRC}_i} &amp; = \frac{\mu_j}{\text{MRC}_j} \;\;\; \forall i, j \in \{1, ..., N \}, \tag{B.1}
+\end{align}\]</span>
+where <span class="math inline">\(\mu_k\)</span> represents the marginal excess return of asset k. Separately <span class="citation">Jurczenko, Michel, and Teiletche (<a href="#ref-J13" role="doc-biblioref">2013</a>)</span> showed that the
+EW, GMV and ERC portfolios could be found by the equalisation strategy:
+<span class="math display" id="eq:portequal">\[\begin{align}
+w_i^\gamma \sigma^{-\delta}_i \text{MRC}_i &amp; = w_j^\gamma \sigma^{-\delta}_j \text{MRC}_j \;\;\; \forall i, j \in \{1, ..., N \}, \tag{B.2}
+\end{align}\]</span>
+where the choice of <span class="math inline">\(\gamma\)</span> and <span class="math inline">\(\delta\)</span> defines the portfolio. Combining the portfolio condition
+from equality <a href="portfolio-mathematics.html#eq:portequal">(B.2)</a> with the optimality equality <a href="portfolio-mathematics.html#eq:optimeq">(B.1)</a> yields the optimality
+condition for a given portfolio:
+<span class="math display">\[\begin{align}
+w_i^\gamma \sigma_i^{(1- \delta)} \text{SR}_i &amp; = w_j^\gamma \sigma_j^{(1- \delta)} \text{SR}_j \;\;\; \forall i, j \in \{1, ..., N \},
+\end{align}\]</span>
+where <span class="math inline">\(\text{SR}_k = \frac{\mu_k}{\sigma_k}\)</span>. Hence, a risk-based portfolio is optimal when
+constituents have equal weighted risk-adjusted SRs.</p>
+<p>The EW portfolio can be analysed by setting <span class="math inline">\((\gamma, \delta) = (\infty, 0)\)</span>. For equlities
+<a href="portfolio-mathematics.html#eq:optimeq">(B.1)</a> and <a href="portfolio-mathematics.html#eq:portequal">(B.2)</a> to be jointly true when <span class="math inline">\(w_i = \frac{1}{N}\)</span> then:
+<span class="math display">\[\text{MRC}_i = \text{MRC}_j \;\;\; \forall i, j \in \{1, ..., N \},\]</span>
+and there needs to be identical excess returns between assets. This means there should also be
+identical volatilities and identical correlations between all assets (i.e. 
+<span class="math inline">\(\Sigma = \rho\sigma^2 \underline{1} \,\underline{1}^\intercal - \rho I\)</span>). The GMV portfolio can be
+analysed by setting <span class="math inline">\((\gamma, \delta) = (0,0)\)</span>, which yields the optimality condition:
+<span class="math display">\[\mu_i = \mu_j \;\;\; \forall i, j \in \{1, ..., N \}.\]</span>
+Hence, identical excess returns are required only. The ERC portfolio can be analysed by setting
+<span class="math inline">\((\gamma, \delta) = (1, 0)\)</span>, which means the optimality condition becomes:
+<span class="math display">\[w_i \sigma_i \text{SR}_i = w_j \sigma_j \text{SR}_j \;\;\; \forall i, j \in \{1, ..., N \}.\]</span>
+Assuming constant correlation, <span class="math inline">\(\rho_{i, j} = \rho\)</span>, the ERC portfolio allocations are given by the
+weighted inverse volatilities in the portfolio <span class="math inline">\(w_i = \frac{\sigma^{-1}_i}{\sum_{k = 1}^N \sigma^{-1}_k}\)</span> <span class="citation">Maillard, Roncalli, and Teı̈letche (<a href="#ref-MRT10" role="doc-biblioref">2010</a>)</span>. The equality of SRs is then the requirement for the above shown condition to
+hold. Therefore, identical correlations and SRs ensure that the ERC portfolio coincides with the MSR
+portfolio.</p>
 </div>
 </div>
-<div id="about" class="section level1">
-<h1><span class="header-section-number">1</span> About</h1>
-<p>This is a research paper created with the <code>bookdown</code> package in R. It is intended to promote
-reproducibility in academic research.</p>
-
+<h3>References</h3>
+<div id="refs" class="references">
+<div id="ref-J13">
+<p>Jurczenko, Emmanuel, Thierry Michel, and Jerome Teiletche. 2013. “Generalized Risk-Based Investing.” <em>Available at SSRN 2205979</em>.</p>
 </div>
-<div class="footnotes">
-<hr />
-<ol start="1">
-<li id="fn1"><p>Legae Peresec<a href="#fnref1" class="footnote-back">↩</a></p></li>
-<li id="fn2"><p>Ninety One Asset Management<a href="#fnref2" class="footnote-back">↩</a></p></li>
-</ol>
+<div id="ref-MRT10">
+<p>Maillard, Sébastien, Thierry Roncalli, and Jérôme Teı̈letche. 2010. “The Properties of Equally Weighted Risk Contribution Portfolios.” <em>The Journal of Portfolio Management</em> 36 (4): 60–70.</p>
+</div>
+<div id="ref-S07">
+<p>Scherer, Bernd. 2007. “Can Robust Portfolio Optimisation Help to Build Better Portfolios?” <em>Journal of Asset Management</em> 7 (6): 374–87.</p>
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="introduction.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="abbreviations.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="reducing-estimation-error.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="book_assets/gitbook-2.6.7/js/app.min.js"></script>

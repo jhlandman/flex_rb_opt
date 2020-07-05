@@ -6,7 +6,7 @@ Every investor has a universe of $N$ assets to which they can allocate capital. 
 their allocation to the *i*$^{\text{th}}$ asset, $w_i$, depends on the investor's risk and return
 preferences. They could prefer riskier asset combinations because they require high capital growth,
 or they could prefer more stable asset combinations that prioritise capital preservation. The column
-vector $w = [w_1,w_2,…,w_N]^\intercal$ is an $N \times 1$ vector of allocations that define an
+vector $w = [w_1,w_2,\text{…},w_N]^\intercal$ is an $N \times 1$ vector of allocations that define an
 investor's portfolio. This portfolio is constrained by the investor's capital budget, which may be
 articulated through the notion of weights. Therefore, all considered portfolios should adhere to the
 budget constraint: $\sum_i w_i =  1$.

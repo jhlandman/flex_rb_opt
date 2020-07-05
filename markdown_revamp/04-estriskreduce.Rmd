@@ -1,4 +1,4 @@
-# Estimation risk reduction techniques
+# Estimation risk reduction techniques {#estriskreduce}
 
 As stated in chapter \@ref(genframework), estimation risk is comprised of squared bias and variance.
 There are many methods to approach reducing estimation risk, but in this research,  we introduce three
@@ -164,12 +164,36 @@ chapter.
 
 ## Alternate implementation methods
 
-@SW17 present a means to find a resampled MVO portfolio that reduces estimation risk by optimising random subsets of assets in the investment universe. The process is called subset resampling (SRS). They then aggregate resultant optimised subset portfolios to create a final `optimal' solution. The procedure requires the inputs of a sample return matrix $\textbf{X}$ and an asset subset size $b$. The subset size is related to the extent of the trade-off between bias and variance. We have to choose the degree of repeated sampling, $s$, which is restricted by the available computational power.
+@SW17 present a means to find a resampled MVO portfolio that reduces estimation risk by optimising
+random subsets of assets in the investment universe. The process is called subset resampling (SRS).
+They then aggregate resultant optimised subset portfolios to create a final `optimal' solution. The
+procedure requires the inputs of a sample return matrix $\textbf{X}$ and an asset subset size $b$.
+The subset size is related to the extent of the trade-off between bias and variance. We have to
+choose the degree of repeated sampling, $s$, which is restricted by the available computational
+power.
 
-This method can be described as follows. For each of the $s$ repeated samples, we randomly select the $j^{\text{th}}$ subset of $b$ assets from the $N$ assets in the investment universe, denoted $\mathcal{I}_j$. Using only the sample return data from the selected asset subset $\textbf{X}_j$, we then compute the associated optimal portfolios $\hat{w}_j$ using framework \@ref(eq:genopt) and a given choice of objective function. Finally, we average the $s$ optimal subset weight vectors to obtain the final optimal asset portfolio $\hat{w}_\mathrm{srs} = (\sum_{j = 1}^s \hat{w}_j)s^{-1}$.
+This method can be described as follows. For each of the $s$ repeated samples, we randomly select
+the $j^{\text{th}}$ subset of $b$ assets from the $N$ assets in the investment universe, denoted
+$\mathcal{I}_j$. Using only the sample return data from the selected asset subset $\textbf{X}_j$, we
+then compute the associated optimal portfolios $\hat{w}_j$ using framework \@ref(eq:genopt) and a
+given choice of objective function. Finally, we average the $s$ optimal subset weight vectors to
+obtain the final optimal asset portfolio $\hat{w}_\mathrm{srs} = (\sum_{j = 1}^s \hat{w}_j)s^{-1}$.
 
-The SRS process is very general, and could even be applied in conjunction with a penalised optimisation or an improved sample covariance matrix. Additionally, the user can choose the input $b$. If $b = N$, then the usual sample risk-based portfolio is recovered, albeit in a computationally expensive manner. If $b = 1$, then the SRS procedure will yield the EW portfolio for a large enough value of $s$. Therefore, $b$ is the input parameter controlling the extent of the trade-off between weight diversification and estimation risk. The estimation of $b$ should be done in a manner consistent with the aim of the optimisation. To ensure $b$ scales with the size of the asset universe, @SW17 recommend writing it in the form $b = N^{\alpha}$, where $\alpha \in [0, 1]$.
+The SRS process is very general, and could even be applied in conjunction with a penalised
+optimisation or an improved sample covariance matrix. Additionally, the user can choose the input
+$b$. If $b = N$, then the usual sample risk-based portfolio is recovered, albeit in a
+computationally expensive manner. If $b = 1$, then the SRS procedure will yield the EW portfolio for
+a large enough value of $s$. Therefore, $b$ is the input parameter controlling the extent of the
+trade-off between weight diversification and estimation risk. The estimation of $b$ should be done
+in a manner consistent with the aim of the optimisation. To ensure $b$ scales with the size of the
+asset universe, @SW17 recommend writing it in the form $b = N^{\alpha}$, where $\alpha \in [0, 1]$.
 
-The SRS method is comparable to ensemble methods in machine learning. The logical basis is that many different models can be used and aggregated into a final model, rather than assuming a single model is the most accurate to use. Despite the general nature of the SRS procedure, it is still consistent with the approach of increasing the squared bias out of the hope that the variance reduction will offset it enough to lessen overall estimation risk.
+The SRS method is comparable to ensemble methods in machine learning. The logical basis is that many
+different models can be used and aggregated into a final model, rather than assuming a single model
+is the most accurate to use. Despite the general nature of the SRS procedure, it is still consistent
+with the approach of increasing the squared bias out of the hope that the variance reduction will
+offset it enough to lessen overall estimation risk.
 
-Each of the three estimation risk reduction classes has at least one specific technique within them. Some modelling decisions need to be made for a prospective user to apply these techniques in an experiment. These modelling decisions are covered in the next chapter.
+Each of the three estimation risk reduction classes has at least one specific technique within them.
+Some modelling decisions need to be made for a prospective user to apply these techniques in an
+experiment. These modelling decisions are covered in the next chapter.

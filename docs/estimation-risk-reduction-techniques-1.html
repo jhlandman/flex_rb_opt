@@ -4,12 +4,12 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>5 Estimation risk reduction techniques | Flexible risk-based portfolio optimisation (Github link)</title>
+  <title>6 Estimation risk reduction techniques | Flexible risk-based portfolio optimisation (Github link)</title>
   <meta name="description" content="Flexible risk-based portfolio optimisation
 <a href="https://github.com/jhlandman/flex_rb_opt"><em>(Github link)</em></a>" />
   <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="5 Estimation risk reduction techniques | Flexible risk-based portfolio optimisation (Github link)" />
+  <meta property="og:title" content="6 Estimation risk reduction techniques | Flexible risk-based portfolio optimisation (Github link)" />
   <meta property="og:type" content="book" />
   
   
@@ -17,7 +17,7 @@
   <meta name="github-repo" content="jhlandman/flex_rb_opt" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="5 Estimation risk reduction techniques | Flexible risk-based portfolio optimisation (Github link)" />
+  <meta name="twitter:title" content="6 Estimation risk reduction techniques | Flexible risk-based portfolio optimisation (Github link)" />
   
   
   
@@ -31,7 +31,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="rbportch.html"/>
+<link rel="prev" href="estimation-risk-reduction-techniques.html"/>
 <link rel="next" href="references.html"/>
 <style type="text/css">
 p.abstract{
@@ -91,6 +91,11 @@ div.abstract{
 <li class="chapter" data-level="5.2" data-path="estimation-risk-reduction-techniques.html"><a href="estimation-risk-reduction-techniques.html#penalising-the-optimization"><i class="fa fa-check"></i><b>5.2</b> Penalising the optimization</a></li>
 <li class="chapter" data-level="5.3" data-path="estimation-risk-reduction-techniques.html"><a href="estimation-risk-reduction-techniques.html#alternate-implementation-methods"><i class="fa fa-check"></i><b>5.3</b> Alternate implementation methods</a></li>
 </ul></li>
+<li class="chapter" data-level="6" data-path="estimation-risk-reduction-techniques-1.html"><a href="estimation-risk-reduction-techniques-1.html"><i class="fa fa-check"></i><b>6</b> Estimation risk reduction techniques</a><ul>
+<li class="chapter" data-level="6.1" data-path="estimation-risk-reduction-techniques-1.html"><a href="estimation-risk-reduction-techniques-1.html#improving-optimisation-inputs-1"><i class="fa fa-check"></i><b>6.1</b> Improving optimisation inputs</a></li>
+<li class="chapter" data-level="6.2" data-path="estimation-risk-reduction-techniques-1.html"><a href="estimation-risk-reduction-techniques-1.html#penalising-the-optimization-1"><i class="fa fa-check"></i><b>6.2</b> Penalising the optimization</a></li>
+<li class="chapter" data-level="6.3" data-path="estimation-risk-reduction-techniques-1.html"><a href="estimation-risk-reduction-techniques-1.html#alternate-implementation-methods-1"><i class="fa fa-check"></i><b>6.3</b> Alternate implementation methods</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 </ul>
 
@@ -110,21 +115,21 @@ div.abstract{
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="estimation-risk-reduction-techniques" class="section level1">
-<h1><span class="header-section-number">5</span> Estimation risk reduction techniques</h1>
+<div id="estimation-risk-reduction-techniques-1" class="section level1">
+<h1><span class="header-section-number">6</span> Estimation risk reduction techniques</h1>
 <p>As stated in chapter <a href="genframework.html#genframework">3</a>, estimation risk is comprised of squared bias and variance.
 There are many methods to approach reducing estimation risk, but in this research, we introduce three
 ways that are consistent with the general risk-based investing framework presented in equation
-<a href="genframework.html#eq:genopt">(3.7)</a>. The first method deals with improving the estimation of the inputs to the risk-based
+<a href="#eq:genopt">(<strong>??</strong>)</a>. The first method deals with improving the estimation of the inputs to the risk-based
 portfolio function <span class="math inline">\(f(w, \Sigma|\textbf{X})\)</span>, accounting for heterogeneity in the input data. The
 second method involves penalising the optimisation objective function to obtain a portfolio estimate
 with consistently lower deviation from the actual out-of-sample risk-based portfolio solution. The
 final process entails changing the implementation method in a manner that reduces estimation risk.
 Every risk reduction technique falls into one of these three categories.</p>
-<div id="improving-optimisation-inputs" class="section level2">
-<h2><span class="header-section-number">5.1</span> Improving optimisation inputs</h2>
+<div id="improving-optimisation-inputs-1" class="section level2">
+<h2><span class="header-section-number">6.1</span> Improving optimisation inputs</h2>
 <p>The first approach to improving on the sample ERC and GMV portfolios involves finding better estimates
-for the input <span class="math inline">\(\Sigma\)</span>, given the set of sample returns. As stated in equation <a href="genframework.html#eq:retmodel">(3.5)</a>,
+for the input <span class="math inline">\(\Sigma\)</span>, given the set of sample returns. As stated in equation <a href="#eq:retmodel">(<strong>??</strong>)</a>,
 the function <span class="math inline">\(g\)</span> deals with the sample returns in a manner that ensures the irreducible error,
 <span class="math inline">\(\phi^2\)</span>, is independent and identically normally distributed. However, because <span class="math inline">\(g\)</span> is unobservable,
 our estimation <span class="math inline">\(\hat{g}\)</span> might not ensure this property. Heterogeneity of sample errors for investment
@@ -150,11 +155,11 @@ of <span class="math inline">\(\hat{d}_t\)</span>, the probability of being in a
 values of <span class="math inline">\(\hat{d}_t\)</span>, the likelihood of being in a quiet market is high. The <span class="math inline">\(\zeta^{th}\)</span> quantile of
 the sample SMDs is the point where the system of reference changes. The market state is also an
 unobservable variable, so the above model is referred to as a hidden Markov model (HMM). The HMM used
-in this investigation is depicted in figure <a href="estimation-risk-reduction-techniques.html#fig:hmm">5.1</a>.</p>
+in this investigation is depicted in figure <a href="estimation-risk-reduction-techniques-1.html#fig:hmm">6.1</a>.</p>
 <div class="figure" style="text-align: center"><span id="fig:hmm"></span>
 <img src="quiet_turb_hmm.PNG" alt="Turbulent / quiet hidden Markov model." width="214" />
 <p class="caption">
-Figure 5.1: Turbulent / quiet hidden Markov model.
+Figure 6.1: Turbulent / quiet hidden Markov model.
 </p>
 </div>
 <p>The transition matrix stores the probabilities of transition from a state at time <span class="math inline">\(t\)</span> to another at
@@ -177,23 +182,23 @@ forecasting model. If the return of a portfolio is viewed through a set of retur
 factors, then returns could be explained in part by those factors and the portfolio’s sensitivity to
 them. <span class="citation">Meucci (<a href="#ref-M10" role="doc-biblioref">2010</a>)</span> encapsulates this idea in his asset return model given below:
 <span class="math display" id="eq:retfact">\[\begin{align}
-R &amp;= \alpha +\beta^\intercal \mathcal{F} + \epsilon, \tag{5.1}
+R &amp;= \alpha +\beta^\intercal \mathcal{F} + \epsilon, \tag{6.1}
 \end{align}\]</span>
 where <span class="math inline">\(R\)</span> is a vector of asset returns (not portfolio returns through time as shown previously),
 <span class="math inline">\(\alpha\)</span> is a forecastable vector of returns unique to each security, <span class="math inline">\(\beta\)</span> is a matrix of
 sensitivities to risk factors, <span class="math inline">\(\mathcal{F}\)</span> is a vector of factors, and <span class="math inline">\(\epsilon\)</span> is the error
 vector. The error vector is assumed to have a normal distribution. <span class="citation">Ang and Chen (<a href="#ref-AC02" role="doc-biblioref">2002</a>)</span> show that in a downward
 market, the correlation structure is significantly different from what is implied by a normal
-distribution, which is a problem when using model <a href="estimation-risk-reduction-techniques.html#eq:retfact">(5.1)</a> in the exhibited way. <span class="citation">Chen, Dolado, and Gonzalo (<a href="#ref-CDG19" role="doc-biblioref">2019</a>)</span>
+distribution, which is a problem when using model <a href="estimation-risk-reduction-techniques-1.html#eq:retfact">(6.1)</a> in the exhibited way. <span class="citation">Chen, Dolado, and Gonzalo (<a href="#ref-CDG19" role="doc-biblioref">2019</a>)</span>
 address the issue of non-normal errors by utilising the quantile regression model proposed by
 <span class="citation">Koenker and Bassett Jr (<a href="#ref-KB78" role="doc-biblioref">1978</a>)</span>. The asset returns, idiosyncratic asset returns, asset factor sensitivities and errors could all
 be considered to be a function of the current quantile, denoted <span class="math inline">\(\tau\)</span>. This leads to the quantile
 factor model (QFM):
 <span class="math display" id="eq:qfm">\[\begin{align} 
-\mathcal{Q}(\tau) =  \alpha(\tau) + \beta(\tau)\mathcal{F} + \epsilon(\tau), \tag{5.2}
+\mathcal{Q}(\tau) =  \alpha(\tau) + \beta(\tau)\mathcal{F} + \epsilon(\tau), \tag{6.2}
 \end{align}\]</span>
 where <span class="math inline">\(\tau \in [0, 1]\)</span>. In a different symmetric, normally distributed world, <span class="math inline">\(\tau\)</span> can be set to
-<span class="math inline">\(0.5\)</span> and model <a href="estimation-risk-reduction-techniques.html#eq:retfact">(5.1)</a> will be recovered. However, in the real world where symmetry and
+<span class="math inline">\(0.5\)</span> and model <a href="estimation-risk-reduction-techniques-1.html#eq:retfact">(6.1)</a> will be recovered. However, in the real world where symmetry and
 normality are often not adhered to, the quantile conditional errors can be defined more generally so
 that they only have to satisfy:
 <span class="math display">\[\begin{align}
@@ -207,8 +212,8 @@ quantile to construct a series of quantile-specific covariance matrices, which c
 yield a more sophisticated estimator of <span class="math inline">\(\Sigma\)</span>. Chapter <strong>insert ref to next chapter</strong> covers the
 implementations of these two techniques to better estimate <span class="math inline">\(\Sigma\)</span>.</p>
 </div>
-<div id="penalising-the-optimization" class="section level2">
-<h2><span class="header-section-number">5.2</span> Penalising the optimization</h2>
+<div id="penalising-the-optimization-1" class="section level2">
+<h2><span class="header-section-number">6.2</span> Penalising the optimization</h2>
 <p>To add a penalty term in a way that preserves the goal of the risk optimisation, we first need to
 adapt the objective functions of each risk-based portfolio as given earlier in chapter
 @ref{rbportch}. Consider the return-targeting penalised optimisation approach of <span class="citation">Kinn (<a href="#ref-K18" role="doc-biblioref">2018</a>)</span>, both choices
@@ -227,7 +232,7 @@ level. Kinn’s approach is consistent with an MVO optimisation intuitively beca
 level is analogous an expected return constraint and minimising the return’s squared distance to this
 constraint is analogous to variance minimisation. The objective function can now be approximated using
 the sample average as a result of the law of large numbers. We still have to show how to find the GMV
-portfolio from an MVO procedure. As stated in table <a href="rbportch.html#tab:rbportprops">4.1</a>, the GMV portfolio is the
+portfolio from an MVO procedure. As stated in table <a href="#tab:rbportprops"><strong>??</strong></a>, the GMV portfolio is the
 MSR portfolio if the assumption of identical excess returns is met. Therefore, if the target return is
 set to a value that is easily obtainable <span class="math inline">\(\bar{r} = \bar{r}_\mathrm{gmv}\)</span>, then the scheme will yield
 a GMV portfolio. This easily obtainable value has to be found numerically and cannot be determined a
@@ -235,12 +240,12 @@ priori. The non-rigorous argument turns out to be empirically true for the portf
 research. When the return vector is replaced by the set of sample returns <span class="math inline">\(\textbf{X}\)</span>, and the
 expectation is approximated by the sample average, the <span class="citation">Kinn (<a href="#ref-K18" role="doc-biblioref">2018</a>)</span> form of objective function is recovered:
 <span class="math display" id="eq:kinnop1">\[\begin{align}
-f_{\text{Kinn}}(w|\textbf{X}) &amp;= \frac{1}{T} \sum_{t = 1}^T  (\bar{r}_\mathrm{gmv} - \textbf{X}^\intercal_t w)^2, \tag{5.3}
+f_{\text{Kinn}}(w|\textbf{X}) &amp;= \frac{1}{T} \sum_{t = 1}^T  (\bar{r}_\mathrm{gmv} - \textbf{X}^\intercal_t w)^2, \tag{6.3}
 \end{align}\]</span>
 where <span class="math inline">\(t\)</span> indexes columns of the sample returns matrix <span class="math inline">\(\textbf{X}\)</span>. The GMV portfolio can be found equivalently in this way.</p>
-<p>The log-constraint<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a>,
-<span class="math inline">\(\sum_i \ln(w_i) \geq c\)</span>, can be placed on optimisation <a href="estimation-risk-reduction-techniques.html#eq:kinnop1">(5.3)</a> to recover the ERC
-portfolio. To include the constraint in framework <a href="genframework.html#eq:genopt">(3.7)</a>, a Lagrangian multiplier approach
+<p>The log-constraint<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a>,
+<span class="math inline">\(\sum_i \ln(w_i) \geq c\)</span>, can be placed on optimisation <a href="estimation-risk-reduction-techniques-1.html#eq:kinnop1">(6.3)</a> to recover the ERC
+portfolio. To include the constraint in framework <a href="#eq:genopt">(<strong>??</strong>)</a>, a Lagrangian multiplier approach
 can be used to move the log-constraint to the objective function. Kinn’s adapted ERC objective
 function is then:
 <span class="math display">\[\begin{align}
@@ -248,7 +253,7 @@ f_{\text{Kinn}}(w|\textbf{X}) &amp;= \frac{1}{T} \sum_{t = 1}^T  (\bar{r}_{gmv} 
 \end{align}\]</span>
 where <span class="math inline">\(\eta_{erc}\)</span> is the Lagrangian multiplier scalar. Now that we have shown the standard objective
 functions from earlier are equivalent to the Kinn framework, we have also vindicated the general
-framework <a href="genframework.html#eq:genopt">(3.7)</a> as accommodative of a valid application of supervised machine learning
+framework <a href="#eq:genopt">(<strong>??</strong>)</a> as accommodative of a valid application of supervised machine learning
 (SML) to portfolio optimisation.</p>
 <p>Because logical choices for <span class="math inline">\(f_{\text{Kinn}}(\cdot|\textbf{X})\)</span> have been established, different
 penalty functions can be applied to the optimisation. Two common penalised regression techniques are
@@ -270,8 +275,8 @@ becomes very large, the minimum variance portfolio will tend towards the EW port
 lambda is thus a practical choice, and the process to do so consistently is outlined in the next
 chapter.</p>
 </div>
-<div id="alternate-implementation-methods" class="section level2">
-<h2><span class="header-section-number">5.3</span> Alternate implementation methods</h2>
+<div id="alternate-implementation-methods-1" class="section level2">
+<h2><span class="header-section-number">6.3</span> Alternate implementation methods</h2>
 <p><span class="citation">Shen and Wang (<a href="#ref-SW17" role="doc-biblioref">2017</a>)</span> present a means to find a resampled MVO portfolio that reduces estimation risk by optimising
 random subsets of assets in the investment universe. The process is called subset resampling (SRS).
 They then aggregate resultant optimised subset portfolios to create a final `optimal’ solution. The
@@ -282,7 +287,7 @@ power.</p>
 <p>This method can be described as follows. For each of the <span class="math inline">\(s\)</span> repeated samples, we randomly select
 the <span class="math inline">\(j^{\text{th}}\)</span> subset of <span class="math inline">\(b\)</span> assets from the <span class="math inline">\(N\)</span> assets in the investment universe, denoted
 <span class="math inline">\(\mathcal{I}_j\)</span>. Using only the sample return data from the selected asset subset <span class="math inline">\(\textbf{X}_j\)</span>, we
-then compute the associated optimal portfolios <span class="math inline">\(\hat{w}_j\)</span> using framework <a href="genframework.html#eq:genopt">(3.7)</a> and a
+then compute the associated optimal portfolios <span class="math inline">\(\hat{w}_j\)</span> using framework <a href="#eq:genopt">(<strong>??</strong>)</a> and a
 given choice of objective function. Finally, we average the <span class="math inline">\(s\)</span> optimal subset weight vectors to
 obtain the final optimal asset portfolio <span class="math inline">\(\hat{w}_\mathrm{srs} = (\sum_{j = 1}^s \hat{w}_j)s^{-1}\)</span>.</p>
 <p>The SRS process is very general, and could even be applied in conjunction with a penalised
@@ -336,8 +341,8 @@ experiment. These modelling decisions are covered in the next chapter.</p>
 </div>
 <div class="footnotes">
 <hr />
-<ol start="4">
-<li id="fn4"><p>The log-constraint is also introduced in appendix <strong>insert appendix ref</strong>.<a href="estimation-risk-reduction-techniques.html#fnref4" class="footnote-back">↩</a></p></li>
+<ol start="3">
+<li id="fn3"><p>The log-constraint is also introduced in appendix <strong>insert appendix ref</strong>.<a href="estimation-risk-reduction-techniques-1.html#fnref3" class="footnote-back">↩</a></p></li>
 </ol>
 </div>
             </section>
@@ -345,7 +350,7 @@ experiment. These modelling decisions are covered in the next chapter.</p>
           </div>
         </div>
       </div>
-<a href="rbportch.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="estimation-risk-reduction-techniques.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>

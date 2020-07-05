@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>7 An empirical test using Sourth African equities | Flexible risk-based portfolio optimisation (Github link)</title>
+  <meta name="description" content="Flexible risk-based portfolio optimisation
+<a href="https://github.com/jhlandman/flex_rb_opt"><em>(Github link)</em></a>" />
+  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="7 An empirical test using Sourth African equities | Flexible risk-based portfolio optimisation (Github link)" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  <meta name="github-repo" content="jhlandman/flex_rb_opt" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="7 An empirical test using Sourth African equities | Flexible risk-based portfolio optimisation (Github link)" />
+  
+  
+  
+
+
+
+<meta name="date" content="2020-07-05" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="somemaths.html"/>
+<link rel="next" href="conclusion.html"/>
+<style type="text/css">
+p.abstract{
+  text-align: center;
+  font-weight: bold;
+}
+div.abstract{
+  margin: auto;
+  width: 90%;
+}
+</style>
+<script src="book_assets/jquery-2.2.3/jquery.min.js"></script>
+<link href="book_assets/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="book_assets/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="book_assets/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="book_assets/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="book_assets/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="book_assets/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="book_assets/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> About</a></li>
+<li class="chapter" data-level="2" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>2</b> Introduction</a></li>
+<li class="chapter" data-level="3" data-path="genframework.html"><a href="genframework.html"><i class="fa fa-check"></i><b>3</b> A framework for constructing risk-based portfolios</a><ul>
+<li class="chapter" data-level="3.1" data-path="genframework.html"><a href="genframework.html#mpt"><i class="fa fa-check"></i><b>3.1</b> An overview of modern portfolio theory</a></li>
+<li class="chapter" data-level="3.2" data-path="genframework.html"><a href="genframework.html#introducing-risk-based-investing"><i class="fa fa-check"></i><b>3.2</b> Introducing risk-based investing</a></li>
+<li class="chapter" data-level="3.3" data-path="genframework.html"><a href="genframework.html#improving-risk-based-portfolios"><i class="fa fa-check"></i><b>3.3</b> Improving risk-based portfolios</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="rbportch.html"><a href="rbportch.html"><i class="fa fa-check"></i><b>4</b> Overview of risk-based portfolios</a><ul>
+<li class="chapter" data-level="4.1" data-path="rbportch.html"><a href="rbportch.html#risk-based-portfolio-types"><i class="fa fa-check"></i><b>4.1</b> Risk-based portfolio types</a></li>
+<li class="chapter" data-level="4.2" data-path="rbportch.html"><a href="rbportch.html#risk-based-portfolio-properties"><i class="fa fa-check"></i><b>4.2</b> Risk-based portfolio properties</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="estriskreduce.html"><a href="estriskreduce.html"><i class="fa fa-check"></i><b>5</b> Estimation risk reduction techniques</a><ul>
+<li class="chapter" data-level="5.1" data-path="estriskreduce.html"><a href="estriskreduce.html#improving-optimisation-inputs"><i class="fa fa-check"></i><b>5.1</b> Improving optimisation inputs</a></li>
+<li class="chapter" data-level="5.2" data-path="estriskreduce.html"><a href="estriskreduce.html#penalising-the-optimization"><i class="fa fa-check"></i><b>5.2</b> Penalising the optimization</a></li>
+<li class="chapter" data-level="5.3" data-path="estriskreduce.html"><a href="estriskreduce.html#alternate-implementation-methods"><i class="fa fa-check"></i><b>5.3</b> Alternate implementation methods</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="somemaths.html"><a href="somemaths.html"><i class="fa fa-check"></i><b>6</b> Using estimation risk reduction techniques</a><ul>
+<li class="chapter" data-level="6.1" data-path="somemaths.html"><a href="somemaths.html#quantile-factor-modelling-and-regime-switching"><i class="fa fa-check"></i><b>6.1</b> Quantile factor modelling and regime switching</a></li>
+<li class="chapter" data-level="6.2" data-path="somemaths.html"><a href="somemaths.html#ridge-regression"><i class="fa fa-check"></i><b>6.2</b> Ridge regression</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="experiment.html"><a href="experiment.html"><i class="fa fa-check"></i><b>7</b> An empirical test using Sourth African equities</a><ul>
+<li class="chapter" data-level="7.1" data-path="experiment.html"><a href="experiment.html#data-and-methodology"><i class="fa fa-check"></i><b>7.1</b> Data and methodology</a></li>
+<li class="chapter" data-level="7.2" data-path="experiment.html"><a href="experiment.html#results"><i class="fa fa-check"></i><b>7.2</b> Results</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="experiment.html"><a href="experiment.html#going-to-rify"><i class="fa fa-check"></i><b>7.2.1</b> going to R’ify</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i><b>8</b> Conclusion</a><ul>
+<li class="chapter" data-level="8.1" data-path="conclusion.html"><a href="conclusion.html#avenues-for-further-research"><i class="fa fa-check"></i><b>8.1</b> Avenues for further research</a></li>
+</ul></li>
+<li class="appendix"><span><b>Appendix</b></span></li>
+<li class="chapter" data-level="A" data-path="abbreviations.html"><a href="abbreviations.html"><i class="fa fa-check"></i><b>A</b> Abbreviations</a></li>
+<li class="chapter" data-level="B" data-path="portfolio-mathematics.html"><a href="portfolio-mathematics.html"><i class="fa fa-check"></i><b>B</b> Portfolio mathematics</a><ul>
+<li class="chapter" data-level="B.1" data-path="portfolio-mathematics.html"><a href="portfolio-mathematics.html#mrcapp"><i class="fa fa-check"></i><b>B.1</b> Marginal risk contribution</a></li>
+<li class="chapter" data-level="B.2" data-path="portfolio-mathematics.html"><a href="portfolio-mathematics.html#ihimax"><i class="fa fa-check"></i><b>B.2</b> Minimum weight constrained IHI</a></li>
+<li class="chapter" data-level="B.3" data-path="portfolio-mathematics.html"><a href="portfolio-mathematics.html#volineq"><i class="fa fa-check"></i><b>B.3</b> Proof of the volatility order inequality</a></li>
+<li class="chapter" data-level="B.4" data-path="portfolio-mathematics.html"><a href="portfolio-mathematics.html#msrrbport"><i class="fa fa-check"></i><b>B.4</b> Maximum Sharpe ratio risk-based portfolios</a></li>
+</ul></li>
+<li class="chapter" data-level="C" data-path="reducing-estimation-error.html"><a href="reducing-estimation-error.html"><i class="fa fa-check"></i><b>C</b> Reducing estimation error</a><ul>
+<li class="chapter" data-level="C.1" data-path="reducing-estimation-error.html"><a href="reducing-estimation-error.html#qfmexample"><i class="fa fa-check"></i><b>C.1</b> Quantile factor modelling example</a></li>
+<li class="chapter" data-level="C.2" data-path="reducing-estimation-error.html"><a href="reducing-estimation-error.html#etaest"><i class="fa fa-check"></i><b>C.2</b> Estimating the ERC portfolio Lagrangian multiplier</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Flexible risk-based portfolio optimisation
+<a href="https://github.com/jhlandman/flex_rb_opt"><em>(Github link)</em></a></a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="experiment" class="section level1">
+<h1><span class="header-section-number">7</span> An empirical test using Sourth African equities</h1>
+<p>In this chapter, we test the various approaches outlined above for constructing risk-based portfolios
+using South African equity data. There are two sources of variation in this experiment: variation in
+risk-based portfolio type and variation in estimation risk reduction technique, all combinations of
+which are outlined in table <a href="somemaths.html#tab:portestpairs">6.1</a>. Each combination of portfolio-technique approach
+will be referred to as a pair.</p>
+<div id="data-and-methodology" class="section level2">
+<h2><span class="header-section-number">7.1</span> Data and methodology</h2>
+<p>The available data for this experiment are weekly total-returns for all equity stocks included in the
+Johannesburg Stock Exchange (JSE) All Share Index (ALSI) over the period ranging from the <span class="math inline">\(5^{th}\)</span>
+January 1996 to the <span class="math inline">\(1^{st}\)</span> November 2019. Weightings of the shares in the ALSI are also available,
+although this is a monthly series. This historical vector of the weights of the MW portfolio through
+time is denoted <span class="math inline">\(\hat{w}^{\text{mw}}_t\)</span>.</p>
+<p>The investigation uses a rolling estimation window of <span class="math inline">\(T = 400\)</span><a href="#fn8" class="footnote-ref" id="fnref8"><sup>8</sup></a>
+weekly observations to construct portfolios. Weekly data inputs are used with monthly rebalancing
+because of the high data volume requirement from chapter <a href="somemaths.html#somemaths">6</a>. The constructed portfolio
+<span class="math inline">\(\hat{w}_{t_i}\)</span> will be held out-of-sample over the interval <span class="math inline">\([t_i, t_{i + 1}]\)</span>, where <span class="math inline">\(t_i\)</span> denotes a
+month’s end. The entire holding period is from the <span class="math inline">\(30^{th}\)</span> of September 2003 to the <span class="math inline">\(27^{th}\)</span> of
+September 2019 a total of 16 years. Portfolios are constructed for two different asset universes;
+namely, the <span class="math inline">\(40\)</span> largest stocks and the <span class="math inline">\(100\)</span> largest stocks. The separation is to test the effect on
+portfolio performance of an investor broadening their universe. This methodology is outlined for each
+rebalancing date:</p>
+<ol style="list-style-type: decimal">
+<li><p>Of the stocks in the ALSI with a data history of at least length <span class="math inline">\(T\)</span>, choose the <span class="math inline">\(N\)</span> stocks with the
+largest market weights.</p></li>
+<li><p>Use the <span class="math inline">\(N \times T\)</span> matrix of sample returns to find asset weights for the relevant
+portfolio-technique pair.</p></li>
+<li><p>Hold the found portfolio <span class="math inline">\(\hat{w}\)</span> for one month, record the returns <span class="math inline">\(\hat{r}\)</span>, and calculate the
+portfolio turnover.</p></li>
+</ol>
+<p>This experiment is specific to this data and method. Therefore, it is important to outline some
+limitations of the results. Although framework <a href="genframework.html#eq:genopt">(3.7)</a> is broad, this experiment only analyses
+portfolios constructed with South African equity returns, and cannot be used to state facts about the
+portfolio construction process generally. The budget, long-only and maximum weight constraints were all
+applied for this experiment. Specifically the maximum weight constraint used is <span class="math inline">\(\alpha = 0.1\)</span>. The
+choice intends to provide a consistent basis for comparison across portfolio-technique pairs and
+ensures similarity to practical applications. Shares that have missing data were excluded at each
+rebalancing date with a filter, therefore the MW portfolio, where <span class="math inline">\(N = 40\)</span> may not be representative of
+the JSE Top 40 index. Transaction costs are ignored due to the liquid nature of the largest stocks,
+although this is a potential area for future improvement on the backtesting methodology.</p>
+</div>
+<div id="results" class="section level2">
+<h2><span class="header-section-number">7.2</span> Results</h2>
+<p>Before the results are reported, specific metrics that illustrate the effect of each technique and
+portfolio need to be introduced. The first is turnover (TO). It measures the magnitude of trading
+required on each rebalancing date. If there are <span class="math inline">\(m\)</span> rebalancing dates, then the TO is calculated as:
+<span class="math display">\[\begin{align}
+\text{TO} &amp; = \frac{6}{(m - 1)} \sum_{i = 1}^{m - 1} \sum_{j =1}^{N} |\hat{w}_{t_i, j}^\triangle - \hat{w}_{t_i, j}|,
+\end{align}\]</span>
+where <span class="math inline">\(\hat{w}_{t_i, j}^\triangle\)</span> is the buy-and-hold weight of the <span class="math inline">\(j^{th}\)</span> asset just before the
+rebalance at time <span class="math inline">\(t_i\)</span>. The turnover is annual and one-way only; hence, the scaling factor of
+<span class="math inline">\(\frac{6}{m-1}\)</span>. For a higher TO, the investor has increased risk when rebalancing that they will not
+enter into the new portfolio at the current market price. The maximum possible value of the TO is
+<span class="math inline">\(1200\%\)</span>, and the investor achieves it if they switch from one single stock portfolio to another at
+every rebalancing date.</p>
+<p>The next reporting metric is maximum drawdown (MDD), the definition of which requires the notion of
+cumulative wealth. The investor’s cumulative wealth at time <span class="math inline">\(t_j\)</span> is their return from time <span class="math inline">\(t_0\)</span>
+until time <span class="math inline">\(t_j\)</span> on a portfolio of one initial unit investment, and it is defined as:
+<span class="math display">\[\begin{align*}
+W_{t_j} &amp;= \prod_{i = 1}^{j} (1 + \hat{r}_{t_i}), 
+\end{align*}\]</span>
+where <span class="math inline">\(\hat{r}_{t_i}\)</span> is the return realised over the interval <span class="math inline">\([t_{i - 1}, t_i)\)</span>. The MDD is the
+biggest loss in cumulative wealth for the entire investment period, and is formulated as:
+<span class="math display">\[\begin{align}
+\text{MDD} &amp; = \underset{t_j \in \{t_1, ..., t_m\}}{\text{argmax}} \Big \{ \underset{t_i \in \{t_1, \text{...}, t_j\}}{\text{argmax} \{W_{t_i} \}} - W_{t_j}  \Big \} \; .
+\end{align}\]</span>
+MDD is an essential measure for money managers because excessive drawdowns lead to redemptions in
+their funds. <span class="citation">(Magdon-Ismail and Atiya <a href="#ref-M04" role="doc-biblioref">2004</a>)</span></p>
+<p>The last two measures are measures of concentration. As stated earlier, the risk-based investor is
+making a trade-off between weight concentration and risk concentration. A standard for weight
+concentration at a rebalancing date, the inverse Herfindahl index, has already been defined. But the
+IHI is general and could apply to multiple types of weights. For allocation weights the IHI at time
+<span class="math inline">\(t_i\)</span> is given as:
+<span class="math display">\[\begin{align}
+N^{\text{eff}}_{t_i} &amp;= \frac{1}{\sum_{j = 1}^N w_{t_i, j}^2} \; ,
+\end{align}\]</span>
+where $N^{}<em>{t_i} $ can be interpreted as the number of equal-weighted stocks the investor’s
+portfolio is equivalent to. The notation reflects the idea that the IHI represents the number of
+effective stocks in the portfolio. The upper bound of $N^{}</em>{t_i} $ is <span class="math inline">\(N\)</span> and the lower
+bound in the presence of a maximum allocation constraint is:
+<span class="math inline">\(({\lfloor \frac{1}{\alpha} \rfloor \cdot \alpha^2 + (1- \lfloor \frac{1}{\alpha}\rfloor \cdot \alpha)^2})^{-1}\)</span>
+, which is derived in appendix <a href="portfolio-mathematics.html#ihimax">B.2</a>. For the case when <span class="math inline">\(\alpha = 0.1\)</span> the lower bound is
+<span class="math inline">\(10\)</span>. Risk-weights can be taken instead of capital weights to measure the effectiveness of an asset on
+portfolio volatility. Since the TRCs sum to the portfolio volatility, the risk contributions can be
+scaled into risk-weights so that they sum to <span class="math inline">\(1\)</span>. The risk-weight for the <span class="math inline">\(j^{th}\)</span> asset at time <span class="math inline">\(t_i\)</span>
+is given as:
+<span class="math display">\[\begin{align}
+\text{RW}_{t_i, j} &amp;= \frac{\text{TRC}_{t_i, j}}{\sqrt{w_{t_i}^\intercal \Sigma w_{t_i}}}\; ,
+ \end{align}\]</span>
+where the inverse Herfindahl index approach can be applied again. The risk-weight IHI is written as:
+<span class="math display">\[\begin{align}
+N^\mathrm{rw}_{t_i}(RW_{t_i}) &amp;= \frac{1}{\sum_{j = 1}^N \text{RW}_{t_i, j}^2} \;.
+\end{align}\]</span>
+If <span class="math inline">\(\Sigma\)</span> is positive semi-definite, then the lower bound is <span class="math inline">\(1\)</span> even in the presence of the maximum
+allocation constraint, because one asset could have a positive weight and considerable volatility. The
+upper bound is once again <span class="math inline">\(N\)</span>. The concentration measures are reported as averages across all of the
+<span class="math inline">\(m\)</span> rebalancing dates.</p>
+<p>Let us first discuss the results for the GMV portfolios. The main objective of constructing GMV
+portfolios is to reduce the out-of-sample volatility of returns. The main aim of each GMV-technique
+pair is the same, but performance is measured against the GMV-SCM pair. Therefore, it makes sense to
+define a measure of each GMV-technique pair performance in the same way as <span class="citation">Richard and Roncalli (<a href="#ref-RR15" role="doc-biblioref">2015</a>)</span>, as a
+volatility reduction over the GMV-SCM pair:
+<span class="math display">\[\begin{align}
+\mathcal{VR}(w|w_{\text{gmv-scm}}) &amp; = \frac{\sigma(w_{\text{gmv-scm}}) - \sigma(w)}{\sigma(w_{\text{gmv-scm}})},
+\end{align}\]</span>
+where the <span class="math inline">\(\sigma(\cdot)\)</span> function measures a portfolio’s volatility.</p>
+<div id="going-to-rify" class="section level3">
+<h3><span class="header-section-number">7.2.1</span> going to R’ify</h3>
+
+</div>
+</div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references">
+<div id="ref-M04">
+<p>Magdon-Ismail, Malik, and Amir F Atiya. 2004. “Maximum Drawdown.” <em>Risk Magazine</em> 17 (10): 99–102.</p>
+</div>
+<div id="ref-RR15">
+<p>Richard, Jean-Charles, and Thierry Roncalli. 2015. “Smart Beta: Managing Diversification of Minimum Variance Portfolios.” In <em>Risk-Based and Factor Investing</em>, 31–63. Elsevier.</p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="somemaths.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="conclusion.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="book_assets/gitbook-2.6.7/js/app.min.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/lunr.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": false,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "night",
+"family": "sans",
+"size": 14
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

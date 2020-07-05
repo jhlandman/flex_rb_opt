@@ -86,7 +86,7 @@ portfolios seen in practice @J13.
 
 ## Risk-based portfolio properties
 
-Section \@ref(mpt) introduces the Markowitz efficient frontier.@S64 extends this work to deduce that
+Section \@ref(mpt) introduces the Markowitz efficient frontier. @S64 extends this work to deduce that
 there is an optimal portfolio called the tangency portfolio. He does make certain assumptions about
 investors' preferences and the presence of a risk-free asset. The market-weighted (MW) portfolio is the
 portfolio for which the efficient frontier is tangential to the line bisecting the y-axis at the

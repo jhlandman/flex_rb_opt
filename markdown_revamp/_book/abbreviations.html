@@ -4,12 +4,12 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Flexible risk-based portfolio optimisation (Github link)</title>
+  <title>A Abbreviations | Flexible risk-based portfolio optimisation (Github link)</title>
   <meta name="description" content="Flexible risk-based portfolio optimisation
 <a href="https://github.com/jhlandman/flex_rb_opt"><em>(Github link)</em></a>" />
   <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Flexible risk-based portfolio optimisation (Github link)" />
+  <meta property="og:title" content="A Abbreviations | Flexible risk-based portfolio optimisation (Github link)" />
   <meta property="og:type" content="book" />
   
   
@@ -17,7 +17,7 @@
   <meta name="github-repo" content="jhlandman/flex_rb_opt" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Flexible risk-based portfolio optimisation (Github link)" />
+  <meta name="twitter:title" content="A Abbreviations | Flexible risk-based portfolio optimisation (Github link)" />
   
   
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
-<link rel="next" href="introduction.html"/>
+<link rel="prev" href="conclusion.html"/>
+<link rel="next" href="portfolio-mathematics.html"/>
 <style type="text/css">
 p.abstract{
   text-align: center;
@@ -135,37 +135,141 @@ div.abstract{
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Flexible risk-based portfolio optimisation
-<a href="https://github.com/jhlandman/flex_rb_opt"><em>(Github link)</em></a></h1>
-<p class="author"><em><div class="line-block">Emlyn Flint<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>, Jayson Landman<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a></div></em></p>
-<p class="date"><em>2020-07-05</em></p>
-<div class="abstract">
-<p class="abstract">Abstract</p>
-<p>The purpose of this study is to present and test a general framework for risk-based investing. It permits various risk-based portfolios such as the global minimum variance, equal risk contribution and equal weight portfolios. The framework also allows for different estimation techniques to be used in finding the portfolios. The design of the study is to collate the existing research on risk-based investing, to analyse some modern methods to reduce estimation risk, to incorporate them in a single coherent framework, and to test the result with South African equity data. The techniques to reduce estimation risk draw from the usual mean-variance and risk-based optimisation literature. The techniques include regime switching, quantile regression, regularisation and subset resampling. In the South African experiment, risk-based portfolios materially outperformed the market weight portfolio out-of-sample using a Sharpe ratio measure. Additionally, the global minimum variance portfolio performed better than other risk-based portfolios. Given the long estimation window, no estimation techniques consistently outperformed the application of sample estimators only.</p>
-<p><strong>Keywords</strong>: risk-based investing, portfolio optimisaiton, estimation risk.</p>
-</div>
-</div>
-<div id="about" class="section level1">
-<h1><span class="header-section-number">1</span> About</h1>
-<p>This is a research paper created with the <code>bookdown</code> package in R. It is intended to promote
-reproducibility in academic research.</p>
-
-</div>
-<div class="footnotes">
-<hr />
-<ol start="1">
-<li id="fn1"><p>Legae Peresec<a href="#fnref1" class="footnote-back">↩</a></p></li>
-<li id="fn2"><p>Ninety One Asset Management<a href="#fnref2" class="footnote-back">↩</a></p></li>
-</ol>
+<div id="abbreviations" class="section level1">
+<h1><span class="header-section-number">A</span> Abbreviations</h1>
+<table>
+<caption><span id="tab:portabb">Table A.1: </span> Portfolio type abbreviations.</caption>
+<thead>
+<tr class="header">
+<th>Full name</th>
+<th>Abbrevation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Mean-variance optimal</td>
+<td>MVO</td>
+</tr>
+<tr class="even">
+<td>Global minimum variance</td>
+<td>GMV</td>
+</tr>
+<tr class="odd">
+<td>Equal weight</td>
+<td>EW</td>
+</tr>
+<tr class="even">
+<td>Equal risk contribution</td>
+<td>ERC</td>
+</tr>
+<tr class="odd">
+<td>Market weight</td>
+<td>MW</td>
+</tr>
+<tr class="even">
+<td>Maximum Sharpe ratio</td>
+<td>MSR</td>
+</tr>
+</tbody>
+</table>
+<table>
+<caption><span id="tab:metricabb">Table A.2: </span> Metric abbreviations.</caption>
+<thead>
+<tr class="header">
+<th>Full name</th>
+<th>Abbrevation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Marginal risk contribution</td>
+<td>MRC</td>
+</tr>
+<tr class="even">
+<td>Total risk contribution</td>
+<td>TRC</td>
+</tr>
+<tr class="odd">
+<td>Inverse Herfindahl index</td>
+<td>IHI</td>
+</tr>
+<tr class="even">
+<td>Risk-weights</td>
+<td>RS</td>
+</tr>
+<tr class="odd">
+<td>Marginal risk-weights</td>
+<td>MRW</td>
+</tr>
+<tr class="even">
+<td>Total risk-weights</td>
+<td>TRW</td>
+</tr>
+<tr class="odd">
+<td>Sharpe ratio</td>
+<td>SR</td>
+</tr>
+<tr class="even">
+<td>Squared Mahalanobis distance</td>
+<td>SMD</td>
+</tr>
+<tr class="odd">
+<td>Mean square error</td>
+<td>MSE</td>
+</tr>
+<tr class="even">
+<td>Turnover rate</td>
+<td>TO</td>
+</tr>
+<tr class="odd">
+<td>Maximum drawdown</td>
+<td>MDD</td>
+</tr>
+</tbody>
+</table>
+<table>
+<caption><span id="tab:esttech">Table A.3: </span> Estimation techniques.</caption>
+<thead>
+<tr class="header">
+<th>Full name</th>
+<th>Abbrevation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Sample covariance matrix</td>
+<td>SCM</td>
+</tr>
+<tr class="even">
+<td>Regime switching</td>
+<td>RS</td>
+</tr>
+<tr class="odd">
+<td>Quantile factor modelling</td>
+<td>QFM</td>
+</tr>
+<tr class="even">
+<td>Quantile factor modelling with regime switching</td>
+<td>QRS</td>
+</tr>
+<tr class="odd">
+<td>Ridge regression</td>
+<td>RR</td>
+</tr>
+<tr class="even">
+<td>Subset re-sampling</td>
+<td>SRS</td>
+</tr>
+</tbody>
+</table>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="introduction.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="conclusion.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="portfolio-mathematics.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="book_assets/gitbook-2.6.7/js/app.min.js"></script>
