@@ -8,6 +8,161 @@ will be referred to as a pair.
 
 ## Data and methodology
 
+### Code to clean incoming data
+
+```{r data_read_init, cache = TRUE}
+library(readxl)
+library(tidyr)
+library(dplyr)
+library(lubridate)
+library(magrittr)
+library(rlang)
+library(ggplot2)
+library(knitr)
+
+# sourcing data ------------------------------------------------------------------------------------
+weekly_ret <- read_xlsx(
+  "data/data_emlyn.xlsx",
+  sheet = "Weekly TRets",
+  na = c("", "NaN")
+)
+
+month_ret <- read_xlsx(
+  "data/data_emlyn.xlsx",
+  sheet = "Monthly TRets",
+  na = c("", "NaN")
+)
+
+alsi_weights <- read_xlsx(
+  "data/data_emlyn.xlsx",
+  sheet = "ALSI Weights",
+  na = c("", "Nan")
+)
+
+# cleaning data ------------------------------------------------------------------------------------
+weekly_ret <- weekly_ret %>% 
+  rename("date" = "...1") %>% 
+  mutate(date = as.Date(.data$date)) %>%
+  pivot_longer(setdiff(colnames(weekly_ret), c("...1"))) %>% 
+  drop_na() %>% 
+  arrange(.data$date) %>% 
+  mutate(join_col = paste0(month(date), year(date)))
+
+month_ret <- month_ret %>% 
+  rename("date" = "...1") %>% 
+  mutate(date = as.Date(.data$date)) %>%
+  pivot_longer(setdiff(colnames(month_ret), c("...1"))) %>% 
+  drop_na() %>% 
+  arrange(.data$date) %>% 
+  mutate(join_col = paste0(month(date), year(date)))
+
+alsi_weights <- alsi_weights %>% 
+  rename("date" = "...2") %>% 
+  select(-.data$SumCheck) %>% 
+  mutate(date = as.Date(.data$date) + 15) %>% # weights are at end of month, making start
+  pivot_longer(setdiff(colnames(alsi_weights), c("SumCheck", "...2"))) %>% 
+  drop_na() %>% 
+  arrange(.data$date) %>% 
+  mutate(join_col = paste0(month(date), year(date)))
+
+# joining data -------------------------------------------------------------------------------------
+full_ret <- weekly_ret %>% 
+  left_join(
+    month_ret, 
+    by = c("join_col", "name"), 
+    suffix = c("_week", "_month")
+  ) %>% 
+  select(
+    date = .data$date_week, 
+    .data$name, 
+    week_ret = .data$value_week, 
+    month_ret = .data$value_month, 
+    .data$join_col
+  ) %>% 
+  left_join(
+    alsi_weights,
+    by = c("join_col", "name"),
+    suffix = c("_full", "_weights")
+  ) %>% 
+  select(
+    date = .data$date_full,
+    .data$name,
+    .data$week_ret,
+    .data$month_ret,
+    month_weight_start = .data$value,
+    month_index = .data$join_col
+  )
+
+# keeping complete cases only ----------------------------------------------------------------------
+
+complete_per <- sum(complete.cases(full_ret))/nrow(full_ret)
+# data is 98.2% complete
+
+incomp_weight_per <- sum(full_ret[!complete.cases(full_ret),]$month_weight_start, na.rm = TRUE) / 
+  sum(full_ret$month_weight_start, na.rm = TRUE)
+# but only 0.2% of the weight is in the incomplete data, so it is largely
+# isolated to the long tail of small stocks that are outside of the
+# top 40 and 100 and are therefore not needed in this research
+
+full_ret <- full_ret[complete.cases(full_ret),]
+
+# plot coverage
+full_ret %>% 
+  filter(.data$month_weight_start >= 0) %>% 
+  group_by(date) %>% 
+  count() %>% 
+  ggplot(aes(.data$date, .data$n)) + 
+  geom_line() +
+  ggtitle("coverage through time")
+
+# getting indices ----------------------------------------------------------------------------------
+
+top40_month_weights <- full_ret %>%
+  group_by(.data$month_index) %>%
+    filter(.data$date == min(.data$date)) %>% 
+    mutate(size_order = rank(-.data$month_weight_start)) %>% 
+    filter(.data$size_order <= 40) %>% 
+    mutate(top40_weight = .data$month_weight_start / sum(.data$month_weight_start)) %>% 
+  ungroup() %>% 
+  select(.data$month_index, .data$name, .data$top40_weight)
+
+
+top100_month_weights <- full_ret %>%
+  group_by(.data$month_index) %>%
+  filter(.data$date == min(.data$date)) %>% 
+  mutate(size_order = rank(-.data$month_weight_start)) %>% 
+  filter(.data$size_order <= 100) %>% 
+  mutate(top100_weight = .data$month_weight_start / sum(.data$month_weight_start)) %>% 
+  ungroup() %>% 
+  select(.data$month_index, .data$name, .data$top100_weight)
+
+
+full_ret <- full_ret %>%
+  full_join(
+    top40_month_weights,
+    by = c("month_index", "name")
+  ) %>%
+  full_join(
+    top100_month_weights,
+    by = c("month_index", "name")
+  ) %>%
+  select(
+    .data$date,
+    .data$name,
+    .data$week_ret,
+    .data$month_ret,
+    .data$top40_weight,
+    .data$top100_weight,
+    .data$month_index
+  ) %>%
+  replace_na(list(top40_weight = 0, top100_weight = 0))
+
+saveRDS(full_ret, file = "data/full_ret.rds")
+
+head(full_ret, 10)
+```
+### Comments on data
+
 The available data for this experiment are weekly total-returns for all equity stocks included in the
 Johannesburg Stock Exchange (JSE) All Share Index (ALSI) over the period ranging from the $5^{th}$
 January 1996 to the $1^{st}$ November 2019. Weightings of the shares in the ALSI are also available,
@@ -34,6 +189,47 @@ portfolio-technique pair.
 
 3. Hold the found portfolio $\hat{w}$ for one month, record the returns $\hat{r}$, and calculate the
 portfolio turnover.
+
+### Data preparation for rebalance dats
+
+```{r dat_model_rebal, cache = TRUE}
+library(rlang)
+library(magrittr)
+library(dplyr)
+library(data.table)
+library(tidyr)
+
+full_ret <- readRDS("data/full_ret.rds")
+sample_est_wind <- 400
+
+
+rebal_est_ranges <- full_ret %>% 
+  select(.data$date, .data$month_index) %>% 
+  distinct() %>% 
+  mutate(start_date = shift(.data$date, sample_est_wind)) %>% 
+  mutate(end_date = shift(.data$date, 1)) %>% 
+  na.omit() %>% 
+  group_by(.data$month_index) %>% 
+    filter(.data$date == min(.data$date)) %>% 
+  ungroup() %>%
+  select(.data$month_index, .data$start_date, .data$end_date)
+
+model_rebal_dat <- tibble(month_index = rebal_est_ranges$month_index, data = list(NULL))
+for (i in seq_along(rebal_est_ranges$month_index)) {
+  dat_now <- full_ret %>% 
+    filter(.data$date <= rebal_est_ranges[i, ]$end_date & 
+             .data$date >= rebal_est_ranges[i, ]$start_date) %>% 
+    mutate(month_index = rebal_est_ranges[i, ]$month_index) %>% 
+    nest(data = c("date", "name", "week_ret", "month_ret", "top40_weight", "top100_weight"))
+  model_rebal_dat[i, ] <- dat_now[1, ]
+}
+
+saveRDS(model_rebal_dat, file = "data/model_rebal_dat.rds")
+head(model_rebal_dat, 6)
+```
+
+
+### Limitations
 
 This experiment is specific to this data and method. Therefore, it is important to outline some
 limitations of the results. Although framework \@ref(eq:genopt) is broad, this experiment only analyses

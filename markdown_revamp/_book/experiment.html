@@ -7,7 +7,7 @@
   <title>7 An empirical test using Sourth African equities | Flexible risk-based portfolio optimisation (Github link)</title>
   <meta name="description" content="Flexible risk-based portfolio optimisation
 <a href="https://github.com/jhlandman/flex_rb_opt"><em>(Github link)</em></a>" />
-  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
   <meta property="og:title" content="7 An empirical test using Sourth African equities | Flexible risk-based portfolio optimisation (Github link)" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 
 
 
-<meta name="date" content="2020-07-05" />
+<meta name="date" content="2020-07-12" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -43,14 +43,15 @@ div.abstract{
   width: 90%;
 }
 </style>
-<script src="book_assets/jquery-2.2.3/jquery.min.js"></script>
-<link href="book_assets/gitbook-2.6.7/css/style.css" rel="stylesheet" />
-<link href="book_assets/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
-<link href="book_assets/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
-<link href="book_assets/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
-<link href="book_assets/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
-<link href="book_assets/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
-<link href="book_assets/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+<script src="libs/header-attrs-2.3/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
 
 
 
@@ -60,8 +61,72 @@ div.abstract{
 
 
 
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 
 
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
 
 </head>
 
@@ -77,42 +142,60 @@ div.abstract{
 <ul class="summary">
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> About</a></li>
 <li class="chapter" data-level="2" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>2</b> Introduction</a></li>
-<li class="chapter" data-level="3" data-path="genframework.html"><a href="genframework.html"><i class="fa fa-check"></i><b>3</b> A framework for constructing risk-based portfolios</a><ul>
+<li class="chapter" data-level="3" data-path="genframework.html"><a href="genframework.html"><i class="fa fa-check"></i><b>3</b> A framework for constructing risk-based portfolios</a>
+<ul>
 <li class="chapter" data-level="3.1" data-path="genframework.html"><a href="genframework.html#mpt"><i class="fa fa-check"></i><b>3.1</b> An overview of modern portfolio theory</a></li>
 <li class="chapter" data-level="3.2" data-path="genframework.html"><a href="genframework.html#introducing-risk-based-investing"><i class="fa fa-check"></i><b>3.2</b> Introducing risk-based investing</a></li>
 <li class="chapter" data-level="3.3" data-path="genframework.html"><a href="genframework.html#improving-risk-based-portfolios"><i class="fa fa-check"></i><b>3.3</b> Improving risk-based portfolios</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="rbportch.html"><a href="rbportch.html"><i class="fa fa-check"></i><b>4</b> Overview of risk-based portfolios</a><ul>
+<li class="chapter" data-level="4" data-path="rbportch.html"><a href="rbportch.html"><i class="fa fa-check"></i><b>4</b> Overview of risk-based portfolios</a>
+<ul>
 <li class="chapter" data-level="4.1" data-path="rbportch.html"><a href="rbportch.html#risk-based-portfolio-types"><i class="fa fa-check"></i><b>4.1</b> Risk-based portfolio types</a></li>
-<li class="chapter" data-level="4.2" data-path="rbportch.html"><a href="rbportch.html#risk-based-portfolio-properties"><i class="fa fa-check"></i><b>4.2</b> Risk-based portfolio properties</a></li>
+<li class="chapter" data-level="4.2" data-path="rbportch.html"><a href="rbportch.html#risk-based-portfolio-properties"><i class="fa fa-check"></i><b>4.2</b> Risk-based portfolio properties</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="rbportch.html"><a href="rbportch.html#code-to-find-portfolios"><i class="fa fa-check"></i><b>4.2.1</b> Code to find portfolios</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="estriskreduce.html"><a href="estriskreduce.html"><i class="fa fa-check"></i><b>5</b> Estimation risk reduction techniques</a><ul>
+</ul></li>
+<li class="chapter" data-level="5" data-path="estriskreduce.html"><a href="estriskreduce.html"><i class="fa fa-check"></i><b>5</b> Estimation risk reduction techniques</a>
+<ul>
 <li class="chapter" data-level="5.1" data-path="estriskreduce.html"><a href="estriskreduce.html#improving-optimisation-inputs"><i class="fa fa-check"></i><b>5.1</b> Improving optimisation inputs</a></li>
 <li class="chapter" data-level="5.2" data-path="estriskreduce.html"><a href="estriskreduce.html#penalising-the-optimization"><i class="fa fa-check"></i><b>5.2</b> Penalising the optimization</a></li>
 <li class="chapter" data-level="5.3" data-path="estriskreduce.html"><a href="estriskreduce.html#alternate-implementation-methods"><i class="fa fa-check"></i><b>5.3</b> Alternate implementation methods</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="somemaths.html"><a href="somemaths.html"><i class="fa fa-check"></i><b>6</b> Using estimation risk reduction techniques</a><ul>
+<li class="chapter" data-level="6" data-path="somemaths.html"><a href="somemaths.html"><i class="fa fa-check"></i><b>6</b> Using estimation risk reduction techniques</a>
+<ul>
 <li class="chapter" data-level="6.1" data-path="somemaths.html"><a href="somemaths.html#quantile-factor-modelling-and-regime-switching"><i class="fa fa-check"></i><b>6.1</b> Quantile factor modelling and regime switching</a></li>
 <li class="chapter" data-level="6.2" data-path="somemaths.html"><a href="somemaths.html#ridge-regression"><i class="fa fa-check"></i><b>6.2</b> Ridge regression</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="experiment.html"><a href="experiment.html"><i class="fa fa-check"></i><b>7</b> An empirical test using Sourth African equities</a><ul>
-<li class="chapter" data-level="7.1" data-path="experiment.html"><a href="experiment.html#data-and-methodology"><i class="fa fa-check"></i><b>7.1</b> Data and methodology</a></li>
-<li class="chapter" data-level="7.2" data-path="experiment.html"><a href="experiment.html#results"><i class="fa fa-check"></i><b>7.2</b> Results</a><ul>
+<li class="chapter" data-level="7" data-path="experiment.html"><a href="experiment.html"><i class="fa fa-check"></i><b>7</b> An empirical test using Sourth African equities</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="experiment.html"><a href="experiment.html#data-and-methodology"><i class="fa fa-check"></i><b>7.1</b> Data and methodology</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="experiment.html"><a href="experiment.html#code-to-clean-incoming-data"><i class="fa fa-check"></i><b>7.1.1</b> Code to clean incoming data</a></li>
+<li class="chapter" data-level="7.1.2" data-path="experiment.html"><a href="experiment.html#comments-on-data"><i class="fa fa-check"></i><b>7.1.2</b> Comments on data</a></li>
+<li class="chapter" data-level="7.1.3" data-path="experiment.html"><a href="experiment.html#data-preparation-for-rebalance-dats"><i class="fa fa-check"></i><b>7.1.3</b> Data preparation for rebalance dats</a></li>
+<li class="chapter" data-level="7.1.4" data-path="experiment.html"><a href="experiment.html#limitations"><i class="fa fa-check"></i><b>7.1.4</b> Limitations</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="experiment.html"><a href="experiment.html#results"><i class="fa fa-check"></i><b>7.2</b> Results</a>
+<ul>
 <li class="chapter" data-level="7.2.1" data-path="experiment.html"><a href="experiment.html#going-to-rify"><i class="fa fa-check"></i><b>7.2.1</b> going to R’ify</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i><b>8</b> Conclusion</a><ul>
+<li class="chapter" data-level="8" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i><b>8</b> Conclusion</a>
+<ul>
 <li class="chapter" data-level="8.1" data-path="conclusion.html"><a href="conclusion.html#avenues-for-further-research"><i class="fa fa-check"></i><b>8.1</b> Avenues for further research</a></li>
 </ul></li>
 <li class="appendix"><span><b>Appendix</b></span></li>
 <li class="chapter" data-level="A" data-path="abbreviations.html"><a href="abbreviations.html"><i class="fa fa-check"></i><b>A</b> Abbreviations</a></li>
-<li class="chapter" data-level="B" data-path="portfolio-mathematics.html"><a href="portfolio-mathematics.html"><i class="fa fa-check"></i><b>B</b> Portfolio mathematics</a><ul>
+<li class="chapter" data-level="B" data-path="portfolio-mathematics.html"><a href="portfolio-mathematics.html"><i class="fa fa-check"></i><b>B</b> Portfolio mathematics</a>
+<ul>
 <li class="chapter" data-level="B.1" data-path="portfolio-mathematics.html"><a href="portfolio-mathematics.html#mrcapp"><i class="fa fa-check"></i><b>B.1</b> Marginal risk contribution</a></li>
 <li class="chapter" data-level="B.2" data-path="portfolio-mathematics.html"><a href="portfolio-mathematics.html#ihimax"><i class="fa fa-check"></i><b>B.2</b> Minimum weight constrained IHI</a></li>
 <li class="chapter" data-level="B.3" data-path="portfolio-mathematics.html"><a href="portfolio-mathematics.html#volineq"><i class="fa fa-check"></i><b>B.3</b> Proof of the volatility order inequality</a></li>
 <li class="chapter" data-level="B.4" data-path="portfolio-mathematics.html"><a href="portfolio-mathematics.html#msrrbport"><i class="fa fa-check"></i><b>B.4</b> Maximum Sharpe ratio risk-based portfolios</a></li>
 </ul></li>
-<li class="chapter" data-level="C" data-path="reducing-estimation-error.html"><a href="reducing-estimation-error.html"><i class="fa fa-check"></i><b>C</b> Reducing estimation error</a><ul>
+<li class="chapter" data-level="C" data-path="reducing-estimation-error.html"><a href="reducing-estimation-error.html"><i class="fa fa-check"></i><b>C</b> Reducing estimation error</a>
+<ul>
 <li class="chapter" data-level="C.1" data-path="reducing-estimation-error.html"><a href="reducing-estimation-error.html#qfmexample"><i class="fa fa-check"></i><b>C.1</b> Quantile factor modelling example</a></li>
 <li class="chapter" data-level="C.2" data-path="reducing-estimation-error.html"><a href="reducing-estimation-error.html#etaest"><i class="fa fa-check"></i><b>C.2</b> Estimating the ERC portfolio Lagrangian multiplier</a></li>
 </ul></li>
@@ -135,15 +218,185 @@ div.abstract{
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="experiment" class="section level1">
+<div id="experiment" class="section level1" number="7">
 <h1><span class="header-section-number">7</span> An empirical test using Sourth African equities</h1>
 <p>In this chapter, we test the various approaches outlined above for constructing risk-based portfolios
 using South African equity data. There are two sources of variation in this experiment: variation in
 risk-based portfolio type and variation in estimation risk reduction technique, all combinations of
 which are outlined in table <a href="somemaths.html#tab:portestpairs">6.1</a>. Each combination of portfolio-technique approach
 will be referred to as a pair.</p>
-<div id="data-and-methodology" class="section level2">
+<div id="data-and-methodology" class="section level2" number="7.1">
 <h2><span class="header-section-number">7.1</span> Data and methodology</h2>
+<div id="code-to-clean-incoming-data" class="section level3" number="7.1.1">
+<h3><span class="header-section-number">7.1.1</span> Code to clean incoming data</h3>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="experiment.html#cb3-1"></a><span class="kw">library</span>(readxl)</span>
+<span id="cb3-2"><a href="experiment.html#cb3-2"></a><span class="kw">library</span>(tidyr)</span>
+<span id="cb3-3"><a href="experiment.html#cb3-3"></a><span class="kw">library</span>(dplyr)</span>
+<span id="cb3-4"><a href="experiment.html#cb3-4"></a><span class="kw">library</span>(lubridate)</span>
+<span id="cb3-5"><a href="experiment.html#cb3-5"></a><span class="kw">library</span>(magrittr)</span>
+<span id="cb3-6"><a href="experiment.html#cb3-6"></a><span class="kw">library</span>(rlang)</span>
+<span id="cb3-7"><a href="experiment.html#cb3-7"></a><span class="kw">library</span>(ggplot2)</span>
+<span id="cb3-8"><a href="experiment.html#cb3-8"></a><span class="kw">library</span>(knitr)</span>
+<span id="cb3-9"><a href="experiment.html#cb3-9"></a></span>
+<span id="cb3-10"><a href="experiment.html#cb3-10"></a><span class="co"># sourcing data ------------------------------------------------------------------------------------</span></span>
+<span id="cb3-11"><a href="experiment.html#cb3-11"></a>weekly_ret &lt;-<span class="st"> </span><span class="kw">read_xlsx</span>(</span>
+<span id="cb3-12"><a href="experiment.html#cb3-12"></a>  <span class="st">&quot;data/data_emlyn.xlsx&quot;</span>,</span>
+<span id="cb3-13"><a href="experiment.html#cb3-13"></a>  <span class="dt">sheet =</span> <span class="st">&quot;Weekly TRets&quot;</span>,</span>
+<span id="cb3-14"><a href="experiment.html#cb3-14"></a>  <span class="dt">na =</span> <span class="kw">c</span>(<span class="st">&quot;&quot;</span>, <span class="st">&quot;NaN&quot;</span>)</span>
+<span id="cb3-15"><a href="experiment.html#cb3-15"></a>)</span></code></pre></div>
+<pre><code>## New names:
+## * `` -&gt; ...1</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="experiment.html#cb5-1"></a>month_ret &lt;-<span class="st"> </span><span class="kw">read_xlsx</span>(</span>
+<span id="cb5-2"><a href="experiment.html#cb5-2"></a>  <span class="st">&quot;data/data_emlyn.xlsx&quot;</span>,</span>
+<span id="cb5-3"><a href="experiment.html#cb5-3"></a>  <span class="dt">sheet =</span> <span class="st">&quot;Monthly TRets&quot;</span>,</span>
+<span id="cb5-4"><a href="experiment.html#cb5-4"></a>  <span class="dt">na =</span> <span class="kw">c</span>(<span class="st">&quot;&quot;</span>, <span class="st">&quot;NaN&quot;</span>)</span>
+<span id="cb5-5"><a href="experiment.html#cb5-5"></a>)</span></code></pre></div>
+<pre><code>## New names:
+## * `` -&gt; ...1</code></pre>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="experiment.html#cb7-1"></a>alsi_weights &lt;-<span class="st"> </span><span class="kw">read_xlsx</span>(</span>
+<span id="cb7-2"><a href="experiment.html#cb7-2"></a>  <span class="st">&quot;data/data_emlyn.xlsx&quot;</span>,</span>
+<span id="cb7-3"><a href="experiment.html#cb7-3"></a>  <span class="dt">sheet =</span> <span class="st">&quot;ALSI Weights&quot;</span>,</span>
+<span id="cb7-4"><a href="experiment.html#cb7-4"></a>  <span class="dt">na =</span> <span class="kw">c</span>(<span class="st">&quot;&quot;</span>, <span class="st">&quot;Nan&quot;</span>)</span>
+<span id="cb7-5"><a href="experiment.html#cb7-5"></a>)</span></code></pre></div>
+<pre><code>## New names:
+## * `` -&gt; ...2</code></pre>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="experiment.html#cb9-1"></a><span class="co"># cleaning data ------------------------------------------------------------------------------------</span></span>
+<span id="cb9-2"><a href="experiment.html#cb9-2"></a>weekly_ret &lt;-<span class="st"> </span>weekly_ret <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb9-3"><a href="experiment.html#cb9-3"></a><span class="st">  </span><span class="kw">rename</span>(<span class="st">&quot;date&quot;</span> =<span class="st"> &quot;...1&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb9-4"><a href="experiment.html#cb9-4"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">date =</span> <span class="kw">as.Date</span>(.data<span class="op">$</span>date)) <span class="op">%&gt;%</span></span>
+<span id="cb9-5"><a href="experiment.html#cb9-5"></a><span class="st">  </span><span class="kw">pivot_longer</span>(<span class="kw">setdiff</span>(<span class="kw">colnames</span>(weekly_ret), <span class="kw">c</span>(<span class="st">&quot;...1&quot;</span>))) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb9-6"><a href="experiment.html#cb9-6"></a><span class="st">  </span><span class="kw">drop_na</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb9-7"><a href="experiment.html#cb9-7"></a><span class="st">  </span><span class="kw">arrange</span>(.data<span class="op">$</span>date) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb9-8"><a href="experiment.html#cb9-8"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">join_col =</span> <span class="kw">paste0</span>(<span class="kw">month</span>(date), <span class="kw">year</span>(date)))</span>
+<span id="cb9-9"><a href="experiment.html#cb9-9"></a></span>
+<span id="cb9-10"><a href="experiment.html#cb9-10"></a>month_ret &lt;-<span class="st"> </span>month_ret <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb9-11"><a href="experiment.html#cb9-11"></a><span class="st">  </span><span class="kw">rename</span>(<span class="st">&quot;date&quot;</span> =<span class="st"> &quot;...1&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb9-12"><a href="experiment.html#cb9-12"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">date =</span> <span class="kw">as.Date</span>(.data<span class="op">$</span>date)) <span class="op">%&gt;%</span></span>
+<span id="cb9-13"><a href="experiment.html#cb9-13"></a><span class="st">  </span><span class="kw">pivot_longer</span>(<span class="kw">setdiff</span>(<span class="kw">colnames</span>(month_ret), <span class="kw">c</span>(<span class="st">&quot;...1&quot;</span>))) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb9-14"><a href="experiment.html#cb9-14"></a><span class="st">  </span><span class="kw">drop_na</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb9-15"><a href="experiment.html#cb9-15"></a><span class="st">  </span><span class="kw">arrange</span>(.data<span class="op">$</span>date) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb9-16"><a href="experiment.html#cb9-16"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">join_col =</span> <span class="kw">paste0</span>(<span class="kw">month</span>(date), <span class="kw">year</span>(date)))</span>
+<span id="cb9-17"><a href="experiment.html#cb9-17"></a></span>
+<span id="cb9-18"><a href="experiment.html#cb9-18"></a>alsi_weights &lt;-<span class="st"> </span>alsi_weights <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb9-19"><a href="experiment.html#cb9-19"></a><span class="st">  </span><span class="kw">rename</span>(<span class="st">&quot;date&quot;</span> =<span class="st"> &quot;...2&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb9-20"><a href="experiment.html#cb9-20"></a><span class="st">  </span><span class="kw">select</span>(<span class="op">-</span>.data<span class="op">$</span>SumCheck) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb9-21"><a href="experiment.html#cb9-21"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">date =</span> <span class="kw">as.Date</span>(.data<span class="op">$</span>date) <span class="op">+</span><span class="st"> </span><span class="dv">15</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># weights are at end of month, making start</span></span>
+<span id="cb9-22"><a href="experiment.html#cb9-22"></a><span class="st">  </span><span class="kw">pivot_longer</span>(<span class="kw">setdiff</span>(<span class="kw">colnames</span>(alsi_weights), <span class="kw">c</span>(<span class="st">&quot;SumCheck&quot;</span>, <span class="st">&quot;...2&quot;</span>))) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb9-23"><a href="experiment.html#cb9-23"></a><span class="st">  </span><span class="kw">drop_na</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb9-24"><a href="experiment.html#cb9-24"></a><span class="st">  </span><span class="kw">arrange</span>(.data<span class="op">$</span>date) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb9-25"><a href="experiment.html#cb9-25"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">join_col =</span> <span class="kw">paste0</span>(<span class="kw">month</span>(date), <span class="kw">year</span>(date)))</span>
+<span id="cb9-26"><a href="experiment.html#cb9-26"></a></span>
+<span id="cb9-27"><a href="experiment.html#cb9-27"></a><span class="co"># joining data -------------------------------------------------------------------------------------</span></span>
+<span id="cb9-28"><a href="experiment.html#cb9-28"></a>full_ret &lt;-<span class="st"> </span>weekly_ret <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb9-29"><a href="experiment.html#cb9-29"></a><span class="st">  </span><span class="kw">left_join</span>(</span>
+<span id="cb9-30"><a href="experiment.html#cb9-30"></a>    month_ret, </span>
+<span id="cb9-31"><a href="experiment.html#cb9-31"></a>    <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;join_col&quot;</span>, <span class="st">&quot;name&quot;</span>), </span>
+<span id="cb9-32"><a href="experiment.html#cb9-32"></a>    <span class="dt">suffix =</span> <span class="kw">c</span>(<span class="st">&quot;_week&quot;</span>, <span class="st">&quot;_month&quot;</span>)</span>
+<span id="cb9-33"><a href="experiment.html#cb9-33"></a>  ) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb9-34"><a href="experiment.html#cb9-34"></a><span class="st">  </span><span class="kw">select</span>(</span>
+<span id="cb9-35"><a href="experiment.html#cb9-35"></a>    <span class="dt">date =</span> .data<span class="op">$</span>date_week, </span>
+<span id="cb9-36"><a href="experiment.html#cb9-36"></a>    .data<span class="op">$</span>name, </span>
+<span id="cb9-37"><a href="experiment.html#cb9-37"></a>    <span class="dt">week_ret =</span> .data<span class="op">$</span>value_week, </span>
+<span id="cb9-38"><a href="experiment.html#cb9-38"></a>    <span class="dt">month_ret =</span> .data<span class="op">$</span>value_month, </span>
+<span id="cb9-39"><a href="experiment.html#cb9-39"></a>    .data<span class="op">$</span>join_col</span>
+<span id="cb9-40"><a href="experiment.html#cb9-40"></a>  ) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb9-41"><a href="experiment.html#cb9-41"></a><span class="st">  </span><span class="kw">left_join</span>(</span>
+<span id="cb9-42"><a href="experiment.html#cb9-42"></a>    alsi_weights,</span>
+<span id="cb9-43"><a href="experiment.html#cb9-43"></a>    <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;join_col&quot;</span>, <span class="st">&quot;name&quot;</span>),</span>
+<span id="cb9-44"><a href="experiment.html#cb9-44"></a>    <span class="dt">suffix =</span> <span class="kw">c</span>(<span class="st">&quot;_full&quot;</span>, <span class="st">&quot;_weights&quot;</span>)</span>
+<span id="cb9-45"><a href="experiment.html#cb9-45"></a>  ) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb9-46"><a href="experiment.html#cb9-46"></a><span class="st">  </span><span class="kw">select</span>(</span>
+<span id="cb9-47"><a href="experiment.html#cb9-47"></a>    <span class="dt">date =</span> .data<span class="op">$</span>date_full,</span>
+<span id="cb9-48"><a href="experiment.html#cb9-48"></a>    .data<span class="op">$</span>name,</span>
+<span id="cb9-49"><a href="experiment.html#cb9-49"></a>    .data<span class="op">$</span>week_ret,</span>
+<span id="cb9-50"><a href="experiment.html#cb9-50"></a>    .data<span class="op">$</span>month_ret,</span>
+<span id="cb9-51"><a href="experiment.html#cb9-51"></a>    <span class="dt">month_weight_start =</span> .data<span class="op">$</span>value,</span>
+<span id="cb9-52"><a href="experiment.html#cb9-52"></a>    <span class="dt">month_index =</span> .data<span class="op">$</span>join_col</span>
+<span id="cb9-53"><a href="experiment.html#cb9-53"></a>  )</span>
+<span id="cb9-54"><a href="experiment.html#cb9-54"></a></span>
+<span id="cb9-55"><a href="experiment.html#cb9-55"></a><span class="co"># keeping complete cases only ----------------------------------------------------------------------</span></span>
+<span id="cb9-56"><a href="experiment.html#cb9-56"></a></span>
+<span id="cb9-57"><a href="experiment.html#cb9-57"></a>complete_per &lt;-<span class="st"> </span><span class="kw">sum</span>(<span class="kw">complete.cases</span>(full_ret))<span class="op">/</span><span class="kw">nrow</span>(full_ret)</span>
+<span id="cb9-58"><a href="experiment.html#cb9-58"></a><span class="co"># data is 98.2% complete</span></span>
+<span id="cb9-59"><a href="experiment.html#cb9-59"></a></span>
+<span id="cb9-60"><a href="experiment.html#cb9-60"></a>incomp_weight_per &lt;-<span class="st"> </span><span class="kw">sum</span>(full_ret[<span class="op">!</span><span class="kw">complete.cases</span>(full_ret),]<span class="op">$</span>month_weight_start, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>) <span class="op">/</span><span class="st"> </span></span>
+<span id="cb9-61"><a href="experiment.html#cb9-61"></a><span class="st">  </span><span class="kw">sum</span>(full_ret<span class="op">$</span>month_weight_start, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb9-62"><a href="experiment.html#cb9-62"></a><span class="co"># but only 0.2% of the weight is in the incomplete data, so it is largely</span></span>
+<span id="cb9-63"><a href="experiment.html#cb9-63"></a><span class="co"># isolated to the long tail of small stocks that are outside of the</span></span>
+<span id="cb9-64"><a href="experiment.html#cb9-64"></a><span class="co"># top 40 and 100 and are therefore not needed in this research</span></span>
+<span id="cb9-65"><a href="experiment.html#cb9-65"></a></span>
+<span id="cb9-66"><a href="experiment.html#cb9-66"></a>full_ret &lt;-<span class="st"> </span>full_ret[<span class="kw">complete.cases</span>(full_ret),]</span>
+<span id="cb9-67"><a href="experiment.html#cb9-67"></a></span>
+<span id="cb9-68"><a href="experiment.html#cb9-68"></a><span class="co"># plot coverage</span></span>
+<span id="cb9-69"><a href="experiment.html#cb9-69"></a>full_ret <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb9-70"><a href="experiment.html#cb9-70"></a><span class="st">  </span><span class="kw">filter</span>(.data<span class="op">$</span>month_weight_start <span class="op">&gt;=</span><span class="st"> </span><span class="dv">0</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb9-71"><a href="experiment.html#cb9-71"></a><span class="st">  </span><span class="kw">group_by</span>(date) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb9-72"><a href="experiment.html#cb9-72"></a><span class="st">  </span><span class="kw">count</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb9-73"><a href="experiment.html#cb9-73"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(.data<span class="op">$</span>date, .data<span class="op">$</span>n)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb9-74"><a href="experiment.html#cb9-74"></a><span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span></span>
+<span id="cb9-75"><a href="experiment.html#cb9-75"></a><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;coverage through time&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/data_read_init-1.png" width="672" /></p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="experiment.html#cb10-1"></a><span class="co"># getting indices ----------------------------------------------------------------------------------</span></span>
+<span id="cb10-2"><a href="experiment.html#cb10-2"></a></span>
+<span id="cb10-3"><a href="experiment.html#cb10-3"></a>top40_month_weights &lt;-<span class="st"> </span>full_ret <span class="op">%&gt;%</span></span>
+<span id="cb10-4"><a href="experiment.html#cb10-4"></a><span class="st">  </span><span class="kw">group_by</span>(.data<span class="op">$</span>month_index) <span class="op">%&gt;%</span></span>
+<span id="cb10-5"><a href="experiment.html#cb10-5"></a><span class="st">    </span><span class="kw">filter</span>(.data<span class="op">$</span>date <span class="op">==</span><span class="st"> </span><span class="kw">min</span>(.data<span class="op">$</span>date)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb10-6"><a href="experiment.html#cb10-6"></a><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">size_order =</span> <span class="kw">rank</span>(<span class="op">-</span>.data<span class="op">$</span>month_weight_start)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb10-7"><a href="experiment.html#cb10-7"></a><span class="st">    </span><span class="kw">filter</span>(.data<span class="op">$</span>size_order <span class="op">&lt;=</span><span class="st"> </span><span class="dv">40</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb10-8"><a href="experiment.html#cb10-8"></a><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">top40_weight =</span> .data<span class="op">$</span>month_weight_start <span class="op">/</span><span class="st"> </span><span class="kw">sum</span>(.data<span class="op">$</span>month_weight_start)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb10-9"><a href="experiment.html#cb10-9"></a><span class="st">  </span><span class="kw">ungroup</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb10-10"><a href="experiment.html#cb10-10"></a><span class="st">  </span><span class="kw">select</span>(.data<span class="op">$</span>month_index, .data<span class="op">$</span>name, .data<span class="op">$</span>top40_weight)</span>
+<span id="cb10-11"><a href="experiment.html#cb10-11"></a></span>
+<span id="cb10-12"><a href="experiment.html#cb10-12"></a></span>
+<span id="cb10-13"><a href="experiment.html#cb10-13"></a>top100_month_weights &lt;-<span class="st"> </span>full_ret <span class="op">%&gt;%</span></span>
+<span id="cb10-14"><a href="experiment.html#cb10-14"></a><span class="st">  </span><span class="kw">group_by</span>(.data<span class="op">$</span>month_index) <span class="op">%&gt;%</span></span>
+<span id="cb10-15"><a href="experiment.html#cb10-15"></a><span class="st">  </span><span class="kw">filter</span>(.data<span class="op">$</span>date <span class="op">==</span><span class="st"> </span><span class="kw">min</span>(.data<span class="op">$</span>date)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb10-16"><a href="experiment.html#cb10-16"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">size_order =</span> <span class="kw">rank</span>(<span class="op">-</span>.data<span class="op">$</span>month_weight_start)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb10-17"><a href="experiment.html#cb10-17"></a><span class="st">  </span><span class="kw">filter</span>(.data<span class="op">$</span>size_order <span class="op">&lt;=</span><span class="st"> </span><span class="dv">100</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb10-18"><a href="experiment.html#cb10-18"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">top100_weight =</span> .data<span class="op">$</span>month_weight_start <span class="op">/</span><span class="st"> </span><span class="kw">sum</span>(.data<span class="op">$</span>month_weight_start)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb10-19"><a href="experiment.html#cb10-19"></a><span class="st">  </span><span class="kw">ungroup</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb10-20"><a href="experiment.html#cb10-20"></a><span class="st">  </span><span class="kw">select</span>(.data<span class="op">$</span>month_index, .data<span class="op">$</span>name, .data<span class="op">$</span>top100_weight)</span>
+<span id="cb10-21"><a href="experiment.html#cb10-21"></a></span>
+<span id="cb10-22"><a href="experiment.html#cb10-22"></a></span>
+<span id="cb10-23"><a href="experiment.html#cb10-23"></a>full_ret &lt;-<span class="st"> </span>full_ret <span class="op">%&gt;%</span></span>
+<span id="cb10-24"><a href="experiment.html#cb10-24"></a><span class="st">  </span><span class="kw">full_join</span>(</span>
+<span id="cb10-25"><a href="experiment.html#cb10-25"></a>    top40_month_weights,</span>
+<span id="cb10-26"><a href="experiment.html#cb10-26"></a>    <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;month_index&quot;</span>, <span class="st">&quot;name&quot;</span>)</span>
+<span id="cb10-27"><a href="experiment.html#cb10-27"></a>  ) <span class="op">%&gt;%</span></span>
+<span id="cb10-28"><a href="experiment.html#cb10-28"></a><span class="st">  </span><span class="kw">full_join</span>(</span>
+<span id="cb10-29"><a href="experiment.html#cb10-29"></a>    top100_month_weights,</span>
+<span id="cb10-30"><a href="experiment.html#cb10-30"></a>    <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;month_index&quot;</span>, <span class="st">&quot;name&quot;</span>)</span>
+<span id="cb10-31"><a href="experiment.html#cb10-31"></a>  ) <span class="op">%&gt;%</span></span>
+<span id="cb10-32"><a href="experiment.html#cb10-32"></a><span class="st">  </span><span class="kw">select</span>(</span>
+<span id="cb10-33"><a href="experiment.html#cb10-33"></a>    .data<span class="op">$</span>date,</span>
+<span id="cb10-34"><a href="experiment.html#cb10-34"></a>    .data<span class="op">$</span>name,</span>
+<span id="cb10-35"><a href="experiment.html#cb10-35"></a>    .data<span class="op">$</span>week_ret,</span>
+<span id="cb10-36"><a href="experiment.html#cb10-36"></a>    .data<span class="op">$</span>month_ret,</span>
+<span id="cb10-37"><a href="experiment.html#cb10-37"></a>    .data<span class="op">$</span>top40_weight,</span>
+<span id="cb10-38"><a href="experiment.html#cb10-38"></a>    .data<span class="op">$</span>top100_weight,</span>
+<span id="cb10-39"><a href="experiment.html#cb10-39"></a>    .data<span class="op">$</span>month_index</span>
+<span id="cb10-40"><a href="experiment.html#cb10-40"></a>  ) <span class="op">%&gt;%</span></span>
+<span id="cb10-41"><a href="experiment.html#cb10-41"></a><span class="st">  </span><span class="kw">replace_na</span>(<span class="kw">list</span>(<span class="dt">top40_weight =</span> <span class="dv">0</span>, <span class="dt">top100_weight =</span> <span class="dv">0</span>))</span>
+<span id="cb10-42"><a href="experiment.html#cb10-42"></a></span>
+<span id="cb10-43"><a href="experiment.html#cb10-43"></a><span class="kw">saveRDS</span>(full_ret, <span class="dt">file =</span> <span class="st">&quot;data/full_ret.rds&quot;</span>)</span>
+<span id="cb10-44"><a href="experiment.html#cb10-44"></a></span>
+<span id="cb10-45"><a href="experiment.html#cb10-45"></a><span class="kw">head</span>(full_ret, <span class="dv">10</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 10 x 7
+##    date       name  week_ret month_ret top40_weight top100_weight month_index
+##    &lt;date&gt;     &lt;chr&gt;    &lt;dbl&gt;     &lt;dbl&gt;        &lt;dbl&gt;         &lt;dbl&gt; &lt;chr&gt;      
+##  1 1996-02-02 ABI    -0.0314    0.0133      0           0.00104   21996      
+##  2 1996-02-02 AXL     0.0436    0.0436      0           0         21996      
+##  3 1996-02-02 ACL    -0.0886    0.0218      0           0         21996      
+##  4 1996-02-02 ACT     0         0.0833      0           0         21996      
+##  5 1996-02-02 ADR     0         0.250       0           0.0000499 21996      
+##  6 1996-02-02 AEL     0.0208   -0.265       0           0         21996      
+##  7 1996-02-02 AEN     0.0455   -0.130       0           0         21996      
+##  8 1996-02-02 AFE    -0.0545   -0.106       0.00626     0.00598   21996      
+##  9 1996-02-02 AFI     0         0.105       0           0.00109   21996      
+## 10 1996-02-02 AFL     0         0           0           0         21996</code></pre>
+</div>
+<div id="comments-on-data" class="section level3" number="7.1.2">
+<h3><span class="header-section-number">7.1.2</span> Comments on data</h3>
 <p>The available data for this experiment are weekly total-returns for all equity stocks included in the
 Johannesburg Stock Exchange (JSE) All Share Index (ALSI) over the period ranging from the <span class="math inline">\(5^{th}\)</span>
 January 1996 to the <span class="math inline">\(1^{st}\)</span> November 2019. Weightings of the shares in the ALSI are also available,
@@ -166,6 +419,54 @@ portfolio-technique pair.</p></li>
 <li><p>Hold the found portfolio <span class="math inline">\(\hat{w}\)</span> for one month, record the returns <span class="math inline">\(\hat{r}\)</span>, and calculate the
 portfolio turnover.</p></li>
 </ol>
+</div>
+<div id="data-preparation-for-rebalance-dats" class="section level3" number="7.1.3">
+<h3><span class="header-section-number">7.1.3</span> Data preparation for rebalance dats</h3>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="experiment.html#cb12-1"></a><span class="kw">library</span>(rlang)</span>
+<span id="cb12-2"><a href="experiment.html#cb12-2"></a><span class="kw">library</span>(magrittr)</span>
+<span id="cb12-3"><a href="experiment.html#cb12-3"></a><span class="kw">library</span>(dplyr)</span>
+<span id="cb12-4"><a href="experiment.html#cb12-4"></a><span class="kw">library</span>(data.table)</span>
+<span id="cb12-5"><a href="experiment.html#cb12-5"></a><span class="kw">library</span>(tidyr)</span>
+<span id="cb12-6"><a href="experiment.html#cb12-6"></a></span>
+<span id="cb12-7"><a href="experiment.html#cb12-7"></a>full_ret &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span class="st">&quot;data/full_ret.rds&quot;</span>)</span>
+<span id="cb12-8"><a href="experiment.html#cb12-8"></a>sample_est_wind &lt;-<span class="st"> </span><span class="dv">400</span></span>
+<span id="cb12-9"><a href="experiment.html#cb12-9"></a></span>
+<span id="cb12-10"><a href="experiment.html#cb12-10"></a></span>
+<span id="cb12-11"><a href="experiment.html#cb12-11"></a>rebal_est_ranges &lt;-<span class="st"> </span>full_ret <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb12-12"><a href="experiment.html#cb12-12"></a><span class="st">  </span><span class="kw">select</span>(.data<span class="op">$</span>date, .data<span class="op">$</span>month_index) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb12-13"><a href="experiment.html#cb12-13"></a><span class="st">  </span><span class="kw">distinct</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb12-14"><a href="experiment.html#cb12-14"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">start_date =</span> <span class="kw">shift</span>(.data<span class="op">$</span>date, sample_est_wind)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb12-15"><a href="experiment.html#cb12-15"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">end_date =</span> <span class="kw">shift</span>(.data<span class="op">$</span>date, <span class="dv">1</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb12-16"><a href="experiment.html#cb12-16"></a><span class="st">  </span><span class="kw">na.omit</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb12-17"><a href="experiment.html#cb12-17"></a><span class="st">  </span><span class="kw">group_by</span>(.data<span class="op">$</span>month_index) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb12-18"><a href="experiment.html#cb12-18"></a><span class="st">    </span><span class="kw">filter</span>(.data<span class="op">$</span>date <span class="op">==</span><span class="st"> </span><span class="kw">min</span>(.data<span class="op">$</span>date)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb12-19"><a href="experiment.html#cb12-19"></a><span class="st">  </span><span class="kw">ungroup</span>() <span class="op">%&gt;%</span></span>
+<span id="cb12-20"><a href="experiment.html#cb12-20"></a><span class="st">  </span><span class="kw">select</span>(.data<span class="op">$</span>month_index, .data<span class="op">$</span>start_date, .data<span class="op">$</span>end_date)</span>
+<span id="cb12-21"><a href="experiment.html#cb12-21"></a></span>
+<span id="cb12-22"><a href="experiment.html#cb12-22"></a>model_rebal_dat &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">month_index =</span> rebal_est_ranges<span class="op">$</span>month_index, <span class="dt">data =</span> <span class="kw">list</span>(<span class="ot">NULL</span>))</span>
+<span id="cb12-23"><a href="experiment.html#cb12-23"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="kw">seq_along</span>(rebal_est_ranges<span class="op">$</span>month_index)) {</span>
+<span id="cb12-24"><a href="experiment.html#cb12-24"></a>  dat_now &lt;-<span class="st"> </span>full_ret <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb12-25"><a href="experiment.html#cb12-25"></a><span class="st">    </span><span class="kw">filter</span>(.data<span class="op">$</span>date <span class="op">&lt;=</span><span class="st"> </span>rebal_est_ranges[i, ]<span class="op">$</span>end_date <span class="op">&amp;</span><span class="st"> </span></span>
+<span id="cb12-26"><a href="experiment.html#cb12-26"></a><span class="st">             </span>.data<span class="op">$</span>date <span class="op">&gt;=</span><span class="st"> </span>rebal_est_ranges[i, ]<span class="op">$</span>start_date) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb12-27"><a href="experiment.html#cb12-27"></a><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">month_index =</span> rebal_est_ranges[i, ]<span class="op">$</span>month_index) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb12-28"><a href="experiment.html#cb12-28"></a><span class="st">    </span><span class="kw">nest</span>(<span class="dt">data =</span> <span class="kw">c</span>(<span class="st">&quot;date&quot;</span>, <span class="st">&quot;name&quot;</span>, <span class="st">&quot;week_ret&quot;</span>, <span class="st">&quot;month_ret&quot;</span>, <span class="st">&quot;top40_weight&quot;</span>, <span class="st">&quot;top100_weight&quot;</span>))</span>
+<span id="cb12-29"><a href="experiment.html#cb12-29"></a>  model_rebal_dat[i, ] &lt;-<span class="st"> </span>dat_now[<span class="dv">1</span>, ]</span>
+<span id="cb12-30"><a href="experiment.html#cb12-30"></a>}</span>
+<span id="cb12-31"><a href="experiment.html#cb12-31"></a></span>
+<span id="cb12-32"><a href="experiment.html#cb12-32"></a><span class="kw">saveRDS</span>(model_rebal_dat, <span class="dt">file =</span> <span class="st">&quot;data/model_rebal_dat.rds&quot;</span>)</span>
+<span id="cb12-33"><a href="experiment.html#cb12-33"></a><span class="kw">head</span>(model_rebal_dat, <span class="dv">6</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 6 x 2
+##   month_index data                 
+##   &lt;chr&gt;       &lt;list&gt;               
+## 1 102003      &lt;tibble [75,749 × 6]&gt;
+## 2 112003      &lt;tibble [76,103 × 6]&gt;
+## 3 122003      &lt;tibble [76,373 × 6]&gt;
+## 4 12004       &lt;tibble [76,634 × 6]&gt;
+## 5 22004       &lt;tibble [76,948 × 6]&gt;
+## 6 32004       &lt;tibble [77,186 × 6]&gt;</code></pre>
+</div>
+<div id="limitations" class="section level3" number="7.1.4">
+<h3><span class="header-section-number">7.1.4</span> Limitations</h3>
 <p>This experiment is specific to this data and method. Therefore, it is important to outline some
 limitations of the results. Although framework <a href="genframework.html#eq:genopt">(3.7)</a> is broad, this experiment only analyses
 portfolios constructed with South African equity returns, and cannot be used to state facts about the
@@ -177,7 +478,8 @@ rebalancing date with a filter, therefore the MW portfolio, where <span class="m
 the JSE Top 40 index. Transaction costs are ignored due to the liquid nature of the largest stocks,
 although this is a potential area for future improvement on the backtesting methodology.</p>
 </div>
-<div id="results" class="section level2">
+</div>
+<div id="results" class="section level2" number="7.2">
 <h2><span class="header-section-number">7.2</span> Results</h2>
 <p>Before the results are reported, specific metrics that illustrate the effect of each technique and
 portfolio need to be introduced. The first is turnover (TO). It measures the magnitude of trading
@@ -242,7 +544,7 @@ volatility reduction over the GMV-SCM pair:
 \mathcal{VR}(w|w_{\text{gmv-scm}}) &amp; = \frac{\sigma(w_{\text{gmv-scm}}) - \sigma(w)}{\sigma(w_{\text{gmv-scm}})},
 \end{align}\]</span>
 where the <span class="math inline">\(\sigma(\cdot)\)</span> function measures a portfolio’s volatility.</p>
-<div id="going-to-rify" class="section level3">
+<div id="going-to-rify" class="section level3" number="7.2.1">
 <h3><span class="header-section-number">7.2.1</span> going to R’ify</h3>
 
 </div>
@@ -257,6 +559,14 @@ where the <span class="math inline">\(\sigma(\cdot)\)</span> function measures a
 <p>Richard, Jean-Charles, and Thierry Roncalli. 2015. “Smart Beta: Managing Diversification of Minimum Variance Portfolios.” In <em>Risk-Based and Factor Investing</em>, 31–63. Elsevier.</p>
 </div>
 </div>
+<div class="footnotes">
+<hr />
+<ol start="8">
+<li id="fn8"><p><span class="math inline">\(400\)</span> weeks or <span class="math inline">\(7.69\)</span> years
+may seem like an odd choice. It is a window that balances the need for enough estimation data, but also
+a lengthy out-of-sample test. For a longer data history, a larger estimation window could be used.<a href="experiment.html#fnref8" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
             </section>
 
           </div>
@@ -266,21 +576,21 @@ where the <span class="math inline">\(\sigma(\cdot)\)</span> function measures a
 <a href="conclusion.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
-<script src="book_assets/gitbook-2.6.7/js/app.min.js"></script>
-<script src="book_assets/gitbook-2.6.7/js/lunr.js"></script>
-<script src="book_assets/gitbook-2.6.7/js/clipboard.min.js"></script>
-<script src="book_assets/gitbook-2.6.7/js/plugin-search.js"></script>
-<script src="book_assets/gitbook-2.6.7/js/plugin-sharing.js"></script>
-<script src="book_assets/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
-<script src="book_assets/gitbook-2.6.7/js/plugin-bookdown.js"></script>
-<script src="book_assets/gitbook-2.6.7/js/jquery.highlight.js"></script>
-<script src="book_assets/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
 "sharing": {
 "github": false,
-"facebook": false,
+"facebook": true,
 "twitter": true,
 "linkedin": false,
 "weibo": false,
@@ -289,9 +599,9 @@ gitbook.start({
 "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
-"theme": "night",
+"theme": "white",
 "family": "sans",
-"size": 14
+"size": 2
 },
 "edit": {
 "link": null,

@@ -41,6 +41,46 @@
   pdfcreator={LaTeX via pandoc}}
 \urlstyle{same} % disable monospaced font for URLs
 \usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
 \usepackage{longtable,booktabs}
 % Correct order of tables after \paragraph or \subparagraph
 \usepackage{etoolbox}
@@ -50,7 +90,7 @@
 % Allow footnotes in longtable head/foot
 \IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
 \makesavenoteenv{longtable}
-\usepackage{graphicx,grffile}
+\usepackage{graphicx}
 \makeatletter
 \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
 \def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
@@ -73,7 +113,7 @@
 \title{Flexible risk-based portfolio optimisation
 \href{https://github.com/jhlandman/flex_rb_opt}{\emph{(Github link)}}}
 \author{Emlyn Flint\footnote{Legae Peresec}, Jayson Landman\footnote{Ninety One Asset Management}}
-\date{2020-07-05}
+\date{2020-07-12}
 
 \begin{document}
 \maketitle
@@ -498,54 +538,54 @@ restrictions when creating the portfolio.
 \caption{\label{tab:rbportprops} Risk-based investing portfolio properties \citet{J13}}\tabularnewline
 \toprule
 \begin{minipage}[b]{0.06\columnwidth}\raggedright
-Portfolio\strut
+Portfolio \textbar{} S\strut
 \end{minipage} & \begin{minipage}[b]{0.09\columnwidth}\raggedright
-Strategy\strut
+Strategy \textbar{} MS\strut
 \end{minipage} & \begin{minipage}[b]{0.39\columnwidth}\raggedright
-MSR conditions\strut
+MSR conditions \textbar{} R\strut
 \end{minipage} & \begin{minipage}[b]{0.34\columnwidth}\raggedright
-Risk characteristics\strut
+Risk characteristics \textbar{}\strut
 \end{minipage}\tabularnewline
 \midrule
 \endfirsthead
 \toprule
 \begin{minipage}[b]{0.06\columnwidth}\raggedright
-Portfolio\strut
+Portfolio \textbar{} S\strut
 \end{minipage} & \begin{minipage}[b]{0.09\columnwidth}\raggedright
-Strategy\strut
+Strategy \textbar{} MS\strut
 \end{minipage} & \begin{minipage}[b]{0.39\columnwidth}\raggedright
-MSR conditions\strut
+MSR conditions \textbar{} R\strut
 \end{minipage} & \begin{minipage}[b]{0.34\columnwidth}\raggedright
-Risk characteristics\strut
+Risk characteristics \textbar{}\strut
 \end{minipage}\tabularnewline
 \midrule
 \endhead
 \begin{minipage}[t]{0.06\columnwidth}\raggedright
-EW\strut
+EW \textbar{} E\strut
 \end{minipage} & \begin{minipage}[t]{0.09\columnwidth}\raggedright
-Equalise \(w_i\)\strut
+Equalise \(w_i\) \textbar{} Id\strut
 \end{minipage} & \begin{minipage}[t]{0.39\columnwidth}\raggedright
-Identical excess returns. Identical volatilities. Identical correlations.\strut
+Identical excess returns. Identical volatilities. Identical correlations. \textbar{} M\strut
 \end{minipage} & \begin{minipage}[t]{0.34\columnwidth}\raggedright
-Medium to high risk. Insensitive to \(\Sigma\). Low turnover.\strut
+Medium to high risk. Insensitive to \(\Sigma\). Low turnover. \textbar{}\strut
 \end{minipage}\tabularnewline
 \begin{minipage}[t]{0.06\columnwidth}\raggedright
-ERC\strut
+ERC \textbar{} E\strut
 \end{minipage} & \begin{minipage}[t]{0.09\columnwidth}\raggedright
-Equalise \(TRC_i\)\strut
+Equalise \(TRC_i\) \textbar{} Id\strut
 \end{minipage} & \begin{minipage}[t]{0.39\columnwidth}\raggedright
-Identical Sharpe ratios. Identical correlations.\strut
+Identical Sharpe ratios. Identical correlations. \textbar{} M\strut
 \end{minipage} & \begin{minipage}[t]{0.34\columnwidth}\raggedright
-Medium risk. Moderately sensitive to \(\Sigma\). Medium turnover.\strut
+Medium risk. Moderately sensitive to \(\Sigma\). Medium turnover. \textbar{}\strut
 \end{minipage}\tabularnewline
 \begin{minipage}[t]{0.06\columnwidth}\raggedright
-GMV\strut
+GMV \textbar{} E\strut
 \end{minipage} & \begin{minipage}[t]{0.09\columnwidth}\raggedright
-Equalise \(MRC_i\)\strut
+Equalise \(MRC_i\) \textbar{} Id\strut
 \end{minipage} & \begin{minipage}[t]{0.39\columnwidth}\raggedright
-Identical excess returns.\strut
+Identical excess returns. \textbar{} L\strut
 \end{minipage} & \begin{minipage}[t]{0.34\columnwidth}\raggedright
-Lowest risk. Highly sensitive to \(\Sigma\). High turnover.\strut
+Lowest risk. Highly sensitive to \(\Sigma\). High turnover. \textbar{}\strut
 \end{minipage}\tabularnewline
 \bottomrule
 \end{longtable}
@@ -571,6 +611,104 @@ implementer uses a long enough estimation window. Therefore, they establish a de
 optimisation on a sample covariance matrix. This research remains consistent with these findings,
 using the EW portfolio as a benchmark in pursuit of better out-of-sample performance within the GMV
 and ERC frameworks. In the next chapter, we outline the techniques used to achieve this aim.
+
+\hypertarget{code-to-find-portfolios}{%
+\subsubsection{Code to find portfolios}\label{code-to-find-portfolios}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(rlang)}
+\KeywordTok{library}\NormalTok{(magrittr)}
+\KeywordTok{library}\NormalTok{(dplyr)}
+\KeywordTok{library}\NormalTok{(data.table)}
+\KeywordTok{library}\NormalTok{(tidyr)}
+
+\NormalTok{full\_ret \textless{}{-}}\StringTok{ }\KeywordTok{readRDS}\NormalTok{(}\StringTok{"data/full\_ret.rds"}\NormalTok{)}
+\NormalTok{model\_rebal\_dat \textless{}{-}}\StringTok{ }\KeywordTok{readRDS}\NormalTok{(}\StringTok{"data/model\_rebal\_dat.rds"}\NormalTok{)}
+
+\CommentTok{\# MW returns and weights {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
+\NormalTok{mw\_month\_rebal \textless{}{-}}\StringTok{ }\NormalTok{full\_ret }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{  }\KeywordTok{group\_by}\NormalTok{(.data}\OperatorTok{$}\NormalTok{month\_index) }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{    }\KeywordTok{filter}\NormalTok{(.data}\OperatorTok{$}\NormalTok{date }\OperatorTok{==}\StringTok{ }\KeywordTok{min}\NormalTok{(date)) }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{  }\KeywordTok{ungroup}\NormalTok{() }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{top40\_ret\_contrib =}\NormalTok{ .data}\OperatorTok{$}\NormalTok{month\_ret }\OperatorTok{*}\StringTok{ }\NormalTok{.data}\OperatorTok{$}\NormalTok{top40\_weight) }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{top100\_ret\_contrib =}\NormalTok{ .data}\OperatorTok{$}\NormalTok{month\_ret }\OperatorTok{*}\StringTok{ }\NormalTok{.data}\OperatorTok{$}\NormalTok{top100\_weight) }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{  }\KeywordTok{group\_by}\NormalTok{(.data}\OperatorTok{$}\NormalTok{month\_index) }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{    }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{top40\_total\_ret =} \KeywordTok{sum}\NormalTok{(.data}\OperatorTok{$}\NormalTok{top40\_ret\_contrib)) }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{    }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{top100\_total\_ret =} \KeywordTok{sum}\NormalTok{(.data}\OperatorTok{$}\NormalTok{top100\_ret\_contrib)) }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{  }\KeywordTok{ungroup}\NormalTok{() }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{    }\KeywordTok{select}\NormalTok{(}
+\NormalTok{      .data}\OperatorTok{$}\NormalTok{month\_index, }
+\NormalTok{      .data}\OperatorTok{$}\NormalTok{name, }
+\NormalTok{      .data}\OperatorTok{$}\NormalTok{month\_ret, }
+\NormalTok{      .data}\OperatorTok{$}\NormalTok{top40\_weight,}
+\NormalTok{      .data}\OperatorTok{$}\NormalTok{top40\_ret\_contrib,}
+\NormalTok{      .data}\OperatorTok{$}\NormalTok{top40\_total\_ret,}
+\NormalTok{      .data}\OperatorTok{$}\NormalTok{top100\_weight,}
+\NormalTok{      .data}\OperatorTok{$}\NormalTok{top100\_ret\_contrib,}
+\NormalTok{      .data}\OperatorTok{$}\NormalTok{top100\_total\_ret}
+\NormalTok{    )}
+
+\CommentTok{\# EW returns and weights {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
+\NormalTok{ew\_month\_rebal \textless{}{-}}\StringTok{ }\NormalTok{full\_ret }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{  }\KeywordTok{group\_by}\NormalTok{(.data}\OperatorTok{$}\NormalTok{month\_index) }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{    }\KeywordTok{filter}\NormalTok{(.data}\OperatorTok{$}\NormalTok{date }\OperatorTok{==}\StringTok{ }\KeywordTok{min}\NormalTok{(date)) }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{  }\KeywordTok{ungroup}\NormalTok{() }\OperatorTok{\%\textgreater{}\%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{ew40\_weight =} \KeywordTok{if\_else}\NormalTok{(.data}\OperatorTok{$}\NormalTok{top40\_weight }\OperatorTok{\textgreater{}}\StringTok{ }\DecValTok{0}\NormalTok{, }\DecValTok{1} \OperatorTok{/}\StringTok{ }\DecValTok{40}\NormalTok{, }\DecValTok{0}\NormalTok{)) }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{ew100\_weight =} \KeywordTok{if\_else}\NormalTok{(.data}\OperatorTok{$}\NormalTok{top100\_weight }\OperatorTok{\textgreater{}}\StringTok{ }\DecValTok{0}\NormalTok{, }\DecValTok{1} \OperatorTok{/}\StringTok{ }\DecValTok{100}\NormalTok{, }\DecValTok{0}\NormalTok{)) }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{ew40\_ret\_contrib =}\NormalTok{ .data}\OperatorTok{$}\NormalTok{month\_ret }\OperatorTok{*}\StringTok{ }\NormalTok{.data}\OperatorTok{$}\NormalTok{ew40\_weight) }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{ew100\_ret\_contrib =}\NormalTok{ .data}\OperatorTok{$}\NormalTok{month\_ret }\OperatorTok{*}\StringTok{ }\NormalTok{.data}\OperatorTok{$}\NormalTok{ew100\_weight) }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{  }\KeywordTok{group\_by}\NormalTok{(.data}\OperatorTok{$}\NormalTok{month\_index) }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{    }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{ew40\_total\_ret =} \KeywordTok{sum}\NormalTok{(.data}\OperatorTok{$}\NormalTok{ew40\_ret\_contrib)) }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{    }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{ew100\_total\_ret =} \KeywordTok{sum}\NormalTok{(.data}\OperatorTok{$}\NormalTok{ew100\_ret\_contrib)) }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{  }\KeywordTok{ungroup}\NormalTok{() }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{    }\KeywordTok{select}\NormalTok{(}
+\NormalTok{      .data}\OperatorTok{$}\NormalTok{month\_index, }
+\NormalTok{      .data}\OperatorTok{$}\NormalTok{name, }
+\NormalTok{      .data}\OperatorTok{$}\NormalTok{month\_ret, }
+\NormalTok{      .data}\OperatorTok{$}\NormalTok{ew40\_weight,}
+\NormalTok{      .data}\OperatorTok{$}\NormalTok{ew40\_ret\_contrib,}
+\NormalTok{      .data}\OperatorTok{$}\NormalTok{ew40\_total\_ret,}
+\NormalTok{      .data}\OperatorTok{$}\NormalTok{ew100\_weight,}
+\NormalTok{      .data}\OperatorTok{$}\NormalTok{ew100\_ret\_contrib,}
+\NormalTok{      .data}\OperatorTok{$}\NormalTok{ew100\_total\_ret}
+\NormalTok{    )}
+
+\CommentTok{\# GMV sample covar returns and weights {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
+\NormalTok{out \textless{}{-}}\StringTok{ }\NormalTok{model\_rebal\_dat}\OperatorTok{$}\NormalTok{data[[}\DecValTok{1}\NormalTok{]]}
+
+\NormalTok{tmp \textless{}{-}}\StringTok{ }\NormalTok{out }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{  }\KeywordTok{select}\NormalTok{(.data}\OperatorTok{$}\NormalTok{date, .data}\OperatorTok{$}\NormalTok{name, .data}\OperatorTok{$}\NormalTok{week\_ret) }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{  }\KeywordTok{pivot\_wider}\NormalTok{(}\DataTypeTok{id\_cols =} \KeywordTok{c}\NormalTok{(}\StringTok{"date"}\NormalTok{, }\StringTok{"name"}\NormalTok{), }\DataTypeTok{names\_from =} \KeywordTok{c}\NormalTok{(}\StringTok{"name"}\NormalTok{), }\DataTypeTok{values\_from =} \KeywordTok{c}\NormalTok{(}\StringTok{"week\_ret"}\NormalTok{)) }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{  }\KeywordTok{select}\NormalTok{(}\OperatorTok{{-}}\NormalTok{.data}\OperatorTok{$}\NormalTok{date) }
+
+\CommentTok{\# need to decide what to do with all of the NAs... should I fill them in with sampled data}
+\CommentTok{\# could fill in with simulated data from industry, }
+\CommentTok{\#\%\textgreater{}\% }
+
+\CommentTok{\# Writing files {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
+\KeywordTok{saveRDS}\NormalTok{(mw\_month\_rebal, }\DataTypeTok{file =} \StringTok{"data/port\_out/mw\_month\_rebal.rds"}\NormalTok{)}
+\KeywordTok{saveRDS}\NormalTok{(ew\_month\_rebal, }\DataTypeTok{file =} \StringTok{"data/port\_out/ew\_month\_rebal.rds"}\NormalTok{)}
+
+\KeywordTok{head}\NormalTok{(mw\_month\_rebal, }\DecValTok{10}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 10 x 9
+##    month_index name  month_ret top40_weight top40_ret_contrib top40_total_ret top100_weight top100_ret_contrib top100_total_ret
+##    <chr>       <chr>     <dbl>        <dbl>             <dbl>           <dbl>         <dbl>              <dbl>            <dbl>
+##  1 21996       ABI      0.0133      0                0                -0.0315     0.00104            0.0000139          -0.0292
+##  2 21996       AXL      0.0436      0                0                -0.0315     0                  0                  -0.0292
+##  3 21996       ACL      0.0218      0                0                -0.0315     0                  0                  -0.0292
+##  4 21996       ACT      0.0833      0                0                -0.0315     0                  0                  -0.0292
+##  5 21996       ADR      0.250       0                0                -0.0315     0.0000499          0.0000125          -0.0292
+##  6 21996       AEL     -0.265       0                0                -0.0315     0                  0                  -0.0292
+##  7 21996       AEN     -0.130       0                0                -0.0315     0                  0                  -0.0292
+##  8 21996       AFE     -0.106       0.00626         -0.000662         -0.0315     0.00598           -0.000633           -0.0292
+##  9 21996       AFI      0.105       0                0                -0.0315     0.00109            0.000115           -0.0292
+## 10 21996       AFL      0           0                0                -0.0315     0                  0                  -0.0292
+\end{verbatim}
 
 \hypertarget{estriskreduce}{%
 \section{Estimation risk reduction techniques}\label{estriskreduce}}
@@ -620,7 +758,7 @@ in this investigation is depicted in figure \ref{fig:hmm}.
 
 \begin{figure}
 
-{\centering \includegraphics[width=5.93in]{quiet_turb_hmm} 
+{\centering \includegraphics{quiet_turb_hmm} 
 
 }
 
@@ -795,9 +933,9 @@ given in table \ref{tab:portestpairs} below.
 \caption{\label{tab:portestpairs} Portfolio estimation-technique pairs}\tabularnewline
 \toprule
 \begin{minipage}[b]{0.27\columnwidth}\raggedright
-Portfolio\strut
+Portfolio \textbar{} Es\strut
 \end{minipage} & \begin{minipage}[b]{0.50\columnwidth}\raggedright
-Estimation technique\strut
+Estimation technique \textbar{} Abb\strut
 \end{minipage} & \begin{minipage}[b]{0.14\columnwidth}\raggedright
 Abbreviation\strut
 \end{minipage}\tabularnewline
@@ -805,109 +943,109 @@ Abbreviation\strut
 \endfirsthead
 \toprule
 \begin{minipage}[b]{0.27\columnwidth}\raggedright
-Portfolio\strut
+Portfolio \textbar{} Es\strut
 \end{minipage} & \begin{minipage}[b]{0.50\columnwidth}\raggedright
-Estimation technique\strut
+Estimation technique \textbar{} Abb\strut
 \end{minipage} & \begin{minipage}[b]{0.14\columnwidth}\raggedright
 Abbreviation\strut
 \end{minipage}\tabularnewline
 \midrule
 \endhead
 \begin{minipage}[t]{0.27\columnwidth}\raggedright
-Equal weight\strut
+Equal weight \textbar{} -\strut
 \end{minipage} & \begin{minipage}[t]{0.50\columnwidth}\raggedright
--\strut
+- \textbar{} EW\strut
 \end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\raggedright
 EW\strut
 \end{minipage}\tabularnewline
 \begin{minipage}[t]{0.27\columnwidth}\raggedright
-Market weight\strut
+Market weight \textbar{} -\strut
 \end{minipage} & \begin{minipage}[t]{0.50\columnwidth}\raggedright
--\strut
+- \textbar{} MW\strut
 \end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\raggedright
 MW\strut
 \end{minipage}\tabularnewline
 \begin{minipage}[t]{0.27\columnwidth}\raggedright
-Global minimum variance\strut
+Global minimum variance \textbar{} Sa\strut
 \end{minipage} & \begin{minipage}[t]{0.50\columnwidth}\raggedright
-Sample covariance matrix\strut
+Sample covariance matrix \textbar{} GMV\strut
 \end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\raggedright
 GMV-SCM\strut
 \end{minipage}\tabularnewline
 \begin{minipage}[t]{0.27\columnwidth}\raggedright
-Global minimum variance\strut
+Global minimum variance \textbar{} Qu\strut
 \end{minipage} & \begin{minipage}[t]{0.50\columnwidth}\raggedright
-Quantile factor modelling\strut
+Quantile factor modelling \textbar{} GMV\strut
 \end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\raggedright
 GMV-QFM\strut
 \end{minipage}\tabularnewline
 \begin{minipage}[t]{0.27\columnwidth}\raggedright
-Global minimum variance\strut
+Global minimum variance \textbar{} Re\strut
 \end{minipage} & \begin{minipage}[t]{0.50\columnwidth}\raggedright
-Regime switching\strut
+Regime switching \textbar{} GMV\strut
 \end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\raggedright
 GMV-RS\strut
 \end{minipage}\tabularnewline
 \begin{minipage}[t]{0.27\columnwidth}\raggedright
-Global minimum variance\strut
+Global minimum variance \textbar{} Qu\strut
 \end{minipage} & \begin{minipage}[t]{0.50\columnwidth}\raggedright
-Quantile factor modelling with regime switching\strut
+Quantile factor modelling with regime switching \textbar{} GMV\strut
 \end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\raggedright
 GMV-QRS\strut
 \end{minipage}\tabularnewline
 \begin{minipage}[t]{0.27\columnwidth}\raggedright
-Global minimum variance\strut
+Global minimum variance \textbar{} Ri\strut
 \end{minipage} & \begin{minipage}[t]{0.50\columnwidth}\raggedright
-Ridge regression\strut
+Ridge regression \textbar{} GMV\strut
 \end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\raggedright
 GMV-RR\strut
 \end{minipage}\tabularnewline
 \begin{minipage}[t]{0.27\columnwidth}\raggedright
-Global minimum variance\strut
+Global minimum variance \textbar{} Su\strut
 \end{minipage} & \begin{minipage}[t]{0.50\columnwidth}\raggedright
-Subset re-sampling\strut
+Subset re-sampling \textbar{} GMV\strut
 \end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\raggedright
 GMV-SRS\strut
 \end{minipage}\tabularnewline
 \begin{minipage}[t]{0.27\columnwidth}\raggedright
-Equal risk contribution\strut
+Equal risk contribution \textbar{} Sa\strut
 \end{minipage} & \begin{minipage}[t]{0.50\columnwidth}\raggedright
-Sample covariance matrix\strut
+Sample covariance matrix \textbar{} ERC\strut
 \end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\raggedright
 ERC-SCM\strut
 \end{minipage}\tabularnewline
 \begin{minipage}[t]{0.27\columnwidth}\raggedright
-Equal risk contribution\strut
+Equal risk contribution \textbar{} Qu\strut
 \end{minipage} & \begin{minipage}[t]{0.50\columnwidth}\raggedright
-Quantile factor modelling\strut
+Quantile factor modelling \textbar{} ERC\strut
 \end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\raggedright
 ERC-QFM\strut
 \end{minipage}\tabularnewline
 \begin{minipage}[t]{0.27\columnwidth}\raggedright
-Equal risk contribution\strut
+Equal risk contribution \textbar{} Re\strut
 \end{minipage} & \begin{minipage}[t]{0.50\columnwidth}\raggedright
-Regime switching\strut
+Regime switching \textbar{} ERC\strut
 \end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\raggedright
 ERC-RS\strut
 \end{minipage}\tabularnewline
 \begin{minipage}[t]{0.27\columnwidth}\raggedright
-Equal risk contribution\strut
+Equal risk contribution \textbar{} Qu\strut
 \end{minipage} & \begin{minipage}[t]{0.50\columnwidth}\raggedright
-Quantile factor modelling with regime switching\strut
+Quantile factor modelling with regime switching \textbar{} ERC\strut
 \end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\raggedright
 ERC-QRS\strut
 \end{minipage}\tabularnewline
 \begin{minipage}[t]{0.27\columnwidth}\raggedright
-Equal risk contribution\strut
+Equal risk contribution \textbar{} Ri\strut
 \end{minipage} & \begin{minipage}[t]{0.50\columnwidth}\raggedright
-Ridge regression\strut
+Ridge regression \textbar{} ERC\strut
 \end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\raggedright
 ERC-RR\strut
 \end{minipage}\tabularnewline
 \begin{minipage}[t]{0.27\columnwidth}\raggedright
-Equal risk contribution\strut
+Equal risk contribution \textbar{} Su\strut
 \end{minipage} & \begin{minipage}[t]{0.50\columnwidth}\raggedright
-Subset re-sampling\strut
+Subset re-sampling \textbar{} ERC\strut
 \end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\raggedright
 ERC-SRS\strut
 \end{minipage}\tabularnewline
@@ -1069,6 +1207,215 @@ will be referred to as a pair.
 \hypertarget{data-and-methodology}{%
 \subsection{Data and methodology}\label{data-and-methodology}}
 
+\hypertarget{code-to-clean-incoming-data}{%
+\subsubsection{Code to clean incoming data}\label{code-to-clean-incoming-data}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(readxl)}
+\KeywordTok{library}\NormalTok{(tidyr)}
+\KeywordTok{library}\NormalTok{(dplyr)}
+\KeywordTok{library}\NormalTok{(lubridate)}
+\KeywordTok{library}\NormalTok{(magrittr)}
+\KeywordTok{library}\NormalTok{(rlang)}
+\KeywordTok{library}\NormalTok{(ggplot2)}
+\KeywordTok{library}\NormalTok{(knitr)}
+
+\CommentTok{\# sourcing data {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
+\NormalTok{weekly\_ret \textless{}{-}}\StringTok{ }\KeywordTok{read\_xlsx}\NormalTok{(}
+  \StringTok{"data/data\_emlyn.xlsx"}\NormalTok{,}
+  \DataTypeTok{sheet =} \StringTok{"Weekly TRets"}\NormalTok{,}
+  \DataTypeTok{na =} \KeywordTok{c}\NormalTok{(}\StringTok{""}\NormalTok{, }\StringTok{"NaN"}\NormalTok{)}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## New names:
+## * `` -> ...1
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{month\_ret \textless{}{-}}\StringTok{ }\KeywordTok{read\_xlsx}\NormalTok{(}
+  \StringTok{"data/data\_emlyn.xlsx"}\NormalTok{,}
+  \DataTypeTok{sheet =} \StringTok{"Monthly TRets"}\NormalTok{,}
+  \DataTypeTok{na =} \KeywordTok{c}\NormalTok{(}\StringTok{""}\NormalTok{, }\StringTok{"NaN"}\NormalTok{)}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## New names:
+## * `` -> ...1
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{alsi\_weights \textless{}{-}}\StringTok{ }\KeywordTok{read\_xlsx}\NormalTok{(}
+  \StringTok{"data/data\_emlyn.xlsx"}\NormalTok{,}
+  \DataTypeTok{sheet =} \StringTok{"ALSI Weights"}\NormalTok{,}
+  \DataTypeTok{na =} \KeywordTok{c}\NormalTok{(}\StringTok{""}\NormalTok{, }\StringTok{"Nan"}\NormalTok{)}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## New names:
+## * `` -> ...2
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# cleaning data {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
+\NormalTok{weekly\_ret \textless{}{-}}\StringTok{ }\NormalTok{weekly\_ret }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{  }\KeywordTok{rename}\NormalTok{(}\StringTok{"date"}\NormalTok{ =}\StringTok{ "...1"}\NormalTok{) }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{date =} \KeywordTok{as.Date}\NormalTok{(.data}\OperatorTok{$}\NormalTok{date)) }\OperatorTok{\%\textgreater{}\%}
+\StringTok{  }\KeywordTok{pivot\_longer}\NormalTok{(}\KeywordTok{setdiff}\NormalTok{(}\KeywordTok{colnames}\NormalTok{(weekly\_ret), }\KeywordTok{c}\NormalTok{(}\StringTok{"...1"}\NormalTok{))) }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{  }\KeywordTok{drop\_na}\NormalTok{() }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{  }\KeywordTok{arrange}\NormalTok{(.data}\OperatorTok{$}\NormalTok{date) }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{join\_col =} \KeywordTok{paste0}\NormalTok{(}\KeywordTok{month}\NormalTok{(date), }\KeywordTok{year}\NormalTok{(date)))}
+
+\NormalTok{month\_ret \textless{}{-}}\StringTok{ }\NormalTok{month\_ret }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{  }\KeywordTok{rename}\NormalTok{(}\StringTok{"date"}\NormalTok{ =}\StringTok{ "...1"}\NormalTok{) }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{date =} \KeywordTok{as.Date}\NormalTok{(.data}\OperatorTok{$}\NormalTok{date)) }\OperatorTok{\%\textgreater{}\%}
+\StringTok{  }\KeywordTok{pivot\_longer}\NormalTok{(}\KeywordTok{setdiff}\NormalTok{(}\KeywordTok{colnames}\NormalTok{(month\_ret), }\KeywordTok{c}\NormalTok{(}\StringTok{"...1"}\NormalTok{))) }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{  }\KeywordTok{drop\_na}\NormalTok{() }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{  }\KeywordTok{arrange}\NormalTok{(.data}\OperatorTok{$}\NormalTok{date) }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{join\_col =} \KeywordTok{paste0}\NormalTok{(}\KeywordTok{month}\NormalTok{(date), }\KeywordTok{year}\NormalTok{(date)))}
+
+\NormalTok{alsi\_weights \textless{}{-}}\StringTok{ }\NormalTok{alsi\_weights }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{  }\KeywordTok{rename}\NormalTok{(}\StringTok{"date"}\NormalTok{ =}\StringTok{ "...2"}\NormalTok{) }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{  }\KeywordTok{select}\NormalTok{(}\OperatorTok{{-}}\NormalTok{.data}\OperatorTok{$}\NormalTok{SumCheck) }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{date =} \KeywordTok{as.Date}\NormalTok{(.data}\OperatorTok{$}\NormalTok{date) }\OperatorTok{+}\StringTok{ }\DecValTok{15}\NormalTok{) }\OperatorTok{\%\textgreater{}\%}\StringTok{ }\CommentTok{\# weights are at end of month, making start}
+\StringTok{  }\KeywordTok{pivot\_longer}\NormalTok{(}\KeywordTok{setdiff}\NormalTok{(}\KeywordTok{colnames}\NormalTok{(alsi\_weights), }\KeywordTok{c}\NormalTok{(}\StringTok{"SumCheck"}\NormalTok{, }\StringTok{"...2"}\NormalTok{))) }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{  }\KeywordTok{drop\_na}\NormalTok{() }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{  }\KeywordTok{arrange}\NormalTok{(.data}\OperatorTok{$}\NormalTok{date) }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{join\_col =} \KeywordTok{paste0}\NormalTok{(}\KeywordTok{month}\NormalTok{(date), }\KeywordTok{year}\NormalTok{(date)))}
+
+\CommentTok{\# joining data {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
+\NormalTok{full\_ret \textless{}{-}}\StringTok{ }\NormalTok{weekly\_ret }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{  }\KeywordTok{left\_join}\NormalTok{(}
+\NormalTok{    month\_ret, }
+    \DataTypeTok{by =} \KeywordTok{c}\NormalTok{(}\StringTok{"join\_col"}\NormalTok{, }\StringTok{"name"}\NormalTok{), }
+    \DataTypeTok{suffix =} \KeywordTok{c}\NormalTok{(}\StringTok{"\_week"}\NormalTok{, }\StringTok{"\_month"}\NormalTok{)}
+\NormalTok{  ) }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{  }\KeywordTok{select}\NormalTok{(}
+    \DataTypeTok{date =}\NormalTok{ .data}\OperatorTok{$}\NormalTok{date\_week, }
+\NormalTok{    .data}\OperatorTok{$}\NormalTok{name, }
+    \DataTypeTok{week\_ret =}\NormalTok{ .data}\OperatorTok{$}\NormalTok{value\_week, }
+    \DataTypeTok{month\_ret =}\NormalTok{ .data}\OperatorTok{$}\NormalTok{value\_month, }
+\NormalTok{    .data}\OperatorTok{$}\NormalTok{join\_col}
+\NormalTok{  ) }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{  }\KeywordTok{left\_join}\NormalTok{(}
+\NormalTok{    alsi\_weights,}
+    \DataTypeTok{by =} \KeywordTok{c}\NormalTok{(}\StringTok{"join\_col"}\NormalTok{, }\StringTok{"name"}\NormalTok{),}
+    \DataTypeTok{suffix =} \KeywordTok{c}\NormalTok{(}\StringTok{"\_full"}\NormalTok{, }\StringTok{"\_weights"}\NormalTok{)}
+\NormalTok{  ) }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{  }\KeywordTok{select}\NormalTok{(}
+    \DataTypeTok{date =}\NormalTok{ .data}\OperatorTok{$}\NormalTok{date\_full,}
+\NormalTok{    .data}\OperatorTok{$}\NormalTok{name,}
+\NormalTok{    .data}\OperatorTok{$}\NormalTok{week\_ret,}
+\NormalTok{    .data}\OperatorTok{$}\NormalTok{month\_ret,}
+    \DataTypeTok{month\_weight\_start =}\NormalTok{ .data}\OperatorTok{$}\NormalTok{value,}
+    \DataTypeTok{month\_index =}\NormalTok{ .data}\OperatorTok{$}\NormalTok{join\_col}
+\NormalTok{  )}
+
+\CommentTok{\# keeping complete cases only {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
+
+\NormalTok{complete\_per \textless{}{-}}\StringTok{ }\KeywordTok{sum}\NormalTok{(}\KeywordTok{complete.cases}\NormalTok{(full\_ret))}\OperatorTok{/}\KeywordTok{nrow}\NormalTok{(full\_ret)}
+\CommentTok{\# data is 98.2\% complete}
+
+\NormalTok{incomp\_weight\_per \textless{}{-}}\StringTok{ }\KeywordTok{sum}\NormalTok{(full\_ret[}\OperatorTok{!}\KeywordTok{complete.cases}\NormalTok{(full\_ret),]}\OperatorTok{$}\NormalTok{month\_weight\_start, }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{) }\OperatorTok{/}\StringTok{ }
+\StringTok{  }\KeywordTok{sum}\NormalTok{(full\_ret}\OperatorTok{$}\NormalTok{month\_weight\_start, }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{)}
+\CommentTok{\# but only 0.2\% of the weight is in the incomplete data, so it is largely}
+\CommentTok{\# isolated to the long tail of small stocks that are outside of the}
+\CommentTok{\# top 40 and 100 and are therefore not needed in this research}
+
+\NormalTok{full\_ret \textless{}{-}}\StringTok{ }\NormalTok{full\_ret[}\KeywordTok{complete.cases}\NormalTok{(full\_ret),]}
+
+\CommentTok{\# plot coverage}
+\NormalTok{full\_ret }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{  }\KeywordTok{filter}\NormalTok{(.data}\OperatorTok{$}\NormalTok{month\_weight\_start }\OperatorTok{\textgreater{}=}\StringTok{ }\DecValTok{0}\NormalTok{) }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{  }\KeywordTok{group\_by}\NormalTok{(date) }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{  }\KeywordTok{count}\NormalTok{() }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(.data}\OperatorTok{$}\NormalTok{date, .data}\OperatorTok{$}\NormalTok{n)) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom\_line}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{ggtitle}\NormalTok{(}\StringTok{"coverage through time"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/data_read_init-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# getting indices {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
+
+\NormalTok{top40\_month\_weights \textless{}{-}}\StringTok{ }\NormalTok{full\_ret }\OperatorTok{\%\textgreater{}\%}
+\StringTok{  }\KeywordTok{group\_by}\NormalTok{(.data}\OperatorTok{$}\NormalTok{month\_index) }\OperatorTok{\%\textgreater{}\%}
+\StringTok{    }\KeywordTok{filter}\NormalTok{(.data}\OperatorTok{$}\NormalTok{date }\OperatorTok{==}\StringTok{ }\KeywordTok{min}\NormalTok{(.data}\OperatorTok{$}\NormalTok{date)) }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{    }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{size\_order =} \KeywordTok{rank}\NormalTok{(}\OperatorTok{{-}}\NormalTok{.data}\OperatorTok{$}\NormalTok{month\_weight\_start)) }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{    }\KeywordTok{filter}\NormalTok{(.data}\OperatorTok{$}\NormalTok{size\_order }\OperatorTok{\textless{}=}\StringTok{ }\DecValTok{40}\NormalTok{) }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{    }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{top40\_weight =}\NormalTok{ .data}\OperatorTok{$}\NormalTok{month\_weight\_start }\OperatorTok{/}\StringTok{ }\KeywordTok{sum}\NormalTok{(.data}\OperatorTok{$}\NormalTok{month\_weight\_start)) }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{  }\KeywordTok{ungroup}\NormalTok{() }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{  }\KeywordTok{select}\NormalTok{(.data}\OperatorTok{$}\NormalTok{month\_index, .data}\OperatorTok{$}\NormalTok{name, .data}\OperatorTok{$}\NormalTok{top40\_weight)}
+
+
+\NormalTok{top100\_month\_weights \textless{}{-}}\StringTok{ }\NormalTok{full\_ret }\OperatorTok{\%\textgreater{}\%}
+\StringTok{  }\KeywordTok{group\_by}\NormalTok{(.data}\OperatorTok{$}\NormalTok{month\_index) }\OperatorTok{\%\textgreater{}\%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(.data}\OperatorTok{$}\NormalTok{date }\OperatorTok{==}\StringTok{ }\KeywordTok{min}\NormalTok{(.data}\OperatorTok{$}\NormalTok{date)) }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{size\_order =} \KeywordTok{rank}\NormalTok{(}\OperatorTok{{-}}\NormalTok{.data}\OperatorTok{$}\NormalTok{month\_weight\_start)) }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{  }\KeywordTok{filter}\NormalTok{(.data}\OperatorTok{$}\NormalTok{size\_order }\OperatorTok{\textless{}=}\StringTok{ }\DecValTok{100}\NormalTok{) }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{top100\_weight =}\NormalTok{ .data}\OperatorTok{$}\NormalTok{month\_weight\_start }\OperatorTok{/}\StringTok{ }\KeywordTok{sum}\NormalTok{(.data}\OperatorTok{$}\NormalTok{month\_weight\_start)) }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{  }\KeywordTok{ungroup}\NormalTok{() }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{  }\KeywordTok{select}\NormalTok{(.data}\OperatorTok{$}\NormalTok{month\_index, .data}\OperatorTok{$}\NormalTok{name, .data}\OperatorTok{$}\NormalTok{top100\_weight)}
+
+
+\NormalTok{full\_ret \textless{}{-}}\StringTok{ }\NormalTok{full\_ret }\OperatorTok{\%\textgreater{}\%}
+\StringTok{  }\KeywordTok{full\_join}\NormalTok{(}
+\NormalTok{    top40\_month\_weights,}
+    \DataTypeTok{by =} \KeywordTok{c}\NormalTok{(}\StringTok{"month\_index"}\NormalTok{, }\StringTok{"name"}\NormalTok{)}
+\NormalTok{  ) }\OperatorTok{\%\textgreater{}\%}
+\StringTok{  }\KeywordTok{full\_join}\NormalTok{(}
+\NormalTok{    top100\_month\_weights,}
+    \DataTypeTok{by =} \KeywordTok{c}\NormalTok{(}\StringTok{"month\_index"}\NormalTok{, }\StringTok{"name"}\NormalTok{)}
+\NormalTok{  ) }\OperatorTok{\%\textgreater{}\%}
+\StringTok{  }\KeywordTok{select}\NormalTok{(}
+\NormalTok{    .data}\OperatorTok{$}\NormalTok{date,}
+\NormalTok{    .data}\OperatorTok{$}\NormalTok{name,}
+\NormalTok{    .data}\OperatorTok{$}\NormalTok{week\_ret,}
+\NormalTok{    .data}\OperatorTok{$}\NormalTok{month\_ret,}
+\NormalTok{    .data}\OperatorTok{$}\NormalTok{top40\_weight,}
+\NormalTok{    .data}\OperatorTok{$}\NormalTok{top100\_weight,}
+\NormalTok{    .data}\OperatorTok{$}\NormalTok{month\_index}
+\NormalTok{  ) }\OperatorTok{\%\textgreater{}\%}
+\StringTok{  }\KeywordTok{replace\_na}\NormalTok{(}\KeywordTok{list}\NormalTok{(}\DataTypeTok{top40\_weight =} \DecValTok{0}\NormalTok{, }\DataTypeTok{top100\_weight =} \DecValTok{0}\NormalTok{))}
+
+\KeywordTok{saveRDS}\NormalTok{(full\_ret, }\DataTypeTok{file =} \StringTok{"data/full\_ret.rds"}\NormalTok{)}
+
+\KeywordTok{head}\NormalTok{(full\_ret, }\DecValTok{10}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 10 x 7
+##    date       name  week_ret month_ret top40_weight top100_weight month_index
+##    <date>     <chr>    <dbl>     <dbl>        <dbl>         <dbl> <chr>      
+##  1 1996-02-02 ABI    -0.0314    0.0133      0           0.00104   21996      
+##  2 1996-02-02 AXL     0.0436    0.0436      0           0         21996      
+##  3 1996-02-02 ACL    -0.0886    0.0218      0           0         21996      
+##  4 1996-02-02 ACT     0         0.0833      0           0         21996      
+##  5 1996-02-02 ADR     0         0.250       0           0.0000499 21996      
+##  6 1996-02-02 AEL     0.0208   -0.265       0           0         21996      
+##  7 1996-02-02 AEN     0.0455   -0.130       0           0         21996      
+##  8 1996-02-02 AFE    -0.0545   -0.106       0.00626     0.00598   21996      
+##  9 1996-02-02 AFI     0         0.105       0           0.00109   21996      
+## 10 1996-02-02 AFL     0         0           0           0         21996
+\end{verbatim}
+
+\hypertarget{comments-on-data}{%
+\subsubsection{Comments on data}\label{comments-on-data}}
+
 The available data for this experiment are weekly total-returns for all equity stocks included in the
 Johannesburg Stock Exchange (JSE) All Share Index (ALSI) over the period ranging from the \(5^{th}\)
 January 1996 to the \(1^{st}\) November 2019. Weightings of the shares in the ALSI are also available,
@@ -1099,6 +1446,62 @@ rebalancing date:
   Hold the found portfolio \(\hat{w}\) for one month, record the returns \(\hat{r}\), and calculate the
   portfolio turnover.
 \end{enumerate}
+
+\hypertarget{data-preparation-for-rebalance-dats}{%
+\subsubsection{Data preparation for rebalance dats}\label{data-preparation-for-rebalance-dats}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(rlang)}
+\KeywordTok{library}\NormalTok{(magrittr)}
+\KeywordTok{library}\NormalTok{(dplyr)}
+\KeywordTok{library}\NormalTok{(data.table)}
+\KeywordTok{library}\NormalTok{(tidyr)}
+
+\NormalTok{full\_ret \textless{}{-}}\StringTok{ }\KeywordTok{readRDS}\NormalTok{(}\StringTok{"data/full\_ret.rds"}\NormalTok{)}
+\NormalTok{sample\_est\_wind \textless{}{-}}\StringTok{ }\DecValTok{400}
+
+
+\NormalTok{rebal\_est\_ranges \textless{}{-}}\StringTok{ }\NormalTok{full\_ret }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{  }\KeywordTok{select}\NormalTok{(.data}\OperatorTok{$}\NormalTok{date, .data}\OperatorTok{$}\NormalTok{month\_index) }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{  }\KeywordTok{distinct}\NormalTok{() }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{start\_date =} \KeywordTok{shift}\NormalTok{(.data}\OperatorTok{$}\NormalTok{date, sample\_est\_wind)) }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{end\_date =} \KeywordTok{shift}\NormalTok{(.data}\OperatorTok{$}\NormalTok{date, }\DecValTok{1}\NormalTok{)) }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{  }\KeywordTok{na.omit}\NormalTok{() }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{  }\KeywordTok{group\_by}\NormalTok{(.data}\OperatorTok{$}\NormalTok{month\_index) }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{    }\KeywordTok{filter}\NormalTok{(.data}\OperatorTok{$}\NormalTok{date }\OperatorTok{==}\StringTok{ }\KeywordTok{min}\NormalTok{(.data}\OperatorTok{$}\NormalTok{date)) }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{  }\KeywordTok{ungroup}\NormalTok{() }\OperatorTok{\%\textgreater{}\%}
+\StringTok{  }\KeywordTok{select}\NormalTok{(.data}\OperatorTok{$}\NormalTok{month\_index, .data}\OperatorTok{$}\NormalTok{start\_date, .data}\OperatorTok{$}\NormalTok{end\_date)}
+
+\NormalTok{model\_rebal\_dat \textless{}{-}}\StringTok{ }\KeywordTok{tibble}\NormalTok{(}\DataTypeTok{month\_index =}\NormalTok{ rebal\_est\_ranges}\OperatorTok{$}\NormalTok{month\_index, }\DataTypeTok{data =} \KeywordTok{list}\NormalTok{(}\OtherTok{NULL}\NormalTok{))}
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \KeywordTok{seq\_along}\NormalTok{(rebal\_est\_ranges}\OperatorTok{$}\NormalTok{month\_index)) \{}
+\NormalTok{  dat\_now \textless{}{-}}\StringTok{ }\NormalTok{full\_ret }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{    }\KeywordTok{filter}\NormalTok{(.data}\OperatorTok{$}\NormalTok{date }\OperatorTok{\textless{}=}\StringTok{ }\NormalTok{rebal\_est\_ranges[i, ]}\OperatorTok{$}\NormalTok{end\_date }\OperatorTok{\&}\StringTok{ }
+\StringTok{             }\NormalTok{.data}\OperatorTok{$}\NormalTok{date }\OperatorTok{\textgreater{}=}\StringTok{ }\NormalTok{rebal\_est\_ranges[i, ]}\OperatorTok{$}\NormalTok{start\_date) }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{    }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{month\_index =}\NormalTok{ rebal\_est\_ranges[i, ]}\OperatorTok{$}\NormalTok{month\_index) }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{    }\KeywordTok{nest}\NormalTok{(}\DataTypeTok{data =} \KeywordTok{c}\NormalTok{(}\StringTok{"date"}\NormalTok{, }\StringTok{"name"}\NormalTok{, }\StringTok{"week\_ret"}\NormalTok{, }\StringTok{"month\_ret"}\NormalTok{, }\StringTok{"top40\_weight"}\NormalTok{, }\StringTok{"top100\_weight"}\NormalTok{))}
+\NormalTok{  model\_rebal\_dat[i, ] \textless{}{-}}\StringTok{ }\NormalTok{dat\_now[}\DecValTok{1}\NormalTok{, ]}
+\NormalTok{\}}
+
+\KeywordTok{saveRDS}\NormalTok{(model\_rebal\_dat, }\DataTypeTok{file =} \StringTok{"data/model\_rebal\_dat.rds"}\NormalTok{)}
+\KeywordTok{head}\NormalTok{(model\_rebal\_dat, }\DecValTok{6}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 6 x 2
+##   month_index data                 
+##   <chr>       <list>               
+## 1 102003      <tibble [75,749 x 6]>
+## 2 112003      <tibble [76,103 x 6]>
+## 3 122003      <tibble [76,373 x 6]>
+## 4 12004       <tibble [76,634 x 6]>
+## 5 22004       <tibble [76,948 x 6]>
+## 6 32004       <tibble [77,186 x 6]>
+\end{verbatim}
+
+\hypertarget{limitations}{%
+\subsubsection{Limitations}\label{limitations}}
 
 This experiment is specific to this data and method. Therefore, it is important to outline some
 limitations of the results. Although framework \eqref{eq:genopt} is broad, this experiment only analyses
@@ -1232,62 +1635,62 @@ risk factor space instead of the asset space.
 \begin{longtable}[]{@{}ll@{}}
 \caption{\label{tab:portabb} Portfolio type abbreviations.}\tabularnewline
 \toprule
-Full name & Abbrevation\tabularnewline
+Full name \textbar{} Abb & Abbrevation \textbar{}\tabularnewline
 \midrule
 \endfirsthead
 \toprule
-Full name & Abbrevation\tabularnewline
+Full name \textbar{} Abb & Abbrevation \textbar{}\tabularnewline
 \midrule
 \endhead
-Mean-variance optimal & MVO\tabularnewline
-Global minimum variance & GMV\tabularnewline
-Equal weight & EW\tabularnewline
-Equal risk contribution & ERC\tabularnewline
-Market weight & MW\tabularnewline
-Maximum Sharpe ratio & MSR\tabularnewline
+Mean-variance optimal \textbar{} MVO & MVO \textbar{}\tabularnewline
+Global minimum variance \textbar{} GMV & GMV \textbar{}\tabularnewline
+Equal weight \textbar{} EW & EW \textbar{}\tabularnewline
+Equal risk contribution \textbar{} ERC & ERC \textbar{}\tabularnewline
+Market weight \textbar{} MW & MW \textbar{}\tabularnewline
+Maximum Sharpe ratio \textbar{} MSR & MSR \textbar{}\tabularnewline
 \bottomrule
 \end{longtable}
 
 \begin{longtable}[]{@{}ll@{}}
 \caption{\label{tab:metricabb} Metric abbreviations.}\tabularnewline
 \toprule
-Full name & Abbrevation\tabularnewline
+Full name & Abbrevation \textbar{}\tabularnewline
 \midrule
 \endfirsthead
 \toprule
-Full name & Abbrevation\tabularnewline
+Full name & Abbrevation \textbar{}\tabularnewline
 \midrule
 \endhead
-Marginal risk contribution & MRC\tabularnewline
-Total risk contribution & TRC\tabularnewline
-Inverse Herfindahl index & IHI\tabularnewline
-Risk-weights & RS\tabularnewline
-Marginal risk-weights & MRW\tabularnewline
-Total risk-weights & TRW\tabularnewline
-Sharpe ratio & SR\tabularnewline
-Squared Mahalanobis distance & SMD\tabularnewline
-Mean square error & MSE\tabularnewline
-Turnover rate & TO\tabularnewline
-Maximum drawdown & MDD\tabularnewline
+Marginal risk contribution & MRC \textbar{}\tabularnewline
+Total risk contribution & TRC \textbar{}\tabularnewline
+Inverse Herfindahl index & IHI \textbar{}\tabularnewline
+Risk-weights & RS \textbar{}\tabularnewline
+Marginal risk-weights & MRW \textbar{}\tabularnewline
+Total risk-weights & TRW \textbar{}\tabularnewline
+Sharpe ratio & SR \textbar{}\tabularnewline
+Squared Mahalanobis distance & SMD \textbar{}\tabularnewline
+Mean square error & MSE \textbar{}\tabularnewline
+Turnover rate & TO \textbar{}\tabularnewline
+Maximum drawdown & MDD \textbar{}\tabularnewline
 \bottomrule
 \end{longtable}
 
 \begin{longtable}[]{@{}ll@{}}
 \caption{\label{tab:esttech} Estimation techniques.}\tabularnewline
 \toprule
-Full name & Abbrevation\tabularnewline
+Full name \textbar{} Abb & Abbrevation \textbar{}\tabularnewline
 \midrule
 \endfirsthead
 \toprule
-Full name & Abbrevation\tabularnewline
+Full name \textbar{} Abb & Abbrevation \textbar{}\tabularnewline
 \midrule
 \endhead
-Sample covariance matrix & SCM\tabularnewline
-Regime switching & RS\tabularnewline
-Quantile factor modelling & QFM\tabularnewline
-Quantile factor modelling with regime switching & QRS\tabularnewline
-Ridge regression & RR\tabularnewline
-Subset re-sampling & SRS\tabularnewline
+Sample covariance matrix \textbar{} SCM & SCM \textbar{}\tabularnewline
+Regime switching \textbar{} RS & RS \textbar{}\tabularnewline
+Quantile factor modelling \textbar{} QFM & QFM \textbar{}\tabularnewline
+Quantile factor modelling with regime switching \textbar{} QRS & QRS \textbar{}\tabularnewline
+Ridge regression \textbar{} RR & RR \textbar{}\tabularnewline
+Subset re-sampling \textbar{} SRS & SRS \textbar{}\tabularnewline
 \bottomrule
 \end{longtable}
 
