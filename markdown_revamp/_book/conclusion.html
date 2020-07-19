@@ -24,7 +24,7 @@
 
 
 
-<meta name="date" content="2020-07-12" />
+<meta name="date" content="2020-07-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -43,15 +43,15 @@ div.abstract{
   width: 90%;
 }
 </style>
-<script src="libs/header-attrs-2.3/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
-<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+<script src="book_assets/header-attrs-2.3/header-attrs.js"></script>
+<script src="book_assets/jquery-2.2.3/jquery.min.js"></script>
+<link href="book_assets/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="book_assets/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="book_assets/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="book_assets/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="book_assets/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="book_assets/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="book_assets/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
 
 
 
@@ -61,7 +61,7 @@ div.abstract{
 
 
 
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<script src="book_assets/accessible-code-block-0.0.1/empty-anchor.js"></script>
 
 
 <style type="text/css">
@@ -151,10 +151,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4" data-path="rbportch.html"><a href="rbportch.html"><i class="fa fa-check"></i><b>4</b> Overview of risk-based portfolios</a>
 <ul>
 <li class="chapter" data-level="4.1" data-path="rbportch.html"><a href="rbportch.html#risk-based-portfolio-types"><i class="fa fa-check"></i><b>4.1</b> Risk-based portfolio types</a></li>
-<li class="chapter" data-level="4.2" data-path="rbportch.html"><a href="rbportch.html#risk-based-portfolio-properties"><i class="fa fa-check"></i><b>4.2</b> Risk-based portfolio properties</a>
-<ul>
-<li class="chapter" data-level="4.2.1" data-path="rbportch.html"><a href="rbportch.html#code-to-find-portfolios"><i class="fa fa-check"></i><b>4.2.1</b> Code to find portfolios</a></li>
-</ul></li>
+<li class="chapter" data-level="4.2" data-path="rbportch.html"><a href="rbportch.html#risk-based-portfolio-properties"><i class="fa fa-check"></i><b>4.2</b> Risk-based portfolio properties</a></li>
+<li class="chapter" data-level="4.3" data-path="rbportch.html"><a href="rbportch.html#code"><i class="fa fa-check"></i><b>4.3</b> Code</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="estriskreduce.html"><a href="estriskreduce.html"><i class="fa fa-check"></i><b>5</b> Estimation risk reduction techniques</a>
 <ul>
@@ -273,21 +271,21 @@ risk factor space instead of the asset space.</p>
 <a href="abbreviations.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
-<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
-<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
-<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/app.min.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/lunr.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/plugin-clipboard.js"></script>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
 "sharing": {
 "github": false,
-"facebook": true,
+"facebook": false,
 "twitter": true,
 "linkedin": false,
 "weibo": false,
@@ -296,9 +294,9 @@ gitbook.start({
 "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
-"theme": "white",
+"theme": "night",
 "family": "sans",
-"size": 2
+"size": 14
 },
 "edit": {
 "link": null,

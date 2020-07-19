@@ -2,43 +2,41 @@
 
 # Abbreviations
 
-| Full name               	| Abbrevation 	|
-|-------------------------	|-------------	|
-| Mean-variance optimal   	| MVO         	|
-| Global minimum variance 	| GMV         	|
-| Equal weight            	| EW          	|
-| Equal risk contribution 	| ERC         	|
-| Market weight           	| MW          	|
-| Maximum Sharpe ratio    	| MSR         	|
+| Full name               | Abbrevation |
+|-------------------------|-------------|
+| Mean-variance optimal   | MVO         |
+| Global minimum variance | GMV         |
+| Equal weight            | EW          |
+| Equal risk contribution | ERC         |
+| Market weight           | MW          |
+| Maximum Sharpe ratio    | MSR         |
 
 Table: (\#tab:portabb) Portfolio type abbreviations.
 
-| Full name                    	| Abbrevation 	|
-|------------------------------	|-------------	|
-| Marginal risk contribution   	| MRC         	|
-| Total risk contribution      	| TRC         	|
-| Inverse Herfindahl index     	| IHI         	|
-| Risk-weights                 	| RS          	|
-| Marginal risk-weights        	| MRW         	|
-| Total risk-weights           	| TRW         	|
-| Sharpe ratio                 	| SR          	|
-| Squared Mahalanobis distance 	| SMD         	|
-| Mean square error            	| MSE         	|
-| Turnover rate                	| TO          	|
-| Maximum drawdown             	| MDD         	|
+| Full name                    | Abbrevation |
+|------------------------------|-------------|
+| Marginal risk contribution   | MRC         |
+| Total risk contribution      | TRC         |
+| Inverse Herfindahl index     | IHI         |
+| Risk-weights                 | RS          |
+| Marginal risk-weights        | MRW         |
+| Total risk-weights           | TRW         |
+| Sharpe ratio                 | SR          |
+| Squared Mahalanobis distance | SMD         |
+| Mean square error            | MSE         |
+| Turnover rate                | TO          |
+| Maximum drawdown             | MDD         |
 
 Table: (\#tab:metricabb) Metric abbreviations.
 
-
-
-| Full name                                       	| Abbrevation 	|
-|-------------------------------------------------	|-------------	|
-| Sample covariance matrix                        	| SCM         	|
-| Regime switching                                	| RS          	|
-| Quantile factor modelling                       	| QFM         	|
-| Quantile factor modelling with regime switching 	| QRS         	|
-| Ridge regression                                	| RR          	|
-| Subset re-sampling                              	| SRS         	|
+| Full name                                       | Abbrevation |
+|-------------------------------------------------|-------------|
+| Sample covariance matrix                        | SCM         |
+| Regime switching                                | RS          |
+| Quantile factor modelling                       | QFM         |
+| Quantile factor modelling with regime switching | QRS         |
+| Ridge regression                                | RR          |
+| Subset re-sampling                              | SRS         |
 
 Table: (\#tab:esttech) Estimation techniques.
 

@@ -7,22 +7,22 @@ techniques outlined in chapter \@ref(estriskreduce), and the final one is to use
 quantile factor modelling and regime switching. A summary of all of the portfolio technique pairs is
 given in table \@ref(tab:portestpairs) below.
 
-| Portfolio                	| Estimation technique                            	| Abbreviation 	|
-|--------------------------	|-------------------------------------------------	|--------------	|
-| Equal weight             	| -                                               	| EW           	|
-| Market weight            	| -                                               	| MW           	|
-| Global minimum variance  	| Sample covariance matrix                        	| GMV-SCM      	|
-| Global minimum variance  	| Quantile factor modelling                       	| GMV-QFM      	|
-| Global minimum variance  	| Regime switching                                	| GMV-RS       	|
-| Global minimum variance  	| Quantile factor modelling with regime switching 	| GMV-QRS      	|
-| Global minimum variance  	| Ridge regression                                	| GMV-RR       	|
-| Global minimum variance  	| Subset re-sampling                              	| GMV-SRS      	|
-| Equal risk contribution  	| Sample covariance matrix                        	| ERC-SCM      	|
-| Equal risk contribution  	| Quantile factor modelling                       	| ERC-QFM      	|
-| Equal risk contribution  	| Regime switching                                	| ERC-RS       	|
-| Equal risk contribution  	| Quantile factor modelling with regime switching 	| ERC-QRS      	|
-| Equal risk contribution  	| Ridge regression                                	| ERC-RR       	|
-| Equal risk contribution  	| Subset re-sampling                              	| ERC-SRS      	|
+| Portfolio               | Estimation technique                            | Abbreviation |
+|-------------------------|-------------------------------------------------|--------------|
+| Equal weight            | -                                               | EW           |
+| Market weight           | -                                               | MW           |
+| Global minimum variance | Sample covariance matrix                        | GMV-SCM      |
+| Global minimum variance | Quantile factor modelling                       | GMV-QFM      |
+| Global minimum variance | Regime switching                                | GMV-RS       |
+| Global minimum variance | Quantile factor modelling with regime switching | GMV-QRS      |
+| Global minimum variance | Ridge regression                                | GMV-RR       |
+| Global minimum variance | Subset re-sampling                              | GMV-SRS      |
+| Equal risk contribution | Sample covariance matrix                        | ERC-SCM      |
+| Equal risk contribution | Quantile factor modelling                       | ERC-QFM      |
+| Equal risk contribution | Regime switching                                | ERC-RS       |
+| Equal risk contribution | Quantile factor modelling with regime switching | ERC-QRS      |
+| Equal risk contribution | Ridge regression                                | ERC-RR       |
+| Equal risk contribution | Subset re-sampling                              | ERC-SRS      |
 
 Table: (\#tab:portestpairs) Portfolio estimation-technique pairs
 

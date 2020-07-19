@@ -8,7 +8,118 @@ will be referred to as a pair.
 
 ## Data and methodology
 
-### Code to clean incoming data
+The available data for this experiment are weekly total-returns for all equity stocks included in the
+Johannesburg Stock Exchange (JSE) All Share Index (ALSI) over the period ranging from the $5^{th}$
+January 1996 to the $1^{st}$ November 2019. Weightings of the shares in the ALSI are also available,
+although this is a monthly series. This historical vector of the weights of the MW portfolio through
+time is denoted $\hat{w}^{\text{mw}}_t$.
+
+The investigation uses a rolling estimation window of $T = 400$^[$400$ weeks or $7.69$ years
+may seem like an odd choice. It is a window that balances the need for enough estimation data, but also
+a lengthy out-of-sample test. For a longer data history, a larger estimation window could be used.]
+weekly observations to construct portfolios. Weekly data inputs are used with monthly rebalancing
+because of the high data volume requirement from chapter \@ref(somemaths). The constructed portfolio
+$\hat{w}_{t_i}$ will be held out-of-sample over the interval $[t_i, t_{i + 1}]$, where $t_i$ denotes a
+month's end. The entire holding period is from the $30^{th}$ of September 2003 to the $27^{th}$ of
+September 2019 a total of 16 years. Portfolios are constructed for two different asset universes;
+namely, the $40$ largest stocks and the $100$ largest stocks. The separation is to test the effect on
+portfolio performance of an investor broadening their universe. This methodology is outlined for each
+rebalancing date: 
+
+1. Of the stocks in the ALSI with a data history of at least length $T$, choose the $N$ stocks with the
+largest market weights.
+
+2. Use the $N \times T$ matrix of sample returns to find asset weights for the relevant
+portfolio-technique pair.
+
+3. Hold the found portfolio $\hat{w}$ for one month, record the returns $\hat{r}$, and calculate the
+portfolio turnover.
+
+This experiment is specific to this data and method. Therefore, it is important to outline some
+limitations of the results. Although framework \@ref(eq:genopt) is broad, this experiment only analyses
+portfolios constructed with South African equity returns, and cannot be used to state facts about the
+portfolio construction process generally. The budget, long-only and maximum weight constraints were all
+applied for this experiment. Specifically the maximum weight constraint used is $\alpha = 0.1$. The
+choice intends to provide a consistent basis for comparison across portfolio-technique pairs and
+ensures similarity to practical applications. Shares that have missing data were excluded at each
+rebalancing date with a filter, therefore the MW portfolio, where $N = 40$ may not be representative of
+the JSE Top 40 index. Transaction costs are ignored due to the liquid nature of the largest stocks,
+although this is a potential area for future improvement on the backtesting methodology.
+
+## Results
+
+Before the results are reported, specific metrics that illustrate the effect of each technique and
+portfolio need to be introduced. The first is turnover (TO). It measures the magnitude of trading
+required on each rebalancing date. If there are $m$ rebalancing dates, then the TO is calculated as:
+\begin{align}
+\text{TO} & = \frac{6}{(m - 1)} \sum_{i = 1}^{m - 1} \sum_{j =1}^{N} |\hat{w}_{t_i, j}^\triangle - \hat{w}_{t_i, j}|,
+\end{align}
+where $\hat{w}_{t_i, j}^\triangle$ is the buy-and-hold weight of the $j^{th}$ asset just before the
+rebalance at time $t_i$. The turnover is annual and one-way only; hence, the scaling factor of
+$\frac{6}{m-1}$. For a higher TO, the investor has increased risk when rebalancing that they will not
+enter into the new portfolio at the current market price. The maximum possible value of the TO is
+$1200\%$, and the investor achieves it if they switch from one single stock portfolio to another at
+every rebalancing date.
+
+The next reporting metric is maximum drawdown (MDD), the definition of which requires the notion of
+cumulative wealth. The investor's cumulative wealth at time $t_j$ is their return from time $t_0$
+until time $t_j$ on a portfolio of one initial unit investment, and it is defined as:
+\begin{align*}
+W_{t_j} &= \prod_{i = 1}^{j} (1 + \hat{r}_{t_i}), 
+\end{align*}
+where $\hat{r}_{t_i}$ is the return realised over the interval $[t_{i - 1}, t_i)$. The MDD is the
+biggest loss in cumulative wealth for the entire investment period, and is formulated as:
+\begin{align}
+\text{MDD} & = \underset{t_j \in \{t_1, ..., t_m\}}{\text{argmax}} \Big \{ \underset{t_i \in \{t_1, \text{...}, t_j\}}{\text{argmax} \{W_{t_i} \}} - W_{t_j}  \Big \} \; .
+\end{align} 
+MDD is an essential measure for money managers because excessive drawdowns lead to redemptions in
+their funds. [@M04]
+
+The last two measures are measures of concentration. As stated earlier, the risk-based investor is
+making a trade-off between weight concentration and risk concentration. A standard for weight
+concentration at a rebalancing date, the inverse Herfindahl index, has already been defined. But the
+IHI is general and could apply to multiple types of weights. For allocation weights the IHI at time
+$t_i$ is given as:
+\begin{align}
+N^{\text{eff}}_{t_i} &= \frac{1}{\sum_{j = 1}^N w_{t_i, j}^2} \; ,
+\end{align}
+where $N^{\text{eff}}_{t_i} $ can be interpreted as the number of equal-weighted stocks the investor's
+portfolio is equivalent to. The notation reflects the idea that the IHI represents the number of
+effective stocks in the portfolio. The upper bound of $N^{\text{eff}}_{t_i} $ is $N$ and the lower
+bound in the presence of a maximum allocation constraint is: 
+$({\lfloor \frac{1}{\alpha} \rfloor \cdot \alpha^2 + (1- \lfloor \frac{1}{\alpha}\rfloor \cdot \alpha)^2})^{-1}$
+, which is  derived in appendix \@ref(ihimax). For the case when $\alpha = 0.1$ the lower bound is
+$10$. Risk-weights can be taken instead of capital weights to measure the effectiveness of an asset on
+portfolio volatility. Since the TRCs sum to the portfolio volatility, the risk contributions can be
+scaled into risk-weights so that they sum to $1$. The risk-weight for the $j^{th}$ asset at time $t_i$
+is given as:
+\begin{align}
+\text{RW}_{t_i, j} &= \frac{\text{TRC}_{t_i, j}}{\sqrt{w_{t_i}^\intercal \Sigma w_{t_i}}}\; ,
+ \end{align}
+where the inverse Herfindahl index approach can be applied again. The risk-weight IHI is written as:
+\begin{align}
+N^\mathrm{rw}_{t_i}(RW_{t_i}) &= \frac{1}{\sum_{j = 1}^N \text{RW}_{t_i, j}^2} \;.
+\end{align}
+If $\Sigma$ is positive semi-definite, then the lower bound is $1$ even in the presence of the maximum
+allocation constraint, because one asset could have a positive weight and considerable volatility. The
+upper bound is once again $N$. The concentration measures are reported as averages across all of the
+$m$ rebalancing dates.
+
+Let us first discuss the results for the GMV portfolios. The main objective of constructing GMV
+portfolios is to reduce the out-of-sample volatility of returns. The main aim of each GMV-technique
+pair is the same, but performance is measured against the GMV-SCM pair. Therefore, it makes sense to
+define a measure of each GMV-technique pair performance in the same way as @RR15, as a
+volatility reduction over the GMV-SCM pair:
+\begin{align}
+\mathcal{VR}(w|w_{\text{gmv-scm}}) & = \frac{\sigma(w_{\text{gmv-scm}}) - \sigma(w)}{\sigma(w_{\text{gmv-scm}})},
+\end{align}
+where the $\sigma(\cdot)$ function measures a portfolio's volatility.
+
+### going to R'ify 
+
+## Code
+
+### Data reading in and cleaning
 
 ```{r data_read_init, cache = TRUE}
 library(readxl)
@@ -153,6 +264,7 @@ full_ret <- full_ret %>%
     .data$month_ret,
     .data$top40_weight,
     .data$top100_weight,
+    alsi_weight = .data$month_weight_start,
     .data$month_index
   ) %>%
   replace_na(list(top40_weight = 0, top100_weight = 0))
@@ -161,36 +273,8 @@ saveRDS(full_ret, file = "data/full_ret.rds")
 
 head(full_ret, 10)
 ```
-### Comments on data
 
-The available data for this experiment are weekly total-returns for all equity stocks included in the
-Johannesburg Stock Exchange (JSE) All Share Index (ALSI) over the period ranging from the $5^{th}$
-January 1996 to the $1^{st}$ November 2019. Weightings of the shares in the ALSI are also available,
-although this is a monthly series. This historical vector of the weights of the MW portfolio through
-time is denoted $\hat{w}^{\text{mw}}_t$.
-
-The investigation uses a rolling estimation window of $T = 400$^[$400$ weeks or $7.69$ years
-may seem like an odd choice. It is a window that balances the need for enough estimation data, but also
-a lengthy out-of-sample test. For a longer data history, a larger estimation window could be used.]
-weekly observations to construct portfolios. Weekly data inputs are used with monthly rebalancing
-because of the high data volume requirement from chapter \@ref(somemaths). The constructed portfolio
-$\hat{w}_{t_i}$ will be held out-of-sample over the interval $[t_i, t_{i + 1}]$, where $t_i$ denotes a
-month's end. The entire holding period is from the $30^{th}$ of September 2003 to the $27^{th}$ of
-September 2019 a total of 16 years. Portfolios are constructed for two different asset universes;
-namely, the $40$ largest stocks and the $100$ largest stocks. The separation is to test the effect on
-portfolio performance of an investor broadening their universe. This methodology is outlined for each
-rebalancing date: 
-
-1. Of the stocks in the ALSI with a data history of at least length $T$, choose the $N$ stocks with the
-largest market weights.
-
-2. Use the $N \times T$ matrix of sample returns to find asset weights for the relevant
-portfolio-technique pair.
-
-3. Hold the found portfolio $\hat{w}$ for one month, record the returns $\hat{r}$, and calculate the
-portfolio turnover.
-
-### Data preparation for rebalance dats
+### Data preparation (sample window history adjustment)
 
 ```{r dat_model_rebal, cache = TRUE}
 library(rlang)
@@ -201,7 +285,6 @@ library(tidyr)
 
 full_ret <- readRDS("data/full_ret.rds")
 sample_est_wind <- 400
-
 
 rebal_est_ranges <- full_ret %>% 
   select(.data$date, .data$month_index) %>% 
@@ -215,100 +298,62 @@ rebal_est_ranges <- full_ret %>%
   select(.data$month_index, .data$start_date, .data$end_date)
 
 model_rebal_dat <- tibble(month_index = rebal_est_ranges$month_index, data = list(NULL))
+
+# Looping through to find data
 for (i in seq_along(rebal_est_ranges$month_index)) {
-  dat_now <- full_ret %>% 
+  # need to find full data histories first
+  full_hist_ids <- full_ret %>% 
     filter(.data$date <= rebal_est_ranges[i, ]$end_date & 
              .data$date >= rebal_est_ranges[i, ]$start_date) %>% 
-    mutate(month_index = rebal_est_ranges[i, ]$month_index) %>% 
-    nest(data = c("date", "name", "week_ret", "month_ret", "top40_weight", "top100_weight"))
+    group_by(.data$name) %>% 
+    count() %>% 
+    filter(.data$n == sample_est_wind) %>% 
+    pull(.data$name)
+  # then we can use %in% to get those with full histories
+  dat_now <- full_ret %>% 
+    filter(.data$date <= rebal_est_ranges[i, ]$end_date & 
+             .data$date >= rebal_est_ranges[i, ]$start_date &
+             .data$name %in% full_hist_ids)  
+  # then re-allocate weights
+  hist_adj_weights40 <- dat_now %>% 
+    group_by(.data$month_index) %>% 
+      mutate(size_order = rank(-.data$alsi_weight)) %>% 
+      filter(.data$size_order <= 40) %>% 
+      mutate(histadj_top40_weight = .data$alsi_weight / sum(.data$alsi_weight)) %>% 
+    ungroup() %>% 
+    select(.data$month_index, .data$name, .data$histadj_top40_weight)
+  hist_adj_weights100 <- dat_now %>% 
+    group_by(.data$month_index) %>% 
+      mutate(size_order = rank(-.data$alsi_weight)) %>% 
+      filter(.data$size_order <= 100) %>% 
+      mutate(histadj_top100_weight = .data$alsi_weight / sum(.data$alsi_weight)) %>% 
+    ungroup() %>% 
+    select(.data$month_index, .data$name, .data$histadj_top100_weight)
+  # join back and prepare to save down
+  dat_now <- dat_now %>%
+  full_join(
+    hist_adj_weights40,
+    by = c("month_index", "name")
+  ) %>%
+  full_join(
+    hist_adj_weights100,
+    by = c("month_index", "name")
+  ) %>%
+  select(
+    .data$date,
+    .data$name,
+    .data$week_ret,
+    .data$month_ret,
+    .data$histadj_top40_weight,
+    .data$histadj_top100_weight,
+    .data$month_index
+  ) %>%
+  replace_na(list(histadj_top40_weight = 0, histadj_top100_weight = 0)) %>% 
+  mutate(month_index = rebal_est_ranges[i, ]$month_index) %>% 
+  nest(data = c("date", "name", "week_ret", "month_ret", "histadj_top40_weight", "histadj_top100_weight"))
   model_rebal_dat[i, ] <- dat_now[1, ]
 }
 
 saveRDS(model_rebal_dat, file = "data/model_rebal_dat.rds")
 head(model_rebal_dat, 6)
 ```
-
-
-### Limitations
-
-This experiment is specific to this data and method. Therefore, it is important to outline some
-limitations of the results. Although framework \@ref(eq:genopt) is broad, this experiment only analyses
-portfolios constructed with South African equity returns, and cannot be used to state facts about the
-portfolio construction process generally. The budget, long-only and maximum weight constraints were all
-applied for this experiment. Specifically the maximum weight constraint used is $\alpha = 0.1$. The
-choice intends to provide a consistent basis for comparison across portfolio-technique pairs and
-ensures similarity to practical applications. Shares that have missing data were excluded at each
-rebalancing date with a filter, therefore the MW portfolio, where $N = 40$ may not be representative of
-the JSE Top 40 index. Transaction costs are ignored due to the liquid nature of the largest stocks,
-although this is a potential area for future improvement on the backtesting methodology.
-
-## Results
-
-Before the results are reported, specific metrics that illustrate the effect of each technique and
-portfolio need to be introduced. The first is turnover (TO). It measures the magnitude of trading
-required on each rebalancing date. If there are $m$ rebalancing dates, then the TO is calculated as:
-\begin{align}
-\text{TO} & = \frac{6}{(m - 1)} \sum_{i = 1}^{m - 1} \sum_{j =1}^{N} |\hat{w}_{t_i, j}^\triangle - \hat{w}_{t_i, j}|,
-\end{align}
-where $\hat{w}_{t_i, j}^\triangle$ is the buy-and-hold weight of the $j^{th}$ asset just before the
-rebalance at time $t_i$. The turnover is annual and one-way only; hence, the scaling factor of
-$\frac{6}{m-1}$. For a higher TO, the investor has increased risk when rebalancing that they will not
-enter into the new portfolio at the current market price. The maximum possible value of the TO is
-$1200\%$, and the investor achieves it if they switch from one single stock portfolio to another at
-every rebalancing date.
-
-The next reporting metric is maximum drawdown (MDD), the definition of which requires the notion of
-cumulative wealth. The investor's cumulative wealth at time $t_j$ is their return from time $t_0$
-until time $t_j$ on a portfolio of one initial unit investment, and it is defined as:
-\begin{align*}
-W_{t_j} &= \prod_{i = 1}^{j} (1 + \hat{r}_{t_i}), 
-\end{align*}
-where $\hat{r}_{t_i}$ is the return realised over the interval $[t_{i - 1}, t_i)$. The MDD is the
-biggest loss in cumulative wealth for the entire investment period, and is formulated as:
-\begin{align}
-\text{MDD} & = \underset{t_j \in \{t_1, ..., t_m\}}{\text{argmax}} \Big \{ \underset{t_i \in \{t_1, \text{...}, t_j\}}{\text{argmax} \{W_{t_i} \}} - W_{t_j}  \Big \} \; .
-\end{align} 
-MDD is an essential measure for money managers because excessive drawdowns lead to redemptions in
-their funds. [@M04]
-
-The last two measures are measures of concentration. As stated earlier, the risk-based investor is
-making a trade-off between weight concentration and risk concentration. A standard for weight
-concentration at a rebalancing date, the inverse Herfindahl index, has already been defined. But the
-IHI is general and could apply to multiple types of weights. For allocation weights the IHI at time
-$t_i$ is given as:
-\begin{align}
-N^{\text{eff}}_{t_i} &= \frac{1}{\sum_{j = 1}^N w_{t_i, j}^2} \; ,
-\end{align}
-where $N^{\text{eff}}_{t_i} $ can be interpreted as the number of equal-weighted stocks the investor's
-portfolio is equivalent to. The notation reflects the idea that the IHI represents the number of
-effective stocks in the portfolio. The upper bound of $N^{\text{eff}}_{t_i} $ is $N$ and the lower
-bound in the presence of a maximum allocation constraint is: 
-$({\lfloor \frac{1}{\alpha} \rfloor \cdot \alpha^2 + (1- \lfloor \frac{1}{\alpha}\rfloor \cdot \alpha)^2})^{-1}$
-, which is  derived in appendix \@ref(ihimax). For the case when $\alpha = 0.1$ the lower bound is
-$10$. Risk-weights can be taken instead of capital weights to measure the effectiveness of an asset on
-portfolio volatility. Since the TRCs sum to the portfolio volatility, the risk contributions can be
-scaled into risk-weights so that they sum to $1$. The risk-weight for the $j^{th}$ asset at time $t_i$
-is given as:
-\begin{align}
-\text{RW}_{t_i, j} &= \frac{\text{TRC}_{t_i, j}}{\sqrt{w_{t_i}^\intercal \Sigma w_{t_i}}}\; ,
- \end{align}
-where the inverse Herfindahl index approach can be applied again. The risk-weight IHI is written as:
-\begin{align}
-N^\mathrm{rw}_{t_i}(RW_{t_i}) &= \frac{1}{\sum_{j = 1}^N \text{RW}_{t_i, j}^2} \;.
-\end{align}
-If $\Sigma$ is positive semi-definite, then the lower bound is $1$ even in the presence of the maximum
-allocation constraint, because one asset could have a positive weight and considerable volatility. The
-upper bound is once again $N$. The concentration measures are reported as averages across all of the
-$m$ rebalancing dates.
-
-Let us first discuss the results for the GMV portfolios. The main objective of constructing GMV
-portfolios is to reduce the out-of-sample volatility of returns. The main aim of each GMV-technique
-pair is the same, but performance is measured against the GMV-SCM pair. Therefore, it makes sense to
-define a measure of each GMV-technique pair performance in the same way as @RR15, as a
-volatility reduction over the GMV-SCM pair:
-\begin{align}
-\mathcal{VR}(w|w_{\text{gmv-scm}}) & = \frac{\sigma(w_{\text{gmv-scm}}) - \sigma(w)}{\sigma(w_{\text{gmv-scm}})},
-\end{align}
-where the $\sigma(\cdot)$ function measures a portfolio's volatility.
-
-### going to R'ify 

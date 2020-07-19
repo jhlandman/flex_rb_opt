@@ -115,12 +115,11 @@ entail whether the risk is inherent to the investment, the construction of the p
 restrictions when creating the portfolio.
 
 
-| Portfolio 	| Strategy         	| MSR conditions                                                            	| Risk characteristics                                            	|
-|-----------	|------------------	|---------------------------------------------------------------------------	|-----------------------------------------------------------------	|
-| EW        	| Equalise $w_i$   	| Identical excess returns. Identical volatilities. Identical correlations. 	| Medium to high risk. Insensitive to $\Sigma$. Low turnover.      	|
-| ERC       	| Equalise $TRC_i$ 	| Identical Sharpe ratios. Identical correlations.                          	| Medium risk. Moderately sensitive to $\Sigma$. Medium turnover. 	|
-| GMV       	| Equalise $MRC_i$ 	| Identical excess returns.                                                 	| Lowest risk. Highly sensitive to $\Sigma$. High turnover.       	|
-
+| Portfolio | Strategy         | MSR conditions                                                            | Risk characteristics                                            |
+|-----------|------------------|---------------------------------------------------------------------------|-----------------------------------------------------------------|
+| EW        | Equalise $w_i$   | Identical excess returns. Identical volatilities. Identical correlations. | Medium to high risk. Insensitive to $\Sigma$. Low turnover.     |
+| ERC       | Equalise $TRC_i$ | Identical Sharpe ratios. Identical correlations.                          | Medium risk. Moderately sensitive to $\Sigma$. Medium turnover. |
+| GMV       | Equalise $MRC_i$ | Identical excess returns.                                                 | Lowest risk. Highly sensitive to $\Sigma$. High turnover.       |
 
 Table: (\#tab:rbportprops) Risk-based investing portfolio properties @J13
 
@@ -147,7 +146,7 @@ using the EW portfolio as a benchmark in pursuit of better out-of-sample perform
 and ERC frameworks. In the next chapter, we outline the techniques used to achieve this aim.
 
 
-### Code to find portfolios
+## Code 
 
 ```{r get_MW_EW_ports, cache = TRUE}
 library(rlang)
@@ -211,13 +210,13 @@ ew_month_rebal <- full_ret %>%
 out <- model_rebal_dat$data[[1]]
 
 tmp <- out %>% 
-  select(.data$date, .data$name, .data$week_ret) %>% 
+  filter(.data$histadj_top40_weight > 0) %>% 
+  select(.data$date, .data$name, .data$week_ret) #%>% 
   pivot_wider(id_cols = c("date", "name"), names_from = c("name"), values_from = c("week_ret")) %>% 
-  select(-.data$date) 
+  select(-.data$date)
 
-# need to decide what to do with all of the NAs... should I fill them in with sampled data
-# could fill in with simulated data from industry, 
-#%>% 
+# Sorted out NAs, but now need to sort out data repitition, not sure where it is coming from...
+# see data preparation, almost have a covar mat
 
 # Writing files ------------------------------------------------------------------------------------
 saveRDS(mw_month_rebal, file = "data/port_out/mw_month_rebal.rds")
