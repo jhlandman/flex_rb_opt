@@ -156,7 +156,7 @@ library(data.table)
 library(tidyr)
 
 full_ret <- readRDS("data/full_ret.rds")
-model_rebal_dat <- readRDS("data/model_rebal_dat.rds")
+#model_rebal_dat <- readRDS("data/model_rebal_dat.rds")
 
 # MW returns and weights ---------------------------------------------------------------------------
 mw_month_rebal <- full_ret %>% 
@@ -207,13 +207,13 @@ ew_month_rebal <- full_ret %>%
     )
 
 # GMV sample covar returns and weights -------------------------------------------------------------
-out <- model_rebal_dat$data[[1]]
-
-tmp <- out %>% 
-  filter(.data$histadj_top40_weight > 0) %>% 
-  select(.data$date, .data$name, .data$week_ret) #%>% 
-  pivot_wider(id_cols = c("date", "name"), names_from = c("name"), values_from = c("week_ret")) %>% 
-  select(-.data$date)
+# out <- model_rebal_dat$data[[1]]
+# 
+# tmp <- out %>% 
+#   filter(.data$histadj_top40_weight > 0) %>% 
+#   select(.data$date, .data$name, .data$week_ret) #%>% 
+#   pivot_wider(id_cols = c("date", "name"), names_from = c("name"), values_from = c("week_ret")) %>% 
+#   select(-.data$date)
 
 # Sorted out NAs, but now need to sort out data repitition, not sure where it is coming from...
 # see data preparation, almost have a covar mat

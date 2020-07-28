@@ -113,7 +113,7 @@
 \title{Flexible risk-based portfolio optimisation
 \href{https://github.com/jhlandman/flex_rb_opt}{\emph{(Github link)}}}
 \author{Emlyn Flint\footnote{Legae Peresec}, Jayson Landman\footnote{Ninety One Asset Management}}
-\date{2020-07-12}
+\date{2020-07-28}
 
 \begin{document}
 \maketitle
@@ -538,54 +538,54 @@ restrictions when creating the portfolio.
 \caption{\label{tab:rbportprops} Risk-based investing portfolio properties \citet{J13}}\tabularnewline
 \toprule
 \begin{minipage}[b]{0.06\columnwidth}\raggedright
-Portfolio \textbar{} S\strut
+Portfolio\strut
 \end{minipage} & \begin{minipage}[b]{0.09\columnwidth}\raggedright
-Strategy \textbar{} MS\strut
+Strategy\strut
 \end{minipage} & \begin{minipage}[b]{0.39\columnwidth}\raggedright
-MSR conditions \textbar{} R\strut
+MSR conditions\strut
 \end{minipage} & \begin{minipage}[b]{0.34\columnwidth}\raggedright
-Risk characteristics \textbar{}\strut
+Risk characteristics\strut
 \end{minipage}\tabularnewline
 \midrule
 \endfirsthead
 \toprule
 \begin{minipage}[b]{0.06\columnwidth}\raggedright
-Portfolio \textbar{} S\strut
+Portfolio\strut
 \end{minipage} & \begin{minipage}[b]{0.09\columnwidth}\raggedright
-Strategy \textbar{} MS\strut
+Strategy\strut
 \end{minipage} & \begin{minipage}[b]{0.39\columnwidth}\raggedright
-MSR conditions \textbar{} R\strut
+MSR conditions\strut
 \end{minipage} & \begin{minipage}[b]{0.34\columnwidth}\raggedright
-Risk characteristics \textbar{}\strut
+Risk characteristics\strut
 \end{minipage}\tabularnewline
 \midrule
 \endhead
 \begin{minipage}[t]{0.06\columnwidth}\raggedright
-EW \textbar{} E\strut
+EW\strut
 \end{minipage} & \begin{minipage}[t]{0.09\columnwidth}\raggedright
-Equalise \(w_i\) \textbar{} Id\strut
+Equalise \(w_i\)\strut
 \end{minipage} & \begin{minipage}[t]{0.39\columnwidth}\raggedright
-Identical excess returns. Identical volatilities. Identical correlations. \textbar{} M\strut
+Identical excess returns. Identical volatilities. Identical correlations.\strut
 \end{minipage} & \begin{minipage}[t]{0.34\columnwidth}\raggedright
-Medium to high risk. Insensitive to \(\Sigma\). Low turnover. \textbar{}\strut
+Medium to high risk. Insensitive to \(\Sigma\). Low turnover.\strut
 \end{minipage}\tabularnewline
 \begin{minipage}[t]{0.06\columnwidth}\raggedright
-ERC \textbar{} E\strut
+ERC\strut
 \end{minipage} & \begin{minipage}[t]{0.09\columnwidth}\raggedright
-Equalise \(TRC_i\) \textbar{} Id\strut
+Equalise \(TRC_i\)\strut
 \end{minipage} & \begin{minipage}[t]{0.39\columnwidth}\raggedright
-Identical Sharpe ratios. Identical correlations. \textbar{} M\strut
+Identical Sharpe ratios. Identical correlations.\strut
 \end{minipage} & \begin{minipage}[t]{0.34\columnwidth}\raggedright
-Medium risk. Moderately sensitive to \(\Sigma\). Medium turnover. \textbar{}\strut
+Medium risk. Moderately sensitive to \(\Sigma\). Medium turnover.\strut
 \end{minipage}\tabularnewline
 \begin{minipage}[t]{0.06\columnwidth}\raggedright
-GMV \textbar{} E\strut
+GMV\strut
 \end{minipage} & \begin{minipage}[t]{0.09\columnwidth}\raggedright
-Equalise \(MRC_i\) \textbar{} Id\strut
+Equalise \(MRC_i\)\strut
 \end{minipage} & \begin{minipage}[t]{0.39\columnwidth}\raggedright
-Identical excess returns. \textbar{} L\strut
+Identical excess returns.\strut
 \end{minipage} & \begin{minipage}[t]{0.34\columnwidth}\raggedright
-Lowest risk. Highly sensitive to \(\Sigma\). High turnover. \textbar{}\strut
+Lowest risk. Highly sensitive to \(\Sigma\). High turnover.\strut
 \end{minipage}\tabularnewline
 \bottomrule
 \end{longtable}
@@ -612,8 +612,8 @@ optimisation on a sample covariance matrix. This research remains consistent wit
 using the EW portfolio as a benchmark in pursuit of better out-of-sample performance within the GMV
 and ERC frameworks. In the next chapter, we outline the techniques used to achieve this aim.
 
-\hypertarget{code-to-find-portfolios}{%
-\subsubsection{Code to find portfolios}\label{code-to-find-portfolios}}
+\hypertarget{code}{%
+\subsection{Code}\label{code}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -624,7 +624,7 @@ and ERC frameworks. In the next chapter, we outline the techniques used to achie
 \KeywordTok{library}\NormalTok{(tidyr)}
 
 \NormalTok{full\_ret \textless{}{-}}\StringTok{ }\KeywordTok{readRDS}\NormalTok{(}\StringTok{"data/full\_ret.rds"}\NormalTok{)}
-\NormalTok{model\_rebal\_dat \textless{}{-}}\StringTok{ }\KeywordTok{readRDS}\NormalTok{(}\StringTok{"data/model\_rebal\_dat.rds"}\NormalTok{)}
+\CommentTok{\#model\_rebal\_dat \textless{}{-} readRDS("data/model\_rebal\_dat.rds")}
 
 \CommentTok{\# MW returns and weights {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
 \NormalTok{mw\_month\_rebal \textless{}{-}}\StringTok{ }\NormalTok{full\_ret }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
@@ -675,16 +675,16 @@ and ERC frameworks. In the next chapter, we outline the techniques used to achie
 \NormalTok{    )}
 
 \CommentTok{\# GMV sample covar returns and weights {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
-\NormalTok{out \textless{}{-}}\StringTok{ }\NormalTok{model\_rebal\_dat}\OperatorTok{$}\NormalTok{data[[}\DecValTok{1}\NormalTok{]]}
+\CommentTok{\# out \textless{}{-} model\_rebal\_dat$data[[1]]}
+\CommentTok{\# }
+\CommentTok{\# tmp \textless{}{-} out \%\textgreater{}\% }
+\CommentTok{\#   filter(.data$histadj\_top40\_weight \textgreater{} 0) \%\textgreater{}\% }
+\CommentTok{\#   select(.data$date, .data$name, .data$week\_ret) \#\%\textgreater{}\% }
+\CommentTok{\#   pivot\_wider(id\_cols = c("date", "name"), names\_from = c("name"), values\_from = c("week\_ret")) \%\textgreater{}\% }
+\CommentTok{\#   select({-}.data$date)}
 
-\NormalTok{tmp \textless{}{-}}\StringTok{ }\NormalTok{out }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
-\StringTok{  }\KeywordTok{select}\NormalTok{(.data}\OperatorTok{$}\NormalTok{date, .data}\OperatorTok{$}\NormalTok{name, .data}\OperatorTok{$}\NormalTok{week\_ret) }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
-\StringTok{  }\KeywordTok{pivot\_wider}\NormalTok{(}\DataTypeTok{id\_cols =} \KeywordTok{c}\NormalTok{(}\StringTok{"date"}\NormalTok{, }\StringTok{"name"}\NormalTok{), }\DataTypeTok{names\_from =} \KeywordTok{c}\NormalTok{(}\StringTok{"name"}\NormalTok{), }\DataTypeTok{values\_from =} \KeywordTok{c}\NormalTok{(}\StringTok{"week\_ret"}\NormalTok{)) }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
-\StringTok{  }\KeywordTok{select}\NormalTok{(}\OperatorTok{{-}}\NormalTok{.data}\OperatorTok{$}\NormalTok{date) }
-
-\CommentTok{\# need to decide what to do with all of the NAs... should I fill them in with sampled data}
-\CommentTok{\# could fill in with simulated data from industry, }
-\CommentTok{\#\%\textgreater{}\% }
+\CommentTok{\# Sorted out NAs, but now need to sort out data repitition, not sure where it is coming from...}
+\CommentTok{\# see data preparation, almost have a covar mat}
 
 \CommentTok{\# Writing files {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
 \KeywordTok{saveRDS}\NormalTok{(mw\_month\_rebal, }\DataTypeTok{file =} \StringTok{"data/port\_out/mw\_month\_rebal.rds"}\NormalTok{)}
@@ -932,121 +932,121 @@ given in table \ref{tab:portestpairs} below.
 \begin{longtable}[]{@{}lll@{}}
 \caption{\label{tab:portestpairs} Portfolio estimation-technique pairs}\tabularnewline
 \toprule
-\begin{minipage}[b]{0.27\columnwidth}\raggedright
-Portfolio \textbar{} Es\strut
-\end{minipage} & \begin{minipage}[b]{0.50\columnwidth}\raggedright
-Estimation technique \textbar{} Abb\strut
-\end{minipage} & \begin{minipage}[b]{0.14\columnwidth}\raggedright
+\begin{minipage}[b]{0.26\columnwidth}\raggedright
+Portfolio\strut
+\end{minipage} & \begin{minipage}[b]{0.51\columnwidth}\raggedright
+Estimation technique\strut
+\end{minipage} & \begin{minipage}[b]{0.15\columnwidth}\raggedright
 Abbreviation\strut
 \end{minipage}\tabularnewline
 \midrule
 \endfirsthead
 \toprule
-\begin{minipage}[b]{0.27\columnwidth}\raggedright
-Portfolio \textbar{} Es\strut
-\end{minipage} & \begin{minipage}[b]{0.50\columnwidth}\raggedright
-Estimation technique \textbar{} Abb\strut
-\end{minipage} & \begin{minipage}[b]{0.14\columnwidth}\raggedright
+\begin{minipage}[b]{0.26\columnwidth}\raggedright
+Portfolio\strut
+\end{minipage} & \begin{minipage}[b]{0.51\columnwidth}\raggedright
+Estimation technique\strut
+\end{minipage} & \begin{minipage}[b]{0.15\columnwidth}\raggedright
 Abbreviation\strut
 \end{minipage}\tabularnewline
 \midrule
 \endhead
-\begin{minipage}[t]{0.27\columnwidth}\raggedright
-Equal weight \textbar{} -\strut
-\end{minipage} & \begin{minipage}[t]{0.50\columnwidth}\raggedright
-- \textbar{} EW\strut
-\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\raggedright
+\begin{minipage}[t]{0.26\columnwidth}\raggedright
+Equal weight\strut
+\end{minipage} & \begin{minipage}[t]{0.51\columnwidth}\raggedright
+-\strut
+\end{minipage} & \begin{minipage}[t]{0.15\columnwidth}\raggedright
 EW\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.27\columnwidth}\raggedright
-Market weight \textbar{} -\strut
-\end{minipage} & \begin{minipage}[t]{0.50\columnwidth}\raggedright
-- \textbar{} MW\strut
-\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\raggedright
+\begin{minipage}[t]{0.26\columnwidth}\raggedright
+Market weight\strut
+\end{minipage} & \begin{minipage}[t]{0.51\columnwidth}\raggedright
+-\strut
+\end{minipage} & \begin{minipage}[t]{0.15\columnwidth}\raggedright
 MW\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.27\columnwidth}\raggedright
-Global minimum variance \textbar{} Sa\strut
-\end{minipage} & \begin{minipage}[t]{0.50\columnwidth}\raggedright
-Sample covariance matrix \textbar{} GMV\strut
-\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\raggedright
+\begin{minipage}[t]{0.26\columnwidth}\raggedright
+Global minimum variance\strut
+\end{minipage} & \begin{minipage}[t]{0.51\columnwidth}\raggedright
+Sample covariance matrix\strut
+\end{minipage} & \begin{minipage}[t]{0.15\columnwidth}\raggedright
 GMV-SCM\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.27\columnwidth}\raggedright
-Global minimum variance \textbar{} Qu\strut
-\end{minipage} & \begin{minipage}[t]{0.50\columnwidth}\raggedright
-Quantile factor modelling \textbar{} GMV\strut
-\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\raggedright
+\begin{minipage}[t]{0.26\columnwidth}\raggedright
+Global minimum variance\strut
+\end{minipage} & \begin{minipage}[t]{0.51\columnwidth}\raggedright
+Quantile factor modelling\strut
+\end{minipage} & \begin{minipage}[t]{0.15\columnwidth}\raggedright
 GMV-QFM\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.27\columnwidth}\raggedright
-Global minimum variance \textbar{} Re\strut
-\end{minipage} & \begin{minipage}[t]{0.50\columnwidth}\raggedright
-Regime switching \textbar{} GMV\strut
-\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\raggedright
+\begin{minipage}[t]{0.26\columnwidth}\raggedright
+Global minimum variance\strut
+\end{minipage} & \begin{minipage}[t]{0.51\columnwidth}\raggedright
+Regime switching\strut
+\end{minipage} & \begin{minipage}[t]{0.15\columnwidth}\raggedright
 GMV-RS\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.27\columnwidth}\raggedright
-Global minimum variance \textbar{} Qu\strut
-\end{minipage} & \begin{minipage}[t]{0.50\columnwidth}\raggedright
-Quantile factor modelling with regime switching \textbar{} GMV\strut
-\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\raggedright
+\begin{minipage}[t]{0.26\columnwidth}\raggedright
+Global minimum variance\strut
+\end{minipage} & \begin{minipage}[t]{0.51\columnwidth}\raggedright
+Quantile factor modelling with regime switching\strut
+\end{minipage} & \begin{minipage}[t]{0.15\columnwidth}\raggedright
 GMV-QRS\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.27\columnwidth}\raggedright
-Global minimum variance \textbar{} Ri\strut
-\end{minipage} & \begin{minipage}[t]{0.50\columnwidth}\raggedright
-Ridge regression \textbar{} GMV\strut
-\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\raggedright
+\begin{minipage}[t]{0.26\columnwidth}\raggedright
+Global minimum variance\strut
+\end{minipage} & \begin{minipage}[t]{0.51\columnwidth}\raggedright
+Ridge regression\strut
+\end{minipage} & \begin{minipage}[t]{0.15\columnwidth}\raggedright
 GMV-RR\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.27\columnwidth}\raggedright
-Global minimum variance \textbar{} Su\strut
-\end{minipage} & \begin{minipage}[t]{0.50\columnwidth}\raggedright
-Subset re-sampling \textbar{} GMV\strut
-\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\raggedright
+\begin{minipage}[t]{0.26\columnwidth}\raggedright
+Global minimum variance\strut
+\end{minipage} & \begin{minipage}[t]{0.51\columnwidth}\raggedright
+Subset re-sampling\strut
+\end{minipage} & \begin{minipage}[t]{0.15\columnwidth}\raggedright
 GMV-SRS\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.27\columnwidth}\raggedright
-Equal risk contribution \textbar{} Sa\strut
-\end{minipage} & \begin{minipage}[t]{0.50\columnwidth}\raggedright
-Sample covariance matrix \textbar{} ERC\strut
-\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\raggedright
+\begin{minipage}[t]{0.26\columnwidth}\raggedright
+Equal risk contribution\strut
+\end{minipage} & \begin{minipage}[t]{0.51\columnwidth}\raggedright
+Sample covariance matrix\strut
+\end{minipage} & \begin{minipage}[t]{0.15\columnwidth}\raggedright
 ERC-SCM\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.27\columnwidth}\raggedright
-Equal risk contribution \textbar{} Qu\strut
-\end{minipage} & \begin{minipage}[t]{0.50\columnwidth}\raggedright
-Quantile factor modelling \textbar{} ERC\strut
-\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\raggedright
+\begin{minipage}[t]{0.26\columnwidth}\raggedright
+Equal risk contribution\strut
+\end{minipage} & \begin{minipage}[t]{0.51\columnwidth}\raggedright
+Quantile factor modelling\strut
+\end{minipage} & \begin{minipage}[t]{0.15\columnwidth}\raggedright
 ERC-QFM\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.27\columnwidth}\raggedright
-Equal risk contribution \textbar{} Re\strut
-\end{minipage} & \begin{minipage}[t]{0.50\columnwidth}\raggedright
-Regime switching \textbar{} ERC\strut
-\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\raggedright
+\begin{minipage}[t]{0.26\columnwidth}\raggedright
+Equal risk contribution\strut
+\end{minipage} & \begin{minipage}[t]{0.51\columnwidth}\raggedright
+Regime switching\strut
+\end{minipage} & \begin{minipage}[t]{0.15\columnwidth}\raggedright
 ERC-RS\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.27\columnwidth}\raggedright
-Equal risk contribution \textbar{} Qu\strut
-\end{minipage} & \begin{minipage}[t]{0.50\columnwidth}\raggedright
-Quantile factor modelling with regime switching \textbar{} ERC\strut
-\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\raggedright
+\begin{minipage}[t]{0.26\columnwidth}\raggedright
+Equal risk contribution\strut
+\end{minipage} & \begin{minipage}[t]{0.51\columnwidth}\raggedright
+Quantile factor modelling with regime switching\strut
+\end{minipage} & \begin{minipage}[t]{0.15\columnwidth}\raggedright
 ERC-QRS\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.27\columnwidth}\raggedright
-Equal risk contribution \textbar{} Ri\strut
-\end{minipage} & \begin{minipage}[t]{0.50\columnwidth}\raggedright
-Ridge regression \textbar{} ERC\strut
-\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\raggedright
+\begin{minipage}[t]{0.26\columnwidth}\raggedright
+Equal risk contribution\strut
+\end{minipage} & \begin{minipage}[t]{0.51\columnwidth}\raggedright
+Ridge regression\strut
+\end{minipage} & \begin{minipage}[t]{0.15\columnwidth}\raggedright
 ERC-RR\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.27\columnwidth}\raggedright
-Equal risk contribution \textbar{} Su\strut
-\end{minipage} & \begin{minipage}[t]{0.50\columnwidth}\raggedright
-Subset re-sampling \textbar{} ERC\strut
-\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\raggedright
+\begin{minipage}[t]{0.26\columnwidth}\raggedright
+Equal risk contribution\strut
+\end{minipage} & \begin{minipage}[t]{0.51\columnwidth}\raggedright
+Subset re-sampling\strut
+\end{minipage} & \begin{minipage}[t]{0.15\columnwidth}\raggedright
 ERC-SRS\strut
 \end{minipage}\tabularnewline
 \bottomrule
@@ -1207,8 +1207,126 @@ will be referred to as a pair.
 \hypertarget{data-and-methodology}{%
 \subsection{Data and methodology}\label{data-and-methodology}}
 
-\hypertarget{code-to-clean-incoming-data}{%
-\subsubsection{Code to clean incoming data}\label{code-to-clean-incoming-data}}
+The available data for this experiment are weekly total-returns for all equity stocks included in the
+Johannesburg Stock Exchange (JSE) All Share Index (ALSI) over the period ranging from the \(5^{th}\)
+January 1996 to the \(1^{st}\) November 2019. Weightings of the shares in the ALSI are also available,
+although this is a monthly series. This historical vector of the weights of the MW portfolio through
+time is denoted \(\hat{w}^{\text{mw}}_t\).
+
+The investigation uses a rolling estimation window of \(T = 400\)\footnote{\(400\) weeks or \(7.69\) years
+  may seem like an odd choice. It is a window that balances the need for enough estimation data, but also
+  a lengthy out-of-sample test. For a longer data history, a larger estimation window could be used.}
+weekly observations to construct portfolios. Weekly data inputs are used with monthly rebalancing
+because of the high data volume requirement from chapter \ref{somemaths}. The constructed portfolio
+\(\hat{w}_{t_i}\) will be held out-of-sample over the interval \([t_i, t_{i + 1}]\), where \(t_i\) denotes a
+month's end. The entire holding period is from the \(30^{th}\) of September 2003 to the \(27^{th}\) of
+September 2019 a total of 16 years. Portfolios are constructed for two different asset universes;
+namely, the \(40\) largest stocks and the \(100\) largest stocks. The separation is to test the effect on
+portfolio performance of an investor broadening their universe. This methodology is outlined for each
+rebalancing date:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Of the stocks in the ALSI with a data history of at least length \(T\), choose the \(N\) stocks with the
+  largest market weights.
+\item
+  Use the \(N \times T\) matrix of sample returns to find asset weights for the relevant
+  portfolio-technique pair.
+\item
+  Hold the found portfolio \(\hat{w}\) for one month, record the returns \(\hat{r}\), and calculate the
+  portfolio turnover.
+\end{enumerate}
+
+This experiment is specific to this data and method. Therefore, it is important to outline some
+limitations of the results. Although framework \eqref{eq:genopt} is broad, this experiment only analyses
+portfolios constructed with South African equity returns, and cannot be used to state facts about the
+portfolio construction process generally. The budget, long-only and maximum weight constraints were all
+applied for this experiment. Specifically the maximum weight constraint used is \(\alpha = 0.1\). The
+choice intends to provide a consistent basis for comparison across portfolio-technique pairs and
+ensures similarity to practical applications. Shares that have missing data were excluded at each
+rebalancing date with a filter, therefore the MW portfolio, where \(N = 40\) may not be representative of
+the JSE Top 40 index. Transaction costs are ignored due to the liquid nature of the largest stocks,
+although this is a potential area for future improvement on the backtesting methodology.
+
+\hypertarget{results}{%
+\subsection{Results}\label{results}}
+
+Before the results are reported, specific metrics that illustrate the effect of each technique and
+portfolio need to be introduced. The first is turnover (TO). It measures the magnitude of trading
+required on each rebalancing date. If there are \(m\) rebalancing dates, then the TO is calculated as:
+\begin{align}
+\text{TO} & = \frac{6}{(m - 1)} \sum_{i = 1}^{m - 1} \sum_{j =1}^{N} |\hat{w}_{t_i, j}^\triangle - \hat{w}_{t_i, j}|,
+\end{align}
+where \(\hat{w}_{t_i, j}^\triangle\) is the buy-and-hold weight of the \(j^{th}\) asset just before the
+rebalance at time \(t_i\). The turnover is annual and one-way only; hence, the scaling factor of
+\(\frac{6}{m-1}\). For a higher TO, the investor has increased risk when rebalancing that they will not
+enter into the new portfolio at the current market price. The maximum possible value of the TO is
+\(1200\%\), and the investor achieves it if they switch from one single stock portfolio to another at
+every rebalancing date.
+
+The next reporting metric is maximum drawdown (MDD), the definition of which requires the notion of
+cumulative wealth. The investor's cumulative wealth at time \(t_j\) is their return from time \(t_0\)
+until time \(t_j\) on a portfolio of one initial unit investment, and it is defined as:
+\begin{align*}
+W_{t_j} &= \prod_{i = 1}^{j} (1 + \hat{r}_{t_i}), 
+\end{align*}
+where \(\hat{r}_{t_i}\) is the return realised over the interval \([t_{i - 1}, t_i)\). The MDD is the
+biggest loss in cumulative wealth for the entire investment period, and is formulated as:
+\begin{align}
+\text{MDD} & = \underset{t_j \in \{t_1, ..., t_m\}}{\text{argmax}} \Big \{ \underset{t_i \in \{t_1, \text{...}, t_j\}}{\text{argmax} \{W_{t_i} \}} - W_{t_j}  \Big \} \; .
+\end{align}
+MDD is an essential measure for money managers because excessive drawdowns lead to redemptions in
+their funds. \citep{M04}
+
+The last two measures are measures of concentration. As stated earlier, the risk-based investor is
+making a trade-off between weight concentration and risk concentration. A standard for weight
+concentration at a rebalancing date, the inverse Herfindahl index, has already been defined. But the
+IHI is general and could apply to multiple types of weights. For allocation weights the IHI at time
+\(t_i\) is given as:
+\begin{align}
+N^{\text{eff}}_{t_i} &= \frac{1}{\sum_{j = 1}^N w_{t_i, j}^2} \; ,
+\end{align}
+where \$N\^{}\{\text{eff}\}\emph{\{t\_i\} \$ can be interpreted as the number of equal-weighted stocks the investor's
+portfolio is equivalent to. The notation reflects the idea that the IHI represents the number of
+effective stocks in the portfolio. The upper bound of \$N\^{}\{\text{eff}\}}\{t\_i\} \$ is \(N\) and the lower
+bound in the presence of a maximum allocation constraint is:
+\(({\lfloor \frac{1}{\alpha} \rfloor \cdot \alpha^2 + (1- \lfloor \frac{1}{\alpha}\rfloor \cdot \alpha)^2})^{-1}\)
+, which is derived in appendix \ref{ihimax}. For the case when \(\alpha = 0.1\) the lower bound is
+\(10\). Risk-weights can be taken instead of capital weights to measure the effectiveness of an asset on
+portfolio volatility. Since the TRCs sum to the portfolio volatility, the risk contributions can be
+scaled into risk-weights so that they sum to \(1\). The risk-weight for the \(j^{th}\) asset at time \(t_i\)
+is given as:
+\begin{align}
+\text{RW}_{t_i, j} &= \frac{\text{TRC}_{t_i, j}}{\sqrt{w_{t_i}^\intercal \Sigma w_{t_i}}}\; ,
+ \end{align}
+where the inverse Herfindahl index approach can be applied again. The risk-weight IHI is written as:
+\begin{align}
+N^\mathrm{rw}_{t_i}(RW_{t_i}) &= \frac{1}{\sum_{j = 1}^N \text{RW}_{t_i, j}^2} \;.
+\end{align}
+If \(\Sigma\) is positive semi-definite, then the lower bound is \(1\) even in the presence of the maximum
+allocation constraint, because one asset could have a positive weight and considerable volatility. The
+upper bound is once again \(N\). The concentration measures are reported as averages across all of the
+\(m\) rebalancing dates.
+
+Let us first discuss the results for the GMV portfolios. The main objective of constructing GMV
+portfolios is to reduce the out-of-sample volatility of returns. The main aim of each GMV-technique
+pair is the same, but performance is measured against the GMV-SCM pair. Therefore, it makes sense to
+define a measure of each GMV-technique pair performance in the same way as \citet{RR15}, as a
+volatility reduction over the GMV-SCM pair:
+\begin{align}
+\mathcal{VR}(w|w_{\text{gmv-scm}}) & = \frac{\sigma(w_{\text{gmv-scm}}) - \sigma(w)}{\sigma(w_{\text{gmv-scm}})},
+\end{align}
+where the \(\sigma(\cdot)\) function measures a portfolio's volatility.
+
+\hypertarget{going-to-rify}{%
+\subsubsection{going to R'ify}\label{going-to-rify}}
+
+\hypertarget{code}{%
+\subsection{Code}\label{code}}
+
+\hypertarget{data-reading-in-and-cleaning}{%
+\subsubsection{Data reading in and cleaning}\label{data-reading-in-and-cleaning}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1387,6 +1505,7 @@ will be referred to as a pair.
 \NormalTok{    .data}\OperatorTok{$}\NormalTok{month\_ret,}
 \NormalTok{    .data}\OperatorTok{$}\NormalTok{top40\_weight,}
 \NormalTok{    .data}\OperatorTok{$}\NormalTok{top100\_weight,}
+    \DataTypeTok{alsi\_weight =}\NormalTok{ .data}\OperatorTok{$}\NormalTok{month\_weight\_start,}
 \NormalTok{    .data}\OperatorTok{$}\NormalTok{month\_index}
 \NormalTok{  ) }\OperatorTok{\%\textgreater{}\%}
 \StringTok{  }\KeywordTok{replace\_na}\NormalTok{(}\KeywordTok{list}\NormalTok{(}\DataTypeTok{top40\_weight =} \DecValTok{0}\NormalTok{, }\DataTypeTok{top100\_weight =} \DecValTok{0}\NormalTok{))}
@@ -1398,57 +1517,23 @@ will be referred to as a pair.
 \end{Shaded}
 
 \begin{verbatim}
-## # A tibble: 10 x 7
-##    date       name  week_ret month_ret top40_weight top100_weight month_index
-##    <date>     <chr>    <dbl>     <dbl>        <dbl>         <dbl> <chr>      
-##  1 1996-02-02 ABI    -0.0314    0.0133      0           0.00104   21996      
-##  2 1996-02-02 AXL     0.0436    0.0436      0           0         21996      
-##  3 1996-02-02 ACL    -0.0886    0.0218      0           0         21996      
-##  4 1996-02-02 ACT     0         0.0833      0           0         21996      
-##  5 1996-02-02 ADR     0         0.250       0           0.0000499 21996      
-##  6 1996-02-02 AEL     0.0208   -0.265       0           0         21996      
-##  7 1996-02-02 AEN     0.0455   -0.130       0           0         21996      
-##  8 1996-02-02 AFE    -0.0545   -0.106       0.00626     0.00598   21996      
-##  9 1996-02-02 AFI     0         0.105       0           0.00109   21996      
-## 10 1996-02-02 AFL     0         0           0           0         21996
+## # A tibble: 10 x 8
+##    date       name  week_ret month_ret top40_weight top100_weight alsi_weight month_index
+##    <date>     <chr>    <dbl>     <dbl>        <dbl>         <dbl>       <dbl> <chr>      
+##  1 1996-02-02 ABI    -0.0314    0.0133      0           0.00104     0.000922  21996      
+##  2 1996-02-02 AXL     0.0436    0.0436      0           0           0         21996      
+##  3 1996-02-02 ACL    -0.0886    0.0218      0           0           0         21996      
+##  4 1996-02-02 ACT     0         0.0833      0           0           0         21996      
+##  5 1996-02-02 ADR     0         0.250       0           0.0000499   0.0000440 21996      
+##  6 1996-02-02 AEL     0.0208   -0.265       0           0           0         21996      
+##  7 1996-02-02 AEN     0.0455   -0.130       0           0           0         21996      
+##  8 1996-02-02 AFE    -0.0545   -0.106       0.00626     0.00598     0.00528   21996      
+##  9 1996-02-02 AFI     0         0.105       0           0.00109     0.000961  21996      
+## 10 1996-02-02 AFL     0         0           0           0           0         21996
 \end{verbatim}
 
-\hypertarget{comments-on-data}{%
-\subsubsection{Comments on data}\label{comments-on-data}}
-
-The available data for this experiment are weekly total-returns for all equity stocks included in the
-Johannesburg Stock Exchange (JSE) All Share Index (ALSI) over the period ranging from the \(5^{th}\)
-January 1996 to the \(1^{st}\) November 2019. Weightings of the shares in the ALSI are also available,
-although this is a monthly series. This historical vector of the weights of the MW portfolio through
-time is denoted \(\hat{w}^{\text{mw}}_t\).
-
-The investigation uses a rolling estimation window of \(T = 400\)\footnote{\(400\) weeks or \(7.69\) years
-  may seem like an odd choice. It is a window that balances the need for enough estimation data, but also
-  a lengthy out-of-sample test. For a longer data history, a larger estimation window could be used.}
-weekly observations to construct portfolios. Weekly data inputs are used with monthly rebalancing
-because of the high data volume requirement from chapter \ref{somemaths}. The constructed portfolio
-\(\hat{w}_{t_i}\) will be held out-of-sample over the interval \([t_i, t_{i + 1}]\), where \(t_i\) denotes a
-month's end. The entire holding period is from the \(30^{th}\) of September 2003 to the \(27^{th}\) of
-September 2019 a total of 16 years. Portfolios are constructed for two different asset universes;
-namely, the \(40\) largest stocks and the \(100\) largest stocks. The separation is to test the effect on
-portfolio performance of an investor broadening their universe. This methodology is outlined for each
-rebalancing date:
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\item
-  Of the stocks in the ALSI with a data history of at least length \(T\), choose the \(N\) stocks with the
-  largest market weights.
-\item
-  Use the \(N \times T\) matrix of sample returns to find asset weights for the relevant
-  portfolio-technique pair.
-\item
-  Hold the found portfolio \(\hat{w}\) for one month, record the returns \(\hat{r}\), and calculate the
-  portfolio turnover.
-\end{enumerate}
-
-\hypertarget{data-preparation-for-rebalance-dats}{%
-\subsubsection{Data preparation for rebalance dats}\label{data-preparation-for-rebalance-dats}}
+\hypertarget{data-preparation-sample-window-history-adjustment}{%
+\subsubsection{Data preparation (sample window history adjustment)}\label{data-preparation-sample-window-history-adjustment}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1460,7 +1545,6 @@ rebalancing date:
 
 \NormalTok{full\_ret \textless{}{-}}\StringTok{ }\KeywordTok{readRDS}\NormalTok{(}\StringTok{"data/full\_ret.rds"}\NormalTok{)}
 \NormalTok{sample\_est\_wind \textless{}{-}}\StringTok{ }\DecValTok{400}
-
 
 \NormalTok{rebal\_est\_ranges \textless{}{-}}\StringTok{ }\NormalTok{full\_ret }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
 \StringTok{  }\KeywordTok{select}\NormalTok{(.data}\OperatorTok{$}\NormalTok{date, .data}\OperatorTok{$}\NormalTok{month\_index) }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
@@ -1474,12 +1558,59 @@ rebalancing date:
 \StringTok{  }\KeywordTok{select}\NormalTok{(.data}\OperatorTok{$}\NormalTok{month\_index, .data}\OperatorTok{$}\NormalTok{start\_date, .data}\OperatorTok{$}\NormalTok{end\_date)}
 
 \NormalTok{model\_rebal\_dat \textless{}{-}}\StringTok{ }\KeywordTok{tibble}\NormalTok{(}\DataTypeTok{month\_index =}\NormalTok{ rebal\_est\_ranges}\OperatorTok{$}\NormalTok{month\_index, }\DataTypeTok{data =} \KeywordTok{list}\NormalTok{(}\OtherTok{NULL}\NormalTok{))}
+
+\CommentTok{\# Looping through to find data}
 \ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \KeywordTok{seq\_along}\NormalTok{(rebal\_est\_ranges}\OperatorTok{$}\NormalTok{month\_index)) \{}
-\NormalTok{  dat\_now \textless{}{-}}\StringTok{ }\NormalTok{full\_ret }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+  \CommentTok{\# need to find full data histories first}
+\NormalTok{  full\_hist\_ids \textless{}{-}}\StringTok{ }\NormalTok{full\_ret }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
 \StringTok{    }\KeywordTok{filter}\NormalTok{(.data}\OperatorTok{$}\NormalTok{date }\OperatorTok{\textless{}=}\StringTok{ }\NormalTok{rebal\_est\_ranges[i, ]}\OperatorTok{$}\NormalTok{end\_date }\OperatorTok{\&}\StringTok{ }
 \StringTok{             }\NormalTok{.data}\OperatorTok{$}\NormalTok{date }\OperatorTok{\textgreater{}=}\StringTok{ }\NormalTok{rebal\_est\_ranges[i, ]}\OperatorTok{$}\NormalTok{start\_date) }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
-\StringTok{    }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{month\_index =}\NormalTok{ rebal\_est\_ranges[i, ]}\OperatorTok{$}\NormalTok{month\_index) }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
-\StringTok{    }\KeywordTok{nest}\NormalTok{(}\DataTypeTok{data =} \KeywordTok{c}\NormalTok{(}\StringTok{"date"}\NormalTok{, }\StringTok{"name"}\NormalTok{, }\StringTok{"week\_ret"}\NormalTok{, }\StringTok{"month\_ret"}\NormalTok{, }\StringTok{"top40\_weight"}\NormalTok{, }\StringTok{"top100\_weight"}\NormalTok{))}
+\StringTok{    }\KeywordTok{group\_by}\NormalTok{(.data}\OperatorTok{$}\NormalTok{name) }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{    }\KeywordTok{count}\NormalTok{() }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{    }\KeywordTok{filter}\NormalTok{(.data}\OperatorTok{$}\NormalTok{n }\OperatorTok{==}\StringTok{ }\NormalTok{sample\_est\_wind) }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{    }\KeywordTok{pull}\NormalTok{(.data}\OperatorTok{$}\NormalTok{name)}
+  \CommentTok{\# then we can use \%in\% to get those with full histories}
+\NormalTok{  dat\_now \textless{}{-}}\StringTok{ }\NormalTok{full\_ret }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{    }\KeywordTok{filter}\NormalTok{(.data}\OperatorTok{$}\NormalTok{date }\OperatorTok{\textless{}=}\StringTok{ }\NormalTok{rebal\_est\_ranges[i, ]}\OperatorTok{$}\NormalTok{end\_date }\OperatorTok{\&}\StringTok{ }
+\StringTok{             }\NormalTok{.data}\OperatorTok{$}\NormalTok{date }\OperatorTok{\textgreater{}=}\StringTok{ }\NormalTok{rebal\_est\_ranges[i, ]}\OperatorTok{$}\NormalTok{start\_date }\OperatorTok{\&}
+\StringTok{             }\NormalTok{.data}\OperatorTok{$}\NormalTok{name }\OperatorTok{\%in\%}\StringTok{ }\NormalTok{full\_hist\_ids)  }
+  \CommentTok{\# then re{-}allocate weights}
+\NormalTok{  hist\_adj\_weights40 \textless{}{-}}\StringTok{ }\NormalTok{dat\_now }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{    }\KeywordTok{group\_by}\NormalTok{(.data}\OperatorTok{$}\NormalTok{month\_index) }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{      }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{size\_order =} \KeywordTok{rank}\NormalTok{(}\OperatorTok{{-}}\NormalTok{.data}\OperatorTok{$}\NormalTok{alsi\_weight)) }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{      }\KeywordTok{filter}\NormalTok{(.data}\OperatorTok{$}\NormalTok{size\_order }\OperatorTok{\textless{}=}\StringTok{ }\DecValTok{40}\NormalTok{) }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{      }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{histadj\_top40\_weight =}\NormalTok{ .data}\OperatorTok{$}\NormalTok{alsi\_weight }\OperatorTok{/}\StringTok{ }\KeywordTok{sum}\NormalTok{(.data}\OperatorTok{$}\NormalTok{alsi\_weight)) }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{    }\KeywordTok{ungroup}\NormalTok{() }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{    }\KeywordTok{select}\NormalTok{(.data}\OperatorTok{$}\NormalTok{month\_index, .data}\OperatorTok{$}\NormalTok{name, .data}\OperatorTok{$}\NormalTok{histadj\_top40\_weight)}
+\NormalTok{  hist\_adj\_weights100 \textless{}{-}}\StringTok{ }\NormalTok{dat\_now }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{    }\KeywordTok{group\_by}\NormalTok{(.data}\OperatorTok{$}\NormalTok{month\_index) }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{      }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{size\_order =} \KeywordTok{rank}\NormalTok{(}\OperatorTok{{-}}\NormalTok{.data}\OperatorTok{$}\NormalTok{alsi\_weight)) }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{      }\KeywordTok{filter}\NormalTok{(.data}\OperatorTok{$}\NormalTok{size\_order }\OperatorTok{\textless{}=}\StringTok{ }\DecValTok{100}\NormalTok{) }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{      }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{histadj\_top100\_weight =}\NormalTok{ .data}\OperatorTok{$}\NormalTok{alsi\_weight }\OperatorTok{/}\StringTok{ }\KeywordTok{sum}\NormalTok{(.data}\OperatorTok{$}\NormalTok{alsi\_weight)) }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{    }\KeywordTok{ungroup}\NormalTok{() }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{    }\KeywordTok{select}\NormalTok{(.data}\OperatorTok{$}\NormalTok{month\_index, .data}\OperatorTok{$}\NormalTok{name, .data}\OperatorTok{$}\NormalTok{histadj\_top100\_weight)}
+  \CommentTok{\# join back and prepare to save down}
+\NormalTok{  dat\_now \textless{}{-}}\StringTok{ }\NormalTok{dat\_now }\OperatorTok{\%\textgreater{}\%}
+\StringTok{  }\KeywordTok{full\_join}\NormalTok{(}
+\NormalTok{    hist\_adj\_weights40,}
+    \DataTypeTok{by =} \KeywordTok{c}\NormalTok{(}\StringTok{"month\_index"}\NormalTok{, }\StringTok{"name"}\NormalTok{)}
+\NormalTok{  ) }\OperatorTok{\%\textgreater{}\%}
+\StringTok{  }\KeywordTok{full\_join}\NormalTok{(}
+\NormalTok{    hist\_adj\_weights100,}
+    \DataTypeTok{by =} \KeywordTok{c}\NormalTok{(}\StringTok{"month\_index"}\NormalTok{, }\StringTok{"name"}\NormalTok{)}
+\NormalTok{  ) }\OperatorTok{\%\textgreater{}\%}
+\StringTok{  }\KeywordTok{select}\NormalTok{(}
+\NormalTok{    .data}\OperatorTok{$}\NormalTok{date,}
+\NormalTok{    .data}\OperatorTok{$}\NormalTok{name,}
+\NormalTok{    .data}\OperatorTok{$}\NormalTok{week\_ret,}
+\NormalTok{    .data}\OperatorTok{$}\NormalTok{month\_ret,}
+\NormalTok{    .data}\OperatorTok{$}\NormalTok{histadj\_top40\_weight,}
+\NormalTok{    .data}\OperatorTok{$}\NormalTok{histadj\_top100\_weight,}
+\NormalTok{    .data}\OperatorTok{$}\NormalTok{month\_index}
+\NormalTok{  ) }\OperatorTok{\%\textgreater{}\%}
+\StringTok{  }\KeywordTok{replace\_na}\NormalTok{(}\KeywordTok{list}\NormalTok{(}\DataTypeTok{histadj\_top40\_weight =} \DecValTok{0}\NormalTok{, }\DataTypeTok{histadj\_top100\_weight =} \DecValTok{0}\NormalTok{)) }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{month\_index =}\NormalTok{ rebal\_est\_ranges[i, ]}\OperatorTok{$}\NormalTok{month\_index) }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{  }\KeywordTok{nest}\NormalTok{(}\DataTypeTok{data =} \KeywordTok{c}\NormalTok{(}\StringTok{"date"}\NormalTok{, }\StringTok{"name"}\NormalTok{, }\StringTok{"week\_ret"}\NormalTok{, }\StringTok{"month\_ret"}\NormalTok{, }\StringTok{"histadj\_top40\_weight"}\NormalTok{, }\StringTok{"histadj\_top100\_weight"}\NormalTok{))}
 \NormalTok{  model\_rebal\_dat[i, ] \textless{}{-}}\StringTok{ }\NormalTok{dat\_now[}\DecValTok{1}\NormalTok{, ]}
 \NormalTok{\}}
 
@@ -1487,105 +1618,6 @@ rebalancing date:
 \KeywordTok{head}\NormalTok{(model\_rebal\_dat, }\DecValTok{6}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
-
-\begin{verbatim}
-## # A tibble: 6 x 2
-##   month_index data                 
-##   <chr>       <list>               
-## 1 102003      <tibble [75,749 x 6]>
-## 2 112003      <tibble [76,103 x 6]>
-## 3 122003      <tibble [76,373 x 6]>
-## 4 12004       <tibble [76,634 x 6]>
-## 5 22004       <tibble [76,948 x 6]>
-## 6 32004       <tibble [77,186 x 6]>
-\end{verbatim}
-
-\hypertarget{limitations}{%
-\subsubsection{Limitations}\label{limitations}}
-
-This experiment is specific to this data and method. Therefore, it is important to outline some
-limitations of the results. Although framework \eqref{eq:genopt} is broad, this experiment only analyses
-portfolios constructed with South African equity returns, and cannot be used to state facts about the
-portfolio construction process generally. The budget, long-only and maximum weight constraints were all
-applied for this experiment. Specifically the maximum weight constraint used is \(\alpha = 0.1\). The
-choice intends to provide a consistent basis for comparison across portfolio-technique pairs and
-ensures similarity to practical applications. Shares that have missing data were excluded at each
-rebalancing date with a filter, therefore the MW portfolio, where \(N = 40\) may not be representative of
-the JSE Top 40 index. Transaction costs are ignored due to the liquid nature of the largest stocks,
-although this is a potential area for future improvement on the backtesting methodology.
-
-\hypertarget{results}{%
-\subsection{Results}\label{results}}
-
-Before the results are reported, specific metrics that illustrate the effect of each technique and
-portfolio need to be introduced. The first is turnover (TO). It measures the magnitude of trading
-required on each rebalancing date. If there are \(m\) rebalancing dates, then the TO is calculated as:
-\begin{align}
-\text{TO} & = \frac{6}{(m - 1)} \sum_{i = 1}^{m - 1} \sum_{j =1}^{N} |\hat{w}_{t_i, j}^\triangle - \hat{w}_{t_i, j}|,
-\end{align}
-where \(\hat{w}_{t_i, j}^\triangle\) is the buy-and-hold weight of the \(j^{th}\) asset just before the
-rebalance at time \(t_i\). The turnover is annual and one-way only; hence, the scaling factor of
-\(\frac{6}{m-1}\). For a higher TO, the investor has increased risk when rebalancing that they will not
-enter into the new portfolio at the current market price. The maximum possible value of the TO is
-\(1200\%\), and the investor achieves it if they switch from one single stock portfolio to another at
-every rebalancing date.
-
-The next reporting metric is maximum drawdown (MDD), the definition of which requires the notion of
-cumulative wealth. The investor's cumulative wealth at time \(t_j\) is their return from time \(t_0\)
-until time \(t_j\) on a portfolio of one initial unit investment, and it is defined as:
-\begin{align*}
-W_{t_j} &= \prod_{i = 1}^{j} (1 + \hat{r}_{t_i}), 
-\end{align*}
-where \(\hat{r}_{t_i}\) is the return realised over the interval \([t_{i - 1}, t_i)\). The MDD is the
-biggest loss in cumulative wealth for the entire investment period, and is formulated as:
-\begin{align}
-\text{MDD} & = \underset{t_j \in \{t_1, ..., t_m\}}{\text{argmax}} \Big \{ \underset{t_i \in \{t_1, \text{...}, t_j\}}{\text{argmax} \{W_{t_i} \}} - W_{t_j}  \Big \} \; .
-\end{align}
-MDD is an essential measure for money managers because excessive drawdowns lead to redemptions in
-their funds. \citep{M04}
-
-The last two measures are measures of concentration. As stated earlier, the risk-based investor is
-making a trade-off between weight concentration and risk concentration. A standard for weight
-concentration at a rebalancing date, the inverse Herfindahl index, has already been defined. But the
-IHI is general and could apply to multiple types of weights. For allocation weights the IHI at time
-\(t_i\) is given as:
-\begin{align}
-N^{\text{eff}}_{t_i} &= \frac{1}{\sum_{j = 1}^N w_{t_i, j}^2} \; ,
-\end{align}
-where \$N\^{}\{\text{eff}\}\emph{\{t\_i\} \$ can be interpreted as the number of equal-weighted stocks the investor's
-portfolio is equivalent to. The notation reflects the idea that the IHI represents the number of
-effective stocks in the portfolio. The upper bound of \$N\^{}\{\text{eff}\}}\{t\_i\} \$ is \(N\) and the lower
-bound in the presence of a maximum allocation constraint is:
-\(({\lfloor \frac{1}{\alpha} \rfloor \cdot \alpha^2 + (1- \lfloor \frac{1}{\alpha}\rfloor \cdot \alpha)^2})^{-1}\)
-, which is derived in appendix \ref{ihimax}. For the case when \(\alpha = 0.1\) the lower bound is
-\(10\). Risk-weights can be taken instead of capital weights to measure the effectiveness of an asset on
-portfolio volatility. Since the TRCs sum to the portfolio volatility, the risk contributions can be
-scaled into risk-weights so that they sum to \(1\). The risk-weight for the \(j^{th}\) asset at time \(t_i\)
-is given as:
-\begin{align}
-\text{RW}_{t_i, j} &= \frac{\text{TRC}_{t_i, j}}{\sqrt{w_{t_i}^\intercal \Sigma w_{t_i}}}\; ,
- \end{align}
-where the inverse Herfindahl index approach can be applied again. The risk-weight IHI is written as:
-\begin{align}
-N^\mathrm{rw}_{t_i}(RW_{t_i}) &= \frac{1}{\sum_{j = 1}^N \text{RW}_{t_i, j}^2} \;.
-\end{align}
-If \(\Sigma\) is positive semi-definite, then the lower bound is \(1\) even in the presence of the maximum
-allocation constraint, because one asset could have a positive weight and considerable volatility. The
-upper bound is once again \(N\). The concentration measures are reported as averages across all of the
-\(m\) rebalancing dates.
-
-Let us first discuss the results for the GMV portfolios. The main objective of constructing GMV
-portfolios is to reduce the out-of-sample volatility of returns. The main aim of each GMV-technique
-pair is the same, but performance is measured against the GMV-SCM pair. Therefore, it makes sense to
-define a measure of each GMV-technique pair performance in the same way as \citet{RR15}, as a
-volatility reduction over the GMV-SCM pair:
-\begin{align}
-\mathcal{VR}(w|w_{\text{gmv-scm}}) & = \frac{\sigma(w_{\text{gmv-scm}}) - \sigma(w)}{\sigma(w_{\text{gmv-scm}})},
-\end{align}
-where the \(\sigma(\cdot)\) function measures a portfolio's volatility.
-
-\hypertarget{going-to-rify}{%
-\subsubsection{going to R'ify}\label{going-to-rify}}
 
 \hypertarget{conclusion}{%
 \section{Conclusion}\label{conclusion}}
@@ -1635,62 +1667,62 @@ risk factor space instead of the asset space.
 \begin{longtable}[]{@{}ll@{}}
 \caption{\label{tab:portabb} Portfolio type abbreviations.}\tabularnewline
 \toprule
-Full name \textbar{} Abb & Abbrevation \textbar{}\tabularnewline
+Full name & Abbrevation\tabularnewline
 \midrule
 \endfirsthead
 \toprule
-Full name \textbar{} Abb & Abbrevation \textbar{}\tabularnewline
+Full name & Abbrevation\tabularnewline
 \midrule
 \endhead
-Mean-variance optimal \textbar{} MVO & MVO \textbar{}\tabularnewline
-Global minimum variance \textbar{} GMV & GMV \textbar{}\tabularnewline
-Equal weight \textbar{} EW & EW \textbar{}\tabularnewline
-Equal risk contribution \textbar{} ERC & ERC \textbar{}\tabularnewline
-Market weight \textbar{} MW & MW \textbar{}\tabularnewline
-Maximum Sharpe ratio \textbar{} MSR & MSR \textbar{}\tabularnewline
+Mean-variance optimal & MVO\tabularnewline
+Global minimum variance & GMV\tabularnewline
+Equal weight & EW\tabularnewline
+Equal risk contribution & ERC\tabularnewline
+Market weight & MW\tabularnewline
+Maximum Sharpe ratio & MSR\tabularnewline
 \bottomrule
 \end{longtable}
 
 \begin{longtable}[]{@{}ll@{}}
 \caption{\label{tab:metricabb} Metric abbreviations.}\tabularnewline
 \toprule
-Full name & Abbrevation \textbar{}\tabularnewline
+Full name & Abbrevation\tabularnewline
 \midrule
 \endfirsthead
 \toprule
-Full name & Abbrevation \textbar{}\tabularnewline
+Full name & Abbrevation\tabularnewline
 \midrule
 \endhead
-Marginal risk contribution & MRC \textbar{}\tabularnewline
-Total risk contribution & TRC \textbar{}\tabularnewline
-Inverse Herfindahl index & IHI \textbar{}\tabularnewline
-Risk-weights & RS \textbar{}\tabularnewline
-Marginal risk-weights & MRW \textbar{}\tabularnewline
-Total risk-weights & TRW \textbar{}\tabularnewline
-Sharpe ratio & SR \textbar{}\tabularnewline
-Squared Mahalanobis distance & SMD \textbar{}\tabularnewline
-Mean square error & MSE \textbar{}\tabularnewline
-Turnover rate & TO \textbar{}\tabularnewline
-Maximum drawdown & MDD \textbar{}\tabularnewline
+Marginal risk contribution & MRC\tabularnewline
+Total risk contribution & TRC\tabularnewline
+Inverse Herfindahl index & IHI\tabularnewline
+Risk-weights & RS\tabularnewline
+Marginal risk-weights & MRW\tabularnewline
+Total risk-weights & TRW\tabularnewline
+Sharpe ratio & SR\tabularnewline
+Squared Mahalanobis distance & SMD\tabularnewline
+Mean square error & MSE\tabularnewline
+Turnover rate & TO\tabularnewline
+Maximum drawdown & MDD\tabularnewline
 \bottomrule
 \end{longtable}
 
 \begin{longtable}[]{@{}ll@{}}
 \caption{\label{tab:esttech} Estimation techniques.}\tabularnewline
 \toprule
-Full name \textbar{} Abb & Abbrevation \textbar{}\tabularnewline
+Full name & Abbrevation\tabularnewline
 \midrule
 \endfirsthead
 \toprule
-Full name \textbar{} Abb & Abbrevation \textbar{}\tabularnewline
+Full name & Abbrevation\tabularnewline
 \midrule
 \endhead
-Sample covariance matrix \textbar{} SCM & SCM \textbar{}\tabularnewline
-Regime switching \textbar{} RS & RS \textbar{}\tabularnewline
-Quantile factor modelling \textbar{} QFM & QFM \textbar{}\tabularnewline
-Quantile factor modelling with regime switching \textbar{} QRS & QRS \textbar{}\tabularnewline
-Ridge regression \textbar{} RR & RR \textbar{}\tabularnewline
-Subset re-sampling \textbar{} SRS & SRS \textbar{}\tabularnewline
+Sample covariance matrix & SCM\tabularnewline
+Regime switching & RS\tabularnewline
+Quantile factor modelling & QFM\tabularnewline
+Quantile factor modelling with regime switching & QRS\tabularnewline
+Ridge regression & RR\tabularnewline
+Subset re-sampling & SRS\tabularnewline
 \bottomrule
 \end{longtable}
 
