@@ -313,10 +313,11 @@ for (i in seq_along(rebal_est_ranges$month_index)) {
   dat_now <- full_ret %>% 
     filter(.data$date <= rebal_est_ranges[i, ]$end_date & 
              .data$date >= rebal_est_ranges[i, ]$start_date &
-             .data$name %in% full_hist_ids)  
+             .data$name %in% full_hist_ids)
   # then re-allocate weights
   hist_adj_weights40 <- dat_now %>% 
     group_by(.data$month_index) %>% 
+      filter(.data$date == min(.data$date)) %>% 
       mutate(size_order = rank(-.data$alsi_weight)) %>% 
       filter(.data$size_order <= 40) %>% 
       mutate(histadj_top40_weight = .data$alsi_weight / sum(.data$alsi_weight)) %>% 
@@ -324,13 +325,14 @@ for (i in seq_along(rebal_est_ranges$month_index)) {
     select(.data$month_index, .data$name, .data$histadj_top40_weight)
   hist_adj_weights100 <- dat_now %>% 
     group_by(.data$month_index) %>% 
+      filter(.data$date == min(.data$date)) %>% 
       mutate(size_order = rank(-.data$alsi_weight)) %>% 
       filter(.data$size_order <= 100) %>% 
       mutate(histadj_top100_weight = .data$alsi_weight / sum(.data$alsi_weight)) %>% 
     ungroup() %>% 
     select(.data$month_index, .data$name, .data$histadj_top100_weight)
   # join back and prepare to save down
-  dat_now <- dat_now %>%
+  dat_out <- dat_now %>%
   full_join(
     hist_adj_weights40,
     by = c("month_index", "name")
@@ -351,9 +353,10 @@ for (i in seq_along(rebal_est_ranges$month_index)) {
   replace_na(list(histadj_top40_weight = 0, histadj_top100_weight = 0)) %>% 
   mutate(month_index = rebal_est_ranges[i, ]$month_index) %>% 
   nest(data = c("date", "name", "week_ret", "month_ret", "histadj_top40_weight", "histadj_top100_weight"))
-  model_rebal_dat[i, ] <- dat_now[1, ]
+  model_rebal_dat[i, ] <- dat_out[1, ]
 }
 
 saveRDS(model_rebal_dat, file = "data/model_rebal_dat.rds")
 head(model_rebal_dat, 6)
 ```
+
