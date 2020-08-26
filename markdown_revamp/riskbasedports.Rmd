@@ -155,6 +155,8 @@ library(dplyr)
 library(data.table)
 library(tidyr)
 library(purrr)
+library(matrixNormal)
+library(Matrix)
 library(quadprog)
 
 full_ret <- readRDS("data/full_ret.rds")
@@ -221,27 +223,50 @@ get_cov <- function(chopped_df) {
   return(out)
 }
 
+# for the top 40: <CAN USE A PURRR::MAP() OF THIS LOGIC TO FILTER>
+dat_check <- model_rebal_dat$data[[1]]
+last_date <- dat_check[dat_check$date == max(dat_check$date),]
+forty_ids <- last_date[last_date$histadj_top40_weight > 0,]$name
+filtered <- dat_check[dat_check$name %in% forty_ids,]
+get_cov(filtered)
+
+# would be this for full... But only want for top40
 covars = purrr::map(model_rebal_dat$data, get_cov)
 
 # Minimum variance portfolio optimisation ----------------------------------------------------------
 # program is quadratic so using quadprog
 
-get_weights_now <- function(Dmat){
-  Dmat <- covars[[1]]
-  n = nrow(Dmat)
-  dvec <- matrix(rep(0, times = n), nrow=n, ncol=1)
-  A.Equality <- matrix(rep(c(1), times=n), ncol=1)
+get_weights_now <- function(Dmat_in){
+  if (matrixNormal::is.positive.definite(Dmat_in)) {
+    Dmat <- Dmat_in
+  } else {
+    Dmat <- Matrix::nearPD(Dmat_in)$mat
+    print("used  a near positive definite matrix")
+  }
+  n <- nrow(Dmat)
+  dvec <- matrix(rep(0, times = n), nrow = n, ncol=1)
+  A.Equality <- matrix(rep(c(1), times = n), ncol=1)
   Amat <- cbind(A.Equality, diag(n), -diag(n))
   bvec <- c(sum_w, rep(0, n), rep(-alpha, n))
   qp <- solve.QP(Dmat, dvec, Amat, bvec, meq=1)
-  df = tibble(names = colnames(covars[[1]]), weights = qp$solution)
-  df$weights[df$weights < 0] = 0
+  df <- tibble(names = colnames(Dmat), weights = qp$solution)
+  df$weights[df$weights < 0] <- 0
   return(df)
 }
-
 list_weight = purrr::map(covars, get_weights_now)
+names(list_weight) <- model_rebal_dat$month_index
+
+out = dplyr::bind_rows(list_weight, .id = "month_index")
+
+ggplot2::ggplot(out, ggplot2::aes(x=weights)) + 
+  ggplot2::geom_density()
+
+# can join to full ret before the fact to find the 40 and 100 largest stocks, 
+# then look at the 
 
 # Equal risk contribution portfolio optimisation ---------------------------------------------------
+
+
 
 # Writing files ------------------------------------------------------------------------------------
 saveRDS(mw_month_rebal, file = "data/port_out/mw_month_rebal.rds")
