@@ -148,23 +148,17 @@ and ERC frameworks. In the next chapter, we outline the techniques used to achie
 
 ## Code 
 
-```{r get_MW_EW_ports, cache = TRUE}
+### MW portfolio
+
+```{r get_mw_ports, cache=TRUE}
 library(rlang)
 library(magrittr)
 library(dplyr)
 library(data.table)
 library(tidyr)
-library(purrr)
-library(matrixNormal)
-library(Matrix)
-library(quadprog)
 
 full_ret <- readRDS("data/full_ret.rds")
-model_rebal_dat <- readRDS("data/model_rebal_dat.rds")
-alpha = 0.1
-sum_w = 1
 
-# MW returns and weights ---------------------------------------------------------------------------
 mw_month_rebal <- full_ret %>% 
   group_by(.data$month_index) %>% 
     filter(.data$date == min(date)) %>% 
@@ -187,7 +181,21 @@ mw_month_rebal <- full_ret %>%
       .data$top100_total_ret
     )
 
-# EW returns and weights ---------------------------------------------------------------------------
+saveRDS(mw_month_rebal, file = "data/port_out/mw_month_rebal.rds")
+head(mw_month_rebal)
+```
+
+### EW portfolio
+
+```{r get_ew_ports, cache=TRUE}
+library(rlang)
+library(magrittr)
+library(dplyr)
+library(data.table)
+library(tidyr)
+
+full_ret <- readRDS("data/full_ret.rds")
+
 ew_month_rebal <- full_ret %>% 
   group_by(.data$month_index) %>% 
     filter(.data$date == min(date)) %>% 
@@ -212,10 +220,32 @@ ew_month_rebal <- full_ret %>%
       .data$ew100_total_ret
     )
 
-# Getting sample covariance matrix -----------------------------------------------------------------
+saveRDS(ew_month_rebal, file = "data/port_out/ew_month_rebal.rds")
+head(ew_month_rebal)
+```
+
+### GMV portfolio
+
+```{r get_gmv_ports, cache=TRUE}
+library(rlang)
+library(magrittr)
+library(dplyr)
+library(data.table)
+library(tidyr)
+library(purrr)
+library(matrixNormal)
+library(Matrix)
+library(quadprog)
+
+model_rebal_dat <- readRDS("data/model_rebal_dat.rds")
+full_ret <- readRDS("data/full_ret.rds")
+alpha = 0.1
+sum_w = 1
+
+# Helper functions ---------------------------------------------------------------------------------
 
 get_cov <- function(chopped_df) {
-  out = chopped_df %>%
+  out <- chopped_df %>%
   select(.data$date, .data$name, .data$week_ret) %>%
   pivot_wider(id_cols = c("date", "name"), names_from = c("name"), values_from = c("week_ret")) %>%
   select(-.data$date) %>% 
@@ -223,18 +253,120 @@ get_cov <- function(chopped_df) {
   return(out)
 }
 
-# for the top 40: <CAN USE A PURRR::MAP() OF THIS LOGIC TO FILTER>
-dat_check <- model_rebal_dat$data[[1]]
-last_date <- dat_check[dat_check$date == max(dat_check$date),]
-forty_ids <- last_date[last_date$histadj_top40_weight > 0,]$name
-filtered <- dat_check[dat_check$name %in% forty_ids,]
-get_cov(filtered)
+filter_n_size <- function(df_in, weight_col_name) {
+  last_date <- df_in[df_in$date == max(df_in$date),]
+  n_ids <- last_date[pull(last_date, weight_col_name) > 0,]$name
+  filtered <- df_in[df_in$name %in% n_ids,]
+  return(filtered)
+}
 
-# would be this for full... But only want for top40
-covars = purrr::map(model_rebal_dat$data, get_cov)
+get_gmv_weights <- function(Dmat_in){
+  if (matrixNormal::is.positive.definite(Dmat_in)) {
+    Dmat <- Dmat_in
+  } else {
+    Dmat <- Matrix::nearPD(Dmat_in)$mat
+    print("used  a near positive definite matrix")
+  }
+  n <- nrow(Dmat)
+  dvec <- matrix(rep(0, times = n), nrow = n, ncol=1)
+  A.Equality <- matrix(rep(c(1), times = n), ncol=1)
+  Amat <- cbind(A.Equality, diag(n), -diag(n))
+  bvec <- c(sum_w, rep(0, n), rep(-alpha, n))
+  qp <- solve.QP(Dmat, dvec, Amat, bvec, meq=1)
+  df <- tibble(name = colnames(Dmat), weights = qp$solution)
+  df$weights[df$weights < 0] <- 0
+  return(df)
+}
 
-# Minimum variance portfolio optimisation ----------------------------------------------------------
-# program is quadratic so using quadprog
+flatten_out <- function(list_df_in, names_idx, col_id) {
+  names(list_df_in) <- names_idx
+  df_out <- dplyr::bind_rows(list_df_in, .id = col_id)
+  return(df_out)
+}
+
+# portfolio optimisation ---------------------------------------------------------------------------
+
+covars40 <- map(model_rebal_dat$data, filter_n_size, "histadj_top40_weight") %>% 
+  map(get_cov) 
+weights40 <- covars40 %>% 
+  map(get_gmv_weights) %>% 
+  flatten_out(model_rebal_dat$month_index, "month_index") %>% 
+  select(.data$month_index, .data$name, gmv40_weight = weights) %>% 
+  mutate(month_index = as.integer(.data$month_index))
+
+covars100 <- map(model_rebal_dat$data, filter_n_size, "histadj_top100_weight") %>% 
+  map(get_cov)
+weights100 <- covars100 %>% 
+  map(get_gmv_weights) %>% 
+  flatten_out(model_rebal_dat$month_index, "month_index") %>% 
+  select(.data$month_index, .data$name, gmv100_weight = weights) %>%
+  mutate(month_index = as.integer(.data$month_index))
+
+gmv_month_rebal <- full_ret %>% 
+  group_by(.data$month_index, .data$name) %>% 
+  filter(.data$date == min(.data$date)) %>% 
+  left_join(weights40, by = c('month_index', 'name')) %>% 
+  left_join(weights100, by = c('month_index', 'name'))
+
+min_period <- min(as.integer(weights40$month_index))
+
+gmv_month_rebal <- gmv_month_rebal %>% 
+  filter(.data$month_index >= min_period) %>% 
+  mutate(gmv40_weight = data.table::nafill(.data$gmv40_weight, fill = 0)) %>% 
+  mutate(gmv100_weight = data.table::nafill(.data$gmv100_weight, fill = 0)) %>% 
+  select(
+    .data$month_index, 
+    .data$name, 
+    .data$month_ret, 
+    .data$gmv40_weight,
+    .data$gmv100_weight,
+  ) %>% 
+  mutate(gmv40_ret_contrib = .data$month_ret * .data$gmv40_weight) %>% 
+  mutate(gmv100_ret_contrib = .data$month_ret * .data$gmv100_weight) %>% 
+  group_by(.data$month_index) %>% 
+    mutate(gmv40_total_ret = sum(.data$gmv40_ret_contrib)) %>% 
+    mutate(gmv100_total_ret = sum(.data$gmv100_ret_contrib)) %>% 
+  ungroup()
+
+saveRDS(gmv_month_rebal, file = "data/port_out/gmv_month_rebal.rds")
+head(gmv_month_rebal)
+```
+
+### ERC portfolio
+
+```{r get_erc_ports, cache=TRUE}
+library(rlang)
+library(magrittr)
+library(dplyr)
+library(data.table)
+library(tidyr)
+library(purrr)
+library(matrixNormal)
+library(Matrix)
+library(quadprog)
+
+model_rebal_dat <- readRDS("data/model_rebal_dat.rds")
+full_ret <- readRDS("data/full_ret.rds")
+alpha = 0.1
+sum_w = 1
+
+# Helper functions ---------------------------------------------------------------------------------
+
+get_cov <- function(chopped_df) {
+  out <- chopped_df %>%
+  select(.data$date, .data$name, .data$week_ret) %>%
+  pivot_wider(id_cols = c("date", "name"), names_from = c("name"), values_from = c("week_ret")) %>%
+  select(-.data$date) %>% 
+  cov()
+  return(out)
+}
+
+filter_n_size <- function(df_in, weight_col_name) {
+  last_date <- df_in[df_in$date == max(df_in$date),]
+  n_ids <- last_date[pull(last_date, weight_col_name) > 0,]$name
+  filtered <- df_in[df_in$name %in% n_ids,]
+  return(filtered)
+}
 
 get_weights_now <- function(Dmat_in){
   if (matrixNormal::is.positive.definite(Dmat_in)) {
@@ -249,29 +381,33 @@ get_weights_now <- function(Dmat_in){
   Amat <- cbind(A.Equality, diag(n), -diag(n))
   bvec <- c(sum_w, rep(0, n), rep(-alpha, n))
   qp <- solve.QP(Dmat, dvec, Amat, bvec, meq=1)
-  df <- tibble(names = colnames(Dmat), weights = qp$solution)
+  df <- tibble(name = colnames(Dmat), weights = qp$solution)
   df$weights[df$weights < 0] <- 0
   return(df)
 }
-list_weight = purrr::map(covars, get_weights_now)
-names(list_weight) <- model_rebal_dat$month_index
 
-out = dplyr::bind_rows(list_weight, .id = "month_index")
+flatten_out <- function(list_df_in, names_idx, col_id) {
+  names(list_df_in) <- names_idx
+  df_out <- dplyr::bind_rows(list_df_in, .id = col_id)
+  return(df_out)
+}
 
-ggplot2::ggplot(out, ggplot2::aes(x=weights)) + 
-  ggplot2::geom_density()
+# portfolio optimisation ---------------------------------------------------------------------------
 
-# can join to full ret before the fact to find the 40 and 100 largest stocks, 
-# then look at the 
+covars40 <- map(model_rebal_dat$data, filter_n_size, "histadj_top40_weight") %>% 
+  map(get_cov) 
+weights40 <- covars40 %>% 
+  map(get_weights_now) %>% 
+  flatten_out(model_rebal_dat$month_index, "month_index") %>% 
+  select(.data$month_index, .data$name, gmv40_weight = weights) %>% 
+  mutate(month_index = as.integer(.data$month_index))
 
-# Equal risk contribution portfolio optimisation ---------------------------------------------------
-
-
-
-# Writing files ------------------------------------------------------------------------------------
-saveRDS(mw_month_rebal, file = "data/port_out/mw_month_rebal.rds")
-saveRDS(ew_month_rebal, file = "data/port_out/ew_month_rebal.rds")
-
-head(mw_month_rebal, 10)
+covars100 <- map(model_rebal_dat$data, filter_n_size, "histadj_top100_weight") %>% 
+  map(get_cov)
+weights100 <- covars100 %>% 
+  map(get_weights_now) %>% 
+  flatten_out(model_rebal_dat$month_index, "month_index") %>% 
+  select(.data$month_index, .data$name, gmv100_weight = weights) %>%
+  mutate(month_index = as.integer(.data$month_index))
 ```
 

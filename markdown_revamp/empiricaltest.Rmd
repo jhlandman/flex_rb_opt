@@ -157,7 +157,7 @@ weekly_ret <- weekly_ret %>%
   pivot_longer(setdiff(colnames(weekly_ret), c("...1"))) %>% 
   drop_na() %>% 
   arrange(.data$date) %>% 
-  mutate(join_col = paste0(month(date), year(date)))
+  mutate(join_col = as.integer(format(.data$date, '%Y%m')))
 
 month_ret <- month_ret %>% 
   rename("date" = "...1") %>% 
@@ -165,7 +165,7 @@ month_ret <- month_ret %>%
   pivot_longer(setdiff(colnames(month_ret), c("...1"))) %>% 
   drop_na() %>% 
   arrange(.data$date) %>% 
-  mutate(join_col = paste0(month(date), year(date)))
+  mutate(join_col = as.integer(format(.data$date, '%Y%m')))
 
 alsi_weights <- alsi_weights %>% 
   rename("date" = "...2") %>% 
@@ -174,7 +174,7 @@ alsi_weights <- alsi_weights %>%
   pivot_longer(setdiff(colnames(alsi_weights), c("SumCheck", "...2"))) %>% 
   drop_na() %>% 
   arrange(.data$date) %>% 
-  mutate(join_col = paste0(month(date), year(date)))
+  mutate(join_col = as.integer(format(.data$date, '%Y%m')))
 
 # joining data -------------------------------------------------------------------------------------
 full_ret <- weekly_ret %>% 
