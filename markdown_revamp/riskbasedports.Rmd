@@ -78,7 +78,8 @@ f(w, \Sigma|\textbf{X}) &= \sum_{i = 1}^N  \sum_{j \geq i}^N(w_i(\Sigma w)_i - w
 \end{align}
 
 @MRT10 show that a log-constraint on the weights in GMV optimisation could equivalently express this
-choice of $f(\cdot| \textbf{X})$ - an idea explored further in appendix **insert appendix ref**.
+choice of $f(\cdot| \textbf{X})$ - an idea explored further in appendix **insert appendix ref** 
+**also give an outline of the matrix math to make the objective function fast to evaluate**.
 Therein it is shown that the ERC portfolio is an intermediate portfolio $w^\diamond$. While there are
 several other risk-based portfolios that have been suggested in the literature, we will focus our
 attention only on these three portfolios, which are arguably some of the most common risk-based
@@ -150,7 +151,7 @@ and ERC frameworks. In the next chapter, we outline the techniques used to achie
 
 ### MW portfolio
 
-```{r get_mw_ports, cache=TRUE}
+```{r get_mw_ports, cache=TRUE, message=FALSE}
 library(rlang)
 library(magrittr)
 library(dplyr)
@@ -187,7 +188,7 @@ head(mw_month_rebal)
 
 ### EW portfolio
 
-```{r get_ew_ports, cache=TRUE}
+```{r get_ew_ports, cache=TRUE, message=FALSE}
 library(rlang)
 library(magrittr)
 library(dplyr)
@@ -226,7 +227,7 @@ head(ew_month_rebal)
 
 ### GMV portfolio
 
-```{r get_gmv_ports, cache=TRUE}
+```{r get_gmv_ports, cache=TRUE, message=FALSE}
 library(rlang)
 library(magrittr)
 library(dplyr)
@@ -288,6 +289,8 @@ flatten_out <- function(list_df_in, names_idx, col_id) {
 
 covars40 <- map(model_rebal_dat$data, filter_n_size, "histadj_top40_weight") %>% 
   map(get_cov) 
+
+# not sure how to get the weights over here
 weights40 <- covars40 %>% 
   map(get_gmv_weights) %>% 
   flatten_out(model_rebal_dat$month_index, "month_index") %>% 
@@ -334,7 +337,7 @@ head(gmv_month_rebal)
 
 ### ERC portfolio
 
-```{r get_erc_ports, cache=TRUE}
+```{r get_erc_ports, cache=TRUE, message=FALSE}
 library(rlang)
 library(magrittr)
 library(dplyr)
@@ -344,6 +347,7 @@ library(purrr)
 library(matrixNormal)
 library(Matrix)
 library(quadprog)
+library(optimx)
 
 model_rebal_dat <- readRDS("data/model_rebal_dat.rds")
 full_ret <- readRDS("data/full_ret.rds")
@@ -368,24 +372,6 @@ filter_n_size <- function(df_in, weight_col_name) {
   return(filtered)
 }
 
-get_weights_now <- function(Dmat_in){
-  if (matrixNormal::is.positive.definite(Dmat_in)) {
-    Dmat <- Dmat_in
-  } else {
-    Dmat <- Matrix::nearPD(Dmat_in)$mat
-    print("used  a near positive definite matrix")
-  }
-  n <- nrow(Dmat)
-  dvec <- matrix(rep(0, times = n), nrow = n, ncol=1)
-  A.Equality <- matrix(rep(c(1), times = n), ncol=1)
-  Amat <- cbind(A.Equality, diag(n), -diag(n))
-  bvec <- c(sum_w, rep(0, n), rep(-alpha, n))
-  qp <- solve.QP(Dmat, dvec, Amat, bvec, meq=1)
-  df <- tibble(name = colnames(Dmat), weights = qp$solution)
-  df$weights[df$weights < 0] <- 0
-  return(df)
-}
-
 flatten_out <- function(list_df_in, names_idx, col_id) {
   names(list_df_in) <- names_idx
   df_out <- dplyr::bind_rows(list_df_in, .id = col_id)
@@ -395,19 +381,68 @@ flatten_out <- function(list_df_in, names_idx, col_id) {
 # portfolio optimisation ---------------------------------------------------------------------------
 
 covars40 <- map(model_rebal_dat$data, filter_n_size, "histadj_top40_weight") %>% 
-  map(get_cov) 
+  map(get_cov)
+
+count <- 0
+get_erc_weights <- function(Dmat_in){
+  if (matrixNormal::is.positive.definite(Dmat_in)) {
+    Dmat <- Dmat_in
+  } else {
+    Dmat <- Matrix::nearPD(Dmat_in)$mat
+    print("used  a near positive definite matrix")
+  }
+  n <- nrow(Dmat)
+  w_0 <- rep(1 / n, times = n)
+  ui <- t(cbind(matrix(rep(c(1), times = n), ncol=1), diag(n), -diag(n)))
+  ci <- c(sum_w, rep(0, n), rep(-alpha, n))
+  obj_func <- function(w_0){
+    a <- w_0 * Dmat %*% w_0
+    mat_calc <- matrix(rep(a, times = n), n, n)
+    sum((tril(t(mat_calc)) - tril(mat_calc))^2)*100000
+  }
+  out <- constrOptim(w_0, obj_func, grad = NULL, ui = ui, ci = ci)
+  if (out$convergence != 1) {
+    print('did not converge')
+  }
+  df <- tibble(name = colnames(Dmat), weights = out$par)
+  df$weights[df$weights < 0] <- 0
+  df$weights <- df$weights / sum(df$weights)
+  df$weights[df$weights > alpha] <- alpha
+  print(out$outer.iterations)
+  return(df)
+}
+
 weights40 <- covars40 %>% 
-  map(get_weights_now) %>% 
+  map(get_erc_weights) %>% 
   flatten_out(model_rebal_dat$month_index, "month_index") %>% 
-  select(.data$month_index, .data$name, gmv40_weight = weights) %>% 
+  select(.data$month_index, .data$name, erc40_weight = weights) %>% 
   mutate(month_index = as.integer(.data$month_index))
 
-covars100 <- map(model_rebal_dat$data, filter_n_size, "histadj_top100_weight") %>% 
-  map(get_cov)
-weights100 <- covars100 %>% 
-  map(get_weights_now) %>% 
-  flatten_out(model_rebal_dat$month_index, "month_index") %>% 
-  select(.data$month_index, .data$name, gmv100_weight = weights) %>%
-  mutate(month_index = as.integer(.data$month_index))
+
+install.packages("nlopt")
+
+sigma_mat <- covars40[[1]]
+x0 <- rep(1/40, times = 40)
+fn <- function(w_0){
+  t(w_0) %*% sigma_mat %*% w_0
+}
+lower <- 0
+upper <- 1/40
+hin <- function(w_0){
+  sum
+}
+
+nloptr::slsqp()
+# a quick look at log constraint solvers
+
+
+# The below are the droids you're looking for
+# https://github.com/ArdiaD/RiskPortfolios/blob/master/R/optimalPortfolio.R
+# can use risk portfolios for quick Ledoit wolf shrinkage too...
+
+# really quite exciting :)
+
+# go back and change the old stuff too, because why not...
+# also see what they do for variance covariance matrix histories...
 ```
 

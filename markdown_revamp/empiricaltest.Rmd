@@ -276,7 +276,7 @@ head(full_ret, 10)
 
 ### Data preparation (sample window history adjustment)
 
-```{r dat_model_rebal, eval=FALSE}
+```{r dat_model_rebal, cache=TRUE}
 library(rlang)
 library(magrittr)
 library(dplyr)
